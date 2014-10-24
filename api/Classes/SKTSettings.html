@@ -236,12 +236,12 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The app token corresponding to your application. App tokens are issued on the SupportKit web portal.</p>
+		<p>The app token corresponding to your application.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (copy) NSString *appToken</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *appToken</code></div>
 
     
 	
@@ -253,7 +253,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>The app token corresponding to your application. App tokens are issued on the SupportKit web portal.</p>
+		<p>App tokens are issued on the SupportKit web portal. This value may only be set once, and must be set at init time.</p>
 	</div>
 	
 	
@@ -277,7 +277,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The accent color for the conversation screen. Used as the color of user message bubbles, as well as the color of the send button and text input caret.</p>
+		<p>The accent color for the conversation screen.</p>
 	</div>		
 	
     
@@ -294,7 +294,7 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>The accent color for the conversation screen. Used as the color of user message bubbles, as well as the color of the send button and text input caret.</p>
+		<p>Used as the color of user message bubbles, as well as the color of the send button and text input caret.</p>
 
 <p>The default value is #00B0FF.</p>
 	</div>
@@ -320,8 +320,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The status bar style to use on the conversation screen.
-You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.</p>
+		<p>The status bar style to use on the conversation screen.</p>
 	</div>		
 	
     
@@ -338,8 +337,7 @@ You should use this property if your app uses UIAppearance to style UINavigation
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>The status bar style to use on the conversation screen.
-You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.</p>
+		<p>You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.</p>
 
 <p>The default value is UIStatusBarStyleDefault.</p>
 	</div>
@@ -365,7 +363,7 @@ You should use this property if your app uses UIAppearance to style UINavigation
 	
 	
 	<div class="method-subsection brief-description">
-		<p>A boolean property that indicates whether to enable the app-wide gesture (two-finger swipe down) to present the SupportKit UI. Use option shift (⌥⇧) drag to perform the gesture on the simulator.</p>
+		<p>A boolean property that indicates whether to enable the app-wide gesture (two-finger swipe down) to present the SupportKit UI.</p>
 	</div>		
 	
     
@@ -382,7 +380,7 @@ You should use this property if your app uses UIAppearance to style UINavigation
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>A boolean property that indicates whether to enable the app-wide gesture (two-finger swipe down) to present the SupportKit UI. Use option shift (⌥⇧) drag to perform the gesture on the simulator.</p>
+		<p>Use option shift (⌥⇧) drag to perform the gesture on the simulator.</p>
 
 <p>The default value is YES.</p>
 	</div>
@@ -425,9 +423,7 @@ You should use this property if your app uses UIAppearance to style UINavigation
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>A boolean property that indicates whether to show a hint on how to perform the app-wide gesture when SupportKit is launched for the first time (without using the gesture).</p>
-
-<p>The default value is YES.</p>
+		<p>The default value is YES.</p>
 	</div>
 	
 	
@@ -451,8 +447,7 @@ You should use this property if your app uses UIAppearance to style UINavigation
 	
 	
 	<div class="method-subsection brief-description">
-		<p>A Boolean property that indicates whether to show a local OS notification that brings your user into the conversation page once tapped.
-The local OS notification is only shown if a user searched for help and left the app within 20 seconds, but without reading any KB articles or attempting to start a conversation.</p>
+		<p>A Boolean property that indicates whether to show a local OS notification that brings your user into the conversation page once tapped.</p>
 	</div>		
 	
     
@@ -469,8 +464,7 @@ The local OS notification is only shown if a user searched for help and left the
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>A Boolean property that indicates whether to show a local OS notification that brings your user into the conversation page once tapped.
-The local OS notification is only shown if a user searched for help and left the app within 20 seconds, but without reading any KB articles or attempting to start a conversation.</p>
+		<p>The local OS notification is only shown if a user searched for help and left the app within 20 seconds, but without reading any KB articles or attempting to start a conversation.</p>
 
 <p>The default value is YES.</p>
 	</div>
@@ -496,12 +490,12 @@ The local OS notification is only shown if a user searched for help and left the
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The base URL of your Zendesk knowledge base, to be used in constructing the search endpoint. The URL must be fully qualified, including http or https (ex: &ldquo;https://supportkit.zendesk.com&rdquo;).</p>
+		<p>The base URL of your Zendesk knowledge base, to be used in constructing the search endpoint.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (copy) NSString *knowledgeBaseURL</code></div>
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *knowledgeBaseURL</code></div>
 
     
 	
@@ -513,10 +507,11 @@ The local OS notification is only shown if a user searched for help and left the
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>The base URL of your Zendesk knowledge base, to be used in constructing the search endpoint. The URL must be fully qualified, including http or https (ex: &ldquo;https://supportkit.zendesk.com&rdquo;).</p>
+		<p>This value may only be set once. If the knowledgeBaseURL is not specified at init time, search is disabled.</p>
 
-<p>If the knowledgeBaseURL is not specified, search is disabled.
-The default value is nil.</p>
+<p>The URL must be fully qualified, including http or https (ex: &ldquo;https://supportkit.zendesk.com&rdquo;).</p>
+
+<p>The default value is nil.</p>
 	</div>
 	
 	
@@ -572,11 +567,6 @@ The default value is nil.</p>
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Initializes a settings object with the given app token.</p>
-	</div>
 	
 	
 	
@@ -644,18 +634,23 @@ The default value is nil.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Sets the filtering policy applied to user search results based on the given filter mode.</p>
+		<p>Filtering may only be configured once, and configuration must be done at init time or no filtering will be applied.</p>
 
-<p>SKTSearchResultIsIn : Filter out search results if they belong to any of the passed section ids.</p>
-
-<p>SKTSearchResultIsNotIn : Filter out search results if they do not belong to any of the passed section ids.</p>
-
-<p>NOTE: Filtering by category is only possible for Zendesk instances that are using HelpCenter.</p>
+<p>Filtering by category id is only possible for Zendesk instances that are using HelpCenter.</p>
 	</div>
 	
 	
 	
 	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Constants/SKTSearchResultsFilterMode.html">SKTSearchResultsFilterMode</a></p></code></li>
+			
+		</ul>
+	</div>
 	
 	
 	
@@ -685,7 +680,7 @@ The default value is nil.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Radialpoint. All rights reserved. (Last updated: 2014-10-09)</span><br />
+						<p><span class="copyright">&copy; 2014 Radialpoint. All rights reserved. (Last updated: 2014-10-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

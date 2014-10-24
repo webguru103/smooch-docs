@@ -39,6 +39,8 @@
 	
 	<option value="class_methods">Class Methods</option>
 	
+	<option value="//api/name/conversation">&nbsp;&nbsp;&nbsp;&nbsp;+ conversation</option>
+	
 	<option value="//api/name/initWithSettings:">&nbsp;&nbsp;&nbsp;&nbsp;+ initWithSettings:</option>
 	
 	<option value="//api/name/setDefaultRecommendations:">&nbsp;&nbsp;&nbsp;&nbsp;+ setDefaultRecommendations:</option>
@@ -46,6 +48,8 @@
 	<option value="//api/name/setTopRecommendation:">&nbsp;&nbsp;&nbsp;&nbsp;+ setTopRecommendation:</option>
 	
 	<option value="//api/name/setUserFirstName:lastName:">&nbsp;&nbsp;&nbsp;&nbsp;+ setUserFirstName:lastName:</option>
+	
+	<option value="//api/name/settings">&nbsp;&nbsp;&nbsp;&nbsp;+ settings</option>
 	
 	<option value="//api/name/show">&nbsp;&nbsp;&nbsp;&nbsp;+ show</option>
 	
@@ -81,6 +85,8 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
 	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/conversation">conversation</a></span></li>
+	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSettings:">initWithSettings:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDefaultRecommendations:">setDefaultRecommendations:</a></span></li>
@@ -88,6 +94,8 @@
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setTopRecommendation:">setTopRecommendation:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setUserFirstName:lastName:">setUserFirstName:lastName:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/settings">settings</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/show">show</a></span></li>
 	
@@ -152,6 +160,12 @@
 	
 </li><li>
 	<span class="tooltip">
+		<code><a href="#//api/name/settings">+&nbsp;settings</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
 		<code><a href="#//api/name/show">+&nbsp;show</a></code>
 	</span>
 	
@@ -192,6 +206,12 @@
 	</span>
 	
 	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/conversation">+&nbsp;conversation</a></code>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -208,13 +228,63 @@
 						<h2 class="subtitle subtitle-methods">Class Methods</h2>
 						
 						<div class="section-method">
+	<a name="//api/name/conversation" title="conversation"></a>
+	<h3 class="subsubtitle method-title">conversation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Accessor method for the current conversation.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SKTConversation *)conversation</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Current conversation, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/SKTConversation.html">SKTConversation</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SupportKit.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
 	<a name="//api/name/initWithSettings:" title="initWithSettings:"></a>
 	<h3 class="subsubtitle method-title">initWithSettings:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Initialize the SupportKit SDK with the provided settings. This should be called only once (in your application:didFinishLaunchingWithOptions:).</p>
+		<p>Initialize the SupportKit SDK with the provided settings.</p>
 	</div>		
 	
     
@@ -241,14 +311,23 @@
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Initialize the SupportKit SDK with the provided settings. This should be called only once (in your application:didFinishLaunchingWithOptions:).</p>
+		<p>This may only be called once (preferably, in application:didFinishLaunchingWithOptions:).</p>
 
-<p>The settings object is deep copied, and any modifications to it after this call will have no effect.</p>
+<p>Use +settings to retrieve and modify the given settings object.</p>
 	</div>
 	
 	
 	
 	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+			
+		</ul>
+	</div>
 	
 	
 	
@@ -267,8 +346,7 @@
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Set a list of recommendations that the user will see upon launching SupportKit.
-The array should be a list of NSString&rsquo;s representing the URLs to the recommendations.</p>
+		<p>Set a list of recommendations that the user will see upon launching SupportKit.</p>
 	</div>		
 	
     
@@ -295,8 +373,11 @@ The array should be a list of NSString&rsquo;s representing the URLs to the reco
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Set a list of recommendations that the user will see upon launching SupportKit.
-The array should be a list of NSString&rsquo;s representing the URLs to the recommendations.</p>
+		<p>Recommendations are web resources that communicate important information to your users. For example: knowledge base articles, frequently asked questions, new feature announcements, etc&hellip; Recommendations are displayed when the +show API is called, or when SupportKit is launched using the app-wide gesture.</p>
+
+<p>Array items must be of type NSString, and should represent the URLs of the recommendations.</p>
+
+<p>Passing nil will remove any existing default recommendations.</p>
 	</div>
 	
 	
@@ -320,8 +401,7 @@ The array should be a list of NSString&rsquo;s representing the URLs to the reco
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Sets the top recommendation that will appear at the beginning of the list of recommendations.
-This should be used when there is a one-to-one mapping between an event that occurred in the app, and a corresponding article describing that event.</p>
+		<p>Sets the top recommendation, to be displayed when the SupportKit UI is shown.</p>
 	</div>		
 	
     
@@ -348,8 +428,9 @@ This should be used when there is a one-to-one mapping between an event that occ
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Sets the top recommendation that will appear at the beginning of the list of recommendations.
-This should be used when there is a one-to-one mapping between an event that occurred in the app, and a corresponding article describing that event.</p>
+		<p>The top recommendation is displayed at the beginning of the recommendations list and takes precedence over default recommendations.</p>
+
+<p>This should be used when there is a one-to-one mapping between an event (or error) that occurred in the app, and a corresponding article explaining or elaborating on that event.</p>
 
 <p>Calling this method more than once will replace the previous top recommendation.
 Passing nil will remove the current top recommendation.</p>
@@ -408,14 +489,78 @@ Passing nil will remove the current top recommendation.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Sets the current user&rsquo;s first and last name to be used as a display name when sending messages.</p>
-
-<p>This is a shortcut for -setFirstName and -setLastName on [SKTUser currentUser]</p>
+		<p>This is a shortcut for -setFirstName and -setLastName on [SKTUser currentUser]</p>
 	</div>
 	
 	
 	
 	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/SKTUser.html">SKTUser</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SupportKit.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/settings" title="settings"></a>
+	<h3 class="subsubtitle method-title">settings</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Accessor method for the sdk settings.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (SKTSettings *)settings</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>Settings object passed in +initWithSettings:, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Use this object to update settings at run time.</p>
+
+<p>Note: Some settings may only be configured at init time. See the SKTSettings class reference for more information.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+			
+		</ul>
+	</div>
 	
 	
 	
@@ -451,9 +596,7 @@ Passing nil will remove the current top recommendation.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Presents the SupportKit Home screen.</p>
-
-<p>Calling this method with search disabled and no recommendations configured is equivalent to calling +showConversation.</p>
+		<p>Calling this method with search disabled and no recommendations configured is equivalent to calling +showConversation.</p>
 
 <p>+initWithSettings: must have been called prior to calling show.</p>
 	</div>
@@ -479,7 +622,7 @@ Passing nil will remove the current top recommendation.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Presents the SupportKit Conversation page, using the top-most view controller of the application&rsquo;s main window as presenting view controller.</p>
+		<p>Presents the SupportKit Conversation page</p>
 	</div>		
 	
     
@@ -496,7 +639,7 @@ Passing nil will remove the current top recommendation.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Presents the SupportKit Conversation page, using the top-most view controller of the application&rsquo;s main window as presenting view controller.</p>
+		<p>Uses the top-most view controller of the application&rsquo;s main window as presenting view controller.</p>
 
 <p>+initWithSettings: must have been called prior to calling showConversation.</p>
 	</div>
@@ -539,9 +682,7 @@ Passing nil will remove the current top recommendation.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Displays the SupportKit gesture hint.</p>
-
-<p>Upon completing (or skipping) the hint, the user will land on the SupportKit Home screen (equivalent to calling +show)</p>
+		<p>Upon completing (or skipping) the hint, the user will land on the SupportKit Home screen (equivalent to calling +show)</p>
 
 <p>+initWithSettings: must have been called prior to calling showWithGestureHint.</p>
 	</div>
@@ -567,8 +708,7 @@ Passing nil will remove the current top recommendation.</p>
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Tracks an app event, and processes any rules associated with that event.
-Rules can be configured on the SupportKit admin panel.</p>
+		<p>Tracks an app event, and processes any whispers associated with that event.</p>
 	</div>		
 	
     
@@ -582,7 +722,7 @@ Rules can be configured on the SupportKit admin panel.</p>
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>eventName</em></dt>
-			<dd><p>The name of the event to track. This should match a rule created on the admin panel for your app.</p></dd>
+			<dd><p>The name of the event to track. This should match a whisper created on the admin panel for your app.</p></dd>
 		</dl>
 		
 	</div>
@@ -595,10 +735,9 @@ Rules can be configured on the SupportKit admin panel.</p>
 	
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
-		<p>Tracks an app event, and processes any rules associated with that event.
-Rules can be configured on the SupportKit admin panel.</p>
+		<p>Whispers can be configured in the SupportKit admin panel.</p>
 
-<p>Rules can only be fulfilled once per app user, and tracking an event after the rule has been fulfilled will have no effect.</p>
+<p>Whispers can only be fulfilled once per app user, and tracking an event after the whisper has been fulfilled will have no effect.</p>
 	</div>
 	
 	
@@ -635,7 +774,7 @@ Rules can be configured on the SupportKit admin panel.</p>
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2014 Radialpoint. All rights reserved. (Last updated: 2014-10-09)</span><br />
+						<p><span class="copyright">&copy; 2014 Radialpoint. All rights reserved. (Last updated: 2014-10-24)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						
