@@ -366,7 +366,7 @@ NOTE: SupportKit only accepts category, section or forum ids, and not article id
 <li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
 </ol>
 <h1 id='localization'>Localization</h1>
-<p>Every string you see in SupportKit can be <a href="#strings-customization">customized</a> and localized. SupportKit provides English and French out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, SupportKit looks for SupportKitLocalizable.strings in you app bundle first then in the SupportKit bundle, enabling you to customize any strings and add support for others languages.</p>
+<p>Every string you see in SupportKit can be <a href="#strings-customization">customized</a> and localized. SupportKit provides English, French, and Chinese (Traditional) out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, SupportKit looks for SupportKitLocalizable.strings in you app bundle first then in the SupportKit bundle, enabling you to customize any strings and add support for other languages.</p>
 <h2 id='enabling-localization-in-your-app'>Enabling Localization in your app</h2>
 <p>For SupportKit to display a language other than English, your app needs to first enable support for that language. You can enable a second language in your Xcode project settings:</p>
 
@@ -378,14 +378,14 @@ NOTE: SupportKit only accepts category, section or forum ids, and not article id
 Localization is subject to caching. If you can&rsquo;t see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good mesures.
 </aside></p>
 <h2 id='adding-more-languages'>Adding more languages</h2>
-<p>To enable other localization beside the provided ones, first copy the english SupportKitLocalizable.strings file from the SupportKit bundle to the corresponding .lproj folder for that language. Then translate the values to match that language.</p>
+<p>To enable other languages beside the provided ones, first copy the english SupportKitLocalizable.strings file from the SupportKit bundle to the corresponding .lproj folder for that language. Then, translate the values to match that language.</p>
 
-<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, you can share it with us so that every SupportKit user will benefit for it. You can do so by <a href="https://github.com/radialpoint/SupportKit/fork">forking</a> our GitHub repo and creating a pull request or just send us your string file at <a href="mailto:supportkit@radialpoint.com">supportkit@radialpoint.com</a></p>
+<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every SupportKit user can benefit from it. You can do so by <a href="https://github.com/radialpoint/SupportKit/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:supportkit@radialpoint.com">supportkit@radialpoint.com</a></p>
 <h1 id='strings-customization'>Strings customization</h1>
 <p>SupportKit lets you customize any strings it displays via Apple&rsquo;s localization mechanism.
 Simply add an empty string file named SupportKitLocalizable.strings in your Xcode project and specify new values for the keys present in the SupportKitLocalizable.strings available in the SupportKit bundle.</p>
 
-<p>To enable strings customization across languages, make sure you &ldquo;Localize&rdquo; your SupportKitLocalizable.strings file in Xcode.</p>
+<p>To enable string customization across languages, make sure you &ldquo;Localize&rdquo; your SupportKitLocalizable.strings file in Xcode.</p>
 
 <p><img alt="Localize SupportKitLocalizable.strings" src="images/localize.png" /></p>
 
