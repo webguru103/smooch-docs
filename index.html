@@ -235,7 +235,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">titleTextAttributes</span> <span class="o">=</span> <span class="p">[</span> <span class="kt">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">()]</span>
 </code></pre>
 <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
-<p>If you have SupportKit forward e-mail to a distribution list then muliple team members can provide replies to a user&rsquo;s message. Whenever a team member replies, the name that is sent along with their e-mail will be shown in the SupportKit conversation as shown below.</p>
+<p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the avatar and display name shown to the user alongside the message.</p>
 
 <p><img alt="Team Member Names" src="images/team_names.png" /></p>
 <h2 id='keeping-your-users-safe'>Keeping your users safe</h2>
@@ -372,7 +372,7 @@ NOTE: SupportKit only accepts category, section or forum ids, and not article id
 
 <p><img alt="Enable Localization" src="images/add_language.png" /></p>
 
-<p>Once you have this, SupportKit will display itself in the device language for the supported language. Only french is currently provided by us. See how to support more languages in <a href="#adding-more-languages">Adding more languages</a></p>
+<p>Once you have this, SupportKit will display itself in the device language for the supported language. English, French, Spanish, Chinese traditional, Arabic, German, Persian, Japanese and Finnish are currently included. See how to support more languages in <a href="#adding-more-languages">Adding more languages</a></p>
 
 <p><aside class="warning">
 Localization is subject to caching. If you can&rsquo;t see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good mesures.
