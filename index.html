@@ -110,7 +110,7 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 
 <p>This token is free and uniquely identifies your app and links it to the SupportKit backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
 
-<p>You can find your token by <a href="https://app.supportkit.io">logging into SupportKit</a> and copying it from the overview page as shown below.</p>
+<p>You can find your token by <a href="https://app.supportkit.io">logging into SupportKit</a> and copying it from the settings page as shown below.</p>
 
 <p><img alt="App Token on Overview Page" src="images/apptoken.png" /></p>
 
@@ -135,13 +135,49 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre>
+<h1 id='slack'>Slack</h1>
+<p>Slack is a new communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
+
+<p>SupportKit has a revolutionary new Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack. Check out this video to see how it works:</p>
+
+<iframe style="margin-left:28px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<h2 id='configuring-slack'>Configuring Slack</h2><h3 id='step-1--quotauthorizifyquot-supportkit-so-that-it-can-talk-to-your-slack'>Step 1. &ldquo;Authorizify&rdquo; SupportKit so that it can talk to your Slack</h3><h3 id='step-2--set-up-a-new-quotslash-commandquot-so-that-you-can-send-messages-to-supportkit'>Step 2. Set up a new &ldquo;slash command&rdquo; so that you can send messages to SupportKit</h3>
+<p><img src="images/slashcmd.png" alt="Slash Command Setup"/></p>
+
+<p><aside class="notice">
+Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in Step 2 with the token that Slack&rsquo;s slash command setup page provides you.
+</aside></p>
+<h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
+<p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
 <h1 id='conversations'>Conversations</h1>
-<p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. </p>
+<p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a></p>
 <h2 id='how-do-conversations-work'>How do conversations work?</h2>
 <p>When users access SupportKit by tapping on an element of your app&rsquo;s interface or using the two-finger gesture, they&rsquo;ll be presented with SupportKit&rsquo;s messaging interface.</p>
 
 <p><img src="images/messages.png" alt="Drawing" style="width: 50%;"/></p>
+<h3 id='slack-channel'>Slack Channel</h3>
+<p>Once your user types a message and hits send, SupportKit sends the message to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel that you chose when you <a href="#configuring-slack">configured Slack</a>.</p>
 
+<p>This notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
+
+<p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
+
+<p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
+
+<blockquote>
+<p>/sk TYPE YOUR MESSAGE HERE</p>
+</blockquote>
+
+<p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
+
+<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
+
+<blockquote>
+<p>/sk !profile</p>
+</blockquote>
+
+<p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<h3 id='e-mail-channel'>E-Mail Channel</h3>
 <p>Once your user types a message and hits send, SupportKit transforms the message into an e-mail that makes its way to the e-mail address you specified when signing up for SupportKit. This e-mail contains the user&rsquo;s message as well as any metadata about the user that you&rsquo;ve captured in your app. </p>
 
 <p><img src="images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
@@ -158,6 +194,12 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">"Doctor"</span>
 <span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">"Who"</span>
+</code></pre>
+<h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
+<p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
+<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">@"bob@example.com"</span><span class="p">;</span>
+</code></pre>
+<pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">"bob@example.com"</span>
 </code></pre>
 <h3 id='adding-any-other-kind-of-metadata'>Adding any other kind of metadata</h3>
 <p>The SKTUser class also allows you to add any other kind of metadata to the e-mail messages that are sent when users contact you. The <code class="prettyprint">addProperties:</code> method accepts an NSDictionary containing the metadata to add.</p>
