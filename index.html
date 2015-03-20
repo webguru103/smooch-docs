@@ -221,6 +221,10 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="nf">addProperties</span><span class="p">([</span> <span class="s">"nickname"</span> <span class="p">:</span> <span class="s">"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">"weight"</span> <span class="p">:</span> <span class="mi">650</span><span class="p">,</span> <span class="s">"premiumUser"</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">])</span>
 </code></pre>
+
+<p><aside class="info">
+Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
+</aside></p>
 <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
 <p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
 <h3 id='step-1--enable-push-notifications-and-generate-the--p12-certificate'>Step 1. Enable Push Notifications and Generate the .p12 Certificate</h3>
