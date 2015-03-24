@@ -16,6 +16,8 @@
           setupLanguages(["objective_c","swift"]);
         });
       </script>
+    <script src="//use.typekit.net/wdu7dsf.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body class="index">
@@ -57,18 +59,18 @@
 <p>We&rsquo;ve documented both methods for adding SupportKit to your app. Read on and follow your preferred way of adding the SDK to your project.</p>
 <h2 id='cocoapods-method'>CocoaPods Method</h2>
 <p>First, install Cocoapods if it isn&rsquo;t already available on your system: </p>
-
-<p><code class="prettyprint">$ sudo gem install cocoapods</code></p>
+<pre><code class="highlight plaintext">sudo gem install cocoapods
+</code></pre>
 
 <p>Now that you&rsquo;ve installed CocoaPods, we&rsquo;ll add SupportKit to your project&rsquo;s dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file</p>
-
-<p><code class="prettyprint">$ echo &quot;pod &#39;SupportKit&#39;&quot; &gt;&gt; Podfile</code></p>
-
-<p><code class="prettyprint">$ pod install</code></p>
+<pre><code class="highlight plaintext">$ echo "pod 'SupportKit'" &gt;&gt; Podfile
+</code></pre>
+<pre><code class="highlight plaintext">$ pod install
+</code></pre>
 
 <p>Open the .xcworkspace file and add the necessary code to <a href="#import-the-supportkit-header-file">initialize SupportKit in your app</a>. </p>
 
-<p><aside class="success">
+<p><aside class="notice">
 Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
 </aside></p>
 <h2 id='manual-method'>Manual Method</h2>
@@ -94,9 +96,7 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 
 <p>SupportKit should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
 <h2 id='import-the-supportkit-header-file'>Import the SupportKit header file</h2>
-<blockquote>
 <p>Import the SupportKit file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
-</blockquote>
 <pre><code class="highlight objective_c"><span class="cp">#import &lt;SupportKit/SupportKit.h&gt;
 </span></code></pre>
 <pre><code class="highlight swift"><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">SupportKit</span><span class="o">/</span><span class="kt">SupportKit</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
@@ -116,17 +116,13 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 
 <p>Once you&rsquo;ve located your token, use the code below to initialize SupportKit.</p>
 
-<blockquote>
 <p>Add the following line of code to your applicationDidFinishLaunchingWithOptions: method</p>
-</blockquote>
 <pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">]];</span>
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">))</span>
 </code></pre>
 
-<blockquote>
 <p>Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.</p>
-</blockquote>
 <h3 id='displaying-the-supportkit-user-interface'>Displaying the SupportKit User Interface</h3>
 <p>Once you&rsquo;ve initialized SupportKit, you&rsquo;re ready to try it out. </p>
 
@@ -137,8 +133,8 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 </code></pre>
 <h2 id='updating-supportkit'>Updating SupportKit</h2><h3 id='cocoapods'>CocoaPods</h3>
 <p>To update via cocoapods, simply execute this</p>
-
-<p><code class="prettyprint">$ pod update</code></p>
+<pre><code class="highlight plaintext">$ pod update
+</code></pre>
 <h3 id='manual'>Manual</h3>
 <p>To manually update SupportKit simply grab a fresh copy of SupportKit by <a href="https://github.com/radialpoint/SupportKit/archive/master.zip">downloading the most recent release</a> and re-add the SDK to your XCode project by dragging both SupportKit.framework and SupportKit.bundle into your project</p>
 <h1 id='slack'>Slack</h1>
@@ -146,7 +142,7 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 
 <p>SupportKit has a revolutionary new Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack. Check out this video to see how it works:</p>
 
-<iframe style="margin-left:28px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe style="margin-left:42px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 <h2 id='configuring-slack'>Configuring Slack</h2><h3 id='step-1--quotauthorizifyquot-supportkit-so-that-it-can-talk-to-your-slack'>Step 1. &ldquo;Authorizify&rdquo; SupportKit so that it can talk to your Slack</h3><h3 id='step-2--set-up-a-new-quotslash-commandquot-so-that-you-can-send-messages-to-supportkit'>Step 2. Set up a new &ldquo;slash command&rdquo; so that you can send messages to SupportKit</h3>
 <p><img src="images/slashcmd.png" alt="Slash Command Setup"/></p>
 
@@ -169,18 +165,14 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
 
 <p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
-
-<blockquote>
-<p>/sk TYPE YOUR MESSAGE HERE</p>
-</blockquote>
+<pre><code class="highlight plaintext">/sk TYPE YOUR MESSAGE HERE
+</code></pre>
 
 <p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
 
 <p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
-
-<blockquote>
-<p>/sk !profile</p>
-</blockquote>
+<pre><code class="highlight plaintext">/sk !profile
+</code></pre>
 
 <p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
 <h3 id='e-mail-channel'>E-Mail Channel</h3>
@@ -390,9 +382,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 </span><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
 </code></pre>
 
-<blockquote>
 <p>When specifying your Zendesk URL, make sure to include the protocol (http:// or https://) that matches your Zendesk instance&rsquo;s configuration.</p>
-</blockquote>
 
 <p>Some Zendesk installations are shared between multiple apps. In such cases it&rsquo;s necessary to filter SupportKit&rsquo;s search results to only articles relevant to the specific app. The SupportKit filtering API provides a means to accomplish this, and allows filtering of search results based on categories, sections or forums (Zendesk knowledge bases are organized in three tiers: Category -&gt; Section or Forum -&gt; Article).</p>
 
