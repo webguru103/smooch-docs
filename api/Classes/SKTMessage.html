@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SKTConversation Class Reference</title>
+		<title>SKTMessage Class Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SKTConversation Class Reference</h1>
+				<h1 class="hideInXcode">SKTMessage Class Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -25,8 +25,6 @@
 				<li id="jumpto_button" role="navigation">
 					<select id="jumpTo">
 	<option value="top">Jump To&#133;</option>
-	
-	<option value="overview">Overview</option>
 	
 	
 	
@@ -39,13 +37,19 @@
 	
 	<option value="properties">Properties</option>
 	
-	<option value="//api/name/delegate">&nbsp;&nbsp;&nbsp;&nbsp;delegate</option>
+	<option value="//api/name/avatarUrl">&nbsp;&nbsp;&nbsp;&nbsp;avatarUrl</option>
 	
-	<option value="//api/name/messageCount">&nbsp;&nbsp;&nbsp;&nbsp;messageCount</option>
+	<option value="//api/name/date">&nbsp;&nbsp;&nbsp;&nbsp;date</option>
 	
-	<option value="//api/name/messages">&nbsp;&nbsp;&nbsp;&nbsp;messages</option>
+	<option value="//api/name/isFromCurrentUser">&nbsp;&nbsp;&nbsp;&nbsp;isFromCurrentUser</option>
 	
-	<option value="//api/name/unreadCount">&nbsp;&nbsp;&nbsp;&nbsp;unreadCount</option>
+	<option value="//api/name/isWhisper">&nbsp;&nbsp;&nbsp;&nbsp;isWhisper</option>
+	
+	<option value="//api/name/name">&nbsp;&nbsp;&nbsp;&nbsp;name</option>
+	
+	<option value="//api/name/text">&nbsp;&nbsp;&nbsp;&nbsp;text</option>
+	
+	<option value="//api/name/uploadStatus">&nbsp;&nbsp;&nbsp;&nbsp;uploadStatus</option>
 	
 	
 	
@@ -54,11 +58,7 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
-	<option value="//api/name/markAllAsRead">&nbsp;&nbsp;&nbsp;&nbsp;- markAllAsRead</option>
-	
-	<option value="//api/name/retryMessage:">&nbsp;&nbsp;&nbsp;&nbsp;- retryMessage:</option>
-	
-	<option value="//api/name/sendMessage:">&nbsp;&nbsp;&nbsp;&nbsp;- sendMessage:</option>
+	<option value="//api/name/initWithText:">&nbsp;&nbsp;&nbsp;&nbsp;- initWithText:</option>
 	
 	
 	
@@ -69,8 +69,6 @@
 		<nav id="tocContainer" class="isShowingTOC">
 			<ul id="toc" role="tree">
 				
-<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
-
 
 
 
@@ -84,13 +82,19 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/delegate">delegate</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/avatarUrl">avatarUrl</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/messageCount">messageCount</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/date">date</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/messages">messages</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isFromCurrentUser">isFromCurrentUser</a></span></li>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/unreadCount">unreadCount</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isWhisper">isWhisper</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/name">name</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/text">text</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/uploadStatus">uploadStatus</a></span></li>
 	
 </ul></li>
 
@@ -100,11 +104,7 @@
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
 	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/markAllAsRead">markAllAsRead</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/retryMessage:">retryMessage:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/sendMessage:">sendMessage:</a></span></li>
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithText:">initWithText:</a></span></li>
 	
 </ul></li>
 
@@ -113,7 +113,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SKTConversation Class Reference" name="top"></a>
+				<a title="SKTMessage Class Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -122,7 +122,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SKTConversation Class Reference</h1>
+						<h1 class="title title-header">SKTMessage Class Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -133,36 +133,12 @@
 	<td class="specification-value">NSObject</td>
 </tr><tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SKTConversation.h</td>
+	<td class="specification-value">SKTMessage.h</td>
 </tr>
 						</tbody></table></div>
 					
                     
                     
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>The SKTConversation class provides an interface to interact with the current user&rsquo;s conversation.</p>
-
-<p>To obtain an instance, use <code>[SupportKit conversation]</code>. +initWithSettings: must have been called prior to retrieving the shared conversation object.</p>
-
-<p>To send a message, use -sendMessage: with an SKTMessage object</p>
-
-<p>Example:</p>
-
-<p><code>[[SupportKit conversation] sendMessage:[[SKTMessage alloc] initWithText:@"Hello World!"]];</code></p>
-
-<p>A notification will be fired indicating the success or failure of the message. To subscribe to these notifications, use NSNotificationCenter.</p>
-
-<p>Example:</p>
-
-<p><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageUploaded:) name:SKTMessageUploadCompletedNotification object:nil];</code></p>
-
-<p><code>[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageFailed:) name:SKTMessageUploadFailedNotification object:nil];</code></p>
-					</div>
-					
-					
 					
 					
 					
@@ -177,45 +153,51 @@
 						<ul class="task-list">
 							<li>
 	<span class="tooltip">
-		<code><a href="#//api/name/messages">&nbsp;&nbsp;messages</a></code>
+		<code><a href="#//api/name/initWithText:">&ndash;&nbsp;initWithText:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/text">&nbsp;&nbsp;text</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/messageCount">&nbsp;&nbsp;messageCount</a></code>
+		<code><a href="#//api/name/name">&nbsp;&nbsp;name</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/unreadCount">&nbsp;&nbsp;unreadCount</a></code>
+		<code><a href="#//api/name/avatarUrl">&nbsp;&nbsp;avatarUrl</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/delegate">&nbsp;&nbsp;delegate</a></code>
+		<code><a href="#//api/name/date">&nbsp;&nbsp;date</a></code>
 	</span>
 	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/markAllAsRead">&ndash;&nbsp;markAllAsRead</a></code>
+		<code><a href="#//api/name/isWhisper">&nbsp;&nbsp;isWhisper</a></code>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/sendMessage:">&ndash;&nbsp;sendMessage:</a></code>
+		<code><a href="#//api/name/isFromCurrentUser">&nbsp;&nbsp;isFromCurrentUser</a></code>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li><li>
 	<span class="tooltip">
-		<code><a href="#//api/name/retryMessage:">&ndash;&nbsp;retryMessage:</a></code>
+		<code><a href="#//api/name/uploadStatus">&nbsp;&nbsp;uploadStatus</a></code>
 	</span>
-	
+	<span class="task-item-suffix">property</span>
 	
 </li>
 						</ul>
@@ -231,18 +213,18 @@
 						<h2 class="subtitle subtitle-methods">Properties</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/delegate" title="delegate"></a>
-	<h3 class="subsubtitle method-title">delegate</h3>
+	<a name="//api/name/avatarUrl" title="avatarUrl"></a>
+	<h3 class="subsubtitle method-title">avatarUrl</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>A delegate object for receiving notifications related to the conversation.</p>
+		<p>The url for the author&rsquo;s avatar image.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (weak) id&lt;SKTConversationDelegate&gt; delegate</code></div>
+	<div class="method-subsection method-declaration"><code>@property (readonly) NSString *avatarUrl</code></div>
 
     
 	
@@ -255,39 +237,30 @@
 	
 	
 	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="../Protocols/SKTConversationDelegate.html">SKTConversationDelegate</a></p></code></li>
-			
-		</ul>
-	</div>
 	
 	
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
+		<code class="declared-in-ref">SKTMessage.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/messageCount" title="messageCount"></a>
-	<h3 class="subsubtitle method-title">messageCount</h3>
+	<a name="//api/name/date" title="date"></a>
+	<h3 class="subsubtitle method-title">date</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The total number of messages in the conversation, including user-generated messages.</p>
+		<p>The date and time the message was sent.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (readonly) NSUInteger messageCount</code></div>
+	<div class="method-subsection method-declaration"><code>@property (readonly) NSDate *date</code></div>
 
     
 	
@@ -305,25 +278,25 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
+		<code class="declared-in-ref">SKTMessage.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/messages" title="messages"></a>
-	<h3 class="subsubtitle method-title">messages</h3>
+	<a name="//api/name/isFromCurrentUser" title="isFromCurrentUser"></a>
+	<h3 class="subsubtitle method-title">isFromCurrentUser</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>The array of SKTMessage objects representing the conversation.</p>
+		<p>Returns YES if the message originated from the user, or NO if the message comes from the app team.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (readonly) NSArray *messages</code></div>
+	<div class="method-subsection method-declaration"><code>@property (readonly) BOOL isFromCurrentUser</code></div>
 
     
 	
@@ -336,39 +309,30 @@
 	
 	
 	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="../Classes/SKTMessage.html">SKTMessage</a></p></code></li>
-			
-		</ul>
-	</div>
 	
 	
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
+		<code class="declared-in-ref">SKTMessage.h</code><br />
 	</div>				
 	
 	
 </div>
 						
 						<div class="section-method">
-	<a name="//api/name/unreadCount" title="unreadCount"></a>
-	<h3 class="subsubtitle method-title">unreadCount</h3>
+	<a name="//api/name/isWhisper" title="isWhisper"></a>
+	<h3 class="subsubtitle method-title">isWhisper</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Count of unread messages in the conversation.</p>
+		<p>Returns YES if the message was generated by a Whisper.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>@property (readonly) NSUInteger unreadCount</code></div>
+	<div class="method-subsection method-declaration"><code>@property (readonly) BOOL isWhisper</code></div>
 
     
 	
@@ -377,11 +341,6 @@
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>The primary use of this property is to be able to display an indicator / badge when the conversation has unread messages.</p>
-	</div>
 	
 	
 	
@@ -391,7 +350,115 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
+		<code class="declared-in-ref">SKTMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/name" title="name"></a>
+	<h3 class="subsubtitle method-title">name</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The name of the author. This property may be nil if no name could be determined.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly) NSString *name</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SKTMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/text" title="text"></a>
+	<h3 class="subsubtitle method-title">text</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The text content of the message.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly) NSString *text</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SKTMessage.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/uploadStatus" title="uploadStatus"></a>
+	<h3 class="subsubtitle method-title">uploadStatus</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>The upload status of the message.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (readonly) SKTMessageUploadStatus uploadStatus</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SKTMessage.h</code><br />
 	</div>				
 	
 	
@@ -408,18 +475,18 @@
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
 						
 						<div class="section-method">
-	<a name="//api/name/markAllAsRead" title="markAllAsRead"></a>
-	<h3 class="subsubtitle method-title">markAllAsRead</h3>
+	<a name="//api/name/initWithText:" title="initWithText:"></a>
+	<h3 class="subsubtitle method-title">initWithText:</h3>
 	
 	
 	
 	<div class="method-subsection brief-description">
-		<p>Marks all unread messages as read.</p>
+		<p>Create a message with the given text. The message will be owned by the current user.</p>
 	</div>		
 	
     
 
-	<div class="method-subsection method-declaration"><code>- (void)markAllAsRead</code></div>
+	<div class="method-subsection method-declaration"><code>- (instancetype)initWithText:(id)<em>text</em></code></div>
 
     
 	
@@ -428,61 +495,6 @@
 	
 	
 	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Marks all unread messages as read, and notifies that the unread count changed.</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="../Classes/SKTMessage.html">SKTMessage</a></p></code></li>
-			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/retryMessage:" title="retryMessage:"></a>
-	<h3 class="subsubtitle method-title">retryMessage:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Retries a message that failed to send.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)retryMessage:(id)<em>failedMessage</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>The failed message will be removed from the messages array, and a new message will be constructed with the same text as the failed message. A notification will be fired indicating the success or failure status of the upload.</p>
-	</div>
 	
 	
 	
@@ -492,48 +504,7 @@
 	
 	<div class="method-subsection declared-in-section">
 		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/sendMessage:" title="sendMessage:"></a>
-	<h3 class="subsubtitle method-title">sendMessage:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Adds a new message to the conversation.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>- (void)sendMessage:(id)<em>message</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>For each message added using <code>sendMessage</code>, a notification will be fired indicating the success or failure status of the upload.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SKTConversation.h</code><br />
+		<code class="declared-in-ref">SKTMessage.h</code><br />
 	</div>				
 	
 	

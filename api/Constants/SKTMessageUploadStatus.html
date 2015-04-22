@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SKTSearchResultsFilterMode Constants Reference</title>
+		<title>SKTMessageUploadStatus Constants Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SKTSearchResultsFilterMode Constants Reference</h1>
+				<h1 class="hideInXcode">SKTMessageUploadStatus Constants Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -45,7 +45,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SKTSearchResultsFilterMode Constants Reference" name="top"></a>
+				<a title="SKTMessageUploadStatus Constants Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -54,7 +54,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SKTSearchResultsFilterMode Constants Reference</h1>
+						<h1 class="title title-header">SKTMessageUploadStatus Constants Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -62,10 +62,10 @@
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
 	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SKTSettings.h</td>
+	<td class="specification-value">SKTMessage.h</td>
 </tr><tr>
 	<td class="specification-title">References</td>
-	<td class="specification-value"><a href="Classes/SKTSettings.html">SKTSettings</a></td>
+	<td class="specification-value"><a href="Classes/SKTMessage.html">SKTMessage</a></td>
 </tr>
 						</tbody></table></div>
 					
@@ -77,11 +77,11 @@
 					
                     
                     
-                    <h3 class="subsubtitle method-title">SKTSearchResultsFilterMode</h3>
+                    <h3 class="subsubtitle method-title">SKTMessageUploadStatus</h3>
                     
 					
 					<div class="section section-overview">
-                        <p>Filtering mode to use with the -excludeSearchResultsIf:categories:sections: API of SKTSettings.</p>
+                        <p>Upload status of an SKTMessage.</p>
 					</div>
 					
 					
@@ -89,11 +89,15 @@
                         <!-- display enum values -->
                         
                         <h4 class="method-subtitle">Definition</h4>
-                        <code>typedef NS_ENUM(NSUInteger, SKTSearchResultsFilterMode ) {<br/>
+                        <code>typedef NS_ENUM(NSInteger, SKTMessageUploadStatus ) {<br/>
                             
-                            &nbsp;&nbsp; <a href="">SKTSearchResultIsIn</a>,<br/>
+                            &nbsp;&nbsp; <a href="">SKTMessageUploadStatusUnsent</a>,<br/>
                             
-                            &nbsp;&nbsp; <a href="">SKTSearchResultIsNotIn</a>,<br/>
+                            &nbsp;&nbsp; <a href="">SKTMessageUploadStatusFailed</a>,<br/>
+                            
+                            &nbsp;&nbsp; <a href="">SKTMessageUploadStatusSent</a>,<br/>
+                            
+                            &nbsp;&nbsp; <a href="">SKTMessageUploadStatusNotUserMessage</a>,<br/>
                             
                             };</code>
                     
@@ -103,11 +107,11 @@
                         <h4 class="method-subtitle">Constants</h4>
                         <dl class="termdef">
                             
-                            <dt><a name="" title="SKTSearchResultIsIn"></a><code>SKTSearchResultIsIn</code></dt>
+                            <dt><a name="" title="SKTMessageUploadStatusUnsent"></a><code>SKTMessageUploadStatusUnsent</code></dt>
 <dd>
 
 
-<p>Filter out search results if they belong to any of the passed section ids.</p>
+<p>A user message that has not yet finished uploading.</p>
 
 
 
@@ -115,16 +119,16 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">SKTSettings.h</code>.
+		Declared In <code class="declared-in-ref">SKTMessage.h</code>.
 	</p>
 	
 </dd>
                             
-                            <dt><a name="" title="SKTSearchResultIsNotIn"></a><code>SKTSearchResultIsNotIn</code></dt>
+                            <dt><a name="" title="SKTMessageUploadStatusFailed"></a><code>SKTMessageUploadStatusFailed</code></dt>
 <dd>
 
 
-<p>Filter out search results if they do not belong to any of the passed section ids.</p>
+<p>A user message that failed to upload.</p>
 
 
 
@@ -132,7 +136,41 @@
 
     
 	<p>
-		Declared In <code class="declared-in-ref">SKTSettings.h</code>.
+		Declared In <code class="declared-in-ref">SKTMessage.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="SKTMessageUploadStatusSent"></a><code>SKTMessageUploadStatusSent</code></dt>
+<dd>
+
+
+<p>A user message that was successfully uploaded.</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">SKTMessage.h</code>.
+	</p>
+	
+</dd>
+                            
+                            <dt><a name="" title="SKTMessageUploadStatusNotUserMessage"></a><code>SKTMessageUploadStatusNotUserMessage</code></dt>
+<dd>
+
+
+<p>A message that did not originate from the current user.</p>
+
+
+
+
+
+    
+	<p>
+		Declared In <code class="declared-in-ref">SKTMessage.h</code>.
 	</p>
 	
 </dd>
@@ -149,7 +187,7 @@
                         <h4 class="method-subtitle">See Also</h4>
                         <ul>
                             
-                            <li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+                            <li><code><p><a href="../Classes/SKTMessage.html">SKTMessage</a></p></code></li>
                             
                         </ul>
                     </div>
@@ -158,7 +196,7 @@
                     
                     <div class="method-subsection declared-in-section">
                         <h4 class="method-subtitle">Declared In</h4>
-                        <code class="declared-in-ref">SKTSettings.h</code><br />
+                        <code class="declared-in-ref">SKTMessage.h</code><br />
                     </div>				
                     
                     

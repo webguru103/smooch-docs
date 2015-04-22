@@ -43,6 +43,12 @@
 	
 	<option value="instance_methods">Instance Methods</option>
 	
+	<option value="//api/name/conversation:didReceiveMessages:">&nbsp;&nbsp;&nbsp;&nbsp;- conversation:didReceiveMessages:</option>
+	
+	<option value="//api/name/conversation:shouldShowForAction:">&nbsp;&nbsp;&nbsp;&nbsp;- conversation:shouldShowForAction:</option>
+	
+	<option value="//api/name/conversation:shouldShowInAppNotificationForMessage:">&nbsp;&nbsp;&nbsp;&nbsp;- conversation:shouldShowInAppNotificationForMessage:</option>
+	
 	<option value="//api/name/conversation:unreadCountDidChange:">&nbsp;&nbsp;&nbsp;&nbsp;- conversation:unreadCountDidChange:</option>
 	
 	
@@ -72,6 +78,12 @@
 
 
 <li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/conversation:didReceiveMessages:">conversation:didReceiveMessages:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/conversation:shouldShowForAction:">conversation:shouldShowForAction:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/conversation:shouldShowInAppNotificationForMessage:">conversation:shouldShowInAppNotificationForMessage:</a></span></li>
 	
 	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/conversation:unreadCountDidChange:">conversation:unreadCountDidChange:</a></span></li>
 	
@@ -115,6 +127,8 @@
 						<p>Delegate protocol for events related to the conversation.</p>
 
 <p>Creating a delegate is optional, and may be used to receive callbacks when important changes happen in the conversation.</p>
+
+<p>Delegate methods are guaranteed to be called from the main thread.</p>
 					</div>
 					
 					
@@ -135,7 +149,25 @@
 		<code><a href="#//api/name/conversation:unreadCountDidChange:">&ndash;&nbsp;conversation:unreadCountDidChange:</a></code>
 	</span>
 	
-	<span class="task-item-suffix">required method</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/conversation:shouldShowInAppNotificationForMessage:">&ndash;&nbsp;conversation:shouldShowInAppNotificationForMessage:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/conversation:shouldShowForAction:">&ndash;&nbsp;conversation:shouldShowForAction:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/conversation:didReceiveMessages:">&ndash;&nbsp;conversation:didReceiveMessages:</a></code>
+	</span>
+	
+	
 </li>
 						</ul>
 						
@@ -152,6 +184,211 @@
 					<div class="section section-methods">
 						<a title="Instance Methods" name="instance_methods"></a>
 						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/conversation:didReceiveMessages:" title="conversation:didReceiveMessages:"></a>
+	<h3 class="subsubtitle method-title">conversation:didReceiveMessages:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Notifies the delegate of new incoming messages.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)conversation:(id)<em>conversation</em> didReceiveMessages:(id)<em>messages</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>conversation</em></dt>
+			<dd><p>The conversation object.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>message</em></dt>
+			<dd><p>An array of SKTMessage objects representing the new messages.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when new messages are received from the server.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/SKTMessage.html">SKTMessage</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SKTConversation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/conversation:shouldShowForAction:" title="conversation:shouldShowForAction:"></a>
+	<h3 class="subsubtitle method-title">conversation:shouldShowForAction:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Asks the delegate if the conversation should show for the given action.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)conversation:(id)<em>conversation</em> shouldShowForAction:(id)<em>action</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>conversation</em></dt>
+			<dd><p>The conversation object.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>message</em></dt>
+			<dd><p>The action the user has taken.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES to allow default handling. NO to suppress the conversation screen, and perform custom handling.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when the user performs an action that causes the conversation screen to show. Return NO to cancel the display of the conversation screen and perform your own handling of the action.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Constants/SKTAction.html">SKTAction</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SKTConversation.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/conversation:shouldShowInAppNotificationForMessage:" title="conversation:shouldShowInAppNotificationForMessage:"></a>
+	<h3 class="subsubtitle method-title">conversation:shouldShowInAppNotificationForMessage:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Asks the delegate if an in-app notification should be shown for a message.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)conversation:(id)<em>conversation</em> shouldShowInAppNotificationForMessage:(id)<em>message</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>conversation</em></dt>
+			<dd><p>The conversation object that initiated the change.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>message</em></dt>
+			<dd><p>The message that will be displayed in the notification.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES to allow SupportKit to present the notification. NO to suppress the notification, and perform custom handling.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Called when a new message is received, right before the in-app notification is to be shown for that message. To show your own in-app notification, return NO from this method, and use the SKTMessage object to construct your view.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="../Classes/SKTMessage.html">SKTMessage</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">SKTConversation.h</code><br />
+	</div>				
+	
+	
+</div>
 						
 						<div class="section-method">
 	<a name="//api/name/conversation:unreadCountDidChange:" title="conversation:unreadCountDidChange:"></a>
@@ -174,7 +411,7 @@
 		
 		<dl class="argument-def parameter-def">
 			<dt><em>conversation</em></dt>
-			<dd><p>The conversation object that initiated the change</p></dd>
+			<dd><p>The conversation object that initiated the change.</p></dd>
 		</dl>
 		
 		<dl class="argument-def parameter-def">
@@ -193,8 +430,6 @@
 	<div class="method-subsection discussion-section">
 		<h4 class="method-subtitle">Discussion</h4>
 		<p>Called when conversation data is fetched from the server, or when the user enters the conversation screen.</p>
-
-<p>This method is guaranteed to be called from the main thread.</p>
 	</div>
 	
 	
@@ -229,7 +464,7 @@
 				<div id="footer">
 					<hr />
 					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 Radialpoint. All rights reserved. (Last updated: 2015-03-25)</span><br />
+						<p><span class="copyright">&copy; 2015 Radialpoint. All rights reserved. (Last updated: 2015-04-22)</span><br />
 						
 						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
 						

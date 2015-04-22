@@ -13,7 +13,7 @@
 
       <script>
         $(function() {
-          setupLanguages(["objective_c","swift"]);
+          setupLanguages(["objective-c","swift"]);
         });
       </script>
     <script src="//use.typekit.net/wdu7dsf.js"></script>
@@ -30,7 +30,7 @@
     <div class="tocify-wrapper">
       <img src="images/logo.png" />
         <div class="lang-selector">
-              <a href="#" data-language-name="objective_c">objective_c</a>
+              <a href="#" data-language-name="objective-c">objective-c</a>
               <a href="#" data-language-name="swift">swift</a>
         </div>
         <div class="search">
@@ -97,8 +97,8 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 <p>SupportKit should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
 <h2 id='import-the-supportkit-header-file'>Import the SupportKit header file</h2>
 <p>Import the SupportKit file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
-<pre><code class="highlight objective_c"><span class="cp">#import &lt;SupportKit/SupportKit.h&gt;
-</span></code></pre>
+<pre><code class="highlight plaintext">#import &lt;SupportKit/SupportKit.h&gt;
+</code></pre>
 <pre><code class="highlight swift"><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">SupportKit</span><span class="o">/</span><span class="kt">SupportKit</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
 </code></pre>
 
@@ -117,7 +117,7 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 <p>Once you&rsquo;ve located your token, use the code below to initialize SupportKit.</p>
 
 <p>Add the following line of code to your applicationDidFinishLaunchingWithOptions: method</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">]];</span>
+<pre><code class="highlight plaintext">[SupportKit initWithSettings:[SKTSettings settingsWithAppToken:@"YOUR_APP_TOKEN"]];
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">))</span>
 </code></pre>
@@ -127,7 +127,7 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 <p>Once you&rsquo;ve initialized SupportKit, you&rsquo;re ready to try it out. </p>
 
 <p>Find a suitable place in your app&rsquo;s interface to invoke SupportKit and use the code below to display the SupportKit user interface. You can bring up SupportKit whenever you think that your user will need access to help or a communication channel to contact you.</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">show</span><span class="p">];</span>
+<pre><code class="highlight plaintext">[SupportKit show];
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">show</span><span class="p">()</span>
 </code></pre>
@@ -187,21 +187,21 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. In order to easily be able to know who you&rsquo;re speaking to, you can set the sender&rsquo;s name by calling the method below.</p>
 
 <p>Once you set the user&rsquo;s name, it will be persisted by SupportKit so any future message from this user will be named with the input you provided. If the user changes, simply call the method above a second time and the new information will overwrite it.</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">@"Doctor"</span><span class="p">;</span>
-<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">@"Who"</span><span class="p">;</span>
+<pre><code class="highlight plaintext">[SKTUser currentUser].firstName = @"Doctor";
+[SKTUser currentUser].lastName = @"Who";
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">"Doctor"</span>
 <span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">"Who"</span>
 </code></pre>
 <h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
 <p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">@"bob@example.com"</span><span class="p">;</span>
+<pre><code class="highlight plaintext">[SKTUser currentUser].email = @"bob@example.com";
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">"bob@example.com"</span>
 </code></pre>
 <h3 id='setting-the-signed-up-date'>Setting the signed up date</h3>
 <p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time SupportKit sees the user. Its best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDate</span> <span class="nf">date</span><span class="p">];</span>
+<pre><code class="highlight plaintext">[SKTUser currentUser].signedUpAt = [NSDate date];
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
 </code></pre>
@@ -209,7 +209,7 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>The SKTUser class also allows you to add any other kind of metadata that will be sent along when users contact you. You can also use any metadata you store using this API to send targeted messages to your users proactively using our Whispers feature. The <code class="prettyprint">addProperties:</code> method accepts an NSDictionary containing the metadata to add.</p>
 
 <p>This dictionary must have keys that are NSString and values that are either NSString, NSNumber or NSDate. If your dictionary contains any other data type as a value, then <code class="prettyprint">description</code> will be called on the object and the resulting NSString will be added as a property.</p>
-<pre><code class="highlight objective_c"><span class="p">[[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">]</span> <span class="nf">addProperties</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="s">@"nickname"</span> <span class="o">:</span> <span class="s">@"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">@"weight"</span> <span class="o">:</span> <span class="mi">@650</span><span class="p">,</span> <span class="s">@"premiumUser"</span> <span class="o">:</span> <span class="nb">@YES</span> <span class="p">}];</span>
+<pre><code class="highlight plaintext">[[SKTUser currentUser] addProperties:@{ @"nickname" : @"Lil Big Daddy Slim", @"weight" : @650, @"premiumUser" : @YES }];
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="nf">addProperties</span><span class="p">([</span> <span class="s">"nickname"</span> <span class="p">:</span> <span class="s">"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">"weight"</span> <span class="p">:</span> <span class="mi">650</span><span class="p">,</span> <span class="s">"premiumUser"</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">])</span>
 </code></pre>
@@ -268,13 +268,13 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 </ul>
 
 <p>Suppose you wanted the conversation UI to have a black navigation bar and red message bubbles. First, you&rsquo;d use <code class="prettyprint">UINavigationBar</code>&rsquo;s appearance proxy to set up the navigation bar. Then, you&rsquo;d use SKTSettings to finish styling the UI:</p>
-<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPP_TOKEN"</span><span class="p">];</span>
-<span class="n">settings</span><span class="p">.</span><span class="n">conversationAccentColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">];</span>
-<span class="n">settings</span><span class="p">.</span><span class="n">conversationStatusBarStyle</span> <span class="o">=</span> <span class="n">UIStatusBarStyleLightContent</span><span class="p">;</span>
+<pre><code class="highlight plaintext">SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOURAPP_TOKEN"];
+settings.conversationAccentColor = [UIColor redColor];
+settings.conversationStatusBarStyle = UIStatusBarStyleLightContent;
 
-<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setBarTintColor</span><span class="p">:[</span><span class="n">UIColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
-<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setTintColor</span><span class="p">:[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">]];</span>
-<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setTitleTextAttributes</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="nf">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">]</span> <span class="p">}];</span>
+[[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+[[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+[[UINavigationBar appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor redColor] }];
 </code></pre>
 <pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">conversationAccentColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">();</span>
@@ -341,7 +341,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <p>The default recommendations should showcase important information about your app (i.e. information that should apply to the majority of users). This list can include basic usage instructions for different areas of the app, unique or new features to show off, solutions to common problems, or anything else you would like to communicate to your users.</p>
 
 <p>Use the <code class="prettyprint">setDefaultRecommendations:</code> API to set these, for example: </p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">setDefaultRecommendations</span><span class="p">:</span><span class="err">@</span><span class="p">[</span> <span class="s">@"https://www.somearticle.com/article"</span><span class="p">,</span> <span class="s">@"https://somevideotoshow.com"</span> <span class="p">]];</span>
+<pre><code class="highlight plaintext">[SupportKit setDefaultRecommendations:@[ @"https://www.somearticle.com/article", @"https://somevideotoshow.com" ]];
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">setDefaultRecommendations</span><span class="p">([</span><span class="s">"https://www.somearticle.com/article"</span><span class="p">,</span> <span class="s">"https://somevideotoshow.com"</span><span class="p">])</span>
 </code></pre>
@@ -349,7 +349,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <p>The top recommendation will appear at the beginning of the list and will be the first one the user sees upon launching SupportKit. This recommendation should attempt to solve a problem the user has just experienced so they don&rsquo;t need to search for it. For example, if a user fails to log in, you may choose to recommend an article explaining the various types of login errors that can occur, and how to fix and/or work around them.</p>
 
 <p>Use the <code class="prettyprint">setTopRecommendations:</code> API to set these, for example: </p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">setTopRecommendation</span><span class="p">:</span><span class="s">@"https://yourdomain.zendesk.com/hc/en-us/articles/000000000-context-driven-recommendation"</span><span class="p">];</span>
+<pre><code class="highlight plaintext">[SupportKit setTopRecommendation:@"https://yourdomain.zendesk.com/hc/en-us/articles/000000000-context-driven-recommendation"];
 </code></pre>
 <pre><code class="highlight swift"><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">setTopRecommendation</span><span class="p">(</span><span class="s">"https://yourdomain.zendesk.com/hc/en-us/articles/000000000-context-driven-recommendation"</span><span class="p">)</span>
 </code></pre>
@@ -373,9 +373,9 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <p><img alt="kb search" src="images/loginandsearch.jpg" /></p>
 
 <p>To show the Zendesk knowledge base search, call the init API in the SDK with your Zendesk Help Center URL:</p>
-<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
-<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span> <span class="c1">//TODO: Replace with your own Zendesk URL
-</span><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span> 
+<pre><code class="highlight plaintext">SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOURAPPTOKEN"];
+settings.knowledgeBaseURL = @"https://supportkit.zendesk.com"; //TODO: Replace with your own Zendesk URL
+[SupportKit initWithSettings:settings]; 
 </code></pre>
 <pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span> <span class="c1">//TODO: Replace with your own Zendesk URL
@@ -402,12 +402,12 @@ NOTE: SupportKit only accepts category, section or forum ids, and not article id
 <p><img alt="hc 3" src="images/hcurl3.png" /></p>
 
 <p>For example, to configure the SDK to only show articles under category ID 200033675:</p>
-<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
-<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span>
+<pre><code class="highlight plaintext">SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOURAPPTOKEN"];
+settings.knowledgeBaseURL = @"https://supportkit.zendesk.com";
 
-<span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsNotIn</span>
-                      <span class="nf">categories</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200033675</span><span class="p">]</span>
-                        <span class="nf">sections</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+[settings excludeSearchResultsIf:SKTSearchResultIsNotIn
+                      categories:@[@200033675]
+                        sections:nil];
 </code></pre>
 <pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span>
@@ -416,17 +416,17 @@ NOTE: SupportKit only accepts category, section or forum ids, and not article id
 </code></pre>
 
 <p>Or, if instead you wanted to filter out all articles under section ID 200369774, your configuration would look like this:</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
-                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
-                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">]];</span>
+<pre><code class="highlight plaintext">[settings excludeSearchResultsIf:SKTSearchResultIsIn
+                      categories:nil
+                        sections:@[@200369774]];
 </code></pre>
 <pre><code class="highlight swift"><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">])</span>
 </code></pre>
 
 <p>To configure filters using the older forum IDs, add forum IDs to the sections parameter like so:</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
-                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
-                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">,</span> <span class="mi">@21931073</span><span class="p">]];</span>
+<pre><code class="highlight plaintext">[settings excludeSearchResultsIf:SKTSearchResultIsIn
+                      categories:nil
+                        sections:@[@200369774, @21931073]];
 </code></pre>
 <pre><code class="highlight swift"><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">,</span> <span class="mi">21931073</span><span class="p">])</span>
 </code></pre>
@@ -465,7 +465,7 @@ Simply add an empty string file named SupportKitLocalizable.strings in your Xcod
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="objective_c">objective_c</a>
+                <a href="#" data-language-name="objective-c">objective-c</a>
                 <a href="#" data-language-name="swift">swift</a>
           </div>
       </div>
