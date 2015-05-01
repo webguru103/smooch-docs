@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>SupportKit Documentation</title>
+
+    <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="../javascripts/all.js" type="text/javascript"></script>
+
+    <script src="//use.typekit.net/wdu7dsf.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body class="javascript javascript_index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../images/logo.png" />
+      <div class="separator separator-top"></div>
+      <div class="platform-nav">
+        <div class="nav-label">Platform</div>
+        <div class="platform-selector btn-group">
+          <button class="btn btn-default" data-platform-name="ios">iOS</button>
+          <button class="btn btn-default" data-platform-name="web">Web</button>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="separator"></div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://www.supportkit.io'>Sign up for SupportKit, it's free</a></li>
+            <li><a href='./api'>Class Reference</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id='welcome'>Welcome</h1>
+<p>SupportKit is a free iOS SDK that connects you to your users so you can communicate with them and build a killer app. If you want to learn more about SupportKit, then visit our website at <a href="http://www.supportkit.io">http://www.supportkit.io</a> or <a href="https://app.supportkit.io">sign up here</a>. This page provides in-depth documentation on SupportKit&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
+
+<p>All source code examples are provided in Objective-C, Swift, and JavaScript! You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
+
+<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:supportkit@radialpoint.com">here</a>.</p>
+
+          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
+<p>Add the following code in between the &lt;head&gt;&hellip;&lt;/head&gt; tags on your page.</p>
+<pre><code class="highlight html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.supportkit.io/supportkit.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+
+<p><aside class="info">
+    Note that SupportKit requires jQuery to work. If you aren&rsquo;t using jQuery yet, then add the following code at the beginning of your &lt;head&gt; section.<br>
+    <code class="prettyprint">
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+</code>
+</aside></p>
+<h4 id='step-2-initialize-supportkit-with-your-new-app-token'>Step 2: Initialize SupportKit with your new app token</h4>
+<p>Once SupportKit has been included on your web page, you&rsquo;re almost done. Simply initialize the plugin using this code snippet</p>
+<pre><code class="highlight html"><span class="nt">&lt;script&gt;</span>
+<span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+
+          <h1 id='slack'>Slack</h1>
+<p>Slack is a new communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
+
+<p>SupportKit has a revolutionary new Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack. Check out this video to see how it works:</p>
+
+<iframe style="margin-left:42px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<h2 id='configuring-slack'>Configuring Slack</h2><h3 id='step-1--quotauthorizifyquot-supportkit-so-that-it-can-talk-to-your-slack'>Step 1. &ldquo;Authorizify&rdquo; SupportKit so that it can talk to your Slack</h3><h3 id='step-2--set-up-a-new-quotslash-commandquot-so-that-you-can-send-messages-to-supportkit'>Step 2. Set up a new &ldquo;slash command&rdquo; so that you can send messages to SupportKit</h3>
+<p><img src="images/slashcmd.png" alt="Slash Command Setup"/></p>
+
+<p><aside class="notice">
+Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in Step 2 with the token that Slack&rsquo;s slash command setup page provides you.
+</aside></p>
+<h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
+<p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
+
+          <h1 id='conversations'>Conversations</h1>
+<p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
+
+          <h2 id='how-do-conversations-work'>How do conversations work?</h2>
+<p>When users access SupportKit by clicking the expandable messaging tab, they’ll be presented with SupportKit’s messaging interface.</p>
+
+<p><img src="images/browser_messages.png" alt="Drawing" style="width: 75%;"/></p>
+
+          <h3 id='slack-channel'>Slack Channel</h3>
+<p>Once your user types a message and hits send, SupportKit sends the message to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel that you chose when you <a href="#configuring-slack">configured Slack</a>.</p>
+
+<p>This notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
+
+<p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
+
+<p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
+<pre><code class="highlight plaintext">/sk TYPE YOUR MESSAGE HERE
+</code></pre>
+
+<p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
+
+<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
+<pre><code class="highlight plaintext">/sk !profile
+</code></pre>
+
+<p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<h3 id='e-mail-channel'>E-Mail Channel</h3>
+<p>Once your user types a message and hits send, SupportKit transforms the message into an e-mail that makes its way to the e-mail address you specified when signing up for SupportKit. This e-mail contains the user&rsquo;s message as well as any metadata about the user that you&rsquo;ve captured in your app. </p>
+
+<p><img src="images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
+
+          <h2 id='identifying-your-users'>Identifying your users</h2>
+<p>SupportKit allows you to associate metadata to your users so that you can better understand the context around a user&rsquo;s message. </p>
+<h3 id='naming-the-current-user'>Naming the current user</h3>
+<p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
+
+          <p>You can set the sender&rsquo;s properties by initializing SupportKit with a user object.</p>
+<pre><code class="highlight javascript"><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
+    <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
+    <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who?'</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s1">'the-doctor@supportkit.io'</span><span class="p">,</span>
+    <span class="na">properties</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'customProp'</span><span class="p">:</span> <span class="s1">'whatever you please'</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>You can specify any user property you need, and they&rsquo;re all optional. So the object you pass into init could also look as simple as
+<code class="prettyprint">
+{appToken: &quot;your_app_token&quot;, givenName: &quot;Trogdor&quot;}
+</code></p>
+
+          <p><aside class="info">
+Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
+</aside></p>
+
+          <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
+<p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
+
+          <p><img alt="Team Member Names" src="../images/browser_team.png" /></p>
+
+          <h2 id='keeping-your-users-safe'>Keeping your users safe</h2>
+<p>SupportKit sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through SupportKit messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
+
+          <h1 id='connecting-to-your-crm'>Connecting to your CRM</h1>
+<p>SupportKit&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+
+<p>Since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+
+          <ol>
+<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
+<li><p>Set SupportKit&rsquo;s forwarding address to the address you noted in step 1. </p></li>
+<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
+</ol>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
