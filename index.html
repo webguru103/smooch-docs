@@ -70,7 +70,7 @@
 
 <p>All source code examples are provided in Objective-C, Swift, and JavaScript! You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
 
-<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:supportkit@radialpoint.com">here</a>.</p>
+<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
 
           <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
 <p>There are two ways to install the SupportKit SDK. The recommended and easier way makes use of <a href="http://cocoapods.org">CocoaPods</a> to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.</p>
@@ -171,6 +171,87 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 </aside></p>
 <h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
 <p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
+
+          <h1 id='zendesk'>Zendesk</h1>
+<p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
+<h2 id='configuring-zendesk-ticketing'>Configuring Zendesk ticketing</h2>
+<p>Configuring SupportKit to communicate with Zendesk is easy. Go to your app settings on the SupportKit admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
+
+<p><img style="width:50%; min-width:400px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
+
+<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s SupportKit integration.</p>
+<h3 id='optional-additional-information-on-configuration'>Optional additional information on Configuration</h3>
+<p>Once you are authenticated with your Zendesk app, SupportKit will automatically configure targets and triggers so that your Zendesk agents can communicate with your SupportKit app users.</p>
+
+<p>During the configuration process any existing triggers in your Zendesk settings will be modified to not email the End-user if the ticket is tagged &ldquo;supportkit&rdquo;. We do this to avoid duplicating the conversation, and to remove any reason for the app user to leave your app to respond via email.</p>
+
+<p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that SupportKit configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the SupportKit admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured SupportKit targets and triggers and refresh your configuration.</p>
+
+<p>Note: SupportKit only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple SupportKit accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all SupportKit apps have had the Zendesk integration removed.</p>
+
+          <h2 id='configuring-zendesk-knowledge-base'>Configuring Zendesk knowledge base</h2>
+<p>SupportKit can also instantly embed your Zendesk Help Center in your app. This will give your users the ability to search your Zendesk knowledge base without leaving the app.</p>
+
+<p><img alt="kb search" src="images/loginandsearch.jpg" /></p>
+
+<p>To show the Zendesk knowledge base search, call the init API in the SDK with your Zendesk Help Center URL:</p>
+<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span> <span class="c1">//TODO: Replace with your own Zendesk URL
+</span><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span> 
+</code></pre>
+<pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span> <span class="c1">//TODO: Replace with your own Zendesk URL
+</span><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre>
+
+<p>When specifying your Zendesk URL, make sure to include the protocol (http:// or https://) that matches your Zendesk instance&rsquo;s configuration.</p>
+
+<p>Some Zendesk installations are shared between multiple apps. In such cases it&rsquo;s necessary to filter SupportKit&rsquo;s search results to only articles relevant to the specific app. The SupportKit filtering API provides a means to accomplish this, and allows filtering of search results based on categories, sections or forums (Zendesk knowledge bases are organized in three tiers: Category -&gt; Section or Forum -&gt; Article).</p>
+
+<p>To find the id of a category, section or forum in Zendesk, simply navigate to the root of a given category/section/forum on your web portal, and copy the id contained in your browser&rsquo;s address bar. The id will be a numerical value in the last path component of the URL.</p>
+
+<p><aside class="info">
+NOTE: SupportKit only accepts category, section or forum ids, and not article ids.
+</aside></p>
+
+<p>In HelpCenter, look for the word &lsquo;sections&rsquo; or &lsquo;categories&rsquo; in the URL, as shown in the images below.</p>
+
+<p><img alt="hc 2" src="images/hcurl2.png" />
+<img alt="hc 1" src="images/hcurl1.png" /></p>
+
+<p>If you&rsquo;re using an older version of Zendesk, look for the word &lsquo;forums&rsquo; in the URL, as shown in the image below.</p>
+
+<p><img alt="hc 3" src="images/hcurl3.png" /></p>
+
+<p>For example, to configure the SDK to only show articles under category ID 200033675:</p>
+<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsNotIn</span>
+                      <span class="nf">categories</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200033675</span><span class="p">]</span>
+                        <span class="nf">sections</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</code></pre>
+<pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsNotIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="mi">200033675</span><span class="p">],</span> <span class="nv">sections</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+<p>Or, if instead you wanted to filter out all articles under section ID 200369774, your configuration would look like this:</p>
+<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
+                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
+                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">]];</span>
+</code></pre>
+<pre><code class="highlight swift"><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">])</span>
+</code></pre>
+
+<p>To configure filters using the older forum IDs, add forum IDs to the sections parameter like so:</p>
+<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
+                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
+                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">,</span> <span class="mi">@21931073</span><span class="p">]];</span>
+</code></pre>
+<pre><code class="highlight swift"><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">,</span> <span class="mi">21931073</span><span class="p">])</span>
+</code></pre>
 
           <h1 id='conversations'>Conversations</h1>
 <p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
@@ -398,75 +479,9 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
           <h1 id='connecting-to-your-crm'>Connecting to your CRM</h1>
 <p>SupportKit&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
 
-<p>Since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
 
-          <h2 id='zendesk'>Zendesk</h2>
-<p>If you&rsquo;re using Zendesk, SupportKit can instantly embed your Zendesk Help Center in your app. This will give your users the ability to search your Zendesk knowledge base without leaving the app.</p>
-
-<p><img alt="kb search" src="images/loginandsearch.jpg" /></p>
-
-<p>To show the Zendesk knowledge base search, call the init API in the SDK with your Zendesk Help Center URL:</p>
-<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
-<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span> <span class="c1">//TODO: Replace with your own Zendesk URL
-</span><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span> 
-</code></pre>
-<pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
-<span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span> <span class="c1">//TODO: Replace with your own Zendesk URL
-</span><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
-</code></pre>
-
-<p>When specifying your Zendesk URL, make sure to include the protocol (http:// or https://) that matches your Zendesk instance&rsquo;s configuration.</p>
-
-<p>Some Zendesk installations are shared between multiple apps. In such cases it&rsquo;s necessary to filter SupportKit&rsquo;s search results to only articles relevant to the specific app. The SupportKit filtering API provides a means to accomplish this, and allows filtering of search results based on categories, sections or forums (Zendesk knowledge bases are organized in three tiers: Category -&gt; Section or Forum -&gt; Article).</p>
-
-<p>To find the id of a category, section or forum in Zendesk, simply navigate to the root of a given category/section/forum on your web portal, and copy the id contained in your browser&rsquo;s address bar. The id will be a numerical value in the last path component of the URL.</p>
-
-<p><aside class="info">
-NOTE: SupportKit only accepts category, section or forum ids, and not article ids.
-</aside></p>
-
-<p>In HelpCenter, look for the word &lsquo;sections&rsquo; or &lsquo;categories&rsquo; in the URL, as shown in the images below.</p>
-
-<p><img alt="hc 2" src="images/hcurl2.png" />
-<img alt="hc 1" src="images/hcurl1.png" /></p>
-
-<p>If you&rsquo;re using an older version of Zendesk, look for the word &lsquo;forums&rsquo; in the URL, as shown in the image below.</p>
-
-<p><img alt="hc 3" src="images/hcurl3.png" /></p>
-
-<p>For example, to configure the SDK to only show articles under category ID 200033675:</p>
-<pre><code class="highlight objective_c"><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
-<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span>
-
-<span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsNotIn</span>
-                      <span class="nf">categories</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200033675</span><span class="p">]</span>
-                        <span class="nf">sections</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
-</code></pre>
-<pre><code class="highlight swift"><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
-<span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span>
-
-<span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsNotIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="mi">200033675</span><span class="p">],</span> <span class="nv">sections</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-</code></pre>
-
-<p>Or, if instead you wanted to filter out all articles under section ID 200369774, your configuration would look like this:</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
-                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
-                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">]];</span>
-</code></pre>
-<pre><code class="highlight swift"><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">])</span>
-</code></pre>
-
-<p>To configure filters using the older forum IDs, add forum IDs to the sections parameter like so:</p>
-<pre><code class="highlight objective_c"><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
-                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
-                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">,</span> <span class="mi">@21931073</span><span class="p">]];</span>
-</code></pre>
-<pre><code class="highlight swift"><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">,</span> <span class="mi">21931073</span><span class="p">])</span>
-</code></pre>
-<h2 id='helpscout-uservoice-desk-com-and-other-crms'>HelpScout, UserVoice, Desk.com and other CRMs</h2>
-<p>Integrating with other CRMs is quite simple:</p>
-
-          <ol>
+<ol>
 <li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
 <li><p>Set SupportKit&rsquo;s forwarding address to the address you noted in step 1. </p></li>
 <li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
@@ -487,7 +502,7 @@ Localization is subject to caching. If you can&rsquo;t see your changes, cleanin
 <h2 id='adding-more-languages'>Adding more languages</h2>
 <p>To enable other languages beside the provided ones, first copy the english SupportKitLocalizable.strings file from the SupportKit bundle to the corresponding .lproj folder for that language. Then, translate the values to match that language.</p>
 
-<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every SupportKit user can benefit from it. You can do so by <a href="https://github.com/radialpoint/SupportKit/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:supportkit@radialpoint.com">supportkit@radialpoint.com</a></p>
+<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every SupportKit user can benefit from it. You can do so by <a href="https://github.com/radialpoint/SupportKit/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@supportkit.io">help@supportkit.io</a></p>
 
           <h1 id='strings-customization'>Strings customization</h1>
 <p>SupportKit lets you customize any strings it displays via Apple&rsquo;s localization mechanism.
