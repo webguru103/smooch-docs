@@ -177,9 +177,15 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <h2 id='configuring-zendesk-ticketing'>Configuring Zendesk ticketing</h2>
 <p>Configuring SupportKit to communicate with Zendesk is easy. Go to your app settings on the SupportKit admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
 
-<p><img style="width:50%; min-width:400px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
 
 <p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s SupportKit integration.</p>
+<h3 id='configuring-agent-images'>Configuring agent images</h3>
+<p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
+<h3 id='working-with-zendesk-email-signatures'>Working with Zendesk email signatures</h3>
+<p>SupportKit automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/unsightly_signature.png" alt="Oops, how unsightly"/></p>
 <h3 id='optional-additional-information-on-configuration'>Optional additional information on Configuration</h3>
 <p>Once you are authenticated with your Zendesk app, SupportKit will automatically configure targets and triggers so that your Zendesk agents can communicate with your SupportKit app users.</p>
 
