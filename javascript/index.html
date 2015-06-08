@@ -56,8 +56,12 @@
 
 <p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
 
-          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
-<p>Add the following code in between the &lt;head&gt;&hellip;&lt;/head&gt; tags on your page.</p>
+          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
+<p>There are a few ways you can include the SupportKit plugin on your web page.</p>
+
+<p>The recommended method is the Script Tag method, but you can also include it using bower or npm.</p>
+<h2 id='script-tag-method'>Script Tag Method</h2><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
+<p>Add the following code in between the <code class="prettyprint">&lt;head&gt;...&lt;/head&gt;</code> tags on your page.</p>
 <pre><code class="highlight html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.supportkit.io/supportkit.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
@@ -70,8 +74,22 @@
 <h4 id='step-2-initialize-supportkit-with-your-new-app-token'>Step 2: Initialize SupportKit with your new app token</h4>
 <p>Once SupportKit has been included on your web page, you&rsquo;re almost done. Simply initialize the plugin using this code snippet</p>
 <pre><code class="highlight html"><span class="nt">&lt;script&gt;</span>
-<span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
+    <span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<h2 id='npm-and-browserify'>npm and browserify</h2><pre><code class="highlight plaintext">npm install supportkit-js
+</code></pre>
+
+<p>In your code:</p>
+<pre><code class="highlight javascript"><span class="kd">var</span> <span class="nx">SupportKit</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'supportkit-js'</span><span class="p">);</span>
+
+<span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
+</code></pre>
+<h2 id='bower'>bower</h2><pre><code class="highlight plaintext">bower install supportkit-js
+</code></pre>
+
+<p>In your code:</p>
+<pre><code class="highlight javascript"><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 </code></pre>
 
           <h1 id='slack'>Slack</h1>
