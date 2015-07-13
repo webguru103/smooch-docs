@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SKTAction Constants Reference</title>
+		<title>SKTImageUploadCompletionBlock Block Reference</title>
 		<meta id="xcode-display" name="xcode-display" content="render"/>
 		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
 		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
@@ -16,7 +16,7 @@
 			</div>
 			
 			<div id="title" role="banner">
-				<h1 class="hideInXcode">SKTAction Constants Reference</h1>
+				<h1 class="hideInXcode">SKTImageUploadCompletionBlock Block Reference</h1>
 			</div>
 			<ul id="headerButtons" role="toolbar">
 				<li id="toc_button">
@@ -45,7 +45,7 @@
 		</nav>
 		<article>
 			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SKTAction Constants Reference" name="top"></a>
+				<a title="SKTImageUploadCompletionBlock Block Reference" name="top"></a>
 				<div class="main-navigation navigation-top">
 					<ul>
 	<li><a href="../index.html">Index</a></li>
@@ -54,7 +54,7 @@
 				</div>
 				<div id="header">
 					<div class="section-header">
-						<h1 class="title title-header">SKTAction Constants Reference</h1>
+						<h1 class="title title-header">SKTImageUploadCompletionBlock Block Reference</h1>
 					</div>		
 				</div>
 				<div id="container">	
@@ -74,103 +74,18 @@
 					
                     
                     
-                    <h3 class="subsubtitle method-title">SKTAction</h3>
-                    
-					
-					<div class="section section-overview">
-                        <p>Represents various actions the user takes when interacting with SupportKit UI components.</p>
-					</div>
-					
-					
-                    <div class="section">
-                        <!-- display enum values -->
-                        
-                        <h4 class="method-subtitle">Definition</h4>
-                        <code>typedef NS_ENUM(NSInteger, SKTAction ) {<br/>
-                            
-                            &nbsp;&nbsp; <a href="">SKTActionInAppNotificationTapped</a>,<br/>
-                            
-                            &nbsp;&nbsp; <a href="">SKTActionPushNotificationTapped</a>,<br/>
-                            
-                            &nbsp;&nbsp; <a href="">SKTActionLocalNotificationTapped</a>,<br/>
-                            
-                            };</code>
-                    
-                    </div>
-                    
-                    <div class="section section-methods">
-                        <h4 class="method-subtitle">Constants</h4>
-                        <dl class="termdef">
-                            
-                            <dt><a name="" title="SKTActionInAppNotificationTapped"></a><code>SKTActionInAppNotificationTapped</code></dt>
-<dd>
-
-
-<p>The user has tapped on a SupportKit in-app notification.</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">SKTConversation.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="SKTActionPushNotificationTapped"></a><code>SKTActionPushNotificationTapped</code></dt>
-<dd>
-
-
-<p>The user has tapped on a SupportKit push notification.</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">SKTConversation.h</code>.
-	</p>
-	
-</dd>
-                            
-                            <dt><a name="" title="SKTActionLocalNotificationTapped"></a><code>SKTActionLocalNotificationTapped</code></dt>
-<dd>
-
-
-<p>The user has tapped on a SupportKit local notification.</p>
-
-
-
-
-
-    
-	<p>
-		Declared In <code class="declared-in-ref">SKTConversation.h</code>.
-	</p>
-	
-</dd>
-                            
-                        </dl>
-                    </div>
                     
                     
-                    
-                    
+                    <a title="Block Definition" name="instance_methods"></a>
+                    <h2 class="subtitle subtitle-methods">Block Definition</h2>
+                    <h3 class="subsubtitle method-title">SKTImageUploadCompletionBlock</h3>
 
-                    
-                    
-                    
-                    <div class="method-subsection declared-in-section">
-                        <h4 class="method-subtitle">Declared In</h4>
-                        <code class="declared-in-ref">SKTConversation.h</code><br />
-                    </div>				
-                    
-                    
-                    
-                    
+
+<code>typedef void (^SKTImageUploadCompletionBlock) (NSError *error, SKTMessage *message)</code>
+
+
+
+
                     
 
 				</div>

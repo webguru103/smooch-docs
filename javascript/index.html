@@ -61,12 +61,12 @@
 
 <p>The recommended method is the Script Tag method, but you can also include it using bower or npm.</p>
 <h2 id='script-tag-method'>Script Tag Method</h2><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
-<p>Add the following code in between the <code class="prettyprint">&lt;head&gt;...&lt;/head&gt;</code> tags on your page.</p>
+<p>Add the following code towards the end of the <code class="prettyprint">body</code> section on your page. Placing it at the end allows the rest of the page to load first.</p>
 <pre><code class="highlight html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.supportkit.io/supportkit.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
 <p><aside class="info">
-    Note that SupportKit requires jQuery to work. If you aren&rsquo;t using jQuery yet, then add the following code at the beginning of your &lt;head&gt; section.<br>
+    Note that SupportKit requires jQuery to work. If you aren&rsquo;t using jQuery yet, then add the following code before the previous code snippet.<br>
     <code class="prettyprint">
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;
 </code>
@@ -77,7 +77,7 @@
     <span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre>
-<h2 id='npm-and-browserify'>npm and browserify</h2><pre><code class="highlight plaintext">npm install supportkit-js
+<h2 id='npm-and-browserify'>npm and browserify</h2><pre><code class="highlight plaintext">npm install supportkit
 </code></pre>
 
 <p>In your code:</p>
@@ -85,7 +85,7 @@
 
 <span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 </code></pre>
-<h2 id='bower'>bower</h2><pre><code class="highlight plaintext">bower install supportkit-js
+<h2 id='bower'>bower</h2><pre><code class="highlight plaintext">bower install supportkit
 </code></pre>
 
 <p>In your code:</p>
@@ -129,6 +129,12 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that SupportKit configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the SupportKit admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured SupportKit targets and triggers and refresh your configuration.</p>
 
 <p>Note: SupportKit only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple SupportKit accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all SupportKit apps have had the Zendesk integration removed.</p>
+<h2 id='rate-limiting'>Rate Limiting</h2>
+<p>Zendesk limits each account to 200 requests per a minute (globally). Additionally, they only allow 15 comments to be made on each individual ticket (regardless of whether the comment is an agent or app user) within a 10 minute period.</p>
+
+<p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
+
+<p>To reduce the likelihood of you bumping up against the rate limit, SupportKit batches together all messages sent from the app user within a 5 second period into a single comment.</p>
 
           <h1 id='conversations'>Conversations</h1>
 <p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>

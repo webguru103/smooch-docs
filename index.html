@@ -111,6 +111,9 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 <li>QuartzCore.framework</li>
 <li>SystemConfiguration.framework</li>
 <li>UIKit.framework</li>
+<li>AssetsLibrary.framework</li>
+<li>Photos.framework</li>
+<li>AVFoundation.framework</li>
 </ul>
 
 <p>SupportKit should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
@@ -194,6 +197,12 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that SupportKit configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the SupportKit admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured SupportKit targets and triggers and refresh your configuration.</p>
 
 <p>Note: SupportKit only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple SupportKit accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all SupportKit apps have had the Zendesk integration removed.</p>
+<h2 id='rate-limiting'>Rate Limiting</h2>
+<p>Zendesk limits each account to 200 requests per a minute (globally). Additionally, they only allow 15 comments to be made on each individual ticket (regardless of whether the comment is an agent or app user) within a 10 minute period.</p>
+
+<p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
+
+<p>To reduce the likelihood of you bumping up against the rate limit, SupportKit batches together all messages sent from the app user within a 5 second period into a single comment.</p>
 
           <h2 id='configuring-zendesk-knowledge-base'>Configuring Zendesk knowledge base</h2>
 <p>SupportKit can also instantly embed your Zendesk Help Center in your app. This will give your users the ability to search your Zendesk knowledge base without leaving the app.</p>
@@ -435,6 +444,17 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <p>In order to create Whispers based on properties you&rsquo;ve defined using SKTUser, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
 <h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
 <p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the SKTUser class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>. </p>
+<h3 id='adding-user-actions-to-a-whisper'>Adding user actions to a Whisper</h3>
+<p>You can prompt your users to take actions by adding action buttons to your Whisper. Clicking on &lsquo;Add an action&rsquo; will open up a new input box where you can specify the button text and what action to take when the user clicks on the button.</p>
+
+<p><img alt="Whisper add action" src="images/whisper_action.png" /></p>
+
+<p>The Action input takes any URL, deeplink or app store link that is compatible with this format:<br>
+<code class="prettyprint">[[UIApplication sharedApplication] openURL:url]</code>.</p>
+
+<p>You can find your app&rsquo;s App Store ID by finding your app on <a href="https://linkmaker.itunes.apple.com">Link Maker</a>. The URL of your app&rsquo;s page will have your App Store ID at the end. The link to use in the Action input will then be itms-apps://itunes.apple.com/app/id[<em>yourAppIdHere</em>]</p>
+
+<p><img alt="App Store ID" src="images/appstoreid_from_url.png" /></p>
 <h3 id='when-are-whispers-sent'>When are Whispers sent</h3>
 <p>Whispers can be sent either when a specified event occurs in your app or when a user&rsquo;s profile information matches the criteria of the target group.</p>
 
