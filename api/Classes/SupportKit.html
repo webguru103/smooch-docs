@@ -1,986 +1,785 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
-		<title>SupportKit Class Reference</title>
-		<meta id="xcode-display" name="xcode-display" content="render"/>
-		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
-		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
-		<meta name="generator" content="appledoc 2.2 (build 963)" />
-	</head>
-	<body>
-		<header id="top_header">
-			<div id="library" class="hideInXcode">
-				<h1><a id="libraryTitle" href="../index.html">SupportKit </a></h1>
-				<a id="developerHome" href="../index.html">Radialpoint</a>
-			</div>
+<head>
+	<meta charset="utf-8">
+
+	<title>SupportKit Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
 			
-			<div id="title" role="banner">
-				<h1 class="hideInXcode">SupportKit Class Reference</h1>
-			</div>
-			<ul id="headerButtons" role="toolbar">
-				<li id="toc_button">
-					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
-				</li>
-				<li id="jumpto_button" role="navigation">
-					<select id="jumpTo">
+			<h1 id="library-title">
+				<a href="../index.html">SupportKit </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Radialpoint</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
 	
-	
+
 	
 	
 	<option value="tasks">Tasks</option>
 	
 	
+
 	
 	
+
 	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/conversation">+ conversation</option>
+		
+		<option value="//api/name/initWithSettings:">+ initWithSettings:</option>
+		
+		<option value="//api/name/setDefaultRecommendations:">+ setDefaultRecommendations:</option>
+		
+		<option value="//api/name/setTopRecommendation:">+ setTopRecommendation:</option>
+		
+		<option value="//api/name/setUserFirstName:lastName:">+ setUserFirstName:lastName:</option>
+		
+		<option value="//api/name/settings">+ settings</option>
+		
+		<option value="//api/name/show">+ show</option>
+		
+		<option value="//api/name/showConversation">+ showConversation</option>
+		
+		<option value="//api/name/showConversationFromViewController:">+ showConversationFromViewController:</option>
+		
+		<option value="//api/name/showWithGestureHint">+ showWithGestureHint</option>
+		
+		<option value="//api/name/track:">+ track:</option>
+		
+	</optgroup>
 	
-	
-	<option value="class_methods">Class Methods</option>
-	
-	<option value="//api/name/conversation">&nbsp;&nbsp;&nbsp;&nbsp;+ conversation</option>
-	
-	<option value="//api/name/initWithSettings:">&nbsp;&nbsp;&nbsp;&nbsp;+ initWithSettings:</option>
-	
-	<option value="//api/name/newConversationViewController">&nbsp;&nbsp;&nbsp;&nbsp;+ newConversationViewController</option>
-	
-	<option value="//api/name/setDefaultRecommendations:">&nbsp;&nbsp;&nbsp;&nbsp;+ setDefaultRecommendations:</option>
-	
-	<option value="//api/name/setTopRecommendation:">&nbsp;&nbsp;&nbsp;&nbsp;+ setTopRecommendation:</option>
-	
-	<option value="//api/name/setUserFirstName:lastName:">&nbsp;&nbsp;&nbsp;&nbsp;+ setUserFirstName:lastName:</option>
-	
-	<option value="//api/name/settings">&nbsp;&nbsp;&nbsp;&nbsp;+ settings</option>
-	
-	<option value="//api/name/show">&nbsp;&nbsp;&nbsp;&nbsp;+ show</option>
-	
-	<option value="//api/name/showConversation">&nbsp;&nbsp;&nbsp;&nbsp;+ showConversation</option>
-	
-	<option value="//api/name/showConversationFromViewController:">&nbsp;&nbsp;&nbsp;&nbsp;+ showConversationFromViewController:</option>
-	
-	<option value="//api/name/showWithGestureHint">&nbsp;&nbsp;&nbsp;&nbsp;+ showWithGestureHint</option>
-	
-	<option value="//api/name/track:">&nbsp;&nbsp;&nbsp;&nbsp;+ track:</option>
-	
-	
-	
+
 	
 	
 </select>
-				</li>
-			</ul>
-		</header>
-		<nav id="tocContainer" class="isShowingTOC">
-			<ul id="toc" role="tree">
-				
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
 
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SupportKit Class Reference</h1>
 
-
-<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
-	
-</ul></li>
-
-
-
-
-
-
-
-<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/conversation">conversation</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/initWithSettings:">initWithSettings:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/newConversationViewController">newConversationViewController</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setDefaultRecommendations:">setDefaultRecommendations:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setTopRecommendation:">setTopRecommendation:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setUserFirstName:lastName:">setUserFirstName:lastName:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/settings">settings</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/show">show</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showConversation">showConversation</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showConversationFromViewController:">showConversationFromViewController:</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/showWithGestureHint">showWithGestureHint</a></span></li>
-	
-	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/track:">track:</a></span></li>
-	
-</ul></li>
-
-
-
-
-			</ul>
-		</nav>
-		<article>
-			<div id="contents" class="isShowingTOC" role="main">
-				<a title="SupportKit Class Reference" name="top"></a>
-				<div class="main-navigation navigation-top">
-					<ul>
-	<li><a href="../index.html">Index</a></li>
-	<li><a href="../hierarchy.html">Hierarchy</a></li>
-</ul>
-				</div>
-				<div id="header">
-					<div class="section-header">
-						<h1 class="title title-header">SupportKit Class Reference</h1>
-					</div>		
-				</div>
-				<div id="container">	
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
 						<tr>
-	<td class="specification-title">Inherits from</td>
-	<td class="specification-value">NSObject</td>
+	<th>Inherits from</th>
+	<td>NSObject</td>
 </tr><tr>
-	<td class="specification-title">Declared in</td>
-	<td class="specification-value">SupportKit.h</td>
+	<th>Declared in</th>
+	<td>SupportKit.h</td>
 </tr>
 						</tbody></table></div>
 					
+
                     
-                    
-					
+
 					
 					
 					<div class="section section-tasks">
 						<a title="Tasks" name="tasks"></a>
-						<h2 class="subtitle subtitle-tasks">Tasks</h2>
 						
-						
+
 						
 						
 
-						<ul class="task-list">
-							<li>
-	<span class="tooltip">
-		<code><a href="#//api/name/initWithSettings:">+&nbsp;initWithSettings:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/settings">+&nbsp;settings</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/show">+&nbsp;show</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/showConversation">+&nbsp;showConversation</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/showConversationFromViewController:">+&nbsp;showConversationFromViewController:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/newConversationViewController">+&nbsp;newConversationViewController</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/showWithGestureHint">+&nbsp;showWithGestureHint</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setDefaultRecommendations:">+&nbsp;setDefaultRecommendations:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setTopRecommendation:">+&nbsp;setTopRecommendation:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/setUserFirstName:lastName:">+&nbsp;setUserFirstName:lastName:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/track:">+&nbsp;track:</a></code>
-	</span>
-	
-	
-</li><li>
-	<span class="tooltip">
-		<code><a href="#//api/name/conversation">+&nbsp;conversation</a></code>
-	</span>
-	
-	
-</li>
-						</ul>
-						
-					</div>
-					
-					
-					
-					
-					
-					
-					
-					<div class="section section-methods">
-						<a title="Class Methods" name="class_methods"></a>
-						<h2 class="subtitle subtitle-methods">Class Methods</h2>
-						
-						<div class="section-method">
-	<a name="//api/name/conversation" title="conversation"></a>
-	<h3 class="subsubtitle method-title">conversation</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Accessor method for the current conversation.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (SKTConversation *)conversation</code></div>
-
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Current conversation, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
-			
-			<li><code><p><a href="../Classes/SKTConversation.html">SKTConversation</a></p></code></li>
-			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
+						<div class="task-list">
+							<div class="section-method">
 	<a name="//api/name/initWithSettings:" title="initWithSettings:"></a>
-	<h3 class="subsubtitle method-title">initWithSettings:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Initialize the SupportKit SDK with the provided settings.</p>
-	</div>		
-	
-    
+	<h3 class="method-title"><code><a href="#//api/name/initWithSettings:">+&nbsp;initWithSettings:</a></code>
+</h3>
 
-	<div class="method-subsection method-declaration"><code>+ (void)initWithSettings:(id)<em>settings</em></code></div>
+	<div class="method-info">
+		<div class="pointy-thing"></div>
 
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>settings</em></dt>
-			<dd><p>The settings to use.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This may only be called once (preferably, in application:didFinishLaunchingWithOptions:).</p>
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Initialize the SupportKit SDK with the provided settings.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)initWithSettings:(SKTSettings *)<em>settings</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>settings</code></th>
+						<td><p>The settings to use.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>This may only be called once (preferably, in application:didFinishLaunchingWithOptions:).</p>
 
 <p>Use +settings to retrieve and modify the given settings object.</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
+			</div>
 			
-			<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+
 			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/newConversationViewController" title="newConversationViewController"></a>
-	<h3 class="subsubtitle method-title">newConversationViewController</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Creates and returns a SupportKit conversation view controller.</p>
-	</div>		
-	
-    
 
-	<div class="method-subsection method-declaration"><code>+ (UIViewController *)newConversationViewController</code></div>
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+					
+				</ul>
+			</div>
+			
 
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>A new instance of the SupportKit conversation view controller class.</p>
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
 	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>You may use this view controller to embed the conversation in a navigation controller, to change the modal presentation style, or display it in any way you choose.</p>
+</div><div class="section-method">
+	<a name="//api/name/settings" title="settings"></a>
+	<h3 class="method-title"><code><a href="#//api/name/settings">+&nbsp;settings</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Accessor method for the sdk settings.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (SKTSettings *)settings</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Settings object passed in +initWithSettings:, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Use this object to update settings at run time.</p>
+
+<p>Note: Some settings may only be configured at init time. See the SKTSettings class reference for more information.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
+</div><div class="section-method">
+	<a name="//api/name/show" title="show"></a>
+	<h3 class="method-title"><code><a href="#//api/name/show">+&nbsp;show</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Presents the SupportKit Home screen.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)show</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Calling this method with search disabled and no recommendations configured is equivalent to calling +showConversation.</p>
+
+<p>+initWithSettings: must have been called prior to calling show.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showConversation" title="showConversation"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showConversation">+&nbsp;showConversation</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Presents the SupportKit Conversation page</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)showConversation</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Uses the top-most view controller of the application&rsquo;s main window as presenting view controller. For more fine-grained control over the presenting view controller, use +showConversationFromViewController: instead.</p>
+
+<p>+initWithSettings: must have been called prior to calling showConversation.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showConversationFromViewController:" title="showConversationFromViewController:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showConversationFromViewController:">+&nbsp;showConversationFromViewController:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Presents the SupportKit conversation page, using the given view controller as presenting view controller.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)showConversationFromViewController:(UIViewController *)<em>viewController</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>In most cases, it is better to use +showConversation. If you need more fine-grained control over which view controller is used as presenting view controller, use this method instead.</p>
+
+<p>+initWithSettings: must have been called prior to calling +showConversationFromViewController:.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/showWithGestureHint" title="showWithGestureHint"></a>
+	<h3 class="method-title"><code><a href="#//api/name/showWithGestureHint">+&nbsp;showWithGestureHint</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Displays the SupportKit gesture hint.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)showWithGestureHint</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Upon completing (or skipping) the hint, the user will land on the SupportKit Home screen (equivalent to calling +show)</p>
+
+<p>+initWithSettings: must have been called prior to calling showWithGestureHint.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/setDefaultRecommendations:" title="setDefaultRecommendations:"></a>
-	<h3 class="subsubtitle method-title">setDefaultRecommendations:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Set a list of recommendations that the user will see upon launching SupportKit.</p>
-	</div>		
-	
-    
+	<h3 class="method-title"><code><a href="#//api/name/setDefaultRecommendations:">+&nbsp;setDefaultRecommendations:</a></code>
+</h3>
 
-	<div class="method-subsection method-declaration"><code>+ (void)setDefaultRecommendations:(id)<em>urlStrings</em></code></div>
+	<div class="method-info">
+		<div class="pointy-thing"></div>
 
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>urlStrings</em></dt>
-			<dd><p>The array of url strings.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Recommendations are web resources that communicate important information to your users. For example: knowledge base articles, frequently asked questions, new feature announcements, etc&hellip; Recommendations are displayed when the +show API is called, or when SupportKit is launched using the app-wide gesture.</p>
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Set a list of recommendations that the user will see upon launching SupportKit.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setDefaultRecommendations:(NSArray *)<em>urlStrings</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>urlStrings</code></th>
+						<td><p>The array of url strings.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Recommendations are web resources that communicate important information to your users. For example: knowledge base articles, frequently asked questions, new feature announcements, etc&hellip; Recommendations are displayed when the +show API is called, or when SupportKit is launched using the app-wide gesture.</p>
 
 <p>Array items must be of type NSString, and should represent the URLs of the recommendations.</p>
 
 <p>Passing nil will remove any existing default recommendations.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
+</div><div class="section-method">
 	<a name="//api/name/setTopRecommendation:" title="setTopRecommendation:"></a>
-	<h3 class="subsubtitle method-title">setTopRecommendation:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Sets the top recommendation, to be displayed when the SupportKit UI is shown.</p>
-	</div>		
-	
-    
+	<h3 class="method-title"><code><a href="#//api/name/setTopRecommendation:">+&nbsp;setTopRecommendation:</a></code>
+</h3>
 
-	<div class="method-subsection method-declaration"><code>+ (void)setTopRecommendation:(id)<em>urlString</em></code></div>
+	<div class="method-info">
+		<div class="pointy-thing"></div>
 
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>urlString</em></dt>
-			<dd><p>The url of the article to be displayed.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>The top recommendation is displayed at the beginning of the recommendations list and takes precedence over default recommendations.</p>
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sets the top recommendation, to be displayed when the SupportKit UI is shown.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setTopRecommendation:(NSString *)<em>urlString</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>urlString</code></th>
+						<td><p>The url of the article to be displayed.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The top recommendation is displayed at the beginning of the recommendations list and takes precedence over default recommendations.</p>
 
 <p>This should be used when there is a one-to-one mapping between an event (or error) that occurred in the app, and a corresponding article explaining or elaborating on that event.</p>
 
 <p>Calling this method more than once will replace the previous top recommendation.
 Passing nil will remove the current top recommendation.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
+</div><div class="section-method">
 	<a name="//api/name/setUserFirstName:lastName:" title="setUserFirstName:lastName:"></a>
-	<h3 class="subsubtitle method-title">setUserFirstName:lastName:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Sets the current user&rsquo;s first and last name to be used as a display name when sending messages.</p>
-	</div>		
-	
-    
+	<h3 class="method-title"><code><a href="#//api/name/setUserFirstName:lastName:">+&nbsp;setUserFirstName:lastName:</a></code>
+</h3>
 
-	<div class="method-subsection method-declaration"><code>+ (void)setUserFirstName:(id)<em>firstName</em> lastName:(id)<em>lastName</em></code></div>
+	<div class="method-info">
+		<div class="pointy-thing"></div>
 
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>firstName</em></dt>
-			<dd><p>The first name of the user</p></dd>
-		</dl>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>lastName</em></dt>
-			<dd><p>The last name of the user</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>This is a shortcut for -setFirstName and -setLastName on [SKTUser currentUser]</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
+		<div class="method-info-container">
 			
-			<li><code><p><a href="../Classes/SKTUser.html">SKTUser</a></p></code></li>
 			
-		</ul>
-	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/settings" title="settings"></a>
-	<h3 class="subsubtitle method-title">settings</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Accessor method for the sdk settings.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (SKTSettings *)settings</code></div>
-
-    
-	
-	
-	
-	<div class="method-subsection return">
-		<h4 class="method-subtitle parameter-title">Return Value</h4>
-		<p>Settings object passed in +initWithSettings:, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Use this object to update settings at run time.</p>
-
-<p>Note: Some settings may only be configured at init time. See the SKTSettings class reference for more information.</p>
-	</div>
-	
-	
-	
-	
-	
-	<div class="method-subsection see-also-section">
-		<h4 class="method-subtitle">See Also</h4>
-		<ul>
+			<div class="method-subsection brief-description">
+				<p>Sets the current user&rsquo;s first and last name to be used as a display name when sending messages.</p>
+			</div>
 			
-			<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)setUserFirstName:(NSString *)<em>firstName</em> lastName:(NSString *)<em>lastName</em></code></div>
+
+		    
 			
-		</ul>
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>firstName</code></th>
+						<td><p>The first name of the user</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>lastName</code></th>
+						<td><p>The last name of the user</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>This is a shortcut for -setFirstName and -setLastName on [SKTUser currentUser]</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/SKTUser.html">SKTUser</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
 	</div>
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/show" title="show"></a>
-	<h3 class="subsubtitle method-title">show</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Presents the SupportKit Home screen.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)show</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Calling this method with search disabled and no recommendations configured is equivalent to calling +showConversation.</p>
-
-<p>+initWithSettings: must have been called prior to calling show.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/showConversation" title="showConversation"></a>
-	<h3 class="subsubtitle method-title">showConversation</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Presents the SupportKit Conversation page</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)showConversation</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Uses the top-most view controller of the application&rsquo;s main window as presenting view controller. For more fine-grained control over the presenting view controller, use +showConversationFromViewController: instead.</p>
-
-<p>+initWithSettings: must have been called prior to calling showConversation.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/showConversationFromViewController:" title="showConversationFromViewController:"></a>
-	<h3 class="subsubtitle method-title">showConversationFromViewController:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Presents the SupportKit conversation page, using the given view controller as presenting view controller.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)showConversationFromViewController:(id)<em>viewController</em></code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>In most cases, it is better to use +showConversation. If you need more fine-grained control over which view controller is used as presenting view controller, use this method instead.</p>
-
-<p>+initWithSettings: must have been called prior to calling +showConversationFromViewController:.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
-	<a name="//api/name/showWithGestureHint" title="showWithGestureHint"></a>
-	<h3 class="subsubtitle method-title">showWithGestureHint</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Displays the SupportKit gesture hint.</p>
-	</div>		
-	
-    
-
-	<div class="method-subsection method-declaration"><code>+ (void)showWithGestureHint</code></div>
-
-    
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Upon completing (or skipping) the hint, the user will land on the SupportKit Home screen (equivalent to calling +show)</p>
-
-<p>+initWithSettings: must have been called prior to calling showWithGestureHint.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-						<div class="section-method">
+</div><div class="section-method">
 	<a name="//api/name/track:" title="track:"></a>
-	<h3 class="subsubtitle method-title">track:</h3>
-	
-	
-	
-	<div class="method-subsection brief-description">
-		<p>Tracks an app event, and processes any whispers associated with that event.</p>
-	</div>		
-	
-    
+	<h3 class="method-title"><code><a href="#//api/name/track:">+&nbsp;track:</a></code>
+</h3>
 
-	<div class="method-subsection method-declaration"><code>+ (void)track:(id)<em>eventName</em></code></div>
+	<div class="method-info">
+		<div class="pointy-thing"></div>
 
-    
-	
-	<div class="method-subsection arguments-section parameters">
-		<h4 class="method-subtitle parameter-title">Parameters</h4>
-		
-		<dl class="argument-def parameter-def">
-			<dt><em>eventName</em></dt>
-			<dd><p>The name of the event to track. This should match a whisper created on the admin panel for your app.</p></dd>
-		</dl>
-		
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection discussion-section">
-		<h4 class="method-subtitle">Discussion</h4>
-		<p>Whispers can be configured in the SupportKit admin panel.</p>
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Tracks an app event, and processes any whispers associated with that event.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)track:(NSString *)<em>eventName</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>eventName</code></th>
+						<td><p>The name of the event to track. This should match a whisper created on the admin panel for your app.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Whispers can be configured in the SupportKit admin panel.</p>
 
 <p>Whispers can only be fulfilled once per app user, and tracking an event after the whisper has been fulfilled will have no effect.</p>
-	</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="method-subsection declared-in-section">
-		<h4 class="method-subtitle">Declared In</h4>
-		<code class="declared-in-ref">SupportKit.h</code><br />
-	</div>				
-	
-	
-</div>
-						
-					</div>
-					
-					
-					
-					
-                    
-                    
-                    
-                    
-
-				</div>
-				<div class="main-navigation navigation-bottom">
-					<ul>
-	<li><a href="../index.html">Index</a></li>
-	<li><a href="../hierarchy.html">Hierarchy</a></li>
-</ul>
-				</div>
-				<div id="footer">
-					<hr />
-					<div class="footer-copyright">
-						<p><span class="copyright">&copy; 2015 Radialpoint. All rights reserved. (Last updated: 2015-07-22)</span><br />
-						
-						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
-						
-					</div>
-				</div>
 			</div>
-		</article>
-		<script type="text/javascript">
-			function jumpToChange()
-			{
-				window.location.hash = this.options[this.selectedIndex].value;
-			}
 			
-			function toggleTOC()
-			{
-				var contents = document.getElementById('contents');
-				var tocContainer = document.getElementById('tocContainer');
-				
-				if (this.getAttribute('class') == 'open')
-				{
-					this.setAttribute('class', '');
-					contents.setAttribute('class', '');
-					tocContainer.setAttribute('class', '');
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/conversation" title="conversation"></a>
+	<h3 class="method-title"><code><a href="#//api/name/conversation">+&nbsp;conversation</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Accessor method for the current conversation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (SKTConversation *)conversation</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>Current conversation, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
 					
-					window.name = "hideTOC";
-				}
-				else
-				{
-					this.setAttribute('class', 'open');
-					contents.setAttribute('class', 'isShowingTOC');
-					tocContainer.setAttribute('class', 'isShowingTOC');
+					<li><code><p><a href="../Classes/SKTConversation.html">SKTConversation</a></p></code></li>
 					
-					window.name = "";
-				}
-				return false;
-			}
+				</ul>
+			</div>
 			
-			function toggleTOCEntryChildren(e)
-			{
-				e.stopPropagation();
-				var currentClass = this.getAttribute('class');
-				if (currentClass == 'children') {
-					this.setAttribute('class', 'children open');
-				}
-				else if (currentClass == 'children open') {
-					this.setAttribute('class', 'children');
-				}
-				return false;
-			}
+
 			
-			function tocEntryClick(e)
-			{
-				e.stopPropagation();
-				return true;
-			}
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
 			
-			function init()
-			{
-				var selectElement = document.getElementById('jumpTo');
-				selectElement.addEventListener('change', jumpToChange, false);
-				
-				var tocButton = document.getElementById('table_of_contents');
-				tocButton.addEventListener('click', toggleTOC, false);
-				
-				var taskTreeItem = document.getElementById('task_treeitem');
-				if (taskTreeItem.getElementsByTagName('li').length > 0)
-				{
-					taskTreeItem.setAttribute('class', 'children');
-					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
-				}
-				
-				var tocList = document.getElementById('toc');
-				
-				var tocEntries = tocList.getElementsByTagName('li');
-				for (var i = 0; i < tocEntries.length; i++) {
-					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
-				}
-				
-				var tocLinks = tocList.getElementsByTagName('a');
-				for (var i = 0; i < tocLinks.length; i++) {
-					tocLinks[i].addEventListener('click', tocEntryClick, false);
-				}
-				
-				if (window.name == "hideTOC") {
-					toggleTOC.call(tocButton);
-				}
-			}
 			
-			window.onload = init;
-			
-			// If showing in Xcode, hide the TOC and Header
-			if (navigator.userAgent.match(/xcode/i)) {
-				document.getElementById("contents").className = "hideInXcode"
-				document.getElementById("tocContainer").className = "hideInXcode"
-				document.getElementById("top_header").className = "hideInXcode"
-			}
-			
-		</script>
-	</body>
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 Radialpoint. All rights reserved. Updated: 2015-07-23</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
 </html>
