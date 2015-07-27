@@ -50,19 +50,23 @@
       <div class="content">
         
           <h1 id='welcome'>Welcome</h1>
-<p>SupportKit is a free iOS SDK that connects you to your users so you can communicate with them and build a killer app. If you want to learn more about SupportKit, then visit our website at <a href="http://www.supportkit.io">http://www.supportkit.io</a> or <a href="https://app.supportkit.io">sign up here</a>. This page provides in-depth documentation on SupportKit&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
+<p>SupportKit adds beautifully simple messaging to your app to keep your users engaged and coming back. If you want to learn more about SupportKit, then visit our website at <a href="http://www.supportkit.io">http://www.supportkit.io</a> or <a href="https://app.supportkit.io">sign up here</a>. This page provides in-depth documentation on SupportKit&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
 
-<p>All source code examples are provided in Objective-C, Swift, and JavaScript! You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
+<p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
 
-<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:supportkit@radialpoint.com">here</a>.</p>
+<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
 
-          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
-<p>Add the following code in between the &lt;head&gt;&hellip;&lt;/head&gt; tags on your page.</p>
+          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
+<p>There are a few ways you can include the SupportKit plugin on your web page.</p>
+
+<p>The recommended method is the Script Tag method, but you can also include it using bower or npm.</p>
+<h2 id='script-tag-method'>Script Tag Method</h2><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
+<p>Add the following code towards the end of the <code class="prettyprint">body</code> section on your page. Placing it at the end allows the rest of the page to load first.</p>
 <pre><code class="highlight html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.supportkit.io/supportkit.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 
 <p><aside class="info">
-    Note that SupportKit requires jQuery to work. If you aren&rsquo;t using jQuery yet, then add the following code at the beginning of your &lt;head&gt; section.<br>
+    Note that SupportKit requires jQuery to work. If you aren&rsquo;t using jQuery yet, then add the following code before the previous code snippet.<br>
     <code class="prettyprint">
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;
 </code>
@@ -70,8 +74,22 @@
 <h4 id='step-2-initialize-supportkit-with-your-new-app-token'>Step 2: Initialize SupportKit with your new app token</h4>
 <p>Once SupportKit has been included on your web page, you&rsquo;re almost done. Simply initialize the plugin using this code snippet</p>
 <pre><code class="highlight html"><span class="nt">&lt;script&gt;</span>
-<span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
+    <span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 <span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<h2 id='npm-and-browserify'>npm and browserify</h2><pre><code class="highlight plaintext">npm install supportkit
+</code></pre>
+
+<p>In your code:</p>
+<pre><code class="highlight javascript"><span class="kd">var</span> <span class="nx">SupportKit</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'supportkit-js'</span><span class="p">);</span>
+
+<span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
+</code></pre>
+<h2 id='bower'>bower</h2><pre><code class="highlight plaintext">bower install supportkit
+</code></pre>
+
+<p>In your code:</p>
+<pre><code class="highlight javascript"><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 </code></pre>
 
           <h1 id='slack'>Slack</h1>
@@ -88,6 +106,35 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 </aside></p>
 <h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
 <p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
+
+          <h1 id='zendesk'>Zendesk</h1>
+<p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
+<h2 id='configuring-zendesk-ticketing'>Configuring Zendesk ticketing</h2>
+<p>Configuring SupportKit to communicate with Zendesk is easy. Go to your app settings on the SupportKit admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
+
+<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s SupportKit integration.</p>
+<h3 id='configuring-agent-images'>Configuring agent images</h3>
+<p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
+<h3 id='working-with-zendesk-email-signatures'>Working with Zendesk email signatures</h3>
+<p>SupportKit automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/unsightly_signature.png" alt="Oops, how unsightly"/></p>
+<h3 id='optional-additional-information-on-configuration'>Optional additional information on Configuration</h3>
+<p>Once you are authenticated with your Zendesk app, SupportKit will automatically configure targets and triggers so that your Zendesk agents can communicate with your SupportKit app users.</p>
+
+<p>During the configuration process any existing triggers in your Zendesk settings will be modified to not email the End-user if the ticket is tagged &ldquo;supportkit&rdquo;. We do this to avoid duplicating the conversation, and to remove any reason for the app user to leave your app to respond via email.</p>
+
+<p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that SupportKit configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the SupportKit admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured SupportKit targets and triggers and refresh your configuration.</p>
+
+<p>Note: SupportKit only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple SupportKit accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all SupportKit apps have had the Zendesk integration removed.</p>
+<h2 id='rate-limiting'>Rate Limiting</h2>
+<p>Zendesk limits each account to 200 requests per a minute (globally). Additionally, they only allow 15 comments to be made on each individual ticket (regardless of whether the comment is an agent or app user) within a 10 minute period.</p>
+
+<p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
+
+<p>To reduce the likelihood of you bumping up against the rate limit, SupportKit batches together all messages sent from the app user within a 5 second period into a single comment.</p>
 
           <h1 id='conversations'>Conversations</h1>
 <p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
@@ -157,9 +204,9 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
           <h1 id='connecting-to-your-crm'>Connecting to your CRM</h1>
 <p>SupportKit&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
 
-<p>Since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
 
-          <ol>
+<ol>
 <li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
 <li><p>Set SupportKit&rsquo;s forwarding address to the address you noted in step 1. </p></li>
 <li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
