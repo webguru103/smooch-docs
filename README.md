@@ -9,7 +9,4 @@ All source code examples are provided in Objective-C, Swift, and JavaScript! You
 
 For more in-depth details on SupportKit’s api check out our [API reference](http://docs.supportkit.io/api/). The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us [here](mailto:help@supportkit.io).
 
-SupportKit is a free iOS SDK that connects you to your users so you can communicate with them and build a killer app. If you want to learn more about SupportKit, then visit [our website](https://supportkit.io) or [sign up here](https://app.supportkit.io/signup).
-
-
-
+SupportKit is an SDK that connects you to your users so you can communicate with them and build a killer app. If you want to learn more about SupportKit, then visit [our website](https://supportkit.io) or [sign up here](https://app.supportkit.io/signup).
