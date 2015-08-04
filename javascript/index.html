@@ -30,6 +30,7 @@
         <div class="nav-label">Platform</div>
         <div class="platform-selector btn-group">
           <button class="btn btn-default" data-platform-name="ios">iOS</button>
+          <button class="btn btn-default" data-platform-name="android">Android</button>
           <button class="btn btn-default" data-platform-name="web">Web</button>
         </div>
         <div class="clear"></div>
@@ -43,6 +44,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='http://www.supportkit.io'>Sign up for SupportKit, it's free</a></li>
+            <li><a href='https://github.com/supportkit/supportkit-js'>SDK Source</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -106,6 +108,21 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 </aside></p>
 <h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
 <p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
+
+          <h1 id='help-scout'>Help Scout</h1>
+<p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting SupportKit to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by SupportKit app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
+<h2 id='configuring-help-scout-to-work-with-supportkit'>Configuring Help Scout to work with SupportKit</h2>
+<p>Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.</p>
+
+<ol>
+<li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key. </p></li>
+<li><p>On the Help Scout page in your SupportKit admin, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
+<li><p>Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using SupportKit, the conversation will appear in the Help Scout mailbox.</p></li>
+</ol>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page"></p>
+<h2 id='instant-messaging-from-a-help-scout-mailbox'>Instant messaging from a Help Scout mailbox</h2>
+<p>You can change or delete the Help Scout mailbox that SupportKit sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on SupportKit no longer exists, messages will be lost.</p>
 
           <h1 id='zendesk'>Zendesk</h1>
 <p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
