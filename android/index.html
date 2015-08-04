@@ -16,7 +16,7 @@
     <script>try{Typekit.load();}catch(e){}</script>
   </head>
 
-  <body class="javascript javascript_index">
+  <body class="android android_index">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -29,6 +29,7 @@
       <div class="platform-nav">
         <div class="nav-label">Platform</div>
         <div class="platform-selector btn-group">
+          <button class="btn btn-default" data-platform-name="android">Android</button>
           <button class="btn btn-default" data-platform-name="ios">iOS</button>
           <button class="btn btn-default" data-platform-name="web">Web</button>
         </div>
@@ -43,6 +44,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='http://www.supportkit.io'>Sign up for SupportKit, it's free</a></li>
+            <li><a href='./api/android'>Class Reference</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -57,39 +59,115 @@
 <p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
 
           <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
-<p>There are a few ways you can include the SupportKit plugin on your web page.</p>
+<p>There are a few ways you can include the SupportKit plugin on your Android project.</p>
 
-<p>The recommended method is the Script Tag method, but you can also include it using bower or npm.</p>
-<h2 id='script-tag-method'>Script Tag Method</h2><h4 id='step-1-include-the-supportkit-plugin-on-your-web-page'>Step 1: Include the SupportKit plugin on your web page</h4>
-<p>Add the following code towards the end of the <code class="prettyprint">body</code> section on your page. Placing it at the end allows the rest of the page to load first.</p>
-<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.supportkit.io/supportkit.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-</code></pre>
+<p>The SupportKit library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR.</p>
 
-<p><aside class="info">
-    Note that SupportKit requires jQuery to work. If you aren&rsquo;t using jQuery yet, then add the following code before the previous code snippet.<br>
-    <code class="prettyprint">
-    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js&quot;&gt;&lt;/script&gt;
-</code>
+<p><aside class="notice">
+SupportKit depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
 </aside></p>
-<h4 id='step-2-initialize-supportkit-with-your-new-app-token'>Step 2: Initialize SupportKit with your new app token</h4>
-<p>Once SupportKit has been included on your web page, you&rsquo;re almost done. Simply initialize the plugin using this code snippet</p>
-<pre class="highlight html"><code><span class="nt">&lt;script&gt;</span>
-    <span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
-<span class="nt">&lt;/script&gt;</span>
+<h2 id='android-studio'>Android Studio</h2>
+<ul>
+<li>Go to <strong>File</strong> &rarr; <strong>New</strong> &rarr; <strong>New Module&hellip;</strong></li>
+<li>Click on <strong>Import .JAR or .AAR Package</strong> then <strong>Next</strong></li>
+<li>Select <strong>SupportKit-core.aar</strong> in <strong>File name</strong></li>
+<li>Enter <strong>SupportKit-core</strong> as the <strong>Subproject name</strong></li>
+<li>Click <strong>Finish</strong></li>
+<li>Add each dependency that you are not featuring in <strong>build.gradle</strong>:</li>
+</ul>
+<pre><code class="highlight plaintext">compile 'com.google.code.gson:gson:2.3.1'
+compile 'com.squareup.okhttp:okhttp:2.4.0'
 </code></pre>
-<h2 id='npm-and-browserify'>npm and browserify</h2><pre class="highlight plaintext"><code>npm install supportkit
+<h2 id='eclipse-netbeans-and-the-ant-build-system'>Eclipse, Netbeans and the ant build system</h2><h3 id='core-module-only'>Core module only</h3>
+<ul>
+<li>In your project directory, create a subdirectory called <strong>libs</strong> if it does not already exist</li>
+<li>Copy <strong>SupportKit-core.jar</strong> into the <strong>libs</strong> directory</li>
+<li>Add these permissions in <strong>AndroidManifest.xml</strong>:
+<code class="prettyprint">
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
+</code></li>
+<li>Add this service in <strong>AndroidManifest.xml</strong>:
+<code class="prettyprint">
+&lt;service android:name=&quot;io.supportkit.core.service.SupportKitService&quot;/&gt;
+</code></li>
+<li>Download and copy each dependency JAR into the <strong>libs</strong> subdirectory:
+
+<ul>
+<li><a href="https://code.google.com/p/google-gson/">Google-Gson</a></li>
+<li><a href="https://square.github.io/okhttp/">OkHttp and Okio</a></li>
+</ul></li>
+</ul>
+<h3 id='core-and-ui-modules'>Core and UI modules</h3>
+<ul>
+<li>Download the <code class="prettyprint">supportkit-eclipse-MAJ.MIN.PATCH.zip</code> file from <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a>.</li>
+<li>Extract the zip and copy the <code class="prettyprint">appcompat</code> and <code class="prettyprint">supportkit</code> folders in the root of your project.</li>
+<li>In Eclipse, import both folders in your workspace. After this step you should have two new projects added to your workspace named <code class="prettyprint">android-support-v7-appcompat</code> and <code class="prettyprint">ConversationActivity</code>.</li>
+<li>Expand the <code class="prettyprint">android-support-v7-appcompat\libs</code> folder. Then on each lib, do <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Build Path</code> &gt; <code class="prettyprint">Add to Build Path</code>.</li>
+<li>Go to the properties of your project (i.e. <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Properties</code>). Then under the Android item, add a reference to the SupportKit <code class="prettyprint">ConversationActivity</code>.</li>
+<li>Add these permissions in <strong>AndroidManifest.xml</strong>:</li>
+</ul>
+<pre><code class="highlight plaintext">&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/&gt;
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;
 </code></pre>
 
-<p>In your code:</p>
-<pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">SupportKit</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'supportkit-js'</span><span class="p">);</span>
-
-<span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
-</code></pre>
-<h2 id='bower'>bower</h2><pre class="highlight plaintext"><code>bower install supportkit
+<ul>
+<li>Add this service in <strong>AndroidManifest.xml</strong>:</li>
+</ul>
+<pre><code class="highlight plaintext">&lt;service android:name="io.supportkit.core.service.SupportKitService"/&gt;
 </code></pre>
 
-<p>In your code:</p>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
+<ul>
+<li>Add this activity in <strong>AndroidManifest.xml</strong>:</li>
+</ul>
+<pre><code class="highlight plaintext">&lt;activity android:name="io.supportkit.ui.ConversationActivity" android:theme="@style/Theme.AppCompat.Light" /&gt;
+</code></pre>
+<h4 id='troubleshooting'>Troubleshooting</h4>
+<p>If you get the following error when running your application</p>
+<pre><code class="highlight plaintext">[2015-07-23 09:33:42 - Dex Loader] Unable to execute dex: Multiple dex files define Lio/supportkit/ui/BuildConfig;
+[2015-07-23 09:33:42 - MainActivity] Conversion to Dalvik format failed: Unable to execute dex: Multiple dex files define Lio/supportkit/ui/BuildConfig;
+</code></pre>
+
+<p>The fix is:</p>
+
+<ul>
+<li>Eclipse project properties &gt; <code class="prettyprint">Java build path</code> &gt; <code class="prettyprint">Order and export</code></li>
+<li>Uncheck Android private libraries.</li>
+</ul>
+
+<p>See <a href="http://stackoverflow.com/a/26856255/213272">http://stackoverflow.com/a/26856255/213272</a>.</p>
+<h2 id='initialize-supportkit-in-your-app'>Initialize SupportKit in your app</h2>
+<p>After following the steps above, your app is setup for working with the SupportKit SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
+
+<p>This token is free and uniquely identifies your app and links it to the SupportKit backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
+
+<p>You can find your token by <a href="https://app.supportkit.io">logging into SupportKit</a> and copying it from the settings page as shown below.</p>
+
+<p><img alt="App Token on Overview Page" src="../images/apptoken.png" /></p>
+
+<p>Once you&rsquo;ve located your token, use the code below to initialize SupportKit.</p>
+
+<p>Add the following line of code to your <code class="prettyprint">onCreate</code> method:</p>
+<pre><code class="highlight plaintext">import android.app.Application;
+import io.supportkit.core.SupportKit;
+
+public class YourApplication extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        SupportKit.init(this, "YOUR_APP_TOKEN");
+    }
+}
+</code></pre>
+
+<p>Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.</p>
+<h3 id='displaying-the-supportkit-user-interface'>Displaying the SupportKit User Interface</h3>
+<p>Once you&rsquo;ve initialized SupportKit, you&rsquo;re ready to try it out. </p>
+
+<p>Find a suitable place in your app&rsquo;s interface to invoke SupportKit and use the code below to display the SupportKit user interface. You can bring up SupportKit whenever you think that your user will need access to help or a communication channel to contact you.</p>
+<pre><code class="highlight plaintext">import io.supportkit.ui.ConversationActivity;
+...
+ConversationActivity.show(this);
 </code></pre>
 
           <h1 id='slack'>Slack</h1>
@@ -106,6 +184,21 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 </aside></p>
 <h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
 <p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
+
+          <h1 id='help-scout'>Help Scout</h1>
+<p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting SupportKit to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by SupportKit app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
+<h2 id='configuring-help-scout-to-work-with-supportkit'>Configuring Help Scout to work with SupportKit</h2>
+<p>Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.</p>
+
+<ol>
+<li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key. </p></li>
+<li><p>On the Help Scout page in your SupportKit admin, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
+<li><p>Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using SupportKit, the conversation will appear in the Help Scout mailbox.</p></li>
+</ol>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page"></p>
+<h2 id='instant-messaging-from-a-help-scout-mailbox'>Instant messaging from a Help Scout mailbox</h2>
+<p>You can change or delete the Help Scout mailbox that SupportKit sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on SupportKit no longer exists, messages will be lost.</p>
 
           <h1 id='zendesk'>Zendesk</h1>
 <p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
@@ -152,13 +245,13 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
 
 <p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
-<pre class="highlight plaintext"><code>/sk TYPE YOUR MESSAGE HERE
+<pre><code class="highlight plaintext">/sk TYPE YOUR MESSAGE HERE
 </code></pre>
 
 <p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
 
 <p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
-<pre class="highlight plaintext"><code>/sk !profile
+<pre><code class="highlight plaintext">/sk !profile
 </code></pre>
 
 <p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
@@ -173,7 +266,7 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
 
           <p>You can set the sender&rsquo;s properties by initializing SupportKit with a user object.</p>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<pre><code class="highlight javascript"><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
     <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
     <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who?'</span><span class="p">,</span>
