@@ -66,7 +66,8 @@
 <p><span class="badge"><a href="https://bintray.com/supportkitorg/maven/supportkit/_latestVersion"><img alt="Bintray" src="https://api.bintray.com/packages/supportkitorg/maven/supportkit/images/download.svg" /></a></span></p>
 
 <p>The SupportKit library is hosted on <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a> and is available on <a href="http://jcenter.bintray.com/io/supportkit/">JCenter</a>. You can add the dependencies right into your <code class="prettyprint">build.grade</code> file.</p>
-<pre class="highlight plaintext"><code>compile 'com.google.code.gson:gson:2.3.1'
+<pre class="highlight plaintext"><code>compile 'com.google.android.gms:play-services-gcm:7.5.0'
+compile 'com.google.code.gson:gson:2.3.1'
 compile 'com.squareup.okhttp:okhttp:2.4.0'
 compile 'io.supportkit:core:latest.release'
 compile 'io.supportkit:ui:latest.release'
@@ -79,15 +80,31 @@ SupportKit depends on a few external libraries that many applications already fe
 <ul>
 <li>In your project directory, create a subdirectory called <strong>libs</strong> if it does not already exist</li>
 <li>Copy <strong>SupportKit-core.jar</strong> into the <strong>libs</strong> directory</li>
-<li>Add these permissions in <strong>AndroidManifest.xml</strong>:
-<code class="prettyprint">xml
-&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;
-&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
-</code></li>
-<li>Add this service in <strong>AndroidManifest.xml</strong>:
-<code class="prettyprint">xml
-&lt;service android:name=&quot;io.supportkit.core.service.SupportKitService&quot;/&gt;
-</code></li>
+<li>Add these permissions in <strong>AndroidManifest.xml</strong>:</li>
+</ul>
+<pre class="highlight xml"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span><span class="nt">/&gt;</span>
+</code></pre>
+
+<ul>
+<li>Add these services in <strong>AndroidManifest.xml</strong>:</li>
+</ul>
+<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.service.SupportKitService"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+</code></pre>
+
+<ul>
 <li>Download and copy each dependency JAR into the <strong>libs</strong> subdirectory:
 
 <ul>
@@ -160,6 +177,200 @@ SupportKit depends on a few external libraries that many applications already fe
 <span class="n">ConversationActivity</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 </code></pre>
 
+          <h1 id='conversations'>Conversations</h1>
+<p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
+
+          <h2 id='how-do-conversations-work'>How do conversations work?</h2>
+<p>When users access SupportKit, they’ll be presented with SupportKit’s messaging interface.</p>
+
+<p><img alt="Android Messages" src="../images/android_messages.png" /></p>
+
+          <h3 id='slack-channel'>Slack Channel</h3>
+<p>Once your user types a message and hits send, SupportKit sends the message to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel that you chose when you <a href="#configuring-slack">configured Slack</a>.</p>
+
+<p>This notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
+
+<p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
+
+<p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
+<pre class="highlight plaintext"><code>/sk TYPE YOUR MESSAGE HERE
+</code></pre>
+
+<p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
+
+<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
+<pre class="highlight plaintext"><code>/sk !profile
+</code></pre>
+
+<p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<h3 id='e-mail-channel'>E-Mail Channel</h3>
+<p>Once your user types a message and hits send, SupportKit transforms the message into an e-mail that makes its way to the e-mail address you specified when signing up for SupportKit. This e-mail contains the user&rsquo;s message as well as any metadata about the user that you&rsquo;ve captured in your app. </p>
+
+<p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
+
+          <h2 id='identifying-your-users'>Identifying your users</h2>
+<p>SupportKit allows you to associate metadata to your users so that you can better understand the context around a user&rsquo;s message. </p>
+<h3 id='naming-the-current-user'>Naming the current user</h3>
+<p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
+
+          <p>You can grab the current user with <code class="prettyprint">User.getCurrentUser</code> then set basic information with <code class="prettyprint">setFirstName</code>, <code class="prettyprint">setLastName</code>, <code class="prettyprint">setEmail</code> and <code class="prettyprint">setSignedUpAt</code>. You can also set your own custom properties by sending a map into <code class="prettyprint">addProperties</code>.</p>
+<pre class="highlight java"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+    <span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+    <span class="n">addSomeProperties</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">());</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">addSomeProperties</span><span class="p">(</span><span class="kd">final</span> <span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">customProperties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+
+    <span class="n">user</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">"Artour"</span><span class="o">);</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">"Babaev"</span><span class="o">);</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"2ez@4rtz.com"</span><span class="o">);</span>
+    <span class="n">user</span><span class="o">.</span><span class="na">setSignedUpAt</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="mi">1420070400000</span><span class="n">l</span><span class="o">));</span>
+
+    <span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDate"</span><span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+    <span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customFlag"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDigit"</span><span class="o">,</span> <span class="mi">322</span><span class="o">);</span>
+
+    <span class="n">user</span><span class="o">.</span><span class="na">addProperties</span><span class="o">(</span><span class="n">customProperties</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre>
+
+          <p><aside class="info">
+Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
+</aside></p>
+
+          <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
+<p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
+<h3 id='step-1--generate-a-gcm-configuration-file-for-your-android-project'>Step 1. Generate a GCM configuration file for your Android project</h3>
+<p><aside class="notice">
+Following these steps will enable cloud messaging for your app and create a server API key
+</aside></p>
+
+<ol>
+<li><p>Go to Google&rsquo;s <a href="https://developers.google.com/cloud-messaging/android/client#get-config">cloud messaging documentation</a></p></li>
+<li><p>Click on <code class="prettyprint">GET A CONFIGURATION FILE</code> (you will be prompted to sign in to your Google account if you are not already signed in)</p></li>
+<li><p>Follow the steps to generate your configuration file (for your package name, copy and paste the package used in your application&rsquo;s AndroidManifest.xml file)</p></li>
+<li><p>Download the <code class="prettyprint">google-services.json</code> file generated by the tool</p></li>
+<li><p>Place the file at the root of your Android application</p></li>
+</ol>
+<h3 id='step-2--configure-push-notifications-in-supportkit'>Step 2. Configure push notifications in SupportKit</h3>
+<ol>
+<li><p>Go to <a href="https://app.supportkit.io">https://app.supportkit.io</a> and log into your account.</p></li>
+<li><p>Go to Settings &gt; Android</p></li>
+<li><p>Enter your Server API Key and Google App Project Number (which can be found by clicking on &lsquo;Overview&rsquo; in the developer console)</p></li>
+</ol>
+<h3 id='step-3--configure-android-application-to-accept-push'>Step 3. Configure Android application to accept push</h3>
+<p><aside class="info">
+Be sure to replace <code class="prettyprint">&lt;your_application_package&gt;</code> with your application package!
+</aside></p>
+
+<ol>
+<li><p>Add the dependency to your project&rsquo;s top-level build.gradle:</p>
+<pre class="highlight plaintext"><code>classpath 'com.google.gms:google-services:1.3.0-beta1'
+</code></pre></li>
+<li><p>Add the plugin to your app-level build.gradle:</p>
+<pre class="highlight plaintext"><code>apply plugin: 'com.google.gms.google-services'
+</code></pre></li>
+<li><p>Add the following permissions and uses-permissions to your AndroidManifest.xml file (typically before the opening <code class="prettyprint">&lt;application&gt;</code> tag):</p>
+<pre class="highlight xml"><code><span class="nt">&lt;permission</span>
+    <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;.permission.C2D_MESSAGE"</span>
+    <span class="na">android:protectionLevel=</span><span class="s">"signature"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;.permission.C2D_MESSAGE"</span><span class="nt">/&gt;</span>
+</code></pre></li>
+<li><p>Add the following receiver to your AndroidManifest.xml file before the closing <code class="prettyprint">&lt;/application&gt;</code> tag:</p>
+<pre class="highlight xml"><code><span class="nt">&lt;receiver</span>
+        <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
+        <span class="na">android:exported=</span><span class="s">"true"</span>
+        <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.REGISTRATION"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+</code></pre></li>
+</ol>
+<h3 id='step-4--test-it-out'>Step 4. Test it out!</h3>
+<p><aside class="warning">
+You can&rsquo;t receive push notifications in the Android simulator, you must use a physical device.
+</aside></p>
+
+<ol>
+<li><p>Kill and restart your app.</p></li>
+<li><p>Launch SupportKit.</p></li>
+<li><p>Send a message.</p></li>
+<li><p>Press the home button or navigate away from the conversation.</p></li>
+<li><p>Reply to the message from your choice of SupportKit integrated service</p></li>
+</ol>
+
+<p>You&rsquo;ll receive a notification on the phone!</p>
+
+          <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
+<p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
+
+          <p><img alt="Team Member Names" src="../images/android_team.png" /></p>
+
+          <h2 id='keeping-your-users-safe'>Keeping your users safe</h2>
+<p>SupportKit sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through SupportKit messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
+
+          <h1 id='getting-conversations-started'>Getting conversations started</h1>
+<p>SupportKit allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
+
+<p>To help get you started, we&rsquo;ve built in 3 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">SupportKit User</code> API.</p>
+
+<ul>
+<li><p><em>Welcome Whisper</em> : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.</p></li>
+<li><p><em>Re-Engage Users</em> : Send a message to users who were last seen using the app at least 7 days ago. </p></li>
+<li><p><em>Announcement</em> : Send a message to all users when they launch the app.</p></li>
+</ul>
+
+<p>You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.</p>
+<h2 id='how-do-whispers-work'>How do Whispers work</h2>
+<p>You create Whispers from within the <a href="https://app.supportkit.io">SupportKit dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
+
+<p><img alt="Whisper creation form" src="images/create_whisper.png" /></p>
+<h3 id='targeting-a-group-of-users'>Targeting a group of users</h3>
+<p>You can target your users based on any information that you&rsquo;ve stored using the <code class="prettyprint">SupportKit User</code> API. We also provide several built-in properties that you can use without instrumenting your app with calls to <code class="prettyprint">SupportKit User</code> class.</p>
+
+<ul>
+<li><p><em>All users</em> : Send the Whisper to <em>everyone</em> that has your app. Whispers that target everyone must be <a href="#when-are-whispers-sent">linked to an event</a>.</p></li>
+<li><p><em>Signed Up</em> : Send the message before/after a specified number of days. For example, you can use this to send a message to all users who&rsquo;ve been using your app for less than a day or more than a week. See <a href="#setting-the-signed-up-date">here</a> for more information.</p></li>
+<li><p><em>Last Seen</em> : Send the message based on when the user last interacted with your app. This value is updated automatically each time a user launches your app.</p></li>
+<li><p><em>App Version</em> : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleVersion key in your app&rsquo;s info.plist file, and is updated each time the user launches your app.</p></li>
+</ul>
+
+<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">SupportKit User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
+<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">SupportKit User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
+
+          <h2 id='when-are-whispers-sent'>When are Whispers sent</h2>
+<p>Whispers can be sent either when a specified event occurs in your app or when a user&rsquo;s profile information matches the criteria of the target group.</p>
+
+<p>Whispers that are based on custom events defined by you in your app are tied to the execution of the SupportKit <code class="prettyprint">track:</code> method. When <code class="prettyprint">track:</code> is called, SupportKit will check to see if the associated Whisper has already been seen by this user. If it hasn&rsquo;t, the Whisper will be immediately presented to the user through an in-app notification that leads to the messaging interface when tapped. When you create a Whisper, SupportKit will display a preview of this in-app notification.</p>
+<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">track</span><span class="o">(</span><span class="s">"item-in-cart"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">'item-in-cart'</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">track</span><span class="p">:</span><span class="s">@"user-on-promopage"</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">track</span><span class="p">(</span><span class="s">"user-on-promopage"</span><span class="p">);</span>
+</code></pre>
+
+<p>If the Whisper is not tied to an event, SupportKit will monitor your userbase for changes and dispatch Whispers when a user&rsquo;s properties make them a fit for the target group of your Whisper. In many cases, this occurs when the user is not using your app. For instance, if you elect to send a Whisper to new users after 1 day has elapsed, SupportKit will deliver the message approximately 24 hours after the user first used your app. If you choose to use this powerful method of Whisper delivery, ensure that you&rsquo;ve enabled push notifications for your app in SupportKit. With push enabled, your users will receive a message that will bring them back into the conversation, even if they&rsquo;re not using your app.</p>
+
+<p>Note that users need to be prompted and accept to receive push notifications. To make sure we don&rsquo;t prompt the user at a bad moment, SupportKit will only request permission to send push notifications after a user sends his first message and only if the prompt wasn&rsquo;t shown earlier by your app. To get the full power of Whispers, we recommend you prompt for push permission as early as possible.</p>
+
+          <h2 id='managing-whispers'>Managing Whispers</h2>
+<p><img alt="Manage Whispers" src="../images/whisper_manage.png" /></p>
+
+<p>Once you&rsquo;ve created a Whisper you can manage it from within the SupportKit web interface. By clicking on the &ldquo;Whispers&rdquo; link in the navigation bar, you&rsquo;ll be presented with a list of Whispers as well as the number of users who have been exposed to them while running your app.</p>
+
+<p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
+
           <h1 id='slack'>Slack</h1>
 <p>Slack is a new communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
 
@@ -218,71 +429,6 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
 
 <p>To reduce the likelihood of you bumping up against the rate limit, SupportKit batches together all messages sent from the app user within a 5 second period into a single comment.</p>
-
-          <h1 id='conversations'>Conversations</h1>
-<p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
-
-          <h2 id='how-do-conversations-work'>How do conversations work?</h2>
-<p>When users access SupportKit by clicking the expandable messaging tab, they’ll be presented with SupportKit’s messaging interface.</p>
-
-<p><img src="/images/browser_messages.png" alt="Drawing" style="width: 75%;"/></p>
-
-          <h3 id='slack-channel'>Slack Channel</h3>
-<p>Once your user types a message and hits send, SupportKit sends the message to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel that you chose when you <a href="#configuring-slack">configured Slack</a>.</p>
-
-<p>This notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
-
-<p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
-
-<p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
-<pre class="highlight plaintext"><code>/sk TYPE YOUR MESSAGE HERE
-</code></pre>
-
-<p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
-
-<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
-<pre class="highlight plaintext"><code>/sk !profile
-</code></pre>
-
-<p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
-<h3 id='e-mail-channel'>E-Mail Channel</h3>
-<p>Once your user types a message and hits send, SupportKit transforms the message into an e-mail that makes its way to the e-mail address you specified when signing up for SupportKit. This e-mail contains the user&rsquo;s message as well as any metadata about the user that you&rsquo;ve captured in your app. </p>
-
-<p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
-
-          <h2 id='identifying-your-users'>Identifying your users</h2>
-<p>SupportKit allows you to associate metadata to your users so that you can better understand the context around a user&rsquo;s message. </p>
-<h3 id='naming-the-current-user'>Naming the current user</h3>
-<p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
-
-          <p>You can set the sender&rsquo;s properties by initializing SupportKit with a user object.</p>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
-    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
-    <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
-    <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who?'</span><span class="p">,</span>
-    <span class="na">email</span><span class="p">:</span> <span class="s1">'the-doctor@supportkit.io'</span><span class="p">,</span>
-    <span class="na">properties</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">'customProp'</span><span class="p">:</span> <span class="s1">'whatever you please'</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre>
-
-<p>You can specify any user property you need, and they&rsquo;re all optional. So the object you pass into init could also look as simple as
-<code class="prettyprint">
-{appToken: &quot;your_app_token&quot;, givenName: &quot;Trogdor&quot;}
-</code></p>
-
-          <p><aside class="info">
-Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
-</aside></p>
-
-          <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
-<p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
-
-          <p><img alt="Team Member Names" src="../images/browser_team.png" /></p>
-
-          <h2 id='keeping-your-users-safe'>Keeping your users safe</h2>
-<p>SupportKit sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through SupportKit messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
 
           <h1 id='connecting-to-your-crm'>Connecting to your CRM</h1>
 <p>SupportKit&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
