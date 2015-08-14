@@ -1,0 +1,48 @@
+[{
+    "sectionTitle": "What's new",
+    "title": "Make your app the pick of the litter",
+    "image": "https://supportkit.io/ratings/images/img03.png",
+    "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
+    "buttonTarget": "http://supportkit.io",
+    "buttonText": "Learn more",
+    "routes": ["login"],
+    "default": true,
+    "bgColor": "#912d8d"
+},{
+    "sectionTitle": "What's new",
+    "title": "Facebook campaign on signup",
+    "image": "http://img2.wikia.nocookie.net/__cb20121014221625/thelaboffrankenstein/images/e/e2/Buff_squirrel.jpg",
+    "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
+    "buttonTarget": "http://supportkit.io",
+    "buttonText": "Learn more",
+    "bgColor": "#912d8d",
+    "routes": ["signup", "login"],
+    "query": {
+        "utm_source": "facebook",
+        "campaign": "some"
+    }
+},{
+    "sectionTitle": "What's new",
+    "title": "Product hunt on signup",
+    "image": "http://img2.wikia.nocookie.net/__cb20121014221625/thelaboffrankenstein/images/e/e2/Buff_squirrel.jpg",
+    "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
+    "buttonTarget": "http://supportkit.io",
+    "buttonText": "Learn more",
+    "bgColor": "#912d8d",
+    "routes": ["signup"],
+    "query": {
+        "ref": "producthunt"
+    }
+},{
+    "sectionTitle": "What's new",
+    "title": "Facebook campaign on login",
+    "image": "http://img2.wikia.nocookie.net/__cb20121014221625/thelaboffrankenstein/images/e/e2/Buff_squirrel.jpg",
+    "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
+    "buttonTarget": "http://supportkit.io",
+    "buttonText": "Learn more",
+    "bgColor": "#912d8d",
+    "routes": ["login"],
+    "query": {
+        "utm_source": "facebook"
+    }
+}]
