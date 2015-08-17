@@ -61,17 +61,27 @@
           <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
 <p>There are a few ways you can include the SupportKit plugin on your Android project.</p>
 
-<p>The SupportKit library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR.</p>
+<p>The SupportKit library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR. The current supported <code class="prettyprint">compiledSdkVersion</code> must be at least <strong>21</strong>.</p>
 <h2 id='android-studio-with-gradle'>Android Studio with Gradle</h2>
 <p><span class="badge"><a href="https://bintray.com/supportkitorg/maven/supportkit/_latestVersion"><img alt="Bintray" src="https://api.bintray.com/packages/supportkitorg/maven/supportkit/images/download.svg" /></a></span></p>
 
-<p>The SupportKit library is hosted on <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a> and is available on <a href="http://jcenter.bintray.com/io/supportkit/">JCenter</a>. You can add the dependencies right into your <code class="prettyprint">build.grade</code> file.</p>
+<p>The SupportKit library is hosted on <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a> and is available on <a href="http://jcenter.bintray.com/io/supportkit/">JCenter</a>.</p>
+
+<p>Setup JCenter as a repository.</p>
+<pre class="highlight plaintext"><code>repositories {
+    jcenter()
+}
+</code></pre>
+
+<p>Add the dependencies right into your <code class="prettyprint">build.gradle</code> file.</p>
 <pre class="highlight plaintext"><code>compile 'com.google.android.gms:play-services-gcm:7.5.0'
 compile 'com.google.code.gson:gson:2.3.1'
 compile 'com.squareup.okhttp:okhttp:2.4.0'
 compile 'io.supportkit:core:latest.release'
 compile 'io.supportkit:ui:latest.release'
 </code></pre>
+
+<p>Sync the Gradle project then add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
 
 <p><aside class="notice">
 SupportKit depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
@@ -116,19 +126,41 @@ SupportKit depends on a few external libraries that many applications already fe
 <ul>
 <li>Download the <code class="prettyprint">supportkit-eclipse-MAJ.MIN.PATCH.zip</code> file from <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a>.</li>
 <li>Extract the zip and copy the <code class="prettyprint">appcompat</code> and <code class="prettyprint">supportkit</code> folders in the root of your project.</li>
-<li>In Eclipse, import both folders in your workspace. After this step you should have two new projects added to your workspace named <code class="prettyprint">android-support-v7-appcompat</code> and <code class="prettyprint">ConversationActivity</code>.</li>
-<li>Expand the <code class="prettyprint">android-support-v7-appcompat\libs</code> folder. Then on each lib, do <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Build Path</code> &gt; <code class="prettyprint">Add to Build Path</code>.</li>
-<li>Go to the properties of your project (i.e. <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Properties</code>). Then under the Android item, add a reference to the SupportKit <code class="prettyprint">ConversationActivity</code>.</li>
-<li>Add these permissions in <strong>AndroidManifest.xml</strong>:</li>
+</ul>
+
+<p><span class="half-width-img"><img alt="eclipse import" src="../images/eclipse_import.png" /></span></p>
+
+<ul>
+<li><p>In Eclipse, import both folders in your workspace as <code class="prettyprint">Existing Android Code</code>. After this step you should have two new projects added to your workspace named <code class="prettyprint">android-support-v7-appcompat</code> and <code class="prettyprint">ConversationActivity</code>.</p></li>
+<li><p>Expand the <code class="prettyprint">android-support-v7-appcompat\libs</code> folder. Then on <strong>every</strong> library, right click on them and <code class="prettyprint">Build Path</code> &gt; <code class="prettyprint">Add to Build Path</code>.</p></li>
+</ul>
+
+<p><span class="half-width-img"><img alt="eclipse libraries" src="../images/eclipse_libraries.png" /></span></p>
+
+<ul>
+<li><p>Go to the properties of your project (i.e. <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Properties</code>). Then under the Android item, add a reference to the SupportKit <code class="prettyprint">ConversationActivity</code>.</p></li>
+<li><p>Add these permissions in <strong>AndroidManifest.xml</strong>:</p></li>
 </ul>
 <pre class="highlight xml"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span><span class="nt">/&gt;</span>
 <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span><span class="nt">/&gt;</span>
 </code></pre>
 
 <ul>
-<li>Add this service in <strong>AndroidManifest.xml</strong>:</li>
+<li>Add these services in <strong>AndroidManifest.xml</strong>:</li>
 </ul>
 <pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.service.SupportKitService"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
 </code></pre>
 
 <ul>
@@ -161,21 +193,119 @@ SupportKit depends on a few external libraries that many applications already fe
 
 <p>Once you&rsquo;ve located your token, use the code below to initialize SupportKit.</p>
 
-<p>Add the following line of code to your <code class="prettyprint">onCreate</code> method:</p>
-<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.supportkit.core.SupportKit</span><span class="o">;</span>
-<span class="o">...</span>
-<span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+<p>Add the following line of code to your <code class="prettyprint">onCreate</code> method on your <a href="http://developer.android.com/reference/android/app/Application.html">Application</a> class:</p>
+<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
 </code></pre>
 
-<p>Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.</p>
+<p><aside class="notice">
+    Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.
+</aside></p>
+
+<p>If you don&rsquo;t have an <code class="prettyprint">Application</code> class, we recommend that you create one to make sure SupportKit is always initialized properly. If you don&rsquo;t have one, you can copy the following and save it to your application package.</p>
+<pre class="highlight java"><code><span class="kn">package</span> <span class="n">your</span><span class="o">.</span><span class="na">package</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.app.Application</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.supportkit.core.SupportKit</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">YourApplication</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="n">onCreate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
+        <span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p>You also need to <strong>declare</strong> your newly created <code class="prettyprint">Application</code> class in the <code class="prettyprint">&lt;application&gt;</code> tag in your <code class="prettyprint">AndroidManifest</code>.</p>
+<pre class="highlight xml"><code><span class="nt">&lt;application</span>
+    <span class="na">android:name=</span><span class="s">"your.package.YourApplication"</span><span class="nt">&gt;</span>
+    ...
+<span class="nt">&lt;/application&gt;</span>
+</code></pre>
+
+<p><aside class="notice">
+    Remember to replace <code class="prettyprint">your.package</code>, <code class="prettyprint">YourApplication</code>, <code class="prettyprint">YOUR_APP_TOKEN</code> by the appropriate names and your app token.
+</aside></p>
 <h3 id='displaying-the-supportkit-user-interface'>Displaying the SupportKit User Interface</h3>
 <p>Once you&rsquo;ve initialized SupportKit, you&rsquo;re ready to try it out. </p>
 
 <p>Find a suitable place in your app&rsquo;s interface to invoke SupportKit and use the code below to display the SupportKit user interface. You can bring up SupportKit whenever you think that your user will need access to help or a communication channel to contact you.</p>
-<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.supportkit.ui.ConversationActivity</span><span class="o">;</span>
-<span class="o">...</span>
-<span class="n">ConversationActivity</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<pre class="highlight java"><code><span class="n">ConversationActivity</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 </code></pre>
+
+<p>You should also take the time to <a href="#configuring-push-notifications">configure the push notifications setup</a>.</p>
+
+          <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
+<p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
+<h3 id='step-1--generate-a-gcm-configuration-file-for-your-android-project'>Step 1. Generate a GCM configuration file for your Android project</h3>
+<p><aside class="notice">
+Following these steps will enable cloud messaging for your app and create a server API key
+</aside></p>
+
+<ol>
+<li><p>Go to Google&rsquo;s <a href="https://developers.google.com/cloud-messaging/android/client#get-config">cloud messaging documentation</a></p></li>
+<li><p>Click on <code class="prettyprint">GET A CONFIGURATION FILE</code> (you will be prompted to sign in to your Google account if you are not already signed in)</p></li>
+<li><p>Follow the steps to generate your configuration file (for your package name, copy and paste the package used in your application&rsquo;s AndroidManifest.xml file)</p></li>
+<li><p>Enable <strong>Google Cloud Messaging</strong> to your Android project</p></li>
+<li><p>At the end of the page, continue to <em>Generate configuration files</em></p></li>
+<li><p>Take note of the <em>Server API Key</em> and the <em>Sender ID</em>, we will need those in the second step</p></li>
+<li><p>Download the <code class="prettyprint">google-services.json</code> file generated by the tool and save the file at the root of your Android application</p></li>
+</ol>
+<h3 id='step-2--configure-push-notifications-in-supportkit'>Step 2. Configure push notifications in SupportKit</h3>
+<ol>
+<li><p>Go to <a href="https://app.supportkit.io">https://app.supportkit.io</a> and log into your account.</p></li>
+<li><p>Go to Settings &gt; Android</p></li>
+<li><p>Enter your Server API Key and Google App Project Number (which can be found by clicking on &lsquo;Overview&rsquo; in the developer console)</p></li>
+</ol>
+<h3 id='step-3--configure-android-application-to-accept-push'>Step 3. Configure Android application to accept push</h3>
+<p><aside class="notice">
+Be sure to replace <code class="prettyprint">&lt;your_application_package&gt;</code> with your application package!
+</aside></p>
+
+<ol>
+<li><p>Add the dependency to your project&rsquo;s top-level <code class="prettyprint">build.gradle</code>:</p>
+<pre class="highlight plaintext"><code>classpath 'com.google.gms:google-services:1.3.0-beta1'
+</code></pre></li>
+<li><p>Add the plugin to your app-level <code class="prettyprint">build.gradle</code>:</p>
+<pre class="highlight plaintext"><code>apply plugin: 'com.google.gms.google-services'
+</code></pre></li>
+<li><p>Add the following permissions and uses-permissions to your AndroidManifest.xml file (typically before the opening <code class="prettyprint">&lt;application&gt;</code> tag):</p>
+<pre class="highlight xml"><code><span class="nt">&lt;permission</span>
+    <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;.permission.C2D_MESSAGE"</span>
+    <span class="na">android:protectionLevel=</span><span class="s">"signature"</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WAKE_LOCK"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;.permission.C2D_MESSAGE"</span><span class="nt">/&gt;</span>
+</code></pre></li>
+<li><p>Add the following receiver to your AndroidManifest.xml file before the closing <code class="prettyprint">&lt;/application&gt;</code> tag:</p>
+<pre class="highlight xml"><code><span class="nt">&lt;receiver</span>
+        <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
+        <span class="na">android:exported=</span><span class="s">"true"</span>
+        <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.REGISTRATION"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
+</code></pre></li>
+</ol>
+<h3 id='step-4--test-it-out'>Step 4. Test it out!</h3>
+<p><aside class="warning">
+You can&rsquo;t receive push notifications in the Android simulator, you must use a physical device.
+</aside></p>
+
+<ol>
+<li><p>Kill and restart your app.</p></li>
+<li><p>Launch SupportKit.</p></li>
+<li><p>Send a message.</p></li>
+<li><p>Press the home button or navigate away from the conversation.</p></li>
+<li><p>Reply to the message from your choice of SupportKit integrated service</p></li>
+</ol>
+
+<p>You&rsquo;ll receive a notification on the phone!</p>
 
           <h1 id='conversations'>Conversations</h1>
 <p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
@@ -214,100 +344,53 @@ SupportKit depends on a few external libraries that many applications already fe
 <p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
 
           <p>You can grab the current user with <code class="prettyprint">User.getCurrentUser</code> then set basic information with <code class="prettyprint">setFirstName</code>, <code class="prettyprint">setLastName</code>, <code class="prettyprint">setEmail</code> and <code class="prettyprint">setSignedUpAt</code>. You can also set your own custom properties by sending a map into <code class="prettyprint">addProperties</code>.</p>
-<pre class="highlight java"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="p">(</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
-    <span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
-    <span class="n">addSomeProperties</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">());</span>
-<span class="o">}</span>
+<pre class="highlight java"><code><span class="n">User</span> <span class="n">skUser</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">();</span>
+<span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">customProperties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
 
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">addSomeProperties</span><span class="p">(</span><span class="kd">final</span> <span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">customProperties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">skUser</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">"Artour"</span><span class="o">);</span>
+<span class="n">skUser</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">"Babaev"</span><span class="o">);</span>
+<span class="n">skUser</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"2ez@4rtz.com"</span><span class="o">);</span>
+<span class="n">skUser</span><span class="o">.</span><span class="na">setSignedUpAt</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="mi">1420070400000</span><span class="n">l</span><span class="o">));</span>
 
-    <span class="n">user</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">"Artour"</span><span class="o">);</span>
-    <span class="n">user</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">"Babaev"</span><span class="o">);</span>
-    <span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"2ez@4rtz.com"</span><span class="o">);</span>
-    <span class="n">user</span><span class="o">.</span><span class="na">setSignedUpAt</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="mi">1420070400000</span><span class="n">l</span><span class="o">));</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDate"</span><span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customFlag"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDigit"</span><span class="o">,</span> <span class="mi">322</span><span class="o">);</span>
 
-    <span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDate"</span><span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
-    <span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customFlag"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
-    <span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDigit"</span><span class="o">,</span> <span class="mi">322</span><span class="o">);</span>
-
-    <span class="n">user</span><span class="o">.</span><span class="na">addProperties</span><span class="o">(</span><span class="n">customProperties</span><span class="o">);</span>
-<span class="o">}</span>
+<span class="n">skUser</span><span class="o">.</span><span class="na">addProperties</span><span class="o">(</span><span class="n">customProperties</span><span class="o">);</span>
 </code></pre>
 
-          <p><aside class="info">
+          <p><aside class="notice">
 Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
 </aside></p>
 
-          <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
-<p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
-<h3 id='step-1--generate-a-gcm-configuration-file-for-your-android-project'>Step 1. Generate a GCM configuration file for your Android project</h3>
-<p><aside class="notice">
-Following these steps will enable cloud messaging for your app and create a server API key
-</aside></p>
+          <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
+<p>Using a <code class="prettyprint">colors.xml</code> file in your <code class="prettyprint">res/values</code> folder, you can change the colors used by SupportKit :</p>
+<pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accent"</span><span class="nt">&gt;</span>#9200aa<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accentDark"</span><span class="nt">&gt;</span>#76008a<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accentLight"</span><span class="nt">&gt;</span>#be7cca<span class="nt">&lt;/color&gt;</span>
 
-<ol>
-<li><p>Go to Google&rsquo;s <a href="https://developers.google.com/cloud-messaging/android/client#get-config">cloud messaging documentation</a></p></li>
-<li><p>Click on <code class="prettyprint">GET A CONFIGURATION FILE</code> (you will be prompted to sign in to your Google account if you are not already signed in)</p></li>
-<li><p>Follow the steps to generate your configuration file (for your package name, copy and paste the package used in your application&rsquo;s AndroidManifest.xml file)</p></li>
-<li><p>Download the <code class="prettyprint">google-services.json</code> file generated by the tool</p></li>
-<li><p>Place the file at the root of your Android application</p></li>
-</ol>
-<h3 id='step-2--configure-push-notifications-in-supportkit'>Step 2. Configure push notifications in SupportKit</h3>
-<ol>
-<li><p>Go to <a href="https://app.supportkit.io">https://app.supportkit.io</a> and log into your account.</p></li>
-<li><p>Go to Settings &gt; Android</p></li>
-<li><p>Enter your Server API Key and Google App Project Number (which can be found by clicking on &lsquo;Overview&rsquo; in the developer console)</p></li>
-</ol>
-<h3 id='step-3--configure-android-application-to-accept-push'>Step 3. Configure Android application to accept push</h3>
-<p><aside class="info">
-Be sure to replace <code class="prettyprint">&lt;your_application_package&gt;</code> with your application package!
-</aside></p>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_backgroundInput"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
 
-<ol>
-<li><p>Add the dependency to your project&rsquo;s top-level build.gradle:</p>
-<pre class="highlight plaintext"><code>classpath 'com.google.gms:google-services:1.3.0-beta1'
-</code></pre></li>
-<li><p>Add the plugin to your app-level build.gradle:</p>
-<pre class="highlight plaintext"><code>apply plugin: 'com.google.gms.google-services'
-</code></pre></li>
-<li><p>Add the following permissions and uses-permissions to your AndroidManifest.xml file (typically before the opening <code class="prettyprint">&lt;application&gt;</code> tag):</p>
-<pre class="highlight xml"><code><span class="nt">&lt;permission</span>
-    <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;.permission.C2D_MESSAGE"</span>
-    <span class="na">android:protectionLevel=</span><span class="s">"signature"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_btnSendHollow"</span><span class="nt">&gt;</span>#c0c0c0<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_btnSendHollowBorder"</span><span class="nt">&gt;</span>#303030<span class="nt">&lt;/color&gt;</span>
 
-<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;.permission.C2D_MESSAGE"</span><span class="nt">/&gt;</span>
-</code></pre></li>
-<li><p>Add the following receiver to your AndroidManifest.xml file before the closing <code class="prettyprint">&lt;/application&gt;</code> tag:</p>
-<pre class="highlight xml"><code><span class="nt">&lt;receiver</span>
-        <span class="na">android:name=</span><span class="s">"com.google.android.gms.gcm.GcmReceiver"</span>
-        <span class="na">android:exported=</span><span class="s">"true"</span>
-        <span class="na">android:permission=</span><span class="s">"com.google.android.c2dm.permission.SEND"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
-        <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"&lt;your_application_package&gt;"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.REGISTRATION"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-<span class="nt">&lt;/receiver&gt;</span>
-</code></pre></li>
-</ol>
-<h3 id='step-4--test-it-out'>Step 4. Test it out!</h3>
-<p><aside class="warning">
-You can&rsquo;t receive push notifications in the Android simulator, you must use a physical device.
-</aside></p>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_header"</span><span class="nt">&gt;</span>#989898<span class="nt">&lt;/color&gt;</span>
 
-<ol>
-<li><p>Kill and restart your app.</p></li>
-<li><p>Launch SupportKit.</p></li>
-<li><p>Send a message.</p></li>
-<li><p>Press the home button or navigate away from the conversation.</p></li>
-<li><p>Reply to the message from your choice of SupportKit integrated service</p></li>
-</ol>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_messageDate"</span><span class="nt">&gt;</span>@color/SupportKit_header<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_messageShadow"</span><span class="nt">&gt;</span>#7f999999<span class="nt">&lt;/color&gt;</span>
 
-<p>You&rsquo;ll receive a notification on the phone!</p>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageAuthor"</span><span class="nt">&gt;</span>@color/SupportKit_header<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageBackground"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageBorder"</span><span class="nt">&gt;</span>#d9d9d9<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageText"</span><span class="nt">&gt;</span>#000000<span class="nt">&lt;/color&gt;</span>
+
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageBackground"</span><span class="nt">&gt;</span>@color/SupportKit_accent<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageBorder"</span><span class="nt">&gt;</span>@color/SupportKit_accentDark<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageFailedBackground"</span><span class="nt">&gt;</span>@color/SupportKit_accentLight<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageText"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre>
 
           <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
 <p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
