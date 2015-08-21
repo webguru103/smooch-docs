@@ -1,0 +1,580 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>SupportKit Documentation</title>
+
+    <link href="../images/favicon.ico" rel="icon" type="image/ico" />
+    <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="../javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["objective_c","swift"]);
+        });
+      </script>
+    <script src="//use.typekit.net/wdu7dsf.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+  </head>
+
+  <body class="ios ios_index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../images/logo.png" />
+      <div class="separator separator-top"></div>
+      <div class="platform-nav">
+        <div class="nav-label">Platform</div>
+        <div class="platform-selector btn-group">
+          <button class="btn btn-default" data-platform-name="ios">iOS</button>
+          <button class="btn btn-default" data-platform-name="android">Android</button>
+          <button class="btn btn-default" data-platform-name="web">Web</button>
+        </div>
+        <div class="clear"></div>
+          <div class="nav-label">Language</div>
+            <div class="btn-group">
+              <button class="btn btn-default language-dropdown">Objective-C</button>
+              <div class="arrow-down"></div>
+              <div class="lang-selector">
+                    <a href="#" data-language-name="objective_c">objective_c</a>
+                    <a href="#" data-language-name="swift">swift</a>
+              </div>
+            <div class="clear"></div>
+          </div>
+      </div>
+      <div class="separator"></div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://www.supportkit.io'>Sign up for SupportKit, it's free</a></li>
+            <li><a href='./api'>Class Reference</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id='welcome'>Welcome</h1>
+<p>SupportKit adds beautifully simple messaging to your app to keep your users engaged and coming back. If you want to learn more about SupportKit, then visit our website at <a href="http://www.supportkit.io">http://www.supportkit.io</a> or <a href="https://app.supportkit.io">sign up here</a>. This page provides in-depth documentation on SupportKit&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
+
+<p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
+
+<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
+
+          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
+<p>There are two ways to install the SupportKit SDK. The recommended and easier way makes use of <a href="http://cocoapods.org">CocoaPods</a> to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.</p>
+
+<p>We&rsquo;ve documented both methods for adding SupportKit to your app. Read on and follow your preferred way of adding the SDK to your project.</p>
+<h2 id='cocoapods-method'>CocoaPods Method</h2>
+<p>First, install Cocoapods if it isn&rsquo;t already available on your system: </p>
+<pre class="highlight plaintext"><code>sudo gem install cocoapods
+</code></pre>
+
+<p>Now that you&rsquo;ve installed CocoaPods, we&rsquo;ll add SupportKit to your project&rsquo;s dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file</p>
+<pre class="highlight plaintext"><code>$ echo "pod 'SupportKit'" &gt;&gt; Podfile
+</code></pre>
+<pre class="highlight plaintext"><code>$ pod install
+</code></pre>
+
+<p>Open the .xcworkspace file and add the necessary code to <a href="#import-the-supportkit-header-file">initialize SupportKit in your app</a>. </p>
+
+<p><aside class="notice">
+Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
+</aside></p>
+<h2 id='manual-method'>Manual Method</h2>
+<p>First, grab a copy of SupportKit by <a href="https://github.com/radialpoint/SupportKit/archive/master.zip">downloading the most recent release</a> or visiting our <a href="https://github.com/radialpoint/SupportKit">GitHub page</a>.</p>
+
+<p>Next, add the SDK to your XCode project by dragging both SupportKit.framework and SupportKit.bundle into your project as shown below.</p>
+
+<p><img alt="Dependencies in XCode" src="../images/dependencies.jpg" /></p>
+
+<p>Now you&rsquo;ll have to add SupportKit&rsquo;s dependencies to your project if they&rsquo;re not already linked in. Go to &ldquo;Build phases&rdquo; in your project&rsquo;s target and select &ldquo;Link Binary With Libraries&rdquo;:</p>
+
+<ul>
+<li>CoreGraphics.framework</li>
+<li>CoreTelephony.framework</li>
+<li>CoreText.framework</li>
+<li>Foundation.framework</li>
+<li>libxml2.dylib</li>
+<li>OpenGLES.framework</li>
+<li>QuartzCore.framework</li>
+<li>SystemConfiguration.framework</li>
+<li>UIKit.framework</li>
+<li>AssetsLibrary.framework</li>
+<li>Photos.framework</li>
+<li>AVFoundation.framework</li>
+</ul>
+
+<p>SupportKit should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
+<h2 id='import-the-supportkit-header-file'>Import the SupportKit header file</h2>
+<p>Import the SupportKit file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;SupportKit/SupportKit.h&gt;
+</span></code></pre>
+<pre class="highlight swift"><code><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">SupportKit</span><span class="o">/</span><span class="kt">SupportKit</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
+</code></pre>
+
+<p><aside class="notice">
+If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import this header into a &ldquo;bridging header&rdquo;. More info on this is available from <a href="https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Apple</a>
+</aside></p>
+<h2 id='initialize-supportkit-in-your-app'>Initialize SupportKit in your app</h2>
+<p>After following the steps above, your app is setup for working with the SupportKit SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
+
+<p>This token is free and uniquely identifies your app and links it to the SupportKit backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
+
+<p>You can find your token by <a href="https://app.supportkit.io">logging into SupportKit</a> and copying it from the settings page as shown below.</p>
+
+<p><img alt="App Token on Overview Page" src="../images/apptoken.png" /></p>
+
+<p>Once you&rsquo;ve located your token, use the code below to initialize SupportKit.</p>
+
+<p>Add the following line of code to your applicationDidFinishLaunchingWithOptions: method</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">]];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">))</span>
+</code></pre>
+
+<p>Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.</p>
+<h3 id='displaying-the-supportkit-user-interface'>Displaying the SupportKit User Interface</h3>
+<p>Once you&rsquo;ve initialized SupportKit, you&rsquo;re ready to try it out. </p>
+
+<p>Find a suitable place in your app&rsquo;s interface to invoke SupportKit and use the code below to display the SupportKit user interface. You can bring up SupportKit whenever you think that your user will need access to help or a communication channel to contact you.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">show</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre>
+<h2 id='updating-supportkit'>Updating SupportKit</h2><h3 id='cocoapods'>CocoaPods</h3>
+<p>To update via cocoapods, simply execute this</p>
+<pre class="highlight plaintext"><code>$ pod update
+</code></pre>
+<h3 id='manual'>Manual</h3>
+<p>To manually update SupportKit simply grab a fresh copy of SupportKit by <a href="https://github.com/radialpoint/SupportKit/archive/master.zip">downloading the most recent release</a> and re-add the SDK to your XCode project by dragging both SupportKit.framework and SupportKit.bundle into your project</p>
+
+          <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
+<p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
+<h3 id='step-1--enable-push-notifications-and-generate-the--p12-certificate'>Step 1. Enable Push Notifications and Generate the .p12 Certificate</h3>
+<ol>
+<li><p>Log into the Identifiers section of the Apple Developer Member Center, and select your app. You can get there by visiting <a href="https://developer.apple.com/account/ios/identifiers/bundle/bundleList.action">this link</a></p></li>
+<li><p>Click &lsquo;Edit&rsquo;, enable &lsquo;Push Notifications&rsquo;, and then click &lsquo;Create Certificate&hellip;&ldquo;</p></li>
+<li><p>Follow the instructions to generate a certificate signing request using Keychain Access</p></li>
+<li><p>Once the certificate is ready, download it to your computer and double-click it to open it in Keychain Access</p></li>
+<li><p>Right click on the certificate you created, and select &#39;Export &quot;Apple Development IOS Push Services:&hellip;&rdquo;&rsquo;</p></li>
+<li><p>Save the .p12 file to your computer. Do NOT set a password on the file, just press OK.</p></li>
+</ol>
+<h3 id='step-2--upload-the--p12-file-to-supportkit'>Step 2. Upload the .p12 file to SupportKit</h3>
+<ol>
+<li><p>Go to http://app.supportkit.io and log into your account.</p></li>
+<li><p>Select the app you want push notifications to enabled for.</p></li>
+<li><p>Upload the .p12 file.</p></li>
+</ol>
+<h3 id='step-3--re-create-your-provisioning-profile'>Step 3. Re-create your Provisioning Profile</h3>
+<p>Now that you have enabled push notifications for your app, you MUST re-create your Provisioning Profile. You can not use the one you&rsquo;ve used in the past.</p>
+
+<ol>
+<li><p>Go to Provisioning Profiles in the Apple Developer Member Center by <a href="https://developer.apple.com/account/ios/profile/profileList.action">clicking here</a>.</p></li>
+<li><p>Click the &lsquo;+&rsquo; button to add a new provisioning profile and follow the on-screen instructions.</p></li>
+<li><p>Notice that once you created the new provisioning profile, it shows that &ldquo;Push Notifications&rdquo; is an enabled service. Download the new profile.</p></li>
+<li><p>Double click it to install it. It should now be selectable in Xcode for your app.</p></li>
+<li><p>Build your app.</p></li>
+</ol>
+<h3 id='step-4--test-it-out'>Step 4. Test it out!</h3>
+<p><aside class="warning">
+You can&rsquo;t receive push notifications in the Xcode simulator, you must use a physical device.
+</aside></p>
+
+<ol>
+<li><p>Kill and restart your app.</p></li>
+<li><p>Launch SupportKit.</p></li>
+<li><p>Send a message. Important! You must resend a message after uploading the p12 file.</p></li>
+<li><p>Reply to the message from your email inbox</p></li>
+</ol>
+
+<p>You&rsquo;ll receive a notification if you&rsquo;re in the app, or outside the app!</p>
+<h3 id='step-5--repeat-for-production-mode'>Step 5. Repeat for Production mode</h3>
+<p>Take note that there are &ldquo;Development&rdquo; and &ldquo;Production&rdquo; certificates and profiles. Make sure that you upload the &ldquo;Production&rdquo; .p12 file to SupportKit when you&rsquo;re ready to release your build through ad-hoc, enterprise or app store distribution.</p>
+
+          <h1 id='conversations'>Conversations</h1>
+<p>SupportKit allows your users to have conversations with you through an interface that&rsquo;s as easy and intuitive as text messaging. The messages users send from your app arrive to you either as a Slack message or as a thread in your e-mail inbox so that you can manage them using your favourite web, desktop or mobile client. If you choose to send messages to an e-mail inbox, you can send them to <a href="#connecting-to-your-crm">your favourite CRM as well</a>.</p>
+
+          <h2 id='how-do-conversations-work'>How do conversations work?</h2>
+<p>When users access SupportKit by tapping on an element of your app&rsquo;s interface or using the two-finger gesture, they&rsquo;ll be presented with SupportKit&rsquo;s messaging interface.</p>
+
+<p><img src="/images/messages.png" alt="Drawing" style="width: 50%;"/></p>
+
+          <h3 id='slack-channel'>Slack Channel</h3>
+<p>Once your user types a message and hits send, SupportKit sends the message to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel that you chose when you <a href="#configuring-slack">configured Slack</a>.</p>
+
+<p>This notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
+
+<p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
+
+<p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
+<pre class="highlight plaintext"><code>/sk TYPE YOUR MESSAGE HERE
+</code></pre>
+
+<p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
+
+<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
+<pre class="highlight plaintext"><code>/sk !profile
+</code></pre>
+
+<p>To learn more about how to associate data to a user, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<h3 id='e-mail-channel'>E-Mail Channel</h3>
+<p>Once your user types a message and hits send, SupportKit transforms the message into an e-mail that makes its way to the e-mail address you specified when signing up for SupportKit. This e-mail contains the user&rsquo;s message as well as any metadata about the user that you&rsquo;ve captured in your app. </p>
+
+<p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
+
+          <h2 id='identifying-your-users'>Identifying your users</h2>
+<p>SupportKit allows you to associate metadata to your users so that you can better understand the context around a user&rsquo;s message. </p>
+<h3 id='naming-the-current-user'>Naming the current user</h3>
+<p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
+
+          <p>You can set the sender&rsquo;s name by calling the method below. Once you set the user&rsquo;s name, it will be persisted by SupportKit so any future message from this user will be named with the input you provided. If the user changes, simply call the method above a second time and the new information will overwrite it.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">@"Doctor"</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">@"Who"</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">"Doctor"</span>
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">"Who"</span>
+</code></pre>
+<h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
+<p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">@"bob@example.com"</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">"bob@example.com"</span>
+</code></pre>
+<h3 id='setting-the-signed-up-date'>Setting the signed up date</h3>
+<p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time SupportKit sees the user. Its best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDate</span> <span class="nf">date</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
+</code></pre>
+<h3 id='adding-any-other-kind-of-metadata'>Adding any other kind of metadata</h3>
+<p>The SKTUser class also allows you to add any other kind of metadata that will be sent along when users contact you. You can also use any metadata you store using this API to send targeted messages to your users proactively using our Whispers feature. The <code class="prettyprint">addProperties:</code> method accepts an NSDictionary containing the metadata to add.</p>
+
+<p>This dictionary must have keys that are NSString and values that are either NSString, NSNumber or NSDate. If your dictionary contains any other data type as a value, then <code class="prettyprint">description</code> will be called on the object and the resulting NSString will be added as a property.</p>
+<pre class="highlight objective_c"><code><span class="p">[[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">]</span> <span class="nf">addProperties</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="s">@"nickname"</span> <span class="o">:</span> <span class="s">@"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">@"weight"</span> <span class="o">:</span> <span class="mi">@650</span><span class="p">,</span> <span class="s">@"premiumUser"</span> <span class="o">:</span> <span class="nb">@YES</span> <span class="p">}];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="nf">addProperties</span><span class="p">([</span> <span class="s">"nickname"</span> <span class="p">:</span> <span class="s">"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">"weight"</span> <span class="p">:</span> <span class="mi">650</span><span class="p">,</span> <span class="s">"premiumUser"</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">])</span>
+</code></pre>
+
+          <p><aside class="notice">
+Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
+</aside></p>
+
+          <p>When you reply to e-mail messages sent through SupportKit, your e-mail reply is transformed into an in-app message. If you&rsquo;ve enabled push notifications, a notification will be displayed on your user&rsquo;s device, even if they are not currently using your app. If you haven&rsquo;t <a href="#configuring-push-notifications">enabled push notifications</a>, or your user opted out of them, an in-app notification will be displayed when they are using your app.</p>
+
+          <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
+<p>The style of the conversation user interface can be controlled through two techniques:</p>
+
+<ul>
+<li>Using the <code class="prettyprint">UIAppearance</code> proxy of <code class="prettyprint">UINavigationBar</code> to style the navigation bar&rsquo;s color and appearance.</li>
+<li>The <code class="prettyprint">SKTSettings</code> class provides access to the status bar and the color of the message bubbles.</li>
+</ul>
+
+<p>Suppose you wanted the conversation UI to have a black navigation bar and red message bubbles. First, you&rsquo;d use <code class="prettyprint">UINavigationBar</code>&rsquo;s appearance proxy to set up the navigation bar. Then, you&rsquo;d use SKTSettings to finish styling the UI:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPP_TOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">conversationAccentColor</span> <span class="o">=</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">conversationStatusBarStyle</span> <span class="o">=</span> <span class="n">UIStatusBarStyleLightContent</span><span class="p">;</span>
+
+<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setBarTintColor</span><span class="p">:[</span><span class="n">UIColor</span> <span class="nf">blackColor</span><span class="p">]];</span>
+<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setTintColor</span><span class="p">:[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">]];</span>
+<span class="p">[[</span><span class="n">UINavigationBar</span> <span class="nf">appearance</span><span class="p">]</span> <span class="nf">setTitleTextAttributes</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="nf">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="p">[</span><span class="n">UIColor</span> <span class="nf">redColor</span><span class="p">]</span> <span class="p">}];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">conversationAccentColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">();</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">conversationStatusBarStyle</span> <span class="o">=</span> <span class="kt">UIStatusBarStyle</span><span class="o">.</span><span class="kt">LightContent</span><span class="p">;</span>
+
+<span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">barTintColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">blackColor</span><span class="p">()</span>
+<span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">()</span>
+<span class="kt">UINavigationBar</span><span class="o">.</span><span class="nf">appearance</span><span class="p">()</span><span class="o">.</span><span class="n">titleTextAttributes</span> <span class="o">=</span> <span class="p">[</span> <span class="kt">NSForegroundColorAttributeName</span> <span class="p">:</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">redColor</span><span class="p">()]</span>
+</code></pre>
+
+          <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
+<p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
+
+          <p><img alt="Team Member Names" src="../images/team_names.png" /></p>
+
+          <h2 id='keeping-your-users-safe'>Keeping your users safe</h2>
+<p>SupportKit sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through SupportKit messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
+
+          <h1 id='getting-conversations-started'>Getting conversations started</h1>
+<p>SupportKit allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
+
+<p>To help get you started, we&rsquo;ve built in 3 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">SupportKit User</code> API.</p>
+
+<ul>
+<li><p><em>Welcome Whisper</em> : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.</p></li>
+<li><p><em>Re-Engage Users</em> : Send a message to users who were last seen using the app at least 7 days ago. </p></li>
+<li><p><em>Announcement</em> : Send a message to all users when they launch the app.</p></li>
+</ul>
+
+<p>You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.</p>
+<h2 id='how-do-whispers-work'>How do Whispers work</h2>
+<p>You create Whispers from within the <a href="https://app.supportkit.io">SupportKit dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
+
+<p><img alt="Whisper creation form" src="../images/create_whisper.png" /></p>
+<h3 id='targeting-a-group-of-users'>Targeting a group of users</h3>
+<p>You can target your users based on any information that you&rsquo;ve stored using the <code class="prettyprint">SupportKit User</code> API. We also provide several built-in properties that you can use without instrumenting your app with calls to <code class="prettyprint">SupportKit User</code> class.</p>
+
+<ul>
+<li><p><em>All users</em> : Send the Whisper to <em>everyone</em> that has your app. Whispers that target everyone must be <a href="#when-are-whispers-sent">linked to an event</a>.</p></li>
+<li><p><em>Signed Up</em> : Send the message before/after a specified number of days. For example, you can use this to send a message to all users who&rsquo;ve been using your app for less than a day or more than a week. See <a href="#setting-the-signed-up-date">here</a> for more information.</p></li>
+<li><p><em>Last Seen</em> : Send the message based on when the user last interacted with your app. This value is updated automatically each time a user launches your app.</p></li>
+<li><p><em>App Version</em> : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleVersion key in your app&rsquo;s info.plist file, and is updated each time the user launches your app.</p></li>
+</ul>
+
+<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">SupportKit User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
+<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">SupportKit User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
+
+          <h2 id='when-are-whispers-sent'>When are Whispers sent</h2>
+<p>Whispers can be sent either when a specified event occurs in your app or when a user&rsquo;s profile information matches the criteria of the target group.</p>
+
+<p>Whispers that are based on custom events defined by you in your app are tied to the execution of the SupportKit <code class="prettyprint">track:</code> method. When <code class="prettyprint">track:</code> is called, SupportKit will check to see if the associated Whisper has already been seen by this user. If it hasn&rsquo;t, the Whisper will be immediately presented to the user through an in-app notification that leads to the messaging interface when tapped. When you create a Whisper, SupportKit will display a preview of this in-app notification.</p>
+<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">track</span><span class="o">(</span><span class="s">"item-in-cart"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">'item-in-cart'</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">track</span><span class="p">:</span><span class="s">@"user-on-promopage"</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">track</span><span class="p">(</span><span class="s">"user-on-promopage"</span><span class="p">);</span>
+</code></pre>
+
+<p>If the Whisper is not tied to an event, SupportKit will monitor your userbase for changes and dispatch Whispers when a user&rsquo;s properties make them a fit for the target group of your Whisper. In many cases, this occurs when the user is not using your app. For instance, if you elect to send a Whisper to new users after 1 day has elapsed, SupportKit will deliver the message approximately 24 hours after the user first used your app. If you choose to use this powerful method of Whisper delivery, ensure that you&rsquo;ve enabled push notifications for your app in SupportKit. With push enabled, your users will receive a message that will bring them back into the conversation, even if they&rsquo;re not using your app.</p>
+
+<p>Note that users need to be prompted and accept to receive push notifications. To make sure we don&rsquo;t prompt the user at a bad moment, SupportKit will only request permission to send push notifications after a user sends his first message and only if the prompt wasn&rsquo;t shown earlier by your app. To get the full power of Whispers, we recommend you prompt for push permission as early as possible.</p>
+
+          <h2 id='adding-user-actions-to-a-whisper'>Adding user actions to a Whisper</h2>
+<p>You can prompt your users to take actions by adding action buttons to your Whisper. Clicking on &lsquo;Add an action&rsquo; will open up a new input box where you can specify the button text and what action to take when the user clicks on the button.</p>
+
+<p><img alt="Whisper add action" src="../images/whisper_action.png" /></p>
+
+<p>The Action input takes any URL, deeplink or app store link that is compatible with this format:</p>
+<pre class="highlight plaintext"><code>[[UIApplication sharedApplication] openURL:url]
+</code></pre>
+
+<p>You can find your app&rsquo;s App Store ID by finding your app on <a href="https://linkmaker.itunes.apple.com">Link Maker</a>. The URL of your app&rsquo;s page will have your App Store ID at the end. The link to use in the Action input will then be itms-apps://itunes.apple.com/app/id[<em>yourAppIdHere</em>]</p>
+
+<p><img alt="App Store ID" src="../images/appstoreid_from_url.png" /></p>
+
+          <h2 id='managing-whispers'>Managing Whispers</h2>
+<p><img alt="Manage Whispers" src="../images/whisper_manage.png" /></p>
+
+<p>Once you&rsquo;ve created a Whisper you can manage it from within the SupportKit web interface. By clicking on the &ldquo;Whispers&rdquo; link in the navigation bar, you&rsquo;ll be presented with a list of Whispers as well as the number of users who have been exposed to them while running your app.</p>
+
+<p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
+
+          <h1 id='recommending-answers'>Recommending answers</h1>
+<p>Recommending content to your users is a great way to share important information, and solve users&#39; problems before they have to tap the &ldquo;Messages&rdquo; button. SupportKit beautifully previews your recommendations, so users can easily browse and find the one they are looking for. Content can be from any URL including online videos like Youtube.</p>
+
+<p><img alt="Recommended answers" src="../images/recommended.png" /></p>
+
+<p>The SupportKit SDK provides two types of recommendations -  a static default list of recommendations, and one dynamic top recommendation.</p>
+
+<p>The default recommendations should showcase important information about your app (i.e. information that should apply to the majority of users). This list can include basic usage instructions for different areas of the app, unique or new features to show off, solutions to common problems, or anything else you would like to communicate to your users.</p>
+
+<p>Use the <code class="prettyprint">setDefaultRecommendations:</code> API to set these, for example: </p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">setDefaultRecommendations</span><span class="p">:</span><span class="err">@</span><span class="p">[</span> <span class="s">@"https://www.somearticle.com/article"</span><span class="p">,</span> <span class="s">@"https://somevideotoshow.com"</span> <span class="p">]];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">setDefaultRecommendations</span><span class="p">([</span><span class="s">"https://www.somearticle.com/article"</span><span class="p">,</span> <span class="s">"https://somevideotoshow.com"</span><span class="p">])</span>
+</code></pre>
+
+<p>The top recommendation will appear at the beginning of the list and will be the first one the user sees upon launching SupportKit. This recommendation should attempt to solve a problem the user has just experienced so they don&rsquo;t need to search for it. For example, if a user fails to log in, you may choose to recommend an article explaining the various types of login errors that can occur, and how to fix and/or work around them.</p>
+
+<p>Use the <code class="prettyprint">setTopRecommendations:</code> API to set these, for example: </p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">setTopRecommendation</span><span class="p">:</span><span class="s">@"https://yourdomain.zendesk.com/hc/en-us/articles/000000000-context-driven-recommendation"</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">setTopRecommendation</span><span class="p">(</span><span class="s">"https://yourdomain.zendesk.com/hc/en-us/articles/000000000-context-driven-recommendation"</span><span class="p">)</span>
+</code></pre>
+
+<p>Recommending content to your users is a great way to increase engagement with your app and reduce user&rsquo;s frustration by providing help before users even have the chance to ask for it.</p>
+
+          <h1 id='swipe-gesture-for-help'>Swipe gesture for help</h1>
+<p>Great support should be accessible to your users no matter where they are in your app, which is why we’ve designed a unique, yet simple gesture that allows users to get help in your app. Simply swipe down on the screen with two fingers, and your users will be gently led into SupportKit.</p>
+
+<p>When enabled, the first time that your user enters SupportKit through a button tap or some other means, SupportKit will display a quick tip informing the user that support is always a two-finger swipe away. This helps users get access to help from anywhere in your app and helps them follow instructions you may provide them through help content or in a conversation.</p>
+
+<p>This functionality is enabled by default. To learn more about how to control it, please visit our <a href="http://docs.supportkit.io/api">API reference</a></p>
+
+<p><img alt="Gesture in action" src="../images/gesture.gif" /></p>
+
+          <h1 id='localization'>Localization</h1>
+<p>Every string you see in SupportKit can be <a href="#strings-customization">customized</a> and localized. SupportKit provides a few languages out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, SupportKit looks for SupportKitLocalizable.strings in you app bundle first then in the SupportKit bundle, enabling you to customize any strings and add support for other languages.</p>
+<h2 id='enabling-localization-in-your-app'>Enabling Localization in your app</h2>
+<p>For SupportKit to display a language other than English, your app needs to first enable support for that language. You can enable a second language in your Xcode project settings:</p>
+
+<p><img alt="Enable Localization" src="../images/add_language.png" /></p>
+
+<p>Once you have this, SupportKit will display itself in the device language for the supported language. English, French, Spanish, Chinese traditional, Arabic, German, Persian, Japanese and Finnish are currently included. See how to support more languages in <a href="#adding-more-languages">Adding more languages</a></p>
+
+<p><aside class="warning">
+Localization is subject to caching. If you can&rsquo;t see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good mesures.
+</aside></p>
+<h2 id='adding-more-languages'>Adding more languages</h2>
+<p>To enable other languages beside the provided ones, first copy the english SupportKitLocalizable.strings file from the SupportKit bundle to the corresponding .lproj folder for that language. Then, translate the values to match that language.</p>
+
+<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every SupportKit user can benefit from it. You can do so by <a href="https://github.com/radialpoint/SupportKit/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@supportkit.io">help@supportkit.io</a></p>
+
+          <h1 id='strings-customization'>Strings customization</h1>
+<p>SupportKit lets you customize any strings it displays via Apple&rsquo;s localization mechanism.
+Simply add an empty string file named SupportKitLocalizable.strings in your Xcode project and specify new values for the keys present in the SupportKitLocalizable.strings available in the SupportKit bundle.</p>
+
+<p>To enable string customization across languages, make sure you &ldquo;Localize&rdquo; your SupportKitLocalizable.strings file in Xcode.</p>
+
+<p><img alt="Localize SupportKitLocalizable.strings" src="../images/localize.png" /></p>
+
+          <h1 id='slack'>Slack</h1>
+<p>Slack is a new communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
+
+<p>SupportKit has a revolutionary new Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack. Check out this video to see how it works:</p>
+
+<iframe style="margin-left:42px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<h2 id='configuring-slack'>Configuring Slack</h2><h3 id='step-1--quotauthorizifyquot-supportkit-so-that-it-can-talk-to-your-slack'>Step 1. &ldquo;Authorizify&rdquo; SupportKit so that it can talk to your Slack</h3><h3 id='step-2--set-up-a-new-quotslash-commandquot-so-that-you-can-send-messages-to-supportkit'>Step 2. Set up a new &ldquo;slash command&rdquo; so that you can send messages to SupportKit</h3>
+<p><img src="/images/slashcmd.png" alt="Slash Command Setup"/></p>
+
+<p><aside class="notice">
+Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in Step 2 with the token that Slack&rsquo;s slash command setup page provides you.
+</aside></p>
+<h3 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h3>
+<p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack. For more information on how to do this, read the <a href="#slack-channel">conversations</a> section</p>
+
+          <h1 id='help-scout'>Help Scout</h1>
+<p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting SupportKit to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by SupportKit app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
+<h2 id='configuring-help-scout-to-work-with-supportkit'>Configuring Help Scout to work with SupportKit</h2>
+<p>Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.</p>
+
+<ol>
+<li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key. </p></li>
+<li><p>On the Help Scout page in your SupportKit admin, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
+<li><p>Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using SupportKit, the conversation will appear in the Help Scout mailbox.</p></li>
+</ol>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page"></p>
+<h2 id='instant-messaging-from-a-help-scout-mailbox'>Instant messaging from a Help Scout mailbox</h2>
+<p>You can change or delete the Help Scout mailbox that SupportKit sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on SupportKit no longer exists, messages will be lost.</p>
+
+          <h1 id='zendesk'>Zendesk</h1>
+<p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
+<h2 id='configuring-zendesk-ticketing'>Configuring Zendesk ticketing</h2>
+<p>Configuring SupportKit to communicate with Zendesk is easy. Go to your app settings on the SupportKit admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
+
+<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s SupportKit integration.</p>
+<h3 id='configuring-agent-images'>Configuring agent images</h3>
+<p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
+<h3 id='working-with-zendesk-email-signatures'>Working with Zendesk email signatures</h3>
+<p>SupportKit automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/unsightly_signature.png" alt="Oops, how unsightly"/></p>
+<h3 id='optional-additional-information-on-configuration'>Optional additional information on Configuration</h3>
+<p>Once you are authenticated with your Zendesk app, SupportKit will automatically configure targets and triggers so that your Zendesk agents can communicate with your SupportKit app users.</p>
+
+<p>During the configuration process any existing triggers in your Zendesk settings will be modified to not email the End-user if the ticket is tagged &ldquo;supportkit&rdquo;. We do this to avoid duplicating the conversation, and to remove any reason for the app user to leave your app to respond via email.</p>
+
+<p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that SupportKit configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the SupportKit admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured SupportKit targets and triggers and refresh your configuration.</p>
+
+<p>Note: SupportKit only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple SupportKit accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all SupportKit apps have had the Zendesk integration removed.</p>
+<h2 id='rate-limiting'>Rate Limiting</h2>
+<p>Zendesk limits each account to 200 requests per a minute (globally). Additionally, they only allow 15 comments to be made on each individual ticket (regardless of whether the comment is an agent or app user) within a 10 minute period.</p>
+
+<p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
+
+<p>To reduce the likelihood of you bumping up against the rate limit, SupportKit batches together all messages sent from the app user within a 5 second period into a single comment.</p>
+
+          <h2 id='configuring-zendesk-knowledge-base'>Configuring Zendesk knowledge base</h2>
+<p>SupportKit can also instantly embed your Zendesk Help Center in your app. This will give your users the ability to search your Zendesk knowledge base without leaving the app.</p>
+
+<p><img alt="kb search" src="../images/loginandsearch.jpg" /></p>
+
+<p>To show the Zendesk knowledge base search, call the init API in the SDK with your Zendesk Help Center URL:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span> <span class="c1">//TODO: Replace with your own Zendesk URL
+</span><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span> 
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span> <span class="c1">//TODO: Replace with your own Zendesk URL
+</span><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre>
+
+<p>When specifying your Zendesk URL, make sure to include the protocol (http:// or https://) that matches your Zendesk instance&rsquo;s configuration.</p>
+
+<p>Some Zendesk installations are shared between multiple apps. In such cases it&rsquo;s necessary to filter SupportKit&rsquo;s search results to only articles relevant to the specific app. The SupportKit filtering API provides a means to accomplish this, and allows filtering of search results based on categories, sections or forums (Zendesk knowledge bases are organized in three tiers: Category -&gt; Section or Forum -&gt; Article).</p>
+
+<p>To find the id of a category, section or forum in Zendesk, simply navigate to the root of a given category/section/forum on your web portal, and copy the id contained in your browser&rsquo;s address bar. The id will be a numerical value in the last path component of the URL.</p>
+
+<p><aside class="info">
+NOTE: SupportKit only accepts category, section or forum ids, and not article ids.
+</aside></p>
+
+<p>In HelpCenter, look for the word &lsquo;sections&rsquo; or &lsquo;categories&rsquo; in the URL, as shown in the images below.</p>
+
+<p><img alt="hc 2" src="../images/hcurl2.png" />
+<img alt="hc 1" src="../images/hcurl1.png" /></p>
+
+<p>If you&rsquo;re using an older version of Zendesk, look for the word &lsquo;forums&rsquo; in the URL, as shown in the image below.</p>
+
+<p><img alt="hc 3" src="../images/hcurl3.png" /></p>
+
+<p>For example, to configure the SDK to only show articles under category ID 200033675:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOURAPPTOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">@"https://supportkit.zendesk.com"</span><span class="p">;</span>
+
+<span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsNotIn</span>
+                      <span class="nf">categories</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200033675</span><span class="p">]</span>
+                        <span class="nf">sections</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">knowledgeBaseURL</span> <span class="o">=</span> <span class="s">"https://supportkit.zendesk.com"</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsNotIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="p">[</span><span class="mi">200033675</span><span class="p">],</span> <span class="nv">sections</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+
+<p>Or, if instead you wanted to filter out all articles under section ID 200369774, your configuration would look like this:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
+                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
+                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">]];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">])</span>
+</code></pre>
+
+<p>To configure filters using the older forum IDs, add forum IDs to the sections parameter like so:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">settings</span> <span class="nf">excludeSearchResultsIf</span><span class="p">:</span><span class="n">SKTSearchResultIsIn</span>
+                      <span class="nf">categories</span><span class="p">:</span><span class="nb">nil</span>
+                        <span class="nf">sections</span><span class="p">:</span><span class="err">@</span><span class="p">[</span><span class="mi">@200369774</span><span class="p">,</span> <span class="mi">@21931073</span><span class="p">]];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="n">settings</span><span class="o">.</span><span class="nf">excludeSearchResultsIf</span><span class="p">(</span><span class="kt">SKTSearchResultsFilterMode</span><span class="o">.</span><span class="kt">ResultIsIn</span><span class="p">,</span> <span class="nv">categories</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">[</span><span class="mi">200369774</span><span class="p">,</span> <span class="mi">21931073</span><span class="p">])</span>
+</code></pre>
+
+          <h1 id='connecting-to-your-crm'>Connecting to your CRM</h1>
+<p>SupportKit&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+
+<ol>
+<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
+<li><p>Set SupportKit&rsquo;s forwarding address to the address you noted in step 1. </p></li>
+<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
+</ol>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="objective_c">objective_c</a>
+                <a href="#" data-language-name="swift">swift</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
