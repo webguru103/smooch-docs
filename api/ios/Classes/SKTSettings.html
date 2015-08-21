@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>SKTSettings Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">SupportKit </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Radialpoint</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/appToken">appToken</option>
+		
+		<option value="//api/name/conversationAccentColor">conversationAccentColor</option>
+		
+		<option value="//api/name/conversationStatusBarStyle">conversationStatusBarStyle</option>
+		
+		<option value="//api/name/enableAppWideGesture">enableAppWideGesture</option>
+		
+		<option value="//api/name/enableGestureHintOnFirstLaunch">enableGestureHintOnFirstLaunch</option>
+		
+		<option value="//api/name/enableLocalNotification">enableLocalNotification</option>
+		
+		<option value="//api/name/knowledgeBaseURL">knowledgeBaseURL</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/settingsWithAppToken:">+ settingsWithAppToken:</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/excludeSearchResultsIf:categories:sections:">- excludeSearchResultsIf:categories:sections:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">SKTSettings Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>SKTSettings.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/settingsWithAppToken:" title="settingsWithAppToken:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/settingsWithAppToken:">+&nbsp;settingsWithAppToken:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Initializes a settings object with the given app token.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)settingsWithAppToken:(NSString *)<em>appToken</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>appToken</code></th>
+						<td><p>A valid app token retrieved from the SupportKit web portal.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/excludeSearchResultsIf:categories:sections:" title="excludeSearchResultsIf:categories:sections:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/excludeSearchResultsIf:categories:sections:">&ndash;&nbsp;excludeSearchResultsIf:categories:sections:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sets the filtering policy applied to user search results based on the given filter mode.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)excludeSearchResultsIf:(SKTSearchResultsFilterMode)<em>filterMode</em> categories:(NSArray *)<em>categories</em> sections:(NSArray *)<em>sections</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>filterMode</code></th>
+						<td><p>The filter mode to use.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>categories</code></th>
+						<td><p>Array of category ids on which to filter search results. Can be objects of type NSString or NSNumber.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>sections</code></th>
+						<td><p>Array of section ids on which to filter search results. Can be objects of type NSString or NSNumber.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Filtering may only be configured once, and configuration must be done at init time or no filtering will be applied.</p>
+
+<p>Filtering by category id is only possible for Zendesk instances that are using HelpCenter.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Constants/SKTSearchResultsFilterMode.html">SKTSearchResultsFilterMode</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/appToken" title="appToken"></a>
+	<h3 class="method-title"><code><a href="#//api/name/appToken">&nbsp;&nbsp;appToken</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The app token corresponding to your application.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *appToken</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>App tokens are issued on the SupportKit web portal. This value may only be set once, and must be set at init time.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/knowledgeBaseURL" title="knowledgeBaseURL"></a>
+	<h3 class="method-title"><code><a href="#//api/name/knowledgeBaseURL">&nbsp;&nbsp;knowledgeBaseURL</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The base URL of your Zendesk knowledge base, to be used in constructing the search endpoint.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *knowledgeBaseURL</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>This value may only be set once. If the knowledgeBaseURL is not specified at init time, search is disabled.</p>
+
+<p>The URL must be fully qualified, including http or https (ex: &ldquo;https://supportkit.zendesk.com&rdquo;).</p>
+
+<p>The default value is nil.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enableAppWideGesture" title="enableAppWideGesture"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enableAppWideGesture">&nbsp;&nbsp;enableAppWideGesture</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A boolean property that indicates whether to enable the app-wide gesture (two-finger swipe down) to present the SupportKit UI.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL enableAppWideGesture</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Use option shift (⌥⇧) drag to perform the gesture on the simulator.</p>
+
+<p>The default value is YES.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enableGestureHintOnFirstLaunch" title="enableGestureHintOnFirstLaunch"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enableGestureHintOnFirstLaunch">&nbsp;&nbsp;enableGestureHintOnFirstLaunch</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A boolean property that indicates whether to show a hint on how to perform the app-wide gesture when SupportKit is launched for the first time (without using the gesture).</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL enableGestureHintOnFirstLaunch</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The default value is YES.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/enableLocalNotification" title="enableLocalNotification"></a>
+	<h3 class="method-title"><code><a href="#//api/name/enableLocalNotification">&nbsp;&nbsp;enableLocalNotification</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A Boolean property that indicates whether to show a local OS notification that brings your user into the conversation page once tapped.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property BOOL enableLocalNotification</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The local OS notification is only shown if a user searched for help and left the app within 20 seconds, but without reading any KB articles or attempting to start a conversation.</p>
+
+<p>The default value is YES.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/conversationAccentColor" title="conversationAccentColor"></a>
+	<h3 class="method-title"><code><a href="#//api/name/conversationAccentColor">&nbsp;&nbsp;conversationAccentColor</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The accent color for the conversation screen.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property UIColor *conversationAccentColor</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Used as the color of user message bubbles, as well as the color of the send button and text input caret.</p>
+
+<p>The default value is #00B0FF.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/conversationStatusBarStyle" title="conversationStatusBarStyle"></a>
+	<h3 class="method-title"><code><a href="#//api/name/conversationStatusBarStyle">&nbsp;&nbsp;conversationStatusBarStyle</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The status bar style to use on the conversation screen.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property UIStatusBarStyle conversationStatusBarStyle</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>You should use this property if your app uses UIAppearance to style UINavigationBar, and your styling requires a specific status bar color.</p>
+
+<p>The default value is UIStatusBarStyleDefault.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 Radialpoint. All rights reserved. Updated: 2015-08-21</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
