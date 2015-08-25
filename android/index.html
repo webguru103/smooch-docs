@@ -127,6 +127,13 @@ SupportKit depends on a few external libraries that many applications already fe
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/service&gt;</span>
+<span class="nt">&lt;receiver</span>
+        <span class="na">android:name=</span><span class="s">"io.supportkit.ui.notification.NotificationReceiver"</span>
+        <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"io.supportkit.NOTIFICATION"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/receiver&gt;</span>
 </code></pre>
 
 <ul>
