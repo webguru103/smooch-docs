@@ -10,7 +10,7 @@
 },{
     "sectionTitle": "What's new",
     "title": "Make your app the pick of the litter",
-    "image": "http://docs.supportkit.io/images/messages/prettyCat.jpg",
+    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.jpg",
     "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
     "buttonTarget": "https://supportkit.io/ratings/",
     "buttonText": "Learn more",
