@@ -1,7 +1,7 @@
 [{
     "sectionTitle": "What's new",
     "title": "Look sir, SupportKit for Android is here!",
-    "image": "http://blog.supportkit.io/content/images/2015/08/empire-android.jpg",
+    "image": "https://supportkit.github.io/supportkit-docs/images/messages/android_promo.png",
     "content": "From the ground up SupportKit for Android uses purely native technologies, it’s uniquely designed for Android. This means it’s fast, like really fast. Not only does it run fast it’s quick to install. SupportKit for Android is just as easy and quick to add to your app as it is on iOS.",
     "buttonTarget": "http://blog.supportkit.io/look-sir-supportkit-on-android/",
     "buttonText": "Learn more",
