@@ -56,7 +56,7 @@
 
 <p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
 
-<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
+<p>For more in-depth details on SupportKit&rsquo;s API check out our <a href="http://docs.supportkit.io/api/android">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
 
           <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
 <p>There are a few ways you can include the SupportKit plugin on your Android project.</p>
@@ -139,7 +139,7 @@ SupportKit depends on a few external libraries that many applications already fe
 <ul>
 <li>Add this activity in <strong>AndroidManifest.xml</strong>:</li>
 </ul>
-<pre class="highlight xml"><code><span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"io.supportkit.ui.ConversationActivity"</span> <span class="na">android:theme=</span><span class="s">"@style/Theme.AppCompat.Light"</span> <span class="nt">/&gt;</span>
+<pre class="highlight xml"><code><span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"io.supportkit.ui.ConversationActivity"</span> <span class="na">android:theme=</span><span class="s">"@style/Theme.SupportKit"</span> <span class="nt">/&gt;</span>
 </code></pre>
 
 <ul>
@@ -382,7 +382,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 </aside></p>
 
           <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
-<p>Using a <code class="prettyprint">colors.xml</code> file in your <code class="prettyprint">res/values</code> folder, you can change the colors used by SupportKit :</p>
+<p>Using a <code class="prettyprint">colors.xml</code> file in your <code class="prettyprint">res/values</code> folder, you can change the colors used by SupportKit:</p>
 <pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
     <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accent"</span><span class="nt">&gt;</span>#9200aa<span class="nt">&lt;/color&gt;</span>
     <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accentDark"</span><span class="nt">&gt;</span>#76008a<span class="nt">&lt;/color&gt;</span>
@@ -409,6 +409,12 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
     <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageText"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre>
+
+<p>If you need to update the image of the Send button, simply add an image with the following name to your <code class="prettyprint">drawables</code>:</p>
+<pre class="highlight plaintext"><code>supportkit_btn_send_normal.png
+</code></pre>
+
+<p>You can find the original resources by browsing external libraries through Android Studio.</p>
 
           <h2 id='getting-help-from-your-team'>Getting help from your team</h2>
 <p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
@@ -471,6 +477,18 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 <p>Once you&rsquo;ve created a Whisper you can manage it from within the SupportKit web interface. By clicking on the &ldquo;Whispers&rdquo; link in the navigation bar, you&rsquo;ll be presented with a list of Whispers as well as the number of users who have been exposed to them while running your app.</p>
 
 <p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
+
+          <h1 id='strings-customization'>Strings customization</h1>
+<p>SupportKit lets you customize any strings it displays by overwriting his keys. Simply add <code class="prettyprint">res/values/strings.xml</code> file in your Android project and specify new values for the keys used in SupportKit. You can find all available keys by browsing to the <code class="prettyprint">ui-x.x.x/res/values/values.xml</code> file in the External Libraries in Android Studio.</p>
+
+<p>Dates shown in the conversation view are already localized to the user&rsquo;s device.</p>
+<pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_activityConversation"</span><span class="nt">&gt;</span>Messages<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_startOfConversation"</span><span class="nt">&gt;</span>This is the start of your conversation with the team.<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_welcome"</span><span class="nt">&gt;</span>Feel free to leave us a message about anything that\'s on your mind.<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_messageHint"</span><span class="nt">&gt;</span>Type a message…<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre>
 
           <h1 id='slack'>Slack</h1>
 <p>Slack is a new communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>

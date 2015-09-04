@@ -71,7 +71,7 @@
 
 <p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
 
-<p>For more in-depth details on SupportKit&rsquo;s api check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
+<p>For more in-depth details on SupportKit&rsquo;s API check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
 
           <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
 <p>There are two ways to install the SupportKit SDK. The recommended and easier way makes use of <a href="http://cocoapods.org">CocoaPods</a> to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.</p>
@@ -240,7 +240,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <h3 id='naming-the-current-user'>Naming the current user</h3>
 <p>By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easilly identify who you are speaking with.</p>
 
-          <p>You can set the sender&rsquo;s name by calling the method below. Once you set the user&rsquo;s name, it will be persisted by SupportKit so any future message from this user will be named with the input you provided. If the user changes, simply call the method above a second time and the new information will overwrite it.</p>
+          <p>You can set the sender&rsquo;s name by calling the method below. Once you set the user&rsquo;s name, it will be persisted by SupportKit so any future message from this user will be named with the input you provided. If the user changes, simply call the method below a second time and the new information will overwrite it.</p>
 <pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">@"Doctor"</span><span class="p">;</span>
 <span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">@"Who"</span><span class="p">;</span>
 </code></pre>
@@ -254,7 +254,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <pre class="highlight swift"><code><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">"bob@example.com"</span>
 </code></pre>
 <h3 id='setting-the-signed-up-date'>Setting the signed up date</h3>
-<p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time SupportKit sees the user. Its best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
+<p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time SupportKit sees the user. It&rsquo;s best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
 <pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDate</span> <span class="nf">date</span><span class="p">];</span>
 </code></pre>
 <pre class="highlight swift"><code><span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
