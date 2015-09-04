@@ -212,19 +212,6 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 
 <p><img src="/images/messages.png" alt="Drawing" style="width: 50%;"/></p>
 
-          <h3 id='sending-action-buttons'>Sending action buttons</h3>
-<p>You can send your users an action button with the following syntax:</p>
-<pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
-</code></pre>
-
-<p>This works from any channels (Slack, Helpscout, Email) you configured to use with SupportKit. Your action URL can be anything accepted by <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/#//apple_ref/occ/instm/UIApplication/openURL:"><code class="prettyprint">[[UIApplication sharedApplication] openURL:url];</code></a> So anything ranging from a web url, deep link into your app or app store link to ask for a review works like a charm. </p>
-
-<p><img alt="Action buttons" src="../images/action_button.png" /></p>
-
-<p><aside class="notice">
-Buttons will always be appended at the bottom of your message bubble.
-</aside></p>
-
           <h3 id='slack-channel'>Slack Channel</h3>
 <p>Once your user types a message and hits send, SupportKit sends the message to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel that you chose when you <a href="#configuring-slack">configured Slack</a>.</p>
 
@@ -247,6 +234,19 @@ Buttons will always be appended at the bottom of your message bubble.
 <p>Once your user types a message and hits send, SupportKit transforms the message into an e-mail that makes its way to the e-mail address you specified when signing up for SupportKit. This e-mail contains the user&rsquo;s message as well as any metadata about the user that you&rsquo;ve captured in your app. </p>
 
 <p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
+
+          <h3 id='sending-action-buttons'>Sending action buttons</h3>
+<p>You can send your users an action button with the following syntax:</p>
+<pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
+</code></pre>
+
+<p>This works from any channels (Slack, Helpscout, Email) you configured to use with SupportKit. Your action URL can be anything accepted by <a href="https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/#//apple_ref/occ/instm/UIApplication/openURL:"><code class="prettyprint">[[UIApplication sharedApplication] openURL:url];</code></a> So anything ranging from a web url, deep link into your app or app store link to ask for a review works like a charm. </p>
+
+<p><img alt="Action buttons" src="../images/action_button.png" /></p>
+
+<p><aside class="notice">
+Buttons will always be appended at the bottom of your message bubble.
+</aside></p>
 
           <h2 id='identifying-your-users'>Identifying your users</h2>
 <p>SupportKit allows you to associate metadata to your users so that you can better understand the context around a user&rsquo;s message. </p>
