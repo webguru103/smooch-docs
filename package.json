@@ -1,0 +1,23 @@
+{
+  "name": "supportkit-docs",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "install": "bundle install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supportkit/supportkit-docs.git"
+  },
+  "author": "SupportKit",
+  "bugs": {
+    "url": "https://github.com/supportkit/supportkit-docs/issues"
+  },
+  "homepage": "http://docs.supportkit.io",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-exec": "^0.4.6",
+    "grunt-github-pages": "0.0.4",
+    "matchdep": "^0.3.0"
+  }
+}
