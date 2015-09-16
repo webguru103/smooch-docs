@@ -1,7 +1,7 @@
 [{
     "sectionTitle": "What's new",
     "title": "Superior customer support with in-app messaging",
-    "image": "http://cdn.supportkit.io/docs/helpscout_campaign.png",
+    "image": "https://cdn.supportkit.io/docs/helpscout_campaign.png",
     "content": "SupportKit and Help Scout joined forces to seamlessly integrate in-app messaging within Help Scout’s beloved customer support service.",
     "buttonTarget": "https://supportkit.io/helpscout/",
     "buttonText": "Learn more",
