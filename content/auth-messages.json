@@ -1,12 +1,22 @@
 [{
     "sectionTitle": "What's new",
+    "title": "Superior customer support with in-app messaging",
+    "image": "http://cdn.supportkit.io/docs/helpscout_campaign.png",
+    "content": "SupportKit and Help Scout joined forces to seamlessly integrate in-app messaging within Help Scout’s beloved customer support service.",
+    "buttonTarget": "https://supportkit.io/helpscout/",
+    "buttonText": "Learn more",
+    "routes": ["login"],
+    "default": true
+},
+{
+    "sectionTitle": "What's new",
     "title": "Look sir, SupportKit for Android is here!",
     "image": "https://supportkit.github.io/supportkit-docs/images/messages/android_promo.png",
     "content": "From the ground up SupportKit for Android uses purely native technologies, it’s uniquely designed for Android. This means it’s fast, like really fast. Not only does it run fast it’s quick to install. SupportKit for Android is just as easy and quick to add to your app as it is on iOS.",
     "buttonTarget": "http://blog.supportkit.io/look-sir-supportkit-on-android/",
     "buttonText": "Learn more",
     "routes": ["login"],
-    "default": true
+    "default": false
 },{
     "sectionTitle": "What's new",
     "title": "Make your app the pick of the litter",
@@ -15,5 +25,5 @@
     "buttonTarget": "https://supportkit.io/ratings/",
     "buttonText": "Learn more",
     "routes": ["login"],
-    "default": true
+    "default": false
 }]
