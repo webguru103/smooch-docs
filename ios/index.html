@@ -314,7 +314,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 <li><p>Generate a secret key for your SupportKit app. You can do this from the <a href="https://app.supportkit.io">SupportKit dashboard</a> under the Settings tab.</p>
 
 <p><img alt="Secret Keys" src="../images/secret_keys.png" /></p></li>
-<li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>) and the JWT body must specify the <code class="prettyprint">userId</code>.</p>
+<li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>). The JWT body must specify a <code class="prettyprint">scope</code> of &lsquo;appUser&rsquo; and the <code class="prettyprint">userId</code> you&rsquo;ve assigned to the app user.</p>
 
 <p>A node.js sample is provided below:</p>
 <pre class="highlight plaintext"><code>var jwt = require('jsonwebtoken');
@@ -323,6 +323,7 @@ var SECRET = 'BFJJ88naxc5PZNAMU9KpBNTR';
 
 var signJwt = function(userId) {
     return jwt.sign({
+        scope: 'appUser',
         userId: userId
     },
     SECRET,
