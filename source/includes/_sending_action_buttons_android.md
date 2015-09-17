@@ -10,7 +10,7 @@ This works from any channel (Slack, Helpscout, Email) you configured to use with
 
 When the user taps your button, we'll launch the appropriate intent based on the URL, so it can be whatever you want! Anything ranging from a web url, deep link or play store link works like a charm. 
 
-![Action buttons](/images/action_button_android.png)
+<span class="half-width-img">![Action buttons](/images/action_button_android.png)</span>
 
 <aside class="notice">
 Buttons will always be appended at the bottom of your message bubble.
