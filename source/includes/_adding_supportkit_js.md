@@ -40,7 +40,7 @@ npm install supportkit
 In your code:
 
 ```javascript
-var SupportKit = require('supportkit-js');
+var SupportKit = require('supportkit');
 
 SupportKit.init({appToken: 'your_app_token'});
 ```
