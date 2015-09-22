@@ -305,7 +305,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 <pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
 </code></pre>
 
-          <h2 id='securing-your-users'>Securing your users</h2>
+          <h2 id='authenticating-users-optional'>Authenticating users (optional)</h2>
 <p>Provided you&rsquo;re <a href="#users-on-multiple-devices">assigning <code class="prettyprint">userId</code>s to your users</a>, you can authenticate users to SupportKit by issuing signed <a href="http://jwt.io">JSON web token</a> (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as <a href="https://parse.com">parse.com</a>. There are JWT libraries available supporting a wide variety of popular languages and platforms.</p>
 
 <p>To issue JWTs:</p>
