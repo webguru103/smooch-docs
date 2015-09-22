@@ -1,4 +1,4 @@
-## Securing your users
+## Authenticating users (optional)
 
 Provided you're [assigning `userId`s to your users](#users-on-multiple-devices), you can authenticate users to SupportKit by issuing signed [JSON web token](http://jwt.io) (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as [parse.com](https://parse.com). There are JWT libraries available supporting a wide variety of popular languages and platforms.
 

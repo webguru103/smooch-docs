@@ -16,7 +16,7 @@ includes:
   - users/user_data_aside 
   - users/sensitive_user_data
   - users/users_on_multiple_devices
-  - users/securing_users
+  - users/authenticating_users
 
   - sending_action_buttons_android
 
