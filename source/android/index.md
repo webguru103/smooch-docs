@@ -1,6 +1,10 @@
 ---
 title: SupportKit Documentation
 
+
+
+
+
 toc_footers:
   - <a href='http://supportkit.io'>Sign up for SupportKit, it's free</a>
   - <a href='/api/android'>Class Reference</a>
@@ -16,7 +20,7 @@ includes:
   - users/user_data_aside 
   - users/sensitive_user_data
   - users/users_on_multiple_devices
-  - users/authenticating_users
+  - users/securing_users
 
   - sending_action_buttons_android
 
@@ -27,10 +31,15 @@ includes:
   - integrations/zendesk
   - integrations/connecting_crm
 
+
   - getting_conversations_started
   - whispers/whisper_when
   - whispers/whisper_actions
   - whispers/whisper_manage
+
+  
+
+  - localization_android
 
   - customization/string_customization_android
   - customization/styling_conversations_android
