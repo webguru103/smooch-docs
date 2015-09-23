@@ -1,6 +1,6 @@
 # Localization
 
-Every string you see in SupportKit can be [customized](#strings-customization) and localized. SupportKit provides a few languages out of the box, but [adding new languages](#adding-more-languages) is easy to do. When localizing strings, SupportKit looks for values in the strings.xml in you app first then in the SupportKit ui bundle, enabling you to customize any strings and add support for other languages.
+Every string you see in SupportKit can be [customized](#strings-customization) and localized. SupportKit provides a few languages out of the box, but [adding new languages](#adding-more-languages) is easy to do. When localizing strings, SupportKit looks for values in the strings.xml in your app first then in the SupportKit ui bundle, enabling you to customize any strings and add support for other languages.
 
 ## Adding more languages
 
