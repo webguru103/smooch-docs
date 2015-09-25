@@ -1,7 +1,5 @@
 ### Naming the current user
 
-By default, e-mail from SupportKit will be sent from a sender named Anonymous. SupportKit lets you easily identify who you are speaking with.
-
 You can set the sender's name by calling the method below. Once you set the user's name, it will be persisted by SupportKit so any future message from this user will be named with the input you provided. If the user changes, simply call the method above a second time and the new information will overwrite it.
 
 ```objective_c

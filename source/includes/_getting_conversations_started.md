@@ -1,4 +1,4 @@
-# Getting conversations started
+# Whispers
 
 SupportKit allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
 
