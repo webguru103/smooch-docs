@@ -1,3 +1,688 @@
-<script>
-	window.location = '/ios' + window.location.hash;
-</script>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the SupportKit API. These APIs give you the means to build your own scenarios using SupportKit, custom tailored to your needs.</p>
+
+<p>The SupportKit API is REST and JSON based. All API calls require <code class="prettyprint">Content-Type: application/json</code> to be specified.</p>
+
+<p>SupportKit APIs can be called in two ways:</p>
+
+<ol>
+<li>As an app user without credentials, via an <code class="prettyprint">appToken</code></li>
+<li>Authenticated mode via a JWT credential</li>
+</ol>
+
+<p>SupportKit offers integrators the option to authenticate with SupportKit on an app user&rsquo;s behalf. The integrator does this by issuing a JWT for each app user, signed with a secret key provided by SupportKit. This option is more complex, but it offers stronger protection against unauthorized access to an app user&rsquo;s conversation data. If JWT-based authentication is not used, an <code class="prettyprint">appToken</code> is specified instead.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<h2 id="apptoken">appToken</h2>
+
+<blockquote>
+<p>App token example</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s1">'content-type:application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token:cr2g6jgxrahuh68n1o3e2fcnt'</span> <span class="se">\</span>
+     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
+     -i https://sdk.supportkit.io/api/appboot
+</code></pre>
+
+<p>A subset of the SupportKit API may be used by simply specifying the <code class="prettyprint">appToken</code> in the <code class="prettyprint">app-token</code> HTTP header. This represents the case where an app user is using SupportKit without any credentials.</p>
+
+<h2 id="jwt">JWT</h2>
+
+<p>App user clients and services can also make secure calls to the SupportKit APIs by including a JWT.</p>
+
+<h3 id="header">Header</h3>
+
+<p>The JWT header must contain the key id (<code class="prettyprint">kid</code>) of the secret key that is used to sign it. The algorithm (<code class="prettyprint">alg</code>) used to sign the JWT can be anything supported by the <a href="https://www.npmjs.com/package/jsonwebtoken#algorithms-supported">jsonwebtoken npm module v5.0.4</a>. Unsigned JWTs are not accepted.</p>
+
+<blockquote>
+<p>Example JWT header:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HS256"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"kid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b567635f883c819871ace8003c0db14b"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="scope">Scope</h3>
+
+<p>The JWT body must include a scope parameter that determines the level of access of the bearer. There are two scopes, <code class="prettyprint">appUser</code> and <code class="prettyprint">app</code>.</p>
+
+<h4 id="appuser-scope">appUser scope</h4>
+
+<p>The <code class="prettyprint">appUser</code> scope grants access to an individual app user&rsquo;s data and conversation, but nothing else. It is used when issuing tokens to individual users. A JWT with <code class="prettyprint">appUser</code> scope must also specify a <code class="prettyprint">userId</code>. The <code class="prettyprint">userId</code> field effectively limits the scope of what a client can access using a given JWT.</p>
+
+<p><a href="https://gist.github.com/alavers/8f07b03895333d83b454">Node.js appUser JWT code sample</a></p>
+
+<blockquote>
+<p>Example JWT body for accessing app user data:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h4 id="app-scope">app scope</h4>
+
+<p>The <code class="prettyprint">app</code> scope grants access to users and conversations for a given SupportKit app. The <code class="prettyprint">app</code> scope is reserved for server-to-server scenarios, for example, for the creation of webhooks.</p>
+
+<p><a href="https://gist.github.com/alavers/d9af102ca4cefac1a7e5">Node.js app JWT code sample</a></p>
+
+<blockquote>
+<p>Example API JWT body for creating a webhook:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The JWT itself is transmitted via the HTTP authorization header, in the format as follows: &ldquo;Bearer: {JWT}&rdquo;. For example:</p>
+<pre class="highlight shell"><code>curl -H <span class="s1">'content-type:application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer eyJhbG...NFh7HgQ'</span> <span class="se">\</span>
+     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
+     -i https://sdk.supportkit.io/api/appboot
+</code></pre>
+
+<p>For brevity, the curl examples from this point forward will omit content-type, app-token, and authorization headers. For example, when an example reads like this</p>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/appboot
+</code></pre>
+
+<p>In effect, it means something like this:</p>
+<pre class="highlight shell"><code>curl -H <span class="s1">'content-type:application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token:cr2g6jgxrahuh68n1o3e2fcnt'</span> <span class="se">\</span>
+     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
+     -i https://sdk.supportkit.io/api/appboot
+</code></pre>
+
+<h1 id="app-boot">App Boot</h1>
+
+<p>This endpoint is called when a SupportKit integrated client app has booted. </p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>_</p>
+
+<blockquote>
+<p>Performing an app boot:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220", "deviceInfo": {"platform": "ios", "appVersion": "1.0"} }'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/appboot
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"appUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-08-09T16:23:36.741Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><code class="prettyprint">POST /api/appboot</code></p>
+
+<table><thead>
+<tr>
+<th>Auth method</th>
+<th>Allowed?</th>
+<th>Accepted JWT scopes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>appToken</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>JWT</td>
+<td>Yes</td>
+<td><code class="prettyprint">appUser</code></td>
+</tr>
+</tbody></table>
+
+<p>The API will:</p>
+
+<ol>
+<li>Register a new <code class="prettyprint">appUser</code> or <code class="prettyprint">deviceId</code> if they don&rsquo;t yet exist</li>
+<li>Authenticate the <code class="prettyprint">appUser</code> if <code class="prettyprint">jwt</code> credentials are provided</li>
+<li>Update an app user&rsquo;s <code class="prettyprint">lastSeen</code> property</li>
+</ol>
+
+<p>The API requires <code class="prettyprint">deviceId</code> to be specified at the very minimum. A <code class="prettyprint">userId</code> may also be specified to link app user accounts across devices. The <code class="prettyprint">pushNotificationDeviceToken</code> is also specified here, to facilitate push notifications. Additional device information can be specified via the <code class="prettyprint">deviceInfo</code> field, which expects a flat JSON object.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deviceId</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>No</td>
+</tr>
+<tr>
+<td>pushNotificationDeviceToken</td>
+<td>No</td>
+</tr>
+<tr>
+<td>deviceInfo</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h2 id="deviceinfo-structure">deviceInfo structure</h2>
+
+<p>The <code class="prettyprint">appboot</code> API accepts a flat <code class="prettyprint">deviceInfo</code> JSON object. Device information reported here will be rendered alongside app user information inside any app maker channels configured with SupportKit. The <code class="prettyprint">platform</code> and <code class="prettyprint">appVersion</code> fields are special in that they can be used as audience targeting criteria for whispers.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+<th>Relevant Platforms</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>platform</td>
+<td>&ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;web&rdquo;</td>
+<td>all</td>
+</tr>
+<tr>
+<td>appVersion</td>
+<td>&ldquo;8.0&rdquo;</td>
+<td>all</td>
+</tr>
+<tr>
+<td>appName</td>
+<td>&ldquo;foo&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>deviceModel</td>
+<td>&ldquo;iPhone 5s&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>os</td>
+<td>&ldquo;iPhone OS&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>osVersion</td>
+<td>&ldquo;8.1.2&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>radioAccessTechnology</td>
+<td>&ldquo;HSDPA&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>carrier</td>
+<td>&ldquo;Acme&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>devicePlatform</td>
+<td>&ldquo;iPhone6,1&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>wifi</td>
+<td>&ldquo;YES&rdquo;</td>
+<td>ios, android</td>
+</tr>
+<tr>
+<td>currentUrl</td>
+<td>&ldquo;http://mywebsite.com&rdquo;</td>
+<td>web</td>
+</tr>
+<tr>
+<td>userAgent</td>
+<td>&ldquo;Mozilla/5.0&hellip;&rdquo;</td>
+<td>web</td>
+</tr>
+<tr>
+<td>referrer</td>
+<td>&ldquo;http://google.com&rdquo;</td>
+<td>web</td>
+</tr>
+<tr>
+<td>browserLanguage</td>
+<td>&ldquo;en-US&rdquo;</td>
+<td>web</td>
+</tr>
+<tr>
+<td>currentTittle</td>
+<td>&ldquo;Welcome&rdquo;</td>
+<td>web</td>
+</tr>
+</tbody></table>
+
+<p>The API will respond with the <code class="prettyprint">appUserId</code> of the app user in question, which can then be used to make API calls to conversation API. The response will also include any profile information that was previously set for the app user, including custom properties.</p>
+
+<aside class="notice">
+In some scenarios, the appUser id returned in an app boot call may change. This is possible for example when the same user is logging in from multiple devices, which may cause two distinct `appUserId`s to merge together. The caller should always check if the returned appUserId has changed, and re-fetch conversation history whenever appropriate.
+</aside>
+
+<h1 id="app-user">App User</h1>
+
+<p>Using the app user APIs you can update the user&rsquo;s properties, retrieve conversation history, post a message, and track app user events.</p>
+
+<table><thead>
+<tr>
+<th>Auth method</th>
+<th>Allowed?</th>
+<th>Accepted JWT scopes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>appToken</td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td>JWT</td>
+<td>Yes</td>
+<td><code class="prettyprint">appUser</code>, <code class="prettyprint">app</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+The app scope must be used instead of appUser scope when posting conversation messages on behalf of an app maker.
+</aside>
+
+<aside class="notice">
+If a userId has been specified for a given app user, it can be used in place of the appUserId in the appusers path argument.
+</aside>
+
+<h2 id="update">Update</h2>
+
+<p>Update an app user&rsquo;s basic profile information and specify custom profile data via <code class="prettyprint">properties</code>.</p>
+
+<h4 id="http-request">HTTP Request</h4>
+
+<p><code class="prettyprint">PUT /api/appusers/{appUserId|userId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>givenName</td>
+<td>No</td>
+<td>Message content</td>
+</tr>
+<tr>
+<td>surname</td>
+<td>No</td>
+<td>Will use conversation appUserId as default</td>
+</tr>
+<tr>
+<td>email</td>
+<td>No</td>
+<td>Display name of the author</td>
+</tr>
+<tr>
+<td>properties</td>
+<td>No</td>
+<td>Flat JSON object</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-conversation">Get Conversation</h2>
+
+<blockquote>
+<p>Get conversation</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1439220041.586</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="nt">"appUsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"appMakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Get the specified app user&rsquo;s conversation history, if it exists. Returns 404 if the conversation has not yet been created.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET /api/appusers/{appUserId|userId}/conversation</code></p>
+
+<h2 id="post-message">Post Message</h2>
+
+<blockquote>
+<p>Post as app user</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"My dishwasher is broken", "role": "appUser"}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages
+</code></pre>
+
+<blockquote>
+<p>Post as app maker</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"Oh no!", "role": "appMaker"}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages
+</code></pre>
+
+<p>Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message <code class="prettyprint">text</code> and <code class="prettyprint">role</code> must both be specified. For messages coming from the app user, set <code class="prettyprint">role</code> to the <code class="prettyprint">appUser</code>. For messages coming from an app maker, set this parameter to <code class="prettyprint">appMaker</code>.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/appusers/{appUserId|userId}/conversation/messages</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>text</td>
+<td>Yes</td>
+<td>Message content</td>
+</tr>
+<tr>
+<td>role</td>
+<td>Yes</td>
+<td><code class="prettyprint">appUser</code> or <code class="prettyprint">appMaker</code></td>
+</tr>
+<tr>
+<td>name</td>
+<td>No</td>
+<td>Display name of the author</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>No</td>
+<td>Flat JSON object</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+For messages coming from an app maker, the JWT must be issued with app scope instead of appUser scope.
+</aside>
+
+<h2 id="track-event">Track Event</h2>
+
+<blockquote>
+<p>Track event</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"name":"completed_sale"}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/event
+</code></pre>
+
+<p>Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the <code class="prettyprint">completed_sale</code> event, calling this API is the way to trigger such a whisper.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/appusers/{appUserId|userId}/event</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h1 id="webhooks">Webhooks</h1>
+
+<table><thead>
+<tr>
+<th>Auth method</th>
+<th>Allowed?</th>
+<th>Accepted JWT scopes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>appToken</td>
+<td>No</td>
+<td></td>
+</tr>
+<tr>
+<td>JWT</td>
+<td>No</td>
+<td><code class="prettyprint">app</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="create-webhook">Create webhook</h2>
+
+<blockquote>
+<p>Create webhook</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://myservice.com/api/sk"}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/apps/55c39e7173320a1e00ff6112/webhooks
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/api/sk"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Create a webhook for the specified app. The response body will include a list of events that will trigger the webhook (currently only message events are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST /api/apps/{appId}/webhooks</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required?</th>
+<th>Notes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target</td>
+<td>Yes</td>
+<td>URL to be called</td>
+</tr>
+</tbody></table>
+
+<h2 id="list-webhooks">List webhooks</h2>
+
+<blockquote>
+<p>List webhooks</p>
+</blockquote>
+<pre class="highlight shell"><code>  curl https://sdk.supportkit.io/api/apps/55c39e7173320a1e00ff6112/webhooks
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+     </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/api/sk"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span><span class="w">
+    </span><span class="nt">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<h2 id="update-webhook">Update webhook</h2>
+<pre class="highlight shell"><code>curl -X PUT <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://myservice.com/api/supportkit"}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/apps/55c39e7173320a1e00ff6112/webhooks/55c8d9758590aa1900b9b9f6
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/api/supportkit"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message:appUser"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="get-webhook">Get webhook</h2>
+<pre class="highlight shell"><code>curl https://sdk.supportkit.io/api/apps/55c39e7173320a1e00ff6112/webhooks/55c8d9758590aa1900b9b9f6
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/api/supportkit"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message:appUser"</span><span class="p">],</span><span class="w">
+  </span><span class="nt">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="delete-webhook">Delete webhook</h2>
+
+<blockquote>
+<p>Delete webhook</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X DELETE <span class="se">\</span>
+     https://sdk.supportkit.io/api/apps/55c39e7173320a1e00ff6112/webhooks/55c8d9758590aa1900b9b9f6
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE /api/apps/55c39e7173320a1e00ff6112/webhooks/55c8d9758590aa1900b9b9f6</code></p>
+
+<h2 id="webhook-events">Webhook events</h2>
+
+<blockquote>
+<p>Post event</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://myservice.com/api/sk", "events": ["message:appUser"]}'</span> <span class="se">\</span>
+     https://sdk.supportkit.io/api/apps/55c39e7173320a1e00ff6112/webhooks
+</code></pre>
+
+<p>A webhook will make a request to the target each time an event associated with the webhook occurs. Events are specified in an optional <code class="prettyprint">events</code> array in the request body. If events are not specified, the webhook will be configured with the default events.</p>
+
+<table><thead>
+<tr>
+<th>event</th>
+<th>Default?</th>
+<th>Scope</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>message</td>
+<td>yes</td>
+<td>all messages (app maker messages are currently unsupported)</td>
+</tr>
+<tr>
+<td>message:appUser</td>
+<td>No</td>
+<td>only app user messages</td>
+</tr>
+<tr>
+<td>message:appUser</td>
+<td>No</td>
+<td>only app maker messages (currently unsupported)</td>
+</tr>
+</tbody></table>
+
+<h2 id="securing-a-webhook">Securing a webhook</h2>
+
+<p>When a webhook is created, a shared secret will be generated for it. The secret can be used to determine the veracity of a request to your webhook route. It is included as an <code class="prettyprint">X-API-Key</code> header with each webhook request sent to the target URL.</p>
+
+<p>That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
