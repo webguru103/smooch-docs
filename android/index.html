@@ -659,6 +659,13 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 
 <p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
 
+          <h1 id='localization'>Localization</h1>
+<p>Every string you see in SupportKit can be <a href="#strings-customization">customized</a> and localized. SupportKit provides a few languages out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, SupportKit looks for values in the strings.xml in your app first then in the SupportKit ui bundle, enabling you to customize any strings and add support for other languages.</p>
+<h2 id='adding-more-languages'>Adding more languages</h2>
+<p>To enable other languages beside the provided ones, first copy the english strings.xml file from the SupportKit ui bundle to the corresponding values folder for that language. Then, translate the values to match that language.</p>
+
+<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every SupportKit user can benefit from it. You can do so by <a href="https://github.com/supportkit/supportkit-android/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@supportkit.io">help@supportkit.io</a></p>
+
           <h1 id='customization'>Customization</h1><h2 id='strings-customization'>Strings customization</h2>
 <p>SupportKit lets you customize any strings it displays by overwriting his keys. Simply add <code class="prettyprint">res/values/strings.xml</code> file in your Android project and specify new values for the keys used in SupportKit. You can find all available keys by browsing to the <code class="prettyprint">ui-x.x.x/res/values/values.xml</code> file in the External Libraries in Android Studio.</p>
 
