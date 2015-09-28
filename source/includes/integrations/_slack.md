@@ -1,8 +1,8 @@
 ## Slack
 
-Slack is a new communication tool that combines the best things about chat, email and the web to group all of your team's conversations and workflow into one beautiful, searchable place.
+Slack is a communication tool that combines the best things about chat, email and the web to group all of your team's conversations and workflow into one beautiful, searchable place.
 
-SupportKit has a revolutionary new Slack integration that allows your team to effortlessly speak to your app's users, without leaving Slack. Check out this video to see how it works:
+SupportKit has a Slack integration that allows your team to effortlessly speak to your app's users, without leaving Slack. Check out this video to see how it works:
 
 <iframe style="margin-left:42px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 

@@ -6,7 +6,7 @@ You can send your users an action button with the following syntax:
 %[Button label here](http://anyurl.com)
 ```
 
-This works from any channel (Slack, Helpscout, Email) you configured to use with SupportKit. 
+This works from any channel you configured to use with SupportKit. 
 
 Your action URL can be anything accepted by [`[[UIApplication sharedApplication] openURL:url];`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplication_Class/#//apple_ref/occ/instm/UIApplication/openURL:) So anything ranging from a web url, deep link into your app or app store link to ask for a review works like a charm. 
 

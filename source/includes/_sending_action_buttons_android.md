@@ -6,7 +6,7 @@ You can send your users an action button with the following syntax:
 %[Button label here](http://anyurl.com)
 ```
 
-This works from any channel (Slack, Helpscout, Email) you configured to use with SupportKit. 
+This works from any channel you configured to use with SupportKit. 
 
 When the user taps your button, we'll launch the appropriate intent based on the URL, so it can be whatever you want! Anything ranging from a web url, deep link or play store link works like a charm. 
 
