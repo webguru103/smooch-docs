@@ -29,8 +29,8 @@ includes:
   - integrations/slack
   - integrations/helpscout
   - integrations/zendesk
-  - integrations/connecting_crm
 
+  - integrations/connecting_crm
 
   - getting_conversations_started
   - whispers/whisper_when

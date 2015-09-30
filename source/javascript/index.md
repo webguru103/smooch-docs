@@ -19,10 +19,10 @@ includes:
   - users/user_data_js
   - users/user_data_aside 
   - users/sensitive_user_data
-
-
-
-
+  - users/users_on_multiple_devices
+  - users/authenticating_users
+  
+  - sending_action_buttons_web
 
   - integrations/integrations
   - integrations/email
@@ -34,7 +34,7 @@ includes:
   
   - getting_conversations_started_js
   - whispers/whisper_when
-
+  - whispers/whisper_actions
   - whispers/whisper_manage
 
 
