@@ -21,8 +21,8 @@ includes:
   - users/sensitive_user_data
 
 
-
-
+  
+  - sending_action_buttons_web
 
   - integrations/integrations
   - integrations/email
@@ -34,7 +34,7 @@ includes:
   
   - getting_conversations_started_js
   - whispers/whisper_when
-
+  - whispers/whisper_actions
   - whispers/whisper_manage
 
 
