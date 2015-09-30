@@ -122,6 +122,150 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
           <h2 id='sensitive-user-data'>Sensitive user data</h2>
 <p>SupportKit sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through SupportKit messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
 
+          <p>SupportKit allows you to identify new users on the fly, engage with them in a single conversation thread across multiple devices, and associate user and device profile information so that you can better understand the context of a user&rsquo;s message.</p>
+<h2 id='users-on-multiple-devices'>Users on multiple devices</h2>
+<p>You may have users using your app on multiple devices. For example, suppose they have your app installed on both their iPhone and their iPad. You might also have SupportKit integrated in both your mobile app as well as on your web site.</p>
+
+<p>If you want the user to see the same conversation across devices you can do so by assigning your users a <code class="prettyprint">userId</code>. This will link a user across all devices and platforms that have integrated with your SupportKit app. Specifying a <code class="prettyprint">userId</code> also facilitates <a href="#securing-your-users">user authentication</a>.</p>
+
+<p>The <code class="prettyprint">userId</code> is a string that can be an email, GUID, or an existing ID from your own user directory. The <code class="prettyprint">userId</code> must be unique within a given SupportKit app, and it will only link devices within a single SupportKit app.</p>
+
+<p><aside class="warning">
+<strong>Caution:</strong> If you&rsquo;re specifying a <code class="prettyprint">userId</code> then in order to keep conversations private we strongly suggest <a href="#securing-your-users">securing your users</a>. If a <code class="prettyprint">userId</code> is used without a JWT credential, then anyone who can discover a user&rsquo;s <code class="prettyprint">userId</code> could potentially eavesdrop on the conversation.
+</aside></p>
+
+<p>After SupportKit has been initialized, you can set the <code class="prettyprint">userId</code> using the <code class="prettyprint">login</code> API:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="kc">nil</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+</code></pre>
+
+<p>In most use cases SupportKit is initialized synchronously as your app loads. For this reason, once you&rsquo;ve set your user&rsquo;s <code class="prettyprint">userId</code> for the first time it is recommended that you store that <code class="prettyprint">userId</code> locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the <code class="prettyprint">userId</code> at app boot time, instead of calling <code class="prettyprint">login</code> you can specify the <code class="prettyprint">userId</code> during SupportKit initialization like so:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span>
+<span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'YOUR_APP_TOKEN'</span><span class="p">,</span>
+    <span class="na">userId</span><span class="p">:</span> <span class="nx">yourUserId</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+</code></pre>
+<h3 id='omitting-the-userid'>Omitting the userId</h3>
+<p>SupportKit will work perfectly fine without a <code class="prettyprint">userId</code>. Profile information can still be included but the user will only be able to access the conversation from the device they&rsquo;re currently using. This means that even if you specify the same profile information, if the same individual opens SupportKit on a new device, or runs your web app in an incognito browser session, they will see a newly created empty conversation when they open SupportKit. Only the <code class="prettyprint">userId</code> can be used to synchronize a conversation across devices.</p>
+
+<p>A <code class="prettyprint">userId</code> can also be omitted at first and added at a later time. If you deploy an update to your app that assigns an existing user with a new <code class="prettyprint">userId</code> that they didn&rsquo;t have before, any existing conversation history they have will be preserved and their messages will start being synchronized across all devices where that <code class="prettyprint">userId</code> is being used. This is particularly useful if a user opens SupportKit and starts a conversation before having logged in to your app.</p>
+<h3 id='switching-users'>Switching users</h3>
+<p>If your app allows a shared device to switch between multiple user identities you can call the <code class="prettyprint">login</code> API multiple times to switch between different <code class="prettyprint">userId</code>s.</p>
+<h4 id='logging-out'>Logging out</h4>
+<p>Your app may have a logout function which brings users back to a login screen. In this case you would want to revert SupportKit to a pre-login state. You can do this by calling the <code class="prettyprint">logout</code> API.</p>
+
+<p>Calling <code class="prettyprint">logout</code> will disconnect your user from any <code class="prettyprint">userId</code> they were previously logged in with and it will remove any conversation history stored on the device. Logging out will <em>not</em> disable SupportKit. While logged out, the user is free to start a new conversation but they will show up as if <code class="prettyprint">userId</code> was <a href="#omitting-the-userid">omitted</a> during SupportKit initialization.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">logout</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">logout</span><span class="p">()</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
+</code></pre>
+
+          <h2 id='authenticating-users-optional'>Authenticating users (optional)</h2>
+<p>Provided you&rsquo;re <a href="#users-on-multiple-devices">assigning <code class="prettyprint">userId</code>s to your users</a>, you can authenticate users to SupportKit by issuing signed <a href="http://jwt.io">JSON web token</a> (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as <a href="https://parse.com">parse.com</a>. There are JWT libraries available supporting a wide variety of popular languages and platforms.</p>
+
+<p>To issue JWTs:</p>
+
+<ol>
+<li><p>Generate a secret key for your SupportKit app. You can do this from the <a href="https://app.supportkit.io">SupportKit dashboard</a> under the Settings tab.</p>
+
+<p><img alt="Secret Keys" src="../images/secret_keys.png" /></p></li>
+<li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>). The JWT body must specify a <code class="prettyprint">scope</code> of &lsquo;appUser&rsquo; and the <code class="prettyprint">userId</code> you&rsquo;ve assigned to the app user.</p>
+
+<p>A node.js sample is provided below:</p>
+<pre class="highlight plaintext"><code>var jwt = require('jsonwebtoken');
+var KEY_ID = '55e9f9bf7a0ce5ca2d429c17';
+var SECRET = 'BFJJ88naxc5PZNAMU9KpBNTR';
+
+var signJwt = function(userId) {
+    return jwt.sign({
+        scope: 'appUser',
+        userId: userId
+    },
+    SECRET,
+    {
+        headers: {
+            kid: KEY_ID
+        }
+    });
+}
+</code></pre></li>
+<li><p>Issue a JWT for each user. You should tie-in the generation and delivery of this JWT with any existing user login process used by your app.</p></li>
+<li><p>Specify the JWT when calling <code class="prettyprint">login</code> on the client:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">,</span> <span class="nx">yourJwt</span><span class="p">);</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">,</span> <span class="n">yourJwt</span><span class="o">);</span>
+</code></pre></li>
+</ol>
+
+<p>Securing a <code class="prettyprint">userId</code> happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual <code class="prettyprint">userId</code> with SupportKit, that specific <code class="prettyprint">userId</code> will require a JWT credential in all future init or login calls made to SupportKit.</p>
+
+<p>Once you&rsquo;ve issued a <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to <code class="prettyprint">login</code> you can provide SupportKit with the <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> parameters during app initialization:</p>
+<pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">];</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span><span class="p">;</span>
+<span class="n">settings</span><span class="p">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">yourJwt</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">yourJwt</span>
+<span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'YOUR_APP_TOKEN'</span><span class="p">,</span>
+    <span class="na">userId</span><span class="p">:</span> <span class="nx">yourUserId</span><span class="p">,</span>
+    <span class="na">jwt</span><span class="p">:</span> <span class="nx">yourJwt</span>
+<span class="p">});</span>
+</code></pre>
+<pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setJWT</span><span class="o">(</span><span class="n">yourJwt</span><span class="o">);</span>
+<span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+</code></pre>
+
+<p><aside class="warning">
+If your secret key is ever compromised you can generate a new one. SupportKit will accept a JWT as long as it contains all required fields and is signed with any of your SupportKit app&rsquo;s valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
+</aside></p>
+
+          <h1 id='sending-action-buttons'>Sending action buttons</h1>
+<p>You can send your users an action button with the following syntax:</p>
+<pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
+</code></pre>
+
+<p>This works from any channel you configured to use with SupportKit. </p>
+
+<p>When the user taps your button, it&rsquo;ll open whatever link you specified in a new tab. </p>
+
+<p><span class="half-width-img"><img alt="Action buttons" src="../images/action_button_web.png" /></span></p>
+
+<p><aside class="notice">
+Buttons will always be appended at the bottom of your message bubble.
+</aside></p>
+
           <h1 id='integrations'>Integrations</h1>
           <h2 id='email'>Email</h2>
 <p>By default, all new SupportKit apps will have an email channel enabled using the email address of the account owner.</p>
@@ -264,6 +408,13 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <p>If the Whisper is not tied to an event, SupportKit will monitor your userbase for changes and dispatch Whispers when a user&rsquo;s properties make them a fit for the target group of your Whisper. In many cases, this occurs when the user is not using your app. For instance, if you elect to send a Whisper to new users after 1 day has elapsed, SupportKit will deliver the message approximately 24 hours after the user first used your app. If you choose to use this powerful method of Whisper delivery, ensure that you&rsquo;ve enabled push notifications for your app in SupportKit. With push enabled, your users will receive a message that will bring them back into the conversation, even if they&rsquo;re not using your app.</p>
 
 <p>Note that users need to be prompted and accept to receive push notifications. To make sure we don&rsquo;t prompt the user at a bad moment, SupportKit will only request permission to send push notifications after a user sends his first message and only if the prompt wasn&rsquo;t shown earlier by your app. To get the full power of Whispers, we recommend you prompt for push permission as early as possible.</p>
+
+          <h2 id='adding-user-actions-to-a-whisper'>Adding user actions to a Whisper</h2>
+<p>You can prompt your users to take actions by adding action buttons to your Whisper. Clicking on &lsquo;Add an action&rsquo; will open up a new input box where you can specify the button text and what action to take when the user clicks on the button.</p>
+
+<p><img alt="Whisper add action" src="../images/whisper_action.png" /></p>
+
+<p>For more information on whisper actions, see <a href="#sending-action-buttons">this section</a> of the docs.</p>
 
           <h2 id='managing-whispers'>Managing Whispers</h2>
 <p><img alt="Manage Whispers" src="../images/whisper_manage.png" /></p>
