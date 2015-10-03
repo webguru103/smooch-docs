@@ -50,6 +50,10 @@ Now you'll have to add SupportKit's dependencies to your project if they're not 
  * Photos.framework
  * AVFoundation.framework
 
+<aside class="warning">
+Starting in Xcode 7, `libxml2.dylib` is no longer available in the frameworks list. Instead, you need to add the `-lxml2` option to your app's `Other Linker Flags` build setting.
+</aside>
+
  SupportKit should now be available to your app and you're ready to add the necessary code to [initialize SupportKit in your app](#initialize-supportkit-in-your-app).
 
 ## Import the SupportKit header file
