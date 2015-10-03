@@ -117,6 +117,10 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 <li>AVFoundation.framework</li>
 </ul>
 
+<p><aside class="warning">
+Starting in Xcode 7, <code class="prettyprint">libxml2.dylib</code> is no longer available in the frameworks list. Instead, you need to add the <code class="prettyprint">-lxml2</code> option to your app&rsquo;s <code class="prettyprint">Other Linker Flags</code> build setting.
+</aside></p>
+
 <p>SupportKit should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
 <h2 id='import-the-supportkit-header-file'>Import the SupportKit header file</h2>
 <p>Import the SupportKit file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
