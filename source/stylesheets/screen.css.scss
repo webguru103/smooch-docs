@@ -460,7 +460,7 @@ p img {
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: pinklighten($main-bg,2.4%);
     }
   }
 
@@ -574,12 +574,7 @@ p img {
 
   blockquote {
     &>p {
-      background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
+      color: #dee3ec;
     }
   }
 }
