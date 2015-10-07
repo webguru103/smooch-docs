@@ -22,7 +22,7 @@ grunt.initConfig({
             cmd: function() {
                 return [
                     'rm -rf ' + githubPagesDir,
-                    'git clone git@github.com:supportkit/supportkit-docs.git --branch gh-pages --single-branch ' + githubPagesDir,
+                    'git clone git@github.com:supportkit/supportkit-api-docs.git --branch gh-pages --single-branch ' + githubPagesDir,
                     'cp -R build/* ' + githubPagesDir
                 ].join(' && ');
             }
