@@ -140,12 +140,6 @@ When a webhook event is triggered, a JSON payload will be posted to the URL conf
 
 ## Create webhook
 
-> Definition:
-
-```
-POST /api/webhooks
-```
-
 > Request:
 
 ```shell
@@ -166,6 +160,8 @@ curl https://sdk.supportkit.io/api/webhooks \
   "secret": "8sd2xxtro6poa8i4pleh52ovd"
 }
 ```
+
+<api>`POST /api/webhooks`</api>
 
 Create a webhook for the specified app. The response body will include a list of events that will trigger the webhook (currently only message events are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
 
