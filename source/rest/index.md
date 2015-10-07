@@ -28,13 +28,12 @@ SupportKit APIs offer two methods of authentication:
 1. Using an [App Token](#app-token)
 1. Using a [JSON Web Token (JWT)](#jwt)
 
-Some APIs accept either of the two authentication methods while others require a `JWT` credential.
+Some APIs accept either of the two authentication methods while others require a `jwt` credential.
 
-| API                       | Valid authentication methods |
-|---------------------------|------------------------------|
-| [`/api/appboot`](#app-boot) | `appToken`, `JWT`            |
-| [`/api/appuser`](#app-user) | `appToken`, `JWT`            |
-| [`/api/webhook`](#webhook)  | `JWT`                        |
+| API                          | Valid authentication methods |
+|------------------------------|------------------------------|
+| [`/api/appusers`](#app-user) | `jwt`, `appToken`            |
+| [`/api/webhooks`](#webhook)  | `jwt`                        |
 
 ## App Token
 
@@ -55,20 +54,20 @@ Specifying an `appToken` alone is sufficient to call any of the app user facing 
 
 ## JWT
 
-> Calling `/api/appboot` using a JWT
+> Calling `/api/appboot` using a `jwt`
 
 ```shell
 curl https://sdk.supportkit.io/api/appboot \
      -X POST -d '{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A set of supported JWT libraries for a variety of languages and platforms can be found at [http://jwt.io](http://jwt.io). The full specification is described [here](https://tools.ietf.org/html/rfc7519).
 
-For added security when making calls on behalf of an app user, a JWT credential can optionally be specified instead of an `appToken`. However other APIs, such as `/api/webhooks` always require a valid JWT credential.
+For added security when making calls on behalf of an app user, a `jwt` credential can optionally be specified instead of an `appToken`. However other APIs, such as `/api/webhooks` always require a valid `jwt` credential.
 
-The JWT itself is transmitted via the HTTP `authorization` header. The token should be prefixed with "Bearer" followed by a space. For example: `Bearer YOUR-JWT`.
+The `jwt` itself is transmitted via the HTTP `authorization` header. The token should be prefixed with "Bearer" followed by a space. For example: `Bearer your-jwt`.
 
 ### Header
 
@@ -102,17 +101,17 @@ The JWT header must contain the key id (`kid`) of the secret key that is used to
 
 ### Scope
 
-The JWT body must specify the caller's scope of access. There are two levels of scope:
+The `jwt` body must specify the caller's scope of access. There are two levels of scope:
 
-1. The `appUser` scope grants access to an individual app user's data and conversation history, but nothing else. It is used when issuing tokens to individual users. A JWT with `appUser` scope must also specify a `userId` which uniquely identifies the `appUser` being accessed. [Node.js code sample](https://gist.github.com/alavers/8f07b03895333d83b454)
+1. The `appUser` scope grants access to an individual app user's data and conversation history, but nothing else. It is used when issuing tokens to individual users. A `jwt` with `appUser` scope must also specify a `userId` which uniquely identifies the `appUser` being accessed. [Node.js code sample](https://gist.github.com/alavers/8f07b03895333d83b454)
 
 1. The `app` scope grants access to all users and conversations within a given SupportKit app. The `app` scope is reserved for server-to-server scenarios, the creation of webhooks for example. [Node.js code sample](https://gist.github.com/alavers/d9af102ca4cefac1a7e5)
 
-| API                       | Accepted JWT Scopes |
-|---------------------------|---------------------|
-| [/api/appboot](#app-boot) | appUser             |
-| [/api/appuser](#app-user) | appUser, app        |
-| [/api/webhook](#webhook)  | app                 |
+| API                        | Accepted `jwt` Scopes |
+|----------------------------|-----------------------|
+| [/api/appboot](#app-boot)  | appUser               |
+| [/api/appusers](#app-user) | appUser, app          |
+| [/api/webhooks](#webhook)  | app                   |
 
 # Webhooks
 
@@ -132,11 +131,11 @@ The JWT body must specify the caller's scope of access. There are two levels of 
 }
 ```
 
-Webhooks are a fantastic way to extend SupportKit platform beyond the built-in featuere set. You can use webhooks to build your own SupportKit chat clients or to integrate more deeply with your favorite CRM.
+Webhooks are a fantastic way to extend the SupportKit platform beyond the built-in feature set. You can use webhooks to build your own SupportKit chat clients or to integrate more deeply with your favorite CRM.
 
 These webhook APIs require a `jwt` credential with `app` level scope. Furthermore, a webhook can only operate within the scope of a single SupportKit app.
 
-When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object.
+When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
 
 ## Create webhook
 
@@ -147,7 +146,7 @@ curl https://sdk.supportkit.io/api/webhooks \
      -X POST \
      -d '{"target": "http://myservice.com/api/sk"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 > Response:
@@ -168,7 +167,7 @@ Create a webhook for the specified app. The response body will include a list of
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*required* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. [More details](#webhook-events). |
+| **event**<br/>*optional*  | The event you wish to have the webhook listen to. This property is case sensitive. [More details](#webhook-events). |
 
 ## List webhooks
 
@@ -176,7 +175,7 @@ Create a webhook for the specified app. The response body will include a list of
 
 ```shell
   curl https://sdk.supportkit.io/api/webhooks \
-       -H 'authorization: Bearer YOUR-JWT'
+       -H 'authorization: Bearer your-jwt'
 ```
 
 > Response:
@@ -203,7 +202,7 @@ curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
      -X PUT \
      -d '{"target": "http://myservice.com/api/supportkit"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 > Response
@@ -223,8 +222,8 @@ Use this API to update your existing webhooks.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **target**<br/>*required* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. [More details](#webhook-events). |
+| **target**<br/>*optional* | URL to be called when the webhook is triggered. |
+| **event**<br/>*optional*  | The event you wish to have the webhook listen to. This property is case sensitive. [More details](#webhook-events). |
 
 ## Get webhook
 
@@ -232,7 +231,7 @@ Use this API to update your existing webhooks.
 
 ```shell
 curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 > Response:
@@ -257,7 +256,7 @@ Individual webhooks can be fetched using this API.
 ```shell
 curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
      -X DELETE \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 <api>`DELETE /api/webhooks/55c8d9758590aa1900b9b9f6`</api>
@@ -273,16 +272,16 @@ curl https://sdk.supportkit.io/api/webhooks
      -X POST \
      -d '{"target": "http://myservice.com/api/sk", "events": ["message:appUser"]}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 A webhook will make a request to the target each time an event associated with the webhook occurs. Events are specified in an optional `events` array in the request body. If events are not specified, the webhook will be configured with the default events.
 
-| event           | Default?  | Scope                                                       |
-|-----------------|-----------|-------------------------------------------------------------|
-| message         | yes       | all messages (app maker messages are currently unsupported) |
-| message:appUser | No        | only app user messages                                      |
-| message:appUser | No        | only app maker messages (currently unsupported)             |
+| event            |   |
+|------------------|---|
+| **message**<br/>*default* | all messages            |
+| **message:appUser**       | only app user messages  |
+| **message:appMaker**      | only app maker messages |
 
 ## Securing a webhook
 
@@ -294,7 +293,7 @@ That secret is available in the response to the POST request used to generate th
 
 The app user object represents an end user using your app. The app user document contains basic profile information such as `givenName`, `surname`, and `email`, as well as any custom user properties you choose to configure.
 
-The `/api/appuser` path gives you APIs that can be used to update the user's properties, retrieve conversation history, post a message, and track app user events.
+The `/api/appusers` path gives you APIs that can be used to update the user's properties, retrieve conversation history, post a message, and track app user events.
 
 <aside class="notice">
 If a userId has been specified for a given app user, it can be used in place of the appUserId in the appusers path argument.
@@ -307,7 +306,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 ```shell
 curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
      -X PUT \
-     -d '{"givneName": "Steve"}'
+     -d '{"givenName": "Steve"}'
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -324,7 +323,7 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
 
 <api>`PUT /api/appusers/{appUserId|userId}`</api>
 
-Update an app user's basic profile information and specify custom profile data via `properties`.
+Update an app user's basic profile information and specify custom profile data via `properties`. This API is additive; only the specific fields or `properties` JSON sub-fields included in the request will be updated.
 
 | **Arguments**                 |                            |
 |-------------------------------|----------------------------|
@@ -407,25 +406,27 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversatio
      -X POST \
      -d '{"text":"Oh no!", "role": "appMaker"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 <api>`POST /api/appusers/{appUserId|userId}/conversation/messages`</api>
 
-Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message `text` and `role` must both be specified. For messages coming from the app user, set `role` to the `appUser`. For messages coming from an app maker, set this parameter to `appMaker`.
+Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message `text` and `role` must both be specified. For messages coming from the app user, set `role` to `appUser`. For messages coming from an app maker, set this parameter to `appMaker`.
 
 
 | **Arguments**                |                            |
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The message content.       |
-| **role**<br/>*required*      | The role of the posting the individual posting the message. Can be either `appUser` or `appMaker`. |
+| **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
 | **name**<br/>*optional*      | The display name of the message author. |
+| **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the SupportKit account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
+| **avatarUrl**<br/>*optional* | The URL of the desired message avatar image. This field will override any avatar chosen via the `email` parameter. |
 | **mediaUrl**<br/>*optional*  | The image URL used in an image message. |
 | **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpg` |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
 
 <aside class="notice">
-For messages originating from an app maker, a `jwt` credential wiht `app` level scope must be included.
+For messages originating from an app maker, a `jwt` credential with `app` level scope must be included.
 </aside>
 
 ## Track Event
@@ -457,7 +458,7 @@ curl https://sdk.supportkit.io/api/appboot \
      -X POST \
      -d '{"deviceId": "03f70682b7f5b21536a3674f38b3e220", "deviceInfo": {"platform": "ios", "appVersion": "1.0"} }' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer YOUR-JWT'
+     -H 'authorization: Bearer your-jwt'
 ```
 
 > Response:
