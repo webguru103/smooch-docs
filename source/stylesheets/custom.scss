@@ -258,6 +258,16 @@ body {
   font-size: 16px;
 }
 
+.content api {
+  display: block;
+  background: #eaeaea;
+  padding: 0.8em 20px;
+  text-shadow: none;
+  border: 1px solid #912d8d;
+  border-radius: 3px;
+  border: none;
+}
+
 .content pre {
   background-color: #362d38;
   border-radius: 3px;
@@ -271,7 +281,7 @@ body {
 .content blockquote {
   background: transparent;
   margin-left: 42px;
-  padding: 1.2em 18px;
+  padding: 10px 18px;
 }
 
 .content code,
@@ -284,6 +294,10 @@ body {
 .content code {
   background-color: transparent;
   text-shadow: none;
+}
+
+.content tbody td:first-child {
+  text-align: right
 }
 
 .highlight,
