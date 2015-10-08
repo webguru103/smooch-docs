@@ -17,9 +17,26 @@ search: true
 
 Welcome to the SupportKit API. These APIs give you the means to build your own scenarios using SupportKit, custom tailored to your needs.
 
-The SupportKit API is REST and JSON based. All API calls require `Content-Type: application/json` to be specified.
+## Basics
 
+The SupportKit API is designed according to [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) principles.
 
+The API accepts JSON in request bodies and requires that the `content-type: application/json` header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may be returned as single objects or as arrays of objects, nested within the response object.
+
+The API also facilitates [cross-origin resource sharing](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) so that it can be called from a web application.
+
+## Errors
+
+SupportKit uses standard HTTP status codes to communicate errors
+
+|         |   |
+|---------|---|
+| **200** | OK - Everything went as planned. |
+| **400** | Bad Request - Something in your header or request body was malformed. |
+| **401** | Unauthorized - Necessary credentials were either missing or invalid. |
+| **403** | Forbidden - Your credentials are valid but you don't have access to the requested resource. |
+| **404** | Not Found - The object you're requesting doesn't exist. |
+| **500, 502, 503, 504** | Server Errors - Something went wrong on our end. |
 
 # Authentication
 
@@ -109,8 +126,7 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 | API                        | Accepted `jwt` Scopes |
 |----------------------------|-----------------------|
-| [/api/appboot](#app-boot)  | appUser               |
-| [/api/appusers](#app-user) | appUser, app          |
+| [/api/appusers](#app-user) | app, appUser          |
 | [/api/webhooks](#webhook)  | app                   |
 
 # Webhooks
@@ -323,7 +339,7 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
 
 <api>`PUT /api/appusers/{appUserId|userId}`</api>
 
-Update an app user's basic profile information and specify custom profile data via `properties`. This API is additive; only the specific fields or `properties` JSON sub-fields included in the request will be updated.
+Update an app user's basic profile information and specify custom profile data via `properties`. This API is additive; only the specific fields specified in the request body, and only the specific JSON sub-fields included in the `properties` field will be updated. In other words, omitting a field will not delete that field.
 
 | **Arguments**                 |                            |
 |-------------------------------|----------------------------|
@@ -359,7 +375,7 @@ Use this API to fetch the properties of an existing app user.
 
 ## Get Conversation
 
-> Requset:
+> Request:
 
 ```shell
 curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation \
