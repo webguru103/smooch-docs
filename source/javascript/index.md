@@ -11,6 +11,7 @@ toc_footers:
 
 includes:
   - welcome
+  - references
   - adding_supportkit_js
 
 

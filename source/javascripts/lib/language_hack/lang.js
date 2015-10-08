@@ -29,6 +29,8 @@ This adds the platform toggle support and turn the language links into a dropdow
                 window.location = '/android' + window.location.hash;
             } else if (platform === 'web') {
                 window.location = '/javascript' + window.location.hash;
+            } else if (platform === 'rest') {
+                window.location = '/rest' + window.location.hash;
             } else {
                 window.location = '/ios' + window.location.hash;
             }
