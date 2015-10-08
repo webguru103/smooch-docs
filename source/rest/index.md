@@ -49,21 +49,21 @@ Some APIs accept either of the two authentication methods while others require a
 
 | API                          | Valid authentication methods |
 |------------------------------|------------------------------|
-| [`/api/appusers`](#app-user) | `jwt`, `appToken`            |
-| [`/api/webhooks`](#webhook)  | `jwt`                        |
+| [`/v1/appusers`](#app-user) | `jwt`, `appToken`            |
+| [`/v1/webhooks`](#webhook)  | `jwt`                        |
 
 ## App Token
 
-> Calling `/api/appboot` using an app token
+> Calling `/v1/appboot` using an app token
 
 ```shell
-curl https://sdk.supportkit.io/api/appboot \
+curl https://api.supportkit.io/v1/appboot \
      -X POST -d '{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}' \
      -H 'content-type:application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
-When calling SupportKit APIs on behalf of the app user (eg. [`/api/appboot`](#app-boot) and [`/api/appuser`](#app-user)), an `appToken` may be used for basic authentication. 
+When calling SupportKit APIs on behalf of the app user (eg. [`/v1/appboot`](#app-boot) and [`/v1/appuser`](#app-user)), an `appToken` may be used for basic authentication. 
 
 Every SupportKit app has an `appToken` provisioned to it which can be found in the app settings tab. The `appToken` is sent via the the `app-token` HTTP header. This will link the caller to a specific SupportKit app.
 
@@ -71,10 +71,10 @@ Specifying an `appToken` alone is sufficient to call any of the app user facing 
 
 ## JWT
 
-> Calling `/api/appboot` using a `jwt`
+> Calling `/v1/appboot` using a `jwt`
 
 ```shell
-curl https://sdk.supportkit.io/api/appboot \
+curl https://api.supportkit.io/v1/appboot \
      -X POST -d '{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
@@ -82,7 +82,7 @@ curl https://sdk.supportkit.io/api/appboot \
 
 JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A set of supported JWT libraries for a variety of languages and platforms can be found at [http://jwt.io](http://jwt.io). The full specification is described [here](https://tools.ietf.org/html/rfc7519).
 
-For added security when making calls on behalf of an app user, a `jwt` credential can optionally be specified instead of an `appToken`. However other APIs, such as `/api/webhooks` always require a valid `jwt` credential.
+For added security when making calls on behalf of an app user, a `jwt` credential can optionally be specified instead of an `appToken`. However other APIs, such as `/v1/webhooks` always require a valid `jwt` credential.
 
 The `jwt` itself is transmitted via the HTTP `authorization` header. The token should be prefixed with "Bearer" followed by a space. For example: `Bearer your-jwt`.
 
@@ -126,8 +126,8 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 | API                        | Accepted `jwt` Scopes |
 |----------------------------|-----------------------|
-| [/api/appusers](#app-user) | app, appUser          |
-| [/api/webhooks](#webhook)  | app                   |
+| [/v1/appusers](#app-user) | app, appUser          |
+| [/v1/webhooks](#webhook)  | app                   |
 
 # Webhooks
 
@@ -158,9 +158,9 @@ When a webhook event is triggered, a JSON payload will be posted to the URL conf
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/webhooks \
+curl https://api.supportkit.io/v1/webhooks \
      -X POST \
-     -d '{"target": "http://myservice.com/api/sk"}' \
+     -d '{"target": "http://myservice.com/v1/sk"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -170,13 +170,13 @@ curl https://sdk.supportkit.io/api/webhooks \
 ```json
 {
   "_id": "55c8d9758590aa1900b9b9f6",
-  "target": "http://myservice.com/api/sk",
+  "target": "http://myservice.com/v1/sk",
   "events": ["message"],
   "secret": "8sd2xxtro6poa8i4pleh52ovd"
 }
 ```
 
-<api>`POST /api/webhooks`</api>
+<api>`POST /v1/webhooks`</api>
 
 Create a webhook for the specified app. The response body will include a list of events that will trigger the webhook (currently only message events are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
 
@@ -190,7 +190,7 @@ Create a webhook for the specified app. The response body will include a list of
 > Request:
 
 ```shell
-  curl https://sdk.supportkit.io/api/webhooks \
+  curl https://api.supportkit.io/v1/webhooks \
        -H 'authorization: Bearer your-jwt'
 ```
 
@@ -199,13 +199,13 @@ Create a webhook for the specified app. The response body will include a list of
 ```json
 [{
      "_id": "55c8d9758590aa1900b9b9f6",
-    "target": "http://myservice.com/api/sk",
+    "target": "http://myservice.com/v1/sk",
     "events": ["message"],
     "secret": "8sd2xxtro6poa8i4pleh52ovd"
 }]
 ```
 
-<api>`GET /api/webhooks`</api>
+<api>`GET /v1/webhooks`</api>
 
 List all webhooks configured for a given app.
 
@@ -214,9 +214,9 @@ List all webhooks configured for a given app.
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
+curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -X PUT \
-     -d '{"target": "http://myservice.com/api/supportkit"}' \
+     -d '{"target": "http://myservice.com/v1/supportkit"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -226,13 +226,13 @@ curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
 ```json
 {
   "_id": "55c8d9758590aa1900b9b9f6",
-  "target": "http://myservice.com/api/supportkit",
+  "target": "http://myservice.com/v1/supportkit",
   "events": ["message:appUser"],
   "secret": "8sd2xxtro6poa8i4pleh52ovd"
 }
 ```
 
-<api>`PUT /api/webhooks/55c8d9758590aa1900b9b9f6`</api>
+<api>`PUT /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
 
 Use this API to update your existing webhooks.
 
@@ -246,7 +246,7 @@ Use this API to update your existing webhooks.
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
+curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -H 'authorization: Bearer your-jwt'
 ```
 
@@ -255,13 +255,13 @@ curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
 ```json
 {
   "_id": "55c8d9758590aa1900b9b9f6",
-  "target": "http://myservice.com/api/supportkit",
+  "target": "http://myservice.com/v1/supportkit",
   "events": ["message:appUser"],
   "secret": "8sd2xxtro6poa8i4pleh52ovd"
 }
 ```
 
-<api>`GET /api/webhooks/55c8d9758590aa1900b9b9f6`</api>
+<api>`GET /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
 
 Individual webhooks can be fetched using this API.
 
@@ -270,12 +270,12 @@ Individual webhooks can be fetched using this API.
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/webhooks/55c8d9758590aa1900b9b9f6 \
+curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -X DELETE \
      -H 'authorization: Bearer your-jwt'
 ```
 
-<api>`DELETE /api/webhooks/55c8d9758590aa1900b9b9f6`</api>
+<api>`DELETE /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
 
 Deletes the specified webhook.
 
@@ -284,9 +284,9 @@ Deletes the specified webhook.
 > Post event
 
 ```shell
-curl https://sdk.supportkit.io/api/webhooks
+curl https://api.supportkit.io/v1/webhooks
      -X POST \
-     -d '{"target": "http://myservice.com/api/sk", "events": ["message:appUser"]}' \
+     -d '{"target": "http://myservice.com/v1/sk", "events": ["message:appUser"]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -309,7 +309,7 @@ That secret is available in the response to the POST request used to generate th
 
 The app user object represents an end user using your app. The app user document contains basic profile information such as `givenName`, `surname`, and `email`, as well as any custom user properties you choose to configure.
 
-The `/api/appusers` path gives you APIs that can be used to update the user's properties, retrieve conversation history, post a message, and track app user events.
+The `/v1/appusers` path gives you APIs that can be used to update the user's properties, retrieve conversation history, post a message, and track app user events.
 
 <aside class="notice">
 If a userId has been specified for a given app user, it can be used in place of the appUserId in the appusers path argument.
@@ -320,7 +320,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -X PUT \
      -d '{"givenName": "Steve"}'
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
@@ -337,7 +337,7 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
 }
 ```
 
-<api>`PUT /api/appusers/{appUserId|userId}`</api>
+<api>`PUT /v1/appusers/{appUserId|userId}`</api>
 
 Update an app user's basic profile information and specify custom profile data via `properties`. This API is additive; only the specific fields specified in the request body, and only the specific JSON sub-fields included in the `properties` field will be updated. In other words, omitting a field will not delete that field.
 
@@ -354,7 +354,7 @@ Update an app user's basic profile information and specify custom profile data v
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -369,7 +369,7 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f \
 }
 ```
 
-<api>`GET /api/appusers/{appUserId|userId}`</api>
+<api>`GET /v1/appusers/{appUserId|userId}`</api>
 
 Use this API to fetch the properties of an existing app user.
 
@@ -378,7 +378,7 @@ Use this API to fetch the properties of an existing app user.
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -399,7 +399,7 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversatio
 }
 ```
 
-<api>`GET /api/appusers/{appUserId|userId}/conversation`</api>
+<api>`GET /v1/appusers/{appUserId|userId}/conversation`</api>
 
 Get the specified app user's conversation history, if it exists. If the conversation has not yet been created for the specified app user 404 will be returned.
 
@@ -408,7 +408,7 @@ Get the specified app user's conversation history, if it exists. If the conversa
 > Post as app user:
 
 ```shell
-curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
      -d '{"text":"My dishwasher is broken", "role": "appUser"}' \
      -H 'content-type: application/json' \
@@ -418,14 +418,14 @@ curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversatio
 > Post as app maker:
 
 ```shell
-curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
      -d '{"text":"Oh no!", "role": "appMaker"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
 
-<api>`POST /api/appusers/{appUserId|userId}/conversation/messages`</api>
+<api>`POST /v1/appusers/{appUserId|userId}/conversation/messages`</api>
 
 Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message `text` and `role` must both be specified. For messages coming from the app user, set `role` to `appUser`. For messages coming from an app maker, set this parameter to `appMaker`.
 
@@ -450,14 +450,14 @@ For messages originating from an app maker, a `jwt` credential with `app` level 
 > Request:
 
 ```shell
-curl https://sdk.supportkit.io/api/appusers/c7f6e6d6c3a637261bd9656f/event \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
      -X POST \
      -d '{"name":"completed_sale"}' \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
-<api>`POST /api/appusers/{appUserId|userId}/event`</api>
+<api>`POST /v1/appusers/{appUserId|userId}/event`</api>
 
 Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the `completed_sale` event, calling this API is the way to trigger such a whisper.
 
