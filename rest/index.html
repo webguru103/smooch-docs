@@ -1,0 +1,604 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="../stylesheets/3col.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="../javascripts/all.js" type="text/javascript"></script>
+
+      <script>
+        $(function() {
+          setupLanguages(["shell"]);
+        });
+      </script>
+  </head>
+
+  <body class="rest rest_index">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="../images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='introduction'>Introduction</h1>
+<p>Welcome to the SupportKit API. These APIs give you the means to build your own scenarios using SupportKit, custom tailored to your needs.</p>
+<h2 id='basics'>Basics</h2>
+<p>The SupportKit API is designed according to <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles.</p>
+
+<p>The API accepts JSON in request bodies and requires that the <code class="prettyprint">content-type: application/json</code> header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may be returned as single objects or as arrays of objects, nested within the response object.</p>
+
+<p>The API also facilitates <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">cross-origin resource sharing</a> so that it can be called from a web application.</p>
+<h2 id='errors'>Errors</h2>
+<p>SupportKit uses standard HTTP status codes to communicate errors</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>OK - Everything went as planned.</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>Bad Request - Something in your header or request body was malformed.</td>
+</tr>
+<tr>
+<td><strong>401</strong></td>
+<td>Unauthorized - Necessary credentials were either missing or invalid.</td>
+</tr>
+<tr>
+<td><strong>403</strong></td>
+<td>Forbidden - Your credentials are valid but you don&rsquo;t have access to the requested resource.</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>Not Found - The object you&rsquo;re requesting doesn&rsquo;t exist.</td>
+</tr>
+<tr>
+<td><strong>500, 502, 503, 504</strong></td>
+<td>Server Errors - Something went wrong on our end.</td>
+</tr>
+</tbody></table>
+<h1 id='authentication'>Authentication</h1>
+<p>SupportKit APIs offer two methods of authentication:</p>
+
+<ol>
+<li>Using an <a href="#app-token">App Token</a></li>
+<li>Using a <a href="#jwt">JSON Web Token (JWT)</a></li>
+</ol>
+
+<p>Some APIs accept either of the two authentication methods while others require a <code class="prettyprint">jwt</code> credential.</p>
+
+<table><thead>
+<tr>
+<th>API</th>
+<th>Valid authentication methods</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#app-user"><code class="prettyprint">/v1/appusers</code></a></td>
+<td><code class="prettyprint">jwt</code>, <code class="prettyprint">appToken</code></td>
+</tr>
+<tr>
+<td><a href="#webhook"><code class="prettyprint">/v1/webhooks</code></a></td>
+<td><code class="prettyprint">jwt</code></td>
+</tr>
+</tbody></table>
+<h2 id='app-token'>App Token</h2>
+<blockquote>
+<p>Calling <code class="prettyprint">/v1/appboot</code> using an app token</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appboot <span class="se">\</span>
+     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type:application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<p>When calling SupportKit APIs on behalf of the app user (eg. <a href="#app-boot"><code class="prettyprint">/v1/appboot</code></a> and <a href="#app-user"><code class="prettyprint">/v1/appuser</code></a>), an <code class="prettyprint">appToken</code> may be used for basic authentication. </p>
+
+<p>Every SupportKit app has an <code class="prettyprint">appToken</code> provisioned to it which can be found in the app settings tab. The <code class="prettyprint">appToken</code> is sent via the the <code class="prettyprint">app-token</code> HTTP header. This will link the caller to a specific SupportKit app.</p>
+
+<p>Specifying an <code class="prettyprint">appToken</code> alone is sufficient to call any of the app user facing API.</p>
+<h2 id='jwt'>JWT</h2>
+<blockquote>
+<p>Calling <code class="prettyprint">/v1/appboot</code> using a <code class="prettyprint">jwt</code></p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appboot <span class="se">\</span>
+     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<p>JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A set of supported JWT libraries for a variety of languages and platforms can be found at <a href="http://jwt.io">http://jwt.io</a>. The full specification is described <a href="https://tools.ietf.org/html/rfc7519">here</a>.</p>
+
+<p>For added security when making calls on behalf of an app user, a <code class="prettyprint">jwt</code> credential can optionally be specified instead of an <code class="prettyprint">appToken</code>. However other APIs, such as <code class="prettyprint">/v1/webhooks</code> always require a valid <code class="prettyprint">jwt</code> credential.</p>
+
+<p>The <code class="prettyprint">jwt</code> itself is transmitted via the HTTP <code class="prettyprint">authorization</code> header. The token should be prefixed with &ldquo;Bearer&rdquo; followed by a space. For example: <code class="prettyprint">Bearer your-jwt</code>.</p>
+<h3 id='header'>Header</h3>
+<blockquote>
+<p>JWT header:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HS256"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"kid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b567635f883c819871ace8003c0db14b"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The JWT header must contain the key id (<code class="prettyprint">kid</code>) of the secret key that is used to sign it. The algorithm (<code class="prettyprint">alg</code>) used to sign the JWT can be anything supported by the <a href="https://www.npmjs.com/package/jsonwebtoken#algorithms-supported">jsonwebtoken npm module v5.0.4</a>. Unsigned JWTs are not accepted.</p>
+
+<blockquote>
+<p>JWT body with <code class="prettyprint">appUser</code> scope:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>JWT body with <code class="prettyprint">app</code> scope:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id='scope'>Scope</h3>
+<p>The <code class="prettyprint">jwt</code> body must specify the caller&rsquo;s scope of access. There are two levels of scope:</p>
+
+<ol>
+<li><p>The <code class="prettyprint">appUser</code> scope grants access to an individual app user&rsquo;s data and conversation history, but nothing else. It is used when issuing tokens to individual users. A <code class="prettyprint">jwt</code> with <code class="prettyprint">appUser</code> scope must also specify a <code class="prettyprint">userId</code> which uniquely identifies the <code class="prettyprint">appUser</code> being accessed. <a href="https://gist.github.com/alavers/8f07b03895333d83b454">Node.js code sample</a></p></li>
+<li><p>The <code class="prettyprint">app</code> scope grants access to all users and conversations within a given SupportKit app. The <code class="prettyprint">app</code> scope is reserved for server-to-server scenarios, the creation of webhooks for example. <a href="https://gist.github.com/alavers/d9af102ca4cefac1a7e5">Node.js code sample</a></p></li>
+</ol>
+
+<table><thead>
+<tr>
+<th>API</th>
+<th>Accepted <code class="prettyprint">jwt</code> Scopes</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><a href="#app-user">/v1/appusers</a></td>
+<td>app, appUser</td>
+</tr>
+<tr>
+<td><a href="#webhook">/v1/webhooks</a></td>
+<td>app</td>
+</tr>
+</tbody></table>
+<h1 id='webhooks'>Webhooks</h1>
+<blockquote>
+<p>Webhook example payload:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1439220041.586</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"appUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Webhooks are a fantastic way to extend the SupportKit platform beyond the built-in feature set. You can use webhooks to build your own SupportKit chat clients or to integrate more deeply with your favorite CRM.</p>
+
+<p>These webhook APIs require a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope. Furthermore, a webhook can only operate within the scope of a single SupportKit app.</p>
+
+<p>When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.</p>
+<h2 id='create-webhook'>Create webhook</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://myservice.com/v1/sk"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/sk"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">POST /v1/webhooks</code></api></p>
+
+<p>Create a webhook for the specified app. The response body will include a list of events that will trigger the webhook (currently only message events are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>target</strong><br/><em>required</em></td>
+<td>URL to be called when the webhook is triggered.</td>
+</tr>
+<tr>
+<td><strong>event</strong><br/><em>optional</em></td>
+<td>The event you wish to have the webhook listen to. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
+</tr>
+</tbody></table>
+<h2 id='list-webhooks'>List webhooks</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>  curl https://api.supportkit.io/v1/webhooks <span class="se">\</span>
+       -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/sk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/webhooks</code></api></p>
+
+<p>List all webhooks configured for a given app.</p>
+<h2 id='update-webhook'>Update webhook</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+     -X PUT <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://myservice.com/v1/supportkit"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/supportkit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message:appUser"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">PUT /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+
+<p>Use this API to update your existing webhooks.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>target</strong><br/><em>optional</em></td>
+<td>URL to be called when the webhook is triggered.</td>
+</tr>
+<tr>
+<td><strong>event</strong><br/><em>optional</em></td>
+<td>The event you wish to have the webhook listen to. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
+</tr>
+</tbody></table>
+<h2 id='get-webhook'>Get webhook</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/supportkit"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message:appUser"</span><span class="p">],</span><span class="w">
+  </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+
+<p>Individual webhooks can be fetched using this API.</p>
+<h2 id='delete-webhook'>Delete webhook</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+     -X DELETE <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<p><api><code class="prettyprint">DELETE /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+
+<p>Deletes the specified webhook.</p>
+<h2 id='webhook-events'>Webhook events</h2>
+<blockquote>
+<p>Post event</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://myservice.com/v1/sk", "events": ["message:appUser"]}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<p>A webhook will make a request to the target each time an event associated with the webhook occurs. Events are specified in an optional <code class="prettyprint">events</code> array in the request body. If events are not specified, the webhook will be configured with the default events.</p>
+
+<table><thead>
+<tr>
+<th>event</th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>message</strong><br/><em>default</em></td>
+<td>all messages</td>
+</tr>
+<tr>
+<td><strong>message:appUser</strong></td>
+<td>only app user messages</td>
+</tr>
+<tr>
+<td><strong>message:appMaker</strong></td>
+<td>only app maker messages</td>
+</tr>
+</tbody></table>
+<h2 id='securing-a-webhook'>Securing a webhook</h2>
+<p>When a webhook is created, a shared secret will be generated for it. The secret can be used to determine the veracity of a request to your webhook route. It is included as an <code class="prettyprint">X-API-Key</code> header with each webhook request sent to the target URL.</p>
+
+<p>That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.</p>
+<h1 id='app-user'>App User</h1>
+<p>The app user object represents an end user using your app. The app user document contains basic profile information such as <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, and <code class="prettyprint">email</code>, as well as any custom user properties you choose to configure.</p>
+
+<p>The <code class="prettyprint">/v1/appusers</code> path gives you APIs that can be used to update the user&rsquo;s properties, retrieve conversation history, post a message, and track app user events.</p>
+
+<p><aside class="notice">
+If a userId has been specified for a given app user, it can be used in place of the appUserId in the appusers path argument.
+</aside></p>
+<h2 id='update'>Update</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+     -X PUT <span class="se">\</span>
+     -d <span class="s1">'{"givenName": "Steve"}'</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steve@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-01T21:20:35.863Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">PUT /v1/appusers/{appUserId|userId}</code></api></p>
+
+<p>Update an app user&rsquo;s basic profile information and specify custom profile data via <code class="prettyprint">properties</code>. This API is additive; only the specific fields specified in the request body, and only the specific JSON sub-fields included in the <code class="prettyprint">properties</code> field will be updated. In other words, omitting a field will not delete that field.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>givenName</strong><br/><em>optional</em></td>
+<td>The user&rsquo;s given name (first name).</td>
+</tr>
+<tr>
+<td><strong>surname</strong><br/><em>optional</em></td>
+<td>The user&rsquo;s surname (last name).</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>optional</em></td>
+<td>The user&rsquo;s email address.</td>
+</tr>
+<tr>
+<td><strong>signedUpAt</strong><br/><em>optional</em></td>
+<td>The date at which the user signed up. Must be ISO 8601 time format (<code class="prettyprint">YYYY-MM-DDThh:mm:ss.sssZ</code>)</td>
+</tr>
+<tr>
+<td><strong>properties</strong><br/><em>optional</em></td>
+<td>A flat JSON object containing custom defined user properties.</td>
+</tr>
+</tbody></table>
+<h2 id='get-app-user'>Get App User</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steve@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-01T21:20:35.863Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/appusers/{appUserId|userId}</code></api></p>
+
+<p>Use this API to fetch the properties of an existing app user.</p>
+<h2 id='get-conversation'>Get Conversation</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1439220041.586</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"appUsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"appMakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/appusers/{appUserId|userId}/conversation</code></api></p>
+
+<p>Get the specified app user&rsquo;s conversation history, if it exists. If the conversation has not yet been created for the specified app user 404 will be returned.</p>
+<h2 id='post-message'>Post Message</h2>
+<blockquote>
+<p>Post as app user:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"My dishwasher is broken", "role": "appUser"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Post as app maker:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"Oh no!", "role": "appMaker"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/conversation/messages</code></api></p>
+
+<p>Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message <code class="prettyprint">text</code> and <code class="prettyprint">role</code> must both be specified. For messages coming from the app user, set <code class="prettyprint">role</code> to <code class="prettyprint">appUser</code>. For messages coming from an app maker, set this parameter to <code class="prettyprint">appMaker</code>.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><em>required</em></td>
+<td>The message content.</td>
+</tr>
+<tr>
+<td><strong>role</strong><br/><em>required</em></td>
+<td>The role of the individual posting the message. Can be either <code class="prettyprint">appUser</code> or <code class="prettyprint">appMaker</code>.</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><em>optional</em></td>
+<td>The display name of the message author.</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>optional</em></td>
+<td>The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the SupportKit account is used, the configured profile avatar will be used. Otherwise, any <a href="http://gravatar.com">gravatar</a> matching the specified email will be used as the message avatar.</td>
+</tr>
+<tr>
+<td><strong>avatarUrl</strong><br/><em>optional</em></td>
+<td>The URL of the desired message avatar image. This field will override any avatar chosen via the <code class="prettyprint">email</code> parameter.</td>
+</tr>
+<tr>
+<td><strong>mediaUrl</strong><br/><em>optional</em></td>
+<td>The image URL used in an image message.</td>
+</tr>
+<tr>
+<td><strong>mediaType</strong><br/><em>optional</em></td>
+<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpg</code></td>
+</tr>
+<tr>
+<td><strong>metadata</strong><br/><em>optional</em></td>
+<td>Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">
+For messages originating from an app maker, a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope must be included.
+</aside></p>
+<h2 id='track-event'>Track Event</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"name":"completed_sale"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/event</code></api></p>
+
+<p>Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the <code class="prettyprint">completed_sale</code> event, calling this API is the way to trigger such a whisper.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong><br/><em>required</em></td>
+<td>The name of the triggered event.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
