@@ -516,7 +516,7 @@ The `appboot` API accepts a flat `deviceInfo` JSON object. Device information re
 | **browserLanguage**       | `en-US`                   | web                |
 | **currentTittle**         | `Welcome`                 | web                |
 
-The API will respond with the `appUserId` of the app user in question, which can then be used to make API calls to conversation API. The response will also include any profile information that was previously set for the app user, including custom properties.
+The API will respond with the `appUserId` of the app user in question, which can then be used to make API calls to the conversation API. The response will also include any profile information that was previously set for the app user, including custom properties.
 
 <aside class="notice">
 In some scenarios, the `appUserId` returned in an app boot call may change. This is possible for example when the `userId` is being used to log a user in on multiple devices, which may cause two distinct `appUserId`s to merge together. The caller should always check if the returned `appUserId` has changed, and re-fetch conversation history whenever appropriate.
