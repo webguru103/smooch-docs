@@ -2,7 +2,7 @@
 
 For more in-depth details on SupportKit's APIs check out our API Reference documentation. The API reference documents every method and property available through SupportKit.
 
-* [iOS SDK Reference](http://docs.supportkit.io/api/ios)
-* [Android SDK Reference](http://docs.supportkit.io/api/android)
-* [Web SDK Reference](https://github.com/supportkit/supportkit-js)
-* [REST API](/rest)
+* <a href="http://docs.supportkit.io/api/ios" target="_blank">iOS SDK Reference</a>
+* <a href="http://docs.supportkit.io/api/android" target="_blank">Android SDK Reference</a>
+* <a href="https://github.com/supportkit/supportkit-js" target="_blank">Web SDK Reference</a>
+* <a href="/rest" target="_blank">REST API</a>
