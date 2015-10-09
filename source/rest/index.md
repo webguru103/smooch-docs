@@ -1,6 +1,6 @@
 ---
 layout: 3col
-title: API Reference
+title: SupportKit API Reference
 
 language_tabs:
   - shell
