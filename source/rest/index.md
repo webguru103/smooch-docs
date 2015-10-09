@@ -7,6 +7,11 @@ language_tabs:
 
 toc_footers:
   - <a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a>
+  - <br/>
+  - <a href='/ios'>iOS Guide</a> | <a href='/api/ios'>Class Reference</a>
+  - <a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a>
+  - <a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a>
+  - <a href='/rest'>REST API Reference</a>
 
 includes:
 
@@ -413,10 +418,6 @@ Update an app user's basic profile information and specify custom profile data v
 | **email**<br/>*optional*      | The user's email address. |
 | **signedUpAt**<br/>*optional* | The date at which the user signed up. Must be ISO 8601 time format (`YYYY-MM-DDThh:mm:ss.sssZ`) |
 | **properties**<br/>*optional* | A flat JSON object containing custom defined user properties. |
-
-<api>`GET /v1/appusers/{appUserId|userId}`</api>
-
-Use this API to fetch the properties of an existing app user.
 
 ## Track Event
 

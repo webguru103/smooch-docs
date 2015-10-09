@@ -424,6 +424,10 @@ beta:after {
   margin-right: 32px;
 }
 
+.btn-group>.btn:first-child:not(.language-dropdown) {
+  border-right: none;
+}
+
 .btn-group>.btn:first-child:not(:last-child):not(.language-dropdown) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
@@ -537,10 +541,4 @@ beta:after {
 
 .half-width-img img {
   max-width: 50%;
-}
-
-@media (max-width: $tablet-width) {
-  .half-width-img img {
-    max-width: 100%;
-  }
 }
