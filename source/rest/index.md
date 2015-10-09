@@ -170,10 +170,10 @@ curl https://api.supportkit.io/v1/webhooks \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-      "events": [
-        "message"
-      ],
-      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+    "events": [
+      "message"
+    ],
+    "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
     "target": "http://example.com/callback"
   }
 }
@@ -233,16 +233,16 @@ curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-      "events": [
-        "message"
-      ],
-      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+    "events": [
+      "message"
+    ],
+    "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
     "target": "http://example.com/callback"
   }
 }
 ```
 
-<api>`GET /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
+<api>`GET /v1/webhooks/{webhookId}`</api>
 
 Individual webhooks can be fetched using this API.
 
@@ -264,16 +264,16 @@ curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-      "events": [
-        "message"
-      ],
-      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+    "events": [
+      "message"
+    ],
+    "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
     "target": "http://example.com/callback"
   }
 }
 ```
 
-<api>`PUT /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
+<api>`PUT /v1/webhooks/{webhookId}`</api>
 
 Use this API to update your existing webhooks.
 
@@ -292,7 +292,7 @@ curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -H 'authorization: Bearer your-jwt'
 ```
 
-<api>`DELETE /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
+<api>`DELETE /v1/webhooks/{webhookId}`</api>
 
 Deletes the specified webhook.
 
@@ -505,7 +505,7 @@ Post a message to the app user. If the app user does not yet have a conversation
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The message content.       |
 | **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
-| **name**<br/>*optional*      | The display name of the message author. By default, app user messages will have this field set to a friendly name based on the user's `givenName` and `surname`. |
+| **name**<br/>*optional*      | The display name of the message author. Messages with role `appUser` will default to a friendly name based on the user's `givenName` and `surname`. Messages with role `appMaker` have no default name. |
 | **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the SupportKit account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
 | **avatarUrl**<br/>*optional* | The URL of the desired message avatar image. This field will override any avatar chosen via the `email` parameter. |
 | **mediaUrl**<br/>*optional*  | The image URL used in an image message. |
