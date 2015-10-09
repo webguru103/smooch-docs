@@ -230,10 +230,10 @@
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"message"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -300,16 +300,16 @@
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"message"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><api><code class="prettyprint">GET /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+<p><api><code class="prettyprint">GET /v1/webhooks/{webhookId}</code></api></p>
 
 <p>Individual webhooks can be fetched using this API.</p>
 <h2 id='update-webhook'>Update webhook</h2>
@@ -329,16 +329,16 @@
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"message"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"message"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p><api><code class="prettyprint">PUT /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+<p><api><code class="prettyprint">PUT /v1/webhooks/{webhookId}</code></api></p>
 
 <p>Use this API to update your existing webhooks.</p>
 
@@ -366,7 +366,7 @@
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 
-<p><api><code class="prettyprint">DELETE /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+<p><api><code class="prettyprint">DELETE /v1/webhooks/{webhookId}</code></api></p>
 
 <p>Deletes the specified webhook.</p>
 <h2 id='webhook-events'>Webhook events</h2>
@@ -612,7 +612,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 </tr>
 <tr>
 <td><strong>name</strong><br/><em>optional</em></td>
-<td>The display name of the message author. By default, app user messages will have this field set to a friendly name based on the user&rsquo;s <code class="prettyprint">givenName</code> and <code class="prettyprint">surname</code>.</td>
+<td>The display name of the message author. Messages with role <code class="prettyprint">appUser</code> will default to a friendly name based on the user&rsquo;s <code class="prettyprint">givenName</code> and <code class="prettyprint">surname</code>. Messages with role <code class="prettyprint">appMaker</code> have no default name.</td>
 </tr>
 <tr>
 <td><strong>email</strong><br/><em>optional</em></td>
