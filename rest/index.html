@@ -119,7 +119,7 @@
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
-<p>When calling SupportKit APIs on behalf of the app user (eg. <a href="#app-boot"><code class="prettyprint">/v1/appboot</code></a> and <a href="#app-user"><code class="prettyprint">/v1/appuser</code></a>), an <code class="prettyprint">appToken</code> may be used for basic authentication. </p>
+<p>When calling SupportKit APIs such as <a href="#app-users"><code class="prettyprint">/v1/appusers</code></a> on behalf of app users, an <code class="prettyprint">appToken</code> may be used for basic authentication.</p>
 
 <p>Every SupportKit app has an <code class="prettyprint">appToken</code> provisioned to it which can be found in the app settings tab. The <code class="prettyprint">appToken</code> is sent via the the <code class="prettyprint">app-token</code> HTTP header. This will link the caller to a specific SupportKit app.</p>
 
@@ -188,7 +188,7 @@
 <td>app</td>
 </tr>
 </tbody></table>
-<h1 id='webhooks'>Webhooks</h1>
+<h1 id='webhooks-beta'>Webhooks <beta/></h1>
 <blockquote>
 <p>Webhook example payload:</p>
 </blockquote>
@@ -255,7 +255,7 @@
 </tr>
 <tr>
 <td><strong>event</strong><br/><em>optional</em></td>
-<td>The event you wish to have the webhook listen to. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
+<td>The event you wish to have the webhook listen to. The default event is <code class="prettyprint">message</code>. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
 </tr>
 </tbody></table>
 <h2 id='list-webhooks'>List webhooks</h2>
@@ -354,7 +354,7 @@
 </tr>
 <tr>
 <td><strong>event</strong><br/><em>optional</em></td>
-<td>The event you wish to have the webhook listen to. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
+<td>The event you wish to have the webhook listen to. The default event is <code class="prettyprint">message</code>. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
 </tr>
 </tbody></table>
 <h2 id='delete-webhook'>Delete webhook</h2>
@@ -405,12 +405,12 @@
 <p>When a webhook is created, a shared secret will be generated for it. The secret can be used to determine the veracity of a request to your webhook route. It is included as an <code class="prettyprint">X-API-Key</code> header with each webhook request sent to the target URL.</p>
 
 <p>That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.</p>
-<h1 id='app-user'>App User</h1>
+<h1 id='app-user-beta'>App User <beta/></h1>
 <p>The app user object represents an end user using your app. The app user document contains basic profile information such as <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, and <code class="prettyprint">email</code>, as well as any custom user properties you choose to configure.</p>
 
 <p>The <code class="prettyprint">/v1/appusers</code> path gives you APIs that can be used to update the user&rsquo;s properties, retrieve conversation history, post a message, and track app user events.</p>
-<h2 id='userid'>userId</h2>
-<p>App users may be created with an optional <code class="prettyprint">userId</code> parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices.</p>
+<h3 id='userid'>userId</h3>
+<p>App users may be created with an optional <code class="prettyprint">userId</code> parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices. To understand how this works, see the section covering <a href="/#users-on-multiple-devices">users on multiple devices</a>.</p>
 
 <p><aside class="notice">
 If a userId has been specified for a given app user, it can be used in place of the appUserId in any <code class="prettyprint">/v1/appusers/</code> API path.
@@ -513,6 +513,34 @@ If a userId has been specified for a given app user, it can be used in place of 
 <p><api><code class="prettyprint">GET /v1/appusers/{appUserId|userId}</code></api></p>
 
 <p>Use this API to fetch the properties of an existing app user.</p>
+<h2 id='track-event'>Track Event</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"name":"completed_sale"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/event</code></api></p>
+
+<p>Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the <code class="prettyprint">completed_sale</code> event, calling this API is the way to trigger such a whisper.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>name</strong><br/><em>required</em></td>
+<td>The name of the triggered event.</td>
+</tr>
+</tbody></table>
+<h1 id='conversations-beta'>Conversations <beta/></h1>
+<p>When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the <code class="prettyprint">/v1/appusers/</code> API.</p>
 <h2 id='get-conversation'>Get Conversation</h2>
 <blockquote>
 <p>Request:</p>
@@ -584,7 +612,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 </tr>
 <tr>
 <td><strong>name</strong><br/><em>optional</em></td>
-<td>The display name of the message author.</td>
+<td>The display name of the message author. By default, app user messages will have this field set to a friendly name based on the user&rsquo;s <code class="prettyprint">givenName</code> and <code class="prettyprint">surname</code>.</td>
 </tr>
 <tr>
 <td><strong>email</strong><br/><em>optional</em></td>
@@ -611,32 +639,6 @@ If a userId has been specified for a given app user, it can be used in place of 
 <p><aside class="notice">
 For messages originating from an app maker, a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope must be included.
 </aside></p>
-<h2 id='track-event'>Track Event</h2>
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event <span class="se">\</span>
-     -X POST <span class="se">\</span>
-     -d <span class="s1">'{"name":"completed_sale"}'</span> <span class="se">\</span>
-     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
-     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
-</code></pre>
-
-<p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/event</code></api></p>
-
-<p>Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the <code class="prettyprint">completed_sale</code> event, calling this API is the way to trigger such a whisper.</p>
-
-<table><thead>
-<tr>
-<th><strong>Arguments</strong></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>name</strong><br/><em>required</em></td>
-<td>The name of the triggered event.</td>
-</tr>
-</tbody></table>
 
       </div>
       <div class="dark-box">
