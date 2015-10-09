@@ -22,6 +22,7 @@ under the License.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><%= current_page.data.title || "API Documentation" %></title>
 
+    <%= favicon_tag '/images/favicon.ico' %>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>
     <%= stylesheet_link_tag "3col", media: :all %>
@@ -39,6 +40,8 @@ under the License.
         });
       </script>
     <% end %>
+    <script src="//use.typekit.net/wdu7dsf.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body class="<%= page_classes %>">
