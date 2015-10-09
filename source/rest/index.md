@@ -54,12 +54,10 @@ Some APIs accept either of the two authentication methods while others require a
 
 ## App Token
 
-> Calling `/v1/appboot` using an app token
+> Calling `GET /v1/appusers` using an app token
 
 ```shell
-curl https://api.supportkit.io/v1/appboot \
-     -X POST -d '{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}' \
-     -H 'content-type:application/json' \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -71,12 +69,10 @@ Specifying an `appToken` alone is sufficient to call any of the app user facing 
 
 ## JWT
 
-> Calling `/v1/appboot` using a `jwt`
+> Calling `GET /v1/appusers` using a `jwt`
 
 ```shell
-curl https://api.supportkit.io/v1/appboot \
-     -X POST -d '{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}' \
-     -H 'content-type: application/json' \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'authorization: Bearer your-jwt'
 ```
 
@@ -124,8 +120,8 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 1. The `app` scope grants access to all users and conversations within a given SupportKit app. The `app` scope is reserved for server-to-server scenarios, the creation of webhooks for example. [Node.js code sample](https://gist.github.com/alavers/d9af102ca4cefac1a7e5)
 
-| API                        | Accepted `jwt` Scopes |
-|----------------------------|-----------------------|
+| API                       | Accepted `jwt` Scopes |
+|---------------------------|-----------------------|
 | [/v1/appusers](#app-user) | app, appUser          |
 | [/v1/webhooks](#webhook)  | app                   |
 
@@ -135,13 +131,16 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 ```json
 {
-    "event": "message",
+    "event": "message:appUser",
     "items":[{
         "_id": "55c8c1498590aa1900b9b9b1",
+        "text": "Hi! Do you have time to chat?",
+        "role": "appUser",
         "authorId": "c7f6e6d6c3a637261bd9656f",
         "name": "Steve",
-        "text": "Hi! Do you have time to chat?",
-        "received": 1439220041.586
+        "received": 1444348338.704,
+        "metadata": [],
+        "actions": []
     }],
     "appUserId": "c7f6e6d6c3a637261bd9656f"
 }
@@ -160,7 +159,7 @@ When a webhook event is triggered, a JSON payload will be posted to the URL conf
 ```shell
 curl https://api.supportkit.io/v1/webhooks \
      -X POST \
-     -d '{"target": "http://myservice.com/v1/sk"}' \
+     -d '{"target": "http://example.com/callback"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -169,10 +168,14 @@ curl https://api.supportkit.io/v1/webhooks \
 
 ```json
 {
-  "_id": "55c8d9758590aa1900b9b9f6",
-  "target": "http://myservice.com/v1/sk",
-  "events": ["message"],
-  "secret": "8sd2xxtro6poa8i4pleh52ovd"
+  "webhook": {
+    "_id": "55c8d9758590aa1900b9b9f6",
+      "events": [
+        "message"
+      ],
+      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+    "target": "http://example.com/callback"
+  }
 }
 ```
 
@@ -197,49 +200,23 @@ Create a webhook for the specified app. The response body will include a list of
 > Response:
 
 ```json
-[{
-     "_id": "55c8d9758590aa1900b9b9f6",
-    "target": "http://myservice.com/v1/sk",
-    "events": ["message"],
-    "secret": "8sd2xxtro6poa8i4pleh52ovd"
-}]
+{
+  "webhooks": [
+    {
+      "_id": "55c8d9758590aa1900b9b9f6",
+      "events": [
+        "message"
+      ],
+      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+      "target": "http://example.com/callback"
+    }
+  ]
+}
 ```
 
 <api>`GET /v1/webhooks`</api>
 
 List all webhooks configured for a given app.
-
-## Update webhook
-
-> Request:
-
-```shell
-curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
-     -X PUT \
-     -d '{"target": "http://myservice.com/v1/supportkit"}' \
-     -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-jwt'
-```
-
-> Response
-
-```json
-{
-  "_id": "55c8d9758590aa1900b9b9f6",
-  "target": "http://myservice.com/v1/supportkit",
-  "events": ["message:appUser"],
-  "secret": "8sd2xxtro6poa8i4pleh52ovd"
-}
-```
-
-<api>`PUT /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
-
-Use this API to update your existing webhooks.
-
-| **Arguments**             |   |
-|---------------------------|---|
-| **target**<br/>*optional* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. This property is case sensitive. [More details](#webhook-events). |
 
 ## Get webhook
 
@@ -254,16 +231,56 @@ curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 
 ```json
 {
-  "_id": "55c8d9758590aa1900b9b9f6",
-  "target": "http://myservice.com/v1/supportkit",
-  "events": ["message:appUser"],
-  "secret": "8sd2xxtro6poa8i4pleh52ovd"
+  "webhook": {
+    "_id": "55c8d9758590aa1900b9b9f6",
+      "events": [
+        "message"
+      ],
+      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+    "target": "http://example.com/callback"
+  }
 }
 ```
 
 <api>`GET /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
 
 Individual webhooks can be fetched using this API.
+
+## Update webhook
+
+> Request:
+
+```shell
+curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
+     -X PUT \
+     -d '{"target": "http://example.com/callback"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+
+> Response
+
+```json
+{
+  "webhook": {
+    "_id": "55c8d9758590aa1900b9b9f6",
+      "events": [
+        "message"
+      ],
+      "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
+    "target": "http://example.com/callback"
+  }
+}
+```
+
+<api>`PUT /v1/webhooks/55c8d9758590aa1900b9b9f6`</api>
+
+Use this API to update your existing webhooks.
+
+| **Arguments**             |   |
+|---------------------------|---|
+| **target**<br/>*optional* | URL to be called when the webhook is triggered. |
+| **event**<br/>*optional*  | The event you wish to have the webhook listen to. This property is case sensitive. [More details](#webhook-events). |
 
 ## Delete webhook
 
@@ -286,7 +303,7 @@ Deletes the specified webhook.
 ```shell
 curl https://api.supportkit.io/v1/webhooks
      -X POST \
-     -d '{"target": "http://myservice.com/v1/sk", "events": ["message:appUser"]}' \
+     -d '{"target": "http://example.com/callback", "events": ["message:appUser"]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -311,9 +328,50 @@ The app user object represents an end user using your app. The app user document
 
 The `/v1/appusers` path gives you APIs that can be used to update the user's properties, retrieve conversation history, post a message, and track app user events.
 
+## userId
+
+App users may be created with an optional `userId` parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices.
+
 <aside class="notice">
-If a userId has been specified for a given app user, it can be used in place of the appUserId in the appusers path argument.
+If a userId has been specified for a given app user, it can be used in place of the appUserId in any `/v1/appusers/` API path.
 </aside>
+
+## Get App User
+
+> Request by appUserId:
+
+```shell
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+
+> Request by userId:
+
+```shell
+curl https://api.supportkit.io/v1/appusers/steveb@channel5.com \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+
+> Response:
+
+```json
+{
+    "appUser": {
+        "_id": "deb920657bbc3adc3fec7963",
+        "userId": "steveb@channel5.com",
+        "givenName": "Steve",
+        "surname": "Brule",
+        "email": "steveb@channel5.com",
+        "signedUpAt": "2015-10-08T23:52:11.677Z",
+        "properties": {},
+        "conversationStarted": true
+    }
+}
+```
+
+<api>`GET /v1/appusers/{appUserId|userId}`</api>
+
+Retrieve a specific app user. Like all other `/v1/appusers/` paths, an app user can be identified using either the `appUserId` or the `userId`.
 
 ## Update
 
@@ -323,6 +381,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -X PUT \
      -d '{"givenName": "Steve"}'
+     -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -330,10 +389,16 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
 
 ```json
 {
-  "givenName": "Steve",
-  "email": "steve@example.com",
-  "signedUpAt": "2015-10-01T21:20:35.863Z",
-  "properties": {}
+    "appUser": {
+        "_id": "deb920657bbc3adc3fec7963",
+        "userId": "steveb@channel5.com",
+        "givenName": "Steve",
+        "surname": "Brule",
+        "email": "steveb@channel5.com",
+        "signedUpAt": "2015-10-08T23:52:11.677Z",
+        "properties": {},
+        "conversationStarted": true
+    }
 }
 ```
 
@@ -348,26 +413,6 @@ Update an app user's basic profile information and specify custom profile data v
 | **email**<br/>*optional*      | The user's email address. |
 | **signedUpAt**<br/>*optional* | The date at which the user signed up. Must be ISO 8601 time format (`YYYY-MM-DDThh:mm:ss.sssZ`) |
 | **properties**<br/>*optional* | A flat JSON object containing custom defined user properties. |
-
-## Get App User
-
-> Request:
-
-```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
-     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
-```
-
-> Response:
-
-```json
-{
-  "givenName": "Steve",
-  "email": "steve@example.com",
-  "signedUpAt": "2015-10-01T21:20:35.863Z",
-  "properties": {}
-}
-```
 
 <api>`GET /v1/appusers/{appUserId|userId}`</api>
 
@@ -386,16 +431,18 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation
 
 ```json
 {
+  "conversation": {
     "_id": "df0ebe56cbeab98589b8bfa7",
-    "messages": [{
-        "_id": "55c8c1498590aa1900b9b9b1",
-        "authorId": "c7f6e6d6c3a637261bd9656f",
-        "name": "Bob",
-        "text": "Hi",
-        "received": 1439220041.586
-    }],
+    "appMakers": [],
     "appUsers": ["c7f6e6d6c3a637261bd9656f"],
-    "appMakers": []
+    "messages": [{
+      "_id": "55c8c1498590aa1900b9b9b1",
+      "authorId": "c7f6e6d6c3a637261bd9656f",
+      "name": "Steve",
+      "text": "Just put some vinegar on it",
+      "received": 1439220041.586
+    }]
+  }
 }
 ```
 
@@ -410,7 +457,7 @@ Get the specified app user's conversation history, if it exists. If the conversa
 ```shell
 curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
-     -d '{"text":"My dishwasher is broken", "role": "appUser"}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appUser"}' \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
@@ -420,7 +467,7 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation
 ```shell
 curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
-     -d '{"text":"Oh no!", "role": "appMaker"}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
