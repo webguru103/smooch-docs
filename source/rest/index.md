@@ -61,7 +61,7 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
-When calling SupportKit APIs on behalf of the app user (eg. [`/v1/appboot`](#app-boot) and [`/v1/appuser`](#app-user)), an `appToken` may be used for basic authentication. 
+When calling SupportKit APIs such as [`/v1/appusers`](#app-users) on behalf of app users, an `appToken` may be used for basic authentication.
 
 Every SupportKit app has an `appToken` provisioned to it which can be found in the app settings tab. The `appToken` is sent via the the `app-token` HTTP header. This will link the caller to a specific SupportKit app.
 
@@ -125,7 +125,7 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 | [/v1/appusers](#app-user) | app, appUser          |
 | [/v1/webhooks](#webhook)  | app                   |
 
-# Webhooks
+# Webhooks <beta/>
 
 > Webhook example payload:
 
@@ -186,7 +186,7 @@ Create a webhook for the specified app. The response body will include a list of
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*required* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. This property is case sensitive. [More details](#webhook-events). |
+| **event**<br/>*optional*  | The event you wish to have the webhook listen to. The default event is `message`. This property is case sensitive. [More details](#webhook-events). |
 
 ## List webhooks
 
@@ -280,7 +280,7 @@ Use this API to update your existing webhooks.
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*optional* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. This property is case sensitive. [More details](#webhook-events). |
+| **event**<br/>*optional*  | The event you wish to have the webhook listen to. The default event is `message`. This property is case sensitive. [More details](#webhook-events). |
 
 ## Delete webhook
 
@@ -322,15 +322,15 @@ When a webhook is created, a shared secret will be generated for it. The secret 
 
 That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.
 
-# App User
+# App User <beta/>
 
 The app user object represents an end user using your app. The app user document contains basic profile information such as `givenName`, `surname`, and `email`, as well as any custom user properties you choose to configure.
 
 The `/v1/appusers` path gives you APIs that can be used to update the user's properties, retrieve conversation history, post a message, and track app user events.
 
-## userId
+### userId
 
-App users may be created with an optional `userId` parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices.
+App users may be created with an optional `userId` parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices. To understand how this works, see the section covering [users on multiple devices](/#users-on-multiple-devices).
 
 <aside class="notice">
 If a userId has been specified for a given app user, it can be used in place of the appUserId in any `/v1/appusers/` API path.
@@ -418,6 +418,30 @@ Update an app user's basic profile information and specify custom profile data v
 
 Use this API to fetch the properties of an existing app user.
 
+## Track Event
+
+> Request:
+
+```shell
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
+     -X POST \
+     -d '{"name":"completed_sale"}' \
+     -H 'content-type: application/json' \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+
+<api>`POST /v1/appusers/{appUserId|userId}/event`</api>
+
+Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the `completed_sale` event, calling this API is the way to trigger such a whisper.
+
+| **Arguments**           |   |
+|-------------------------|---|
+| **name**<br/>*required* | The name of the triggered event. |
+
+# Conversations <beta/>
+
+When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the `/v1/appusers/` API.
+
 ## Get Conversation
 
 > Request:
@@ -481,7 +505,7 @@ Post a message to the app user. If the app user does not yet have a conversation
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The message content.       |
 | **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
-| **name**<br/>*optional*      | The display name of the message author. |
+| **name**<br/>*optional*      | The display name of the message author. By default, app user messages will have this field set to a friendly name based on the user's `givenName` and `surname`. |
 | **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the SupportKit account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
 | **avatarUrl**<br/>*optional* | The URL of the desired message avatar image. This field will override any avatar chosen via the `email` parameter. |
 | **mediaUrl**<br/>*optional*  | The image URL used in an image message. |
@@ -491,23 +515,3 @@ Post a message to the app user. If the app user does not yet have a conversation
 <aside class="notice">
 For messages originating from an app maker, a `jwt` credential with `app` level scope must be included.
 </aside>
-
-## Track Event
-
-> Request:
-
-```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
-     -X POST \
-     -d '{"name":"completed_sale"}' \
-     -H 'content-type: application/json' \
-     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
-```
-
-<api>`POST /v1/appusers/{appUserId|userId}/event`</api>
-
-Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the `completed_sale` event, calling this API is the way to trigger such a whisper.
-
-| **Arguments**           |   |
-|-------------------------|---|
-| **name**<br/>*required* | The name of the triggered event. |
