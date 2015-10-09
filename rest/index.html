@@ -113,11 +113,9 @@
 </tbody></table>
 <h2 id='app-token'>App Token</h2>
 <blockquote>
-<p>Calling <code class="prettyprint">/v1/appboot</code> using an app token</p>
+<p>Calling <code class="prettyprint">GET /v1/appusers</code> using an app token</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appboot <span class="se">\</span>
-     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
-     -H <span class="s1">'content-type:application/json'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
@@ -128,11 +126,9 @@
 <p>Specifying an <code class="prettyprint">appToken</code> alone is sufficient to call any of the app user facing API.</p>
 <h2 id='jwt'>JWT</h2>
 <blockquote>
-<p>Calling <code class="prettyprint">/v1/appboot</code> using a <code class="prettyprint">jwt</code></p>
+<p>Calling <code class="prettyprint">GET /v1/appusers</code> using a <code class="prettyprint">jwt</code></p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appboot <span class="se">\</span>
-     -X POST -d <span class="s1">'{"deviceId": "03f70682b7f5b21536a3674f38b3e220"}'</span> <span class="se">\</span>
-     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 
@@ -197,13 +193,16 @@
 <p>Webhook example payload:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message:appUser"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"items"</span><span class="p">:[{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1439220041.586</span><span class="w">
+        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1444348338.704</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
     </span><span class="p">}],</span><span class="w">
     </span><span class="s2">"appUserId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -220,7 +219,7 @@
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"target": "http://myservice.com/v1/sk"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://example.com/callback"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
@@ -229,10 +228,14 @@
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/sk"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+  </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"message"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -266,24 +269,56 @@
 <blockquote>
 <p>Response:</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
-     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/sk"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
-</span><span class="p">}]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"webhooks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"message"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p><api><code class="prettyprint">GET /v1/webhooks</code></api></p>
 
 <p>List all webhooks configured for a given app.</p>
+<h2 id='get-webhook'>Get webhook</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"message"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
+
+<p>Individual webhooks can be fetched using this API.</p>
 <h2 id='update-webhook'>Update webhook</h2>
 <blockquote>
 <p>Request:</p>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
      -X PUT <span class="se">\</span>
-     -d <span class="s1">'{"target": "http://myservice.com/v1/supportkit"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://example.com/callback"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
@@ -292,10 +327,14 @@
 <p>Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/supportkit"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message:appUser"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
+  </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"message"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.com/callback"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -318,28 +357,6 @@
 <td>The event you wish to have the webhook listen to. This property is case sensitive. <a href="#webhook-events">More details</a>.</td>
 </tr>
 </tbody></table>
-<h2 id='get-webhook'>Get webhook</h2>
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
-     -H <span class="s1">'authorization: Bearer your-jwt'</span>
-</code></pre>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"target"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://myservice.com/v1/supportkit"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"message:appUser"</span><span class="p">],</span><span class="w">
-  </span><span class="s2">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8sd2xxtro6poa8i4pleh52ovd"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p><api><code class="prettyprint">GET /v1/webhooks/55c8d9758590aa1900b9b9f6</code></api></p>
-
-<p>Individual webhooks can be fetched using this API.</p>
 <h2 id='delete-webhook'>Delete webhook</h2>
 <blockquote>
 <p>Request:</p>
@@ -358,7 +375,7 @@
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"target": "http://myservice.com/v1/sk", "events": ["message:appUser"]}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"target": "http://example.com/callback", "events": ["message:appUser"]}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
@@ -392,17 +409,24 @@
 <p>The app user object represents an end user using your app. The app user document contains basic profile information such as <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, and <code class="prettyprint">email</code>, as well as any custom user properties you choose to configure.</p>
 
 <p>The <code class="prettyprint">/v1/appusers</code> path gives you APIs that can be used to update the user&rsquo;s properties, retrieve conversation history, post a message, and track app user events.</p>
+<h2 id='userid'>userId</h2>
+<p>App users may be created with an optional <code class="prettyprint">userId</code> parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices.</p>
 
 <p><aside class="notice">
-If a userId has been specified for a given app user, it can be used in place of the appUserId in the appusers path argument.
+If a userId has been specified for a given app user, it can be used in place of the appUserId in any <code class="prettyprint">/v1/appusers/</code> API path.
 </aside></p>
-<h2 id='update'>Update</h2>
+<h2 id='get-app-user'>Get App User</h2>
 <blockquote>
-<p>Request:</p>
+<p>Request by appUserId:</p>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
-     -X PUT <span class="se">\</span>
-     -d <span class="s1">'{"givenName": "Steve"}'</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Request by userId:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/steveb@channel5.com <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
@@ -410,10 +434,47 @@ If a userId has been specified for a given app user, it can be used in place of 
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steve@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-01T21:20:35.863Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brule"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T23:52:11.677Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/appusers/{appUserId|userId}</code></api></p>
+
+<p>Retrieve a specific app user. Like all other <code class="prettyprint">/v1/appusers/</code> paths, an app user can be identified using either the <code class="prettyprint">appUserId</code> or the <code class="prettyprint">userId</code>.</p>
+<h2 id='update'>Update</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+     -X PUT <span class="se">\</span>
+     -d <span class="s1">'{"givenName": "Steve"}'</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"surname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brule"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T23:52:11.677Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -448,24 +509,6 @@ If a userId has been specified for a given app user, it can be used in place of 
 <td>A flat JSON object containing custom defined user properties.</td>
 </tr>
 </tbody></table>
-<h2 id='get-app-user'>Get App User</h2>
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
-     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
-</code></pre>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steve@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-01T21:20:35.863Z"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 
 <p><api><code class="prettyprint">GET /v1/appusers/{appUserId|userId}</code></api></p>
 
@@ -482,16 +525,18 @@ If a userId has been specified for a given app user, it can be used in place of 
 <p>Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"conversation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bob"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1439220041.586</span><span class="w">
-    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"appMakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"appUsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">],</span><span class="w">
-    </span><span class="s2">"appMakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Just put some vinegar on it"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1439220041.586</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -504,7 +549,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"My dishwasher is broken", "role": "appUser"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appUser"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
@@ -514,7 +559,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Oh no!", "role": "appMaker"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
