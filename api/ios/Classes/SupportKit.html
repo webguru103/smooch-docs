@@ -7,7 +7,7 @@
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
-	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
 </head>
 <body class="appledoc">
 	<header>
@@ -56,9 +56,15 @@
 	
 	<optgroup label="Class Methods">
 		
+		<option value="//api/name/close">+ close</option>
+		
 		<option value="//api/name/conversation">+ conversation</option>
 		
 		<option value="//api/name/initWithSettings:">+ initWithSettings:</option>
+		
+		<option value="//api/name/login:jwt:">+ login:jwt:</option>
+		
+		<option value="//api/name/logout">+ logout</option>
 		
 		<option value="//api/name/newConversationViewController">+ newConversationViewController</option>
 		
@@ -285,7 +291,55 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>Calling this method with search disabled and no recommendations configured is equivalent to calling +showConversation.</p>
 
-<p>+initWithSettings: must have been called prior to calling show.</p>
+<p>+initWithSettings: must have been called prior to calling this method.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/close" title="close"></a>
+	<h3 class="method-title"><code><a href="#//api/name/close">+&nbsp;close</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Dismisses any SupportKit UI currently on screen.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)close</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Note: If a view controller was created and presented using <code>newConversationViewController</code>, calling this method will have no effect.</p>
+
+<p>+initWithSettings: must have been called prior to calling this method.</p>
 			</div>
 			
 
@@ -333,7 +387,7 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>Uses the top-most view controller of the application&rsquo;s main window as presenting view controller. For more fine-grained control over the presenting view controller, use +showConversationFromViewController: instead.</p>
 
-<p>+initWithSettings: must have been called prior to calling showConversation.</p>
+<p>+initWithSettings: must have been called prior to calling this method.</p>
 			</div>
 			
 
@@ -381,7 +435,7 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>In most cases, it is better to use +showConversation. If you need more fine-grained control over which view controller is used as presenting view controller, use this method instead.</p>
 
-<p>+initWithSettings: must have been called prior to calling +showConversationFromViewController:.</p>
+<p>+initWithSettings: must have been called prior to calling this method.</p>
 			</div>
 			
 
@@ -433,6 +487,8 @@
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>You may use this view controller to embed the conversation in a navigation controller, to change the modal presentation style, or display it in any way you choose.</p>
+
+<p>Note: It is the responsibility of the caller to show, hide, and maintain a reference to this view controller. Calling <code>close</code> will not dismiss a view controller created in this way.</p>
 			</div>
 			
 
@@ -480,7 +536,7 @@
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>Upon completing (or skipping) the hint, the user will land on the SupportKit Home screen (equivalent to calling +show)</p>
 
-<p>+initWithSettings: must have been called prior to calling showWithGestureHint.</p>
+<p>+initWithSettings: must have been called prior to calling this method.</p>
 			</div>
 			
 
@@ -809,6 +865,123 @@ Passing nil will remove the current top recommendation.</p>
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/login:jwt:" title="login:jwt:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/login:jwt:">+&nbsp;login:jwt:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Logs in a new SupportKit user.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)login:(NSString *)<em>userId</em> jwt:(NSString *)<em>jwt</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>userId</code></th>
+						<td><p>The distinct id of the user to login. Must not be nil.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>jwt</code></th>
+						<td><p>Optional jwt used to prove the origin of the login request. May be nil.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>You can either use this method to transition from logged out state to logged in, or to switch the currently logged in user to a different one.</p>
+
+<p>+initWithSettings: must have been called prior to calling this method.</p>
+
+<p>You may not call login while the conversation screen is shown. Doing so will result in a no-op.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/logout" title="logout"></a>
+	<h3 class="method-title"><code><a href="#//api/name/logout">+&nbsp;logout</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Logs out the current user.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)logout</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>This method will automatically login an anonymous user after logging out the current user.</p>
+
+<p>Calling this method while already in anonymous state has no effect.</p>
+
+<p>You may not call logout while the conversation screen is shown. Doing so will result in a no-op.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SupportKit.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -824,10 +997,10 @@ Passing nil will remove the current top recommendation.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Radialpoint. All rights reserved. Updated: 2015-08-21</p>
+						<p class="copyright">Copyright &copy; 2015 Radialpoint. All rights reserved. Updated: 2015-10-13</p>
 						
 						
-						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
 						
 					</div>
 				</footer>
