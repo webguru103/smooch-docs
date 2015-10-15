@@ -13,18 +13,19 @@ Smooch has a Hipchat integration that allows your team to communicate with your 
 
 #### Step 2. ...
 
-<img style="width:50%; min-width:400px; max-width:800px;" src="/images/step_2.jpeg" alt="There is no Step 2">
+![There is no Step 2](/images/step_2.jpeg)
 <br/>
 
 Hipchat Connect has allowed Smooch to integrate into Hipchat in some awesome ways. 
 <br/>
 You can easily view your active conversations and user profiles at a glance.
 
-<img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_glance.png" alt="At a glance">
+![At a glance](/images/hipchat_glance.png)
+<br/>
 
 We've also added some handy options to the context menu so that you can easily use Smooch's features directly within Hipchat.
 
-<img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_actions.png" alt="Hipchat actions">
+![Hipchat actions](/images/hipchat_actions.png)
 
 This makes adding internal notes for fellow colleagues really easy.
 
