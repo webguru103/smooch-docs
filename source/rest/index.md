@@ -368,7 +368,7 @@ This API is called by a mobile device or browser when the app is first loaded. I
 1. Update an existing app user's profile and device information
 1. Authenticate the `appUser` if `jwt` credentials are provided
 
-The API requiresa that a `device` be specified at the very minimum. A `userId` may also be specified to link app user accounts across devices. The `pushNotificationDeviceToken` is also specified here, to facilitate push notifications. Additional device information can be specified via the `deviceInfo` field, which expects a flat JSON object.
+The API requires that a `device` be specified at the very minimum. A `userId` may also be specified to link app user accounts across devices.
 
 | **Arguments**               |   |
 |-----------------------------|---|
