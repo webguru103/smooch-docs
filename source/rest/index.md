@@ -368,7 +368,11 @@ This API is called by a mobile device or browser when the app is first loaded. I
 1. Update an existing app user's profile and device information
 1. Authenticate the `appUser` if `jwt` credentials are provided
 
-The API requires that a `device` be specified at the very minimum. A `userId` may also be specified to link app user accounts across devices.
+The API requires that a `device` be specified at the very minimum. A `userId` may also be specified to link app user accounts across devices. 
+
+The API responds with an `appUser` object. The `appUser` includes an `_id` that can be used to make further API calls on behalf of that user. If the `userId` and/or `device.id` are seen for the first time a new `appUser` will be created. If not, the existing `appUser` be returned.
+
+An `app` object is also returned which includes metadata about the app, such as information about push notification channels.
 
 | **Arguments**               |   |
 |-----------------------------|---|
@@ -412,10 +416,10 @@ The `device` object may also accept a flat `info` JSON object. Device informatio
 | **browserLanguage**       | `en-US`                   | web                |
 | **currentTittle**         | `Welcome`                 | web                |
 
-The API will respond with the `appUserId` of the app user in question, which can then be used to make API calls to the conversation API. The response will also include any profile information that was previously set for the app user, including custom properties.
+The API will respond with the `_id` of the app user in question, which can then be used to make API calls to the conversation API. The response will also include any profile information that was previously set for the app user, including custom properties.
 
 <aside class="notice">
-In some scenarios, the `appUserId` returned in an app boot call may change. This is possible for example when the `userId` is being used to log a user in on multiple devices, which may cause two distinct `appUserId`s to merge together. The caller should always check if the returned `appUserId` has changed, and re-fetch conversation history whenever appropriate.
+In some scenarios, the `appUser._id` returned in an app boot call may change. This is possible for example when the `userId` is being used to log a user in on multiple devices, which may cause two distinct app users to merge together. The caller should always check if the returned `appUser._id` has changed, and re-fetch conversation history whenever appropriate.
 </aside>
 
 # App User <beta/>
@@ -429,7 +433,7 @@ The `/v1/appusers` path gives you APIs that can be used to update the user's pro
 App users may be created with an optional `userId` parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices. To understand how this works, see the section covering [users on multiple devices](/#users-on-multiple-devices).
 
 <aside class="notice">
-If a userId has been specified for a given app user, it can be used in place of the appUserId in any `/v1/appusers/` API path.
+If a `userId` has been specified for a given app user, it can be used in place of the `appUser._id` in any `/v1/appusers/` API path.
 </aside>
 
 ## Get App User
