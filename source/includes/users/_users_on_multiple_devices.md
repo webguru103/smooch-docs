@@ -4,12 +4,12 @@ SupportKit allows you to identify new users on the fly, engage with them in a si
 
 You may have users using your app on multiple devices. For example, suppose they have your app installed on both their iPhone and their iPad. You might also have SupportKit integrated in both your mobile app as well as on your web site.
 
-If you want the user to see the same conversation across devices you can do so by assigning your users a `userId`. This will link a user across all devices and platforms that have integrated with your SupportKit app. Specifying a `userId` also facilitates [user authentication](#securing-your-users).
+If you want the user to see the same conversation across devices you can do so by assigning your users a `userId`. This will link a user across all devices and platforms that have integrated with your SupportKit app. Specifying a `userId` also facilitates [user authentication](#authenticating-users-optional).
 
 The `userId` is a string that can be an email, GUID, or an existing ID from your own user directory. The `userId` must be unique within a given SupportKit app, and it will only link devices within a single SupportKit app.
 
 <aside class="warning">
-**Caution:** If you're specifying a `userId` then in order to keep conversations private we strongly suggest [securing your users](#securing-your-users). If a `userId` is used without a JWT credential, then anyone who can discover a user's `userId` could potentially eavesdrop on the conversation.
+**Caution:** If you're specifying a `userId` then in order to keep conversations private we strongly suggest [authenticating your users](#authenticating-users-optional). If a `userId` is used without a JWT credential, then anyone who can discover a user's `userId` could potentially eavesdrop on the conversation.
 </aside>
 
 After SupportKit has been initialized, you can set the `userId` using the `login` API:
