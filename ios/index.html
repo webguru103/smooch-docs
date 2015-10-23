@@ -58,8 +58,12 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://supportkit.io'>Sign up for SupportKit, it's free</a></li>
-            <li><a href='/api'>Class Reference</a></li>
+            <li><a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a></li>
+            <li><br/></li>
+            <li><a href='/ios'>iOS Guide</a> | <a href='/api/ios'>Class Reference</a></li>
+            <li><a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a></li>
+            <li><a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a></li>
+            <li><a href='/rest'>REST API Reference</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -71,7 +75,17 @@
 
 <p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
 
-<p>For more in-depth details on SupportKit&rsquo;s API check out our <a href="http://docs.supportkit.io/api">API reference</a>. The API reference documents every method and property available through SupportKit. If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
+<p>If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
+
+          <h1 id='references'>References</h1>
+<p>For more in-depth details on SupportKit&rsquo;s APIs check out our API Reference documentation. The API reference documents every method and property available through SupportKit.</p>
+
+<ul>
+<li><a href="http://docs.supportkit.io/api/ios" target="_blank">iOS SDK Reference</a></li>
+<li><a href="http://docs.supportkit.io/api/android" target="_blank">Android SDK Reference</a></li>
+<li><a href="https://github.com/supportkit/supportkit-js" target="_blank">Web SDK Reference</a></li>
+<li><a href="/rest" target="_blank">REST API</a></li>
+</ul>
 
           <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
 <p>There are two ways to install the SupportKit SDK. The recommended and easier way makes use of <a href="http://cocoapods.org">CocoaPods</a> to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.</p>
@@ -116,6 +130,10 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 <li>Photos.framework</li>
 <li>AVFoundation.framework</li>
 </ul>
+
+<p><aside class="warning">
+Starting in Xcode 7, <code class="prettyprint">libxml2.dylib</code> is no longer available in the frameworks list. Instead, you need to add the <code class="prettyprint">-lxml2</code> option to your app&rsquo;s <code class="prettyprint">Other Linker Flags</code> build setting.
+</aside></p>
 
 <p>SupportKit should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
 <h2 id='import-the-supportkit-header-file'>Import the SupportKit header file</h2>
