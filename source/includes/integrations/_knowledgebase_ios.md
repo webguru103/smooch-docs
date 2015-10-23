@@ -1,6 +1,6 @@
 ### Configuring Zendesk knowledge base
 
-SupportKit can also instantly embed your Zendesk Help Center in your app. This will give your users the ability to search your Zendesk knowledge base without leaving the app.
+Smooch can also instantly embed your Zendesk Help Center in your app. This will give your users the ability to search your Zendesk knowledge base without leaving the app.
 
 ![kb search](loginandsearch.jpg)
 
@@ -8,22 +8,22 @@ To show the Zendesk knowledge base search, call the init API in the SDK with you
 
 ```objective_c
 SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOURAPPTOKEN"];
-settings.knowledgeBaseURL = @"https://supportkit.zendesk.com"; //TODO: Replace with your own Zendesk URL
-[SupportKit initWithSettings:settings]; 
+settings.knowledgeBaseURL = @"https://smooch.zendesk.com"; //TODO: Replace with your own Zendesk URL
+[Smooch initWithSettings:settings]; 
 ```
 ```swift
 var settings = SKTSettings(appToken: "YOUR_APP_TOKEN")
-settings.knowledgeBaseURL = "https://supportkit.zendesk.com" //TODO: Replace with your own Zendesk URL
-SupportKit.initWithSettings(settings)
+settings.knowledgeBaseURL = "https://smooch.zendesk.com" //TODO: Replace with your own Zendesk URL
+Smooch.initWithSettings(settings)
 ```
 When specifying your Zendesk URL, make sure to include the protocol (http:// or https://) that matches your Zendesk instance's configuration.
 
-Some Zendesk installations are shared between multiple apps. In such cases it's necessary to filter SupportKit's search results to only articles relevant to the specific app. The SupportKit filtering API provides a means to accomplish this, and allows filtering of search results based on categories, sections or forums (Zendesk knowledge bases are organized in three tiers: Category -> Section or Forum -> Article).
+Some Zendesk installations are shared between multiple apps. In such cases it's necessary to filter Smooch's search results to only articles relevant to the specific app. The Smooch filtering API provides a means to accomplish this, and allows filtering of search results based on categories, sections or forums (Zendesk knowledge bases are organized in three tiers: Category -> Section or Forum -> Article).
 
 To find the id of a category, section or forum in Zendesk, simply navigate to the root of a given category/section/forum on your web portal, and copy the id contained in your browser's address bar. The id will be a numerical value in the last path component of the URL.
 
 <aside class="info">
-NOTE: SupportKit only accepts category, section or forum ids, and not article ids.
+NOTE: Smooch only accepts category, section or forum ids, and not article ids.
 </aside>
 
 In HelpCenter, look for the word 'sections' or 'categories' in the URL, as shown in the images below.
@@ -39,7 +39,7 @@ For example, to configure the SDK to only show articles under category ID 200033
 
 ```objective_c
 SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOURAPPTOKEN"];
-settings.knowledgeBaseURL = @"https://supportkit.zendesk.com";
+settings.knowledgeBaseURL = @"https://smooch.zendesk.com";
 
 [settings excludeSearchResultsIf:SKTSearchResultIsNotIn
                       categories:@[@200033675]
@@ -47,7 +47,7 @@ settings.knowledgeBaseURL = @"https://supportkit.zendesk.com";
 ```
 ```swift
 var settings = SKTSettings(appToken: "YOUR_APP_TOKEN")
-settings.knowledgeBaseURL = "https://supportkit.zendesk.com"
+settings.knowledgeBaseURL = "https://smooch.zendesk.com"
 
 settings.excludeSearchResultsIf(SKTSearchResultsFilterMode.ResultIsNotIn, categories: [200033675], sections: nil)
 ```

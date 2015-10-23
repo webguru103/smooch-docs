@@ -1,21 +1,21 @@
 ---
-title: SupportKit Documentation
+title: Smooch Documentation
 
 
 
 
 
 toc_footers:
-  - <a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a>
+  - <a href='http://smooch.io/'>Sign up for Smooch, it's free</a>
   - <br/>
   - <a href='/ios'>iOS Guide</a> | <a href='/api/ios'>Class Reference</a>
   - <a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a>
-  - <a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a>
+  - <a href='/javascript'>Web Guide</a> | <a href='https://github.com/smooch/smooch-js' target="_blank">Class Reference</a>
   - <a href='/rest'>REST API Reference</a>
 includes:
   - welcome
   - references
-  - adding_supportkit_android
+  - adding_smooch_android
   - configuring_push_android
   
   - users/users
@@ -49,5 +49,5 @@ includes:
   - customization/styling_conversations_android
 
 search: true
-api_docs_link: http://docs.supportkit.io/api/android
+api_docs_link: http://docs.smooch.io/api/android
 ---

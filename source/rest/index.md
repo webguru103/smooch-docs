@@ -1,16 +1,16 @@
 ---
 layout: 3col
-title: SupportKit API Reference
+title: Smooch API Reference
 
 language_tabs:
   - shell
 
 toc_footers:
-  - <a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a>
+  - <a href='http://smooch.io/'>Sign up for Smooch, it's free</a>
   - <br/>
   - <a href='/ios'>iOS Guide</a> | <a href='/api/ios'>Class Reference</a>
   - <a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a>
-  - <a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a>
+  - <a href='/javascript'>Web Guide</a> | <a href='https://github.com/smooch/smooch-js' target="_blank">Class Reference</a>
   - <a href='/rest'>REST API Reference</a>
 
 includes:
@@ -20,11 +20,11 @@ search: true
 
 # Introduction
 
-Welcome to the SupportKit API. These APIs give you the means to build your own scenarios using SupportKit, custom tailored to your needs.
+Welcome to the Smooch API. These APIs give you the means to build your own scenarios using Smooch, custom tailored to your needs.
 
 ## Basics
 
-The SupportKit API is designed according to [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) principles.
+The Smooch API is designed according to [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) principles.
 
 The API accepts JSON in request bodies and requires that the `content-type: application/json` header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may be returned as single objects or as arrays of objects, nested within the response object.
 
@@ -32,7 +32,7 @@ The API also facilitates [cross-origin resource sharing](https://en.wikipedia.or
 
 ## Errors
 
-SupportKit uses standard HTTP status codes to communicate errors
+Smooch uses standard HTTP status codes to communicate errors
 
 |         |   |
 |---------|---|
@@ -45,7 +45,7 @@ SupportKit uses standard HTTP status codes to communicate errors
 
 # Authentication
 
-SupportKit APIs offer two methods of authentication:
+Smooch APIs offer two methods of authentication:
 
 1. Using an [App Token](#app-token)
 1. Using a [JSON Web Token (JWT)](#jwt)
@@ -62,13 +62,13 @@ Some APIs accept either of the two authentication methods while others require a
 > Calling `GET /v1/appusers` using an app token
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
-When calling SupportKit APIs such as [`/v1/appusers`](#app-users) on behalf of app users, an `appToken` may be used for basic authentication.
+When calling Smooch APIs such as [`/v1/appusers`](#app-users) on behalf of app users, an `appToken` may be used for basic authentication.
 
-Every SupportKit app has an `appToken` provisioned to it which can be found in the app settings tab. The `appToken` is sent via the the `app-token` HTTP header. This will link the caller to a specific SupportKit app.
+Every Smooch app has an `appToken` provisioned to it which can be found in the app settings tab. The `appToken` is sent via the the `app-token` HTTP header. This will link the caller to a specific Smooch app.
 
 Specifying an `appToken` alone is sufficient to call any of the app user facing API.
 
@@ -77,7 +77,7 @@ Specifying an `appToken` alone is sufficient to call any of the app user facing 
 > Calling `GET /v1/appusers` using a `jwt`
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'authorization: Bearer your-jwt'
 ```
 
@@ -123,7 +123,7 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 1. The `appUser` scope grants access to an individual app user's data and conversation history, but nothing else. It is used when issuing tokens to individual users. A `jwt` with `appUser` scope must also specify a `userId` which uniquely identifies the `appUser` being accessed. [Node.js code sample](https://gist.github.com/alavers/8f07b03895333d83b454)
 
-1. The `app` scope grants access to all users and conversations within a given SupportKit app. The `app` scope is reserved for server-to-server scenarios, the creation of webhooks for example. [Node.js code sample](https://gist.github.com/alavers/d9af102ca4cefac1a7e5)
+1. The `app` scope grants access to all users and conversations within a given Smooch app. The `app` scope is reserved for server-to-server scenarios, the creation of webhooks for example. [Node.js code sample](https://gist.github.com/alavers/d9af102ca4cefac1a7e5)
 
 | API                       | Accepted `jwt` Scopes |
 |---------------------------|-----------------------|
@@ -151,9 +151,9 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 }
 ```
 
-Webhooks are a fantastic way to extend the SupportKit platform beyond the built-in feature set. You can use webhooks to build your own SupportKit chat clients or to integrate more deeply with your favorite CRM.
+Webhooks are a fantastic way to extend the Smooch platform beyond the built-in feature set. You can use webhooks to build your own Smooch chat clients or to integrate more deeply with your favorite CRM.
 
-These webhook APIs require a `jwt` credential with `app` level scope. Furthermore, a webhook can only operate within the scope of a single SupportKit app.
+These webhook APIs require a `jwt` credential with `app` level scope. Furthermore, a webhook can only operate within the scope of a single Smooch app.
 
 When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
 
@@ -162,7 +162,7 @@ When a webhook event is triggered, a JSON payload will be posted to the URL conf
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/webhooks \
+curl https://api.smooch.io/v1/webhooks \
      -X POST \
      -d '{"target": "http://example.com/callback"}' \
      -H 'content-type: application/json' \
@@ -198,7 +198,7 @@ Create a webhook for the specified app. The response body will include a list of
 > Request:
 
 ```shell
-  curl https://api.supportkit.io/v1/webhooks \
+  curl https://api.smooch.io/v1/webhooks \
        -H 'authorization: Bearer your-jwt'
 ```
 
@@ -228,7 +228,7 @@ List all webhooks configured for a given app.
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
+curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -H 'authorization: Bearer your-jwt'
 ```
 
@@ -256,7 +256,7 @@ Individual webhooks can be fetched using this API.
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
+curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -X PUT \
      -d '{"target": "http://example.com/callback"}' \
      -H 'content-type: application/json' \
@@ -292,7 +292,7 @@ Use this API to update your existing webhooks.
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
+curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -X DELETE \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -306,7 +306,7 @@ Deletes the specified webhook.
 > Post event
 
 ```shell
-curl https://api.supportkit.io/v1/webhooks
+curl https://api.smooch.io/v1/webhooks
      -X POST \
      -d '{"target": "http://example.com/callback", "events": ["message:appUser"]}' \
      -H 'content-type: application/json' \
@@ -346,14 +346,14 @@ If a userId has been specified for a given app user, it can be used in place of 
 > Request by appUserId:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
 > Request by userId:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/steveb@channel5.com \
+curl https://api.smooch.io/v1/appusers/steveb@channel5.com \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -383,7 +383,7 @@ Retrieve a specific app user. Like all other `/v1/appusers/` paths, an app user 
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -X PUT \
      -d '{"givenName": "Steve"}'
      -H 'content-type: application/json' \
@@ -424,7 +424,7 @@ Update an app user's basic profile information and specify custom profile data v
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
      -X POST \
      -d '{"name":"completed_sale"}' \
      -H 'content-type: application/json' \
@@ -433,7 +433,7 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
 
 <api>`POST /v1/appusers/{appUserId|userId}/event`</api>
 
-Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the `completed_sale` event, calling this API is the way to trigger such a whisper.
+Trigger an event for a given app user. Some Smooch whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the `completed_sale` event, calling this API is the way to trigger such a whisper.
 
 | **Arguments**           |   |
 |-------------------------|---|
@@ -448,7 +448,7 @@ When the first message is sent to an app user or received from an app user, a co
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 
@@ -480,7 +480,7 @@ Get the specified app user's conversation history, if it exists. If the conversa
 > Post as app user:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
      -d '{"text":"Just put some vinegar on it", "role": "appUser"}' \
      -H 'content-type: application/json' \
@@ -490,7 +490,7 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation
 > Post as app maker:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
      -d '{"text":"Just put some vinegar on it", "role": "appMaker"}' \
      -H 'content-type: application/json' \
@@ -507,7 +507,7 @@ Post a message to the app user. If the app user does not yet have a conversation
 | **text**<br/>*required*      | The message content.       |
 | **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
 | **name**<br/>*optional*      | The display name of the message author. Messages with role `appUser` will default to a friendly name based on the user's `givenName` and `surname`. Messages with role `appMaker` have no default name. |
-| **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the SupportKit account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
+| **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the Smooch account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
 | **avatarUrl**<br/>*optional* | The URL of the desired message avatar image. This field will override any avatar chosen via the `email` parameter. |
 | **mediaUrl**<br/>*optional*  | The image URL used in an image message. |
 | **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpg` |

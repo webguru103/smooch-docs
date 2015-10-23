@@ -1,8 +1,8 @@
 # Whispers
 
-SupportKit allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
+Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
 
-To help get you started, we've built in 3 basic templates and also allow you to create your own using any custom metadata that you're capturing with the `SupportKit User` API.
+To help get you started, we've built in 3 basic templates and also allow you to create your own using any custom metadata that you're capturing with the `Smooch User` API.
 
  * _Welcome Whisper_ : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.
 
@@ -14,13 +14,13 @@ To help get you started, we've built in 3 basic templates and also allow you to 
 
 ## How do Whispers work
 
-You create Whispers from within the [SupportKit dashboard](https://app.supportkit.io) by specifying which users should receive your message, the message you'd like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you'd create a custom Whisper with these settings:
+You create Whispers from within the [Smooch dashboard](https://app.smooch.io) by specifying which users should receive your message, the message you'd like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you'd create a custom Whisper with these settings:
 
 ![Whisper creation form](/images/create_whisper.png)
 
 ### Targeting a group of users
 
-You can target your users based on any information that you've stored using the `SupportKit User` API. We also provide several built-in properties that you can use without instrumenting your app with calls to `SupportKit User` class.
+You can target your users based on any information that you've stored using the `Smooch User` API. We also provide several built-in properties that you can use without instrumenting your app with calls to `Smooch User` class.
 
  * _All users_ : Send the Whisper to *everyone* that has your app. Whispers that target everyone must be [linked to an event](#when-are-whispers-sent).
 
@@ -30,8 +30,8 @@ You can target your users based on any information that you've stored using the 
 
  * _App Version_ : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleShortVersionString key in your app's info.plist file, and is updated each time the user launches your app.
 
-In order to create Whispers based on properties you've defined using the `SupportKit User` class, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our [documentation on the subject](#identifying-your-users).
+In order to create Whispers based on properties you've defined using the `Smooch User` class, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our [documentation on the subject](#identifying-your-users).
 
 ### Personalizing the message text
 
-You can personalize the message that's being sent with the first or last name of the user. To do this, simply use the syntax `{{firstName || fallback }}` when creating your message. If the user's firstName hasn't been set by your code through the `SupportKit User` class then the placeholder will be replaced with the string specified as `fallback`.
+You can personalize the message that's being sent with the first or last name of the user. To do this, simply use the syntax `{{firstName || fallback }}` when creating your message. If the user's firstName hasn't been set by your code through the `Smooch User` class then the placeholder will be replaced with the string specified as `fallback`.

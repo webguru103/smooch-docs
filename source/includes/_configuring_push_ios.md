@@ -16,9 +16,9 @@ Push notifications are a great, unobtrusive way to let your users know that a re
 
 6. Save the .p12 file to your computer. Do NOT set a password on the file, just press OK.
 
-### Step 2. Upload the .p12 file to SupportKit
+### Step 2. Upload the .p12 file to Smooch
 
-1. Go to http://app.supportkit.io and log into your account.
+1. Go to http://app.smooch.io and log into your account.
 
 2. Select the app you want push notifications to enabled for.
 
@@ -46,7 +46,7 @@ You can't receive push notifications in the Xcode simulator, you must use a phys
 
 1. Kill and restart your app.
 
-2. Launch SupportKit.
+2. Launch Smooch.
 
 3. Send a message. Important! You must resend a message after uploading the p12 file.
 
@@ -56,4 +56,4 @@ You'll receive a notification if you're in the app, or outside the app!
 
 ### Step 5. Repeat for Production mode
 
-Take note that there are "Development" and "Production" certificates and profiles. Make sure that you upload the "Production" .p12 file to SupportKit when you're ready to release your build through ad-hoc, enterprise or app store distribution.
+Take note that there are "Development" and "Production" certificates and profiles. Make sure that you upload the "Production" .p12 file to Smooch when you're ready to release your build through ad-hoc, enterprise or app store distribution.
