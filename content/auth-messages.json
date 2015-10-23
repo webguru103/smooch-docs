@@ -26,4 +26,14 @@
     "buttonText": "Learn more",
     "routes": ["login"],
     "default": false
+},{
+    "sectionTitle": "Hipchat",
+    "title": "Hipchat + Smooch",
+    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.jpg",
+    "content": "Never leave HipChat ever again",
+    "buttonTarget": "https://smooch.io/hipchat",
+    "buttonText": "Learn more",
+    "routes": ["signup"],
+    "query" :{ "ref": "hipchat"},
+    "default": false
 }]
