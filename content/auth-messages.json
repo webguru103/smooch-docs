@@ -1,14 +1,4 @@
 [{
-    "sectionTitle": "Hipchat",
-    "title": "Hipchat + Smooch",
-    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.jpg",
-    "content": "Never leave HipChat ever again",
-    "buttonTarget": "https://smooch.io/hipchat",
-    "buttonText": "Learn more",
-    "routes": ["signup"],
-    "query" :{ "ref": "hipchat"},
-    "default": false
-},{
     "sectionTitle": "What's new",
     "title": "Help Scout + SupportKit: The most delightful way to kiss your users hello",
     "image": "https://cdn.supportkit.io/docs/helpscout_campaign.png",
@@ -28,9 +18,18 @@
     "routes": ["login"],
     "default": false
 },{
+    "sectionTitle": "What's new",
+    "title": "Make your app the pick of the litter",
+    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.png",
+    "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
+    "buttonTarget": "https://supportkit.io/ratings/",
+    "buttonText": "Learn more",
+    "routes": ["login"],
+    "default": false
+},{
     "sectionTitle": "Hipchat",
     "title": "Hipchat + Smooch",
-    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.jpg",
+    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.png",
     "content": "Never leave HipChat ever again",
     "buttonTarget": "https://smooch.io/hipchat",
     "buttonText": "Learn more",
