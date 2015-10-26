@@ -405,7 +405,6 @@ The `device` object may also accept a flat `info` JSON object. Device informatio
 
 | Field                     | Example                   | Relevant Platforms |
 |---------------------------|---------------------------|--------------------|
-| **platform**              | `ios`, `android`, `web`   | all                |
 | **appName**               | `foo`                     | ios, android       |
 | **deviceModel**           | `iPhone 5s`               | ios, android       |
 | **os**                    | `iPhone OS`               | ios, android       |
