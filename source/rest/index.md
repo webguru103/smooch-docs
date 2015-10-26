@@ -424,11 +424,19 @@ Update an app user's basic profile information and specify custom profile data v
 > Request:
 
 ```shell
-curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/event \
+curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/events \
      -X POST \
      -d '{"name":"completed_sale"}' \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+
+> Response:
+
+```json
+{
+    "conversationUpdated": true
+}
 ```
 
 <api>`POST /v1/appusers/{appUserId|userId}/event`</api>
