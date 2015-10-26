@@ -439,7 +439,7 @@ curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/events \
 }
 ```
 
-<api>`POST /v1/appusers/{appUserId|userId}/event`</api>
+<api>`POST /v1/appusers/{appUserId|userId}/events`</api>
 
 Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the `completed_sale` event, calling this API is the way to trigger such a whisper.
 
