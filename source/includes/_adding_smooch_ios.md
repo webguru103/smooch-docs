@@ -33,7 +33,7 @@ First, grab a copy of Smooch by [downloading the most recent release](https://gi
 
 Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
 
-![Dependencies in XCode](/images/dependencies.jpg)
+![Dependencies in XCode](/images/dependencies.png)
 
 Now you'll have to add Smooch's dependencies to your project if they're not already linked in. Go to "Build phases" in your project's target and select "Link Binary With Libraries":
 
