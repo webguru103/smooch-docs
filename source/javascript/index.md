@@ -42,12 +42,8 @@ includes:
   - whispers/whisper_actions
   - whispers/whisper_manage
 
-
-
-
-
-
-
+  - customization/string_customization_js
+  - customization/styling_conversations_js
 
 search: true
 api_docs_link: https://github.com/smooch/smooch-js
