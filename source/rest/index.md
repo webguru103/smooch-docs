@@ -329,8 +329,7 @@ That secret is available in the response to the POST request used to generate th
 
 ## Retry Policy
 
-Webhook target will be called expecting response with success status code 2xx.
-Calls which do not return success code will be reattempted up to 5 times at exponential intervals of 5 seconds.
+If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at exponential intervals of 5 seconds.
 
 I.e. the first retry will be after 5 seconds, then 25, 125, etc.
 
