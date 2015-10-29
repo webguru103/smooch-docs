@@ -327,6 +327,12 @@ When a webhook is created, a shared secret will be generated for it. The secret 
 
 That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.
 
+## Retry Policy
+
+If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at exponential intervals of 5 seconds.
+
+I.e. the first retry will be after 5 seconds, then 25, 125, etc.
+
 # App User <beta/>
 
 The app user object represents an end user using your app. The app user document contains basic profile information such as `givenName`, `surname`, and `email`, as well as any custom user properties you choose to configure.
