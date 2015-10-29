@@ -27,10 +27,10 @@
     "routes": ["login"],
     "default": false
 },{
-    "sectionTitle": "Hipchat",
-    "title": "Hipchat + Smooch",
-    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.png",
-    "content": "Never leave HipChat ever again",
+    "sectionTitle": "HipChat",
+    "title": "HipChat + Smooch: team and customer communication together in one place.",
+    "image": "https://website.smooch.io/whats_new/hipchat.png",
+    "content": "Manage conversations, view profiles, and even leave customer notes for your team to see, entirely within HipChat.",
     "buttonTarget": "https://smooch.io/hipchat",
     "buttonText": "Learn more",
     "routes": ["signup"],
