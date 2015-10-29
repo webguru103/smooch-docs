@@ -29,7 +29,7 @@ Remember — when you use CocoaPods to manage your app's dependencies, you have 
 </aside>
 
 ## Manual Method
-First, grab a copy of Smooch by [downloading the most recent release](https://github.com/radialpoint/Smooch/archive/master.zip) or visiting our [GitHub page](https://github.com/radialpoint/Smooch).
+First, grab a copy of Smooch by [downloading the most recent release](https://github.com/smooch/smooch-ios/archive/master.zip) or visiting our [GitHub page](https://github.com/smooch/smooch-ios).
 
 Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
 
@@ -41,18 +41,12 @@ Now you'll have to add Smooch's dependencies to your project if they're not alre
  * CoreTelephony.framework
  * CoreText.framework
  * Foundation.framework
- * libxml2.dylib
- * OpenGLES.framework
  * QuartzCore.framework
  * SystemConfiguration.framework
  * UIKit.framework
  * AssetsLibrary.framework
  * Photos.framework
  * AVFoundation.framework
-
-<aside class="warning">
-Starting in Xcode 7, `libxml2.dylib` is no longer available in the frameworks list. Instead, you need to add the `-lxml2` option to your app's `Other Linker Flags` build setting.
-</aside>
 
  Smooch should now be available to your app and you're ready to add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
 
@@ -121,4 +115,4 @@ $ pod update
 
 ### Manual
 
-To manually update Smooch simply grab a fresh copy of Smooch by [downloading the most recent release](https://github.com/radialpoint/Smooch/archive/master.zip) and re-add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project
+To manually update Smooch simply grab a fresh copy of Smooch by [downloading the most recent release](https://github.com/smooch/smooch-ios/archive/master.zip) and re-add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project
