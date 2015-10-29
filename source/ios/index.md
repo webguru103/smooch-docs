@@ -33,6 +33,7 @@ includes:
   - integrations/email
   - integrations/slack
   - integrations/helpscout
+  - integrations/hipchat
   - integrations/zendesk
   - integrations/knowledgebase_ios
   - integrations/connecting_crm

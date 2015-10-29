@@ -12,6 +12,7 @@ toc_footers:
   - <a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a>
   - <a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a>
   - <a href='/rest'>REST API Reference</a>
+  
 includes:
   - welcome
   - references
@@ -32,6 +33,7 @@ includes:
   - integrations/email
   - integrations/slack
   - integrations/helpscout
+  - integrations/hipchat
   - integrations/zendesk
 
   - integrations/connecting_crm
