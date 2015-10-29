@@ -5,9 +5,9 @@ There are a few ways you can include the Smooch plugin on your Android project.
 The Smooch library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR. The current supported `compiledSdkVersion` must be at least **21**.
 
 ## Android Studio with Gradle
-<span class="badge">[![Bintray](https://api.bintray.com/packages/supportkitorg/maven/supportkit/images/download.svg)](https://bintray.com/supportkitorg/maven/supportkit/_latestVersion)</span>
+<span class="badge">[![Bintray](https://api.bintray.com/packages/smoochorg/maven/smooch/images/download.svg)](https://bintray.com/smoochorg/maven/smooch/_latestVersion)</span>
 
-The Smooch library is hosted on [Bintray](https://bintray.com/supportkitorg/maven/supportkit) and is available on [JCenter](http://jcenter.bintray.com/io/supportkit/).
+The Smooch library is hosted on [Bintray](https://bintray.com/smoochorg/maven/smooch) and is available on [JCenter](http://jcenter.bintray.com/io/smooch/).
 
 Setup JCenter as a repository.
 
@@ -39,7 +39,7 @@ Smooch depends on a few external libraries that many applications already featur
 
 On Eclipse, we need to retrieve our `eclipse` package to add Smooch and our dependencies to your project. Also, we will need to manually add permissions and services to the manifest.
 
-* Download the `smooch-eclipse-x.x.x.zip` file from [Bintray](https://bintray.com/supportkitorg/maven/supportkit). The package is located in `Files/ui/x.x.x/smooch-eclipse-x.x.x.zip`.
+* Download the `smooch-eclipse-x.x.x.zip` file from [Bintray](https://bintray.com/smoochorg/maven/smooch). The package is located in `Files/ui/x.x.x/smooch-eclipse-x.x.x.zip`.
 * Extract the zip and copy the `appcompat` and `smooch` folders to **the root of your project**.
 
 <span class="half-width-img">![eclipse import](images/eclipse_import.png)</span>
