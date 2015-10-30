@@ -34,7 +34,6 @@ includes:
   - integrations/slack
   - integrations/helpscout
   - integrations/zendesk
-  - integrations/knowledgebase_ios
   - integrations/connecting_crm
 
   - getting_conversations_started
@@ -42,8 +41,6 @@ includes:
   - whispers/whisper_actions
   - whispers/whisper_manage
 
-  - recommending_answers
-  - swipe_gesture
   - localization
 
   - customization/string_customization
