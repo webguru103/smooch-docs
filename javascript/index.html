@@ -138,7 +138,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 <p>The <code class="prettyprint">userId</code> is a string that can be an email, GUID, or an existing ID from your own user directory. The <code class="prettyprint">userId</code> must be unique within a given Smooch app, and it will only link devices within a single Smooch app.</p>
 
 <p><aside class="warning">
-<strong>Caution:</strong> If you&rsquo;re specifying a <code class="prettyprint">userId</code> then in order to keep conversations private we strongly suggest <a href="#securing-your-users">securing your users</a>. If a <code class="prettyprint">userId</code> is used without a JWT credential, then anyone who can discover a user&rsquo;s <code class="prettyprint">userId</code> could potentially eavesdrop on the conversation.
+<strong>Caution:</strong> If you&rsquo;re specifying a <code class="prettyprint">userId</code> then in order to keep conversations private we strongly suggest <a href="#authenticating-users-optional">authenticating your users</a>. If a <code class="prettyprint">userId</code> is used without a JWT credential, then anyone who can discover a user&rsquo;s <code class="prettyprint">userId</code> could potentially eavesdrop on the conversation.
 </aside></p>
 
 <p>After Smooch has been initialized, you can set the <code class="prettyprint">userId</code> using the <code class="prettyprint">login</code> API:</p>
