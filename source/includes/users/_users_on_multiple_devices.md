@@ -9,7 +9,7 @@ If you want the user to see the same conversation across devices you can do so b
 The `userId` is a string that can be an email, GUID, or an existing ID from your own user directory. The `userId` must be unique within a given Smooch app, and it will only link devices within a single Smooch app.
 
 <aside class="warning">
-**Caution:** If you're specifying a `userId` then in order to keep conversations private we strongly suggest [securing your users](#securing-your-users). If a `userId` is used without a JWT credential, then anyone who can discover a user's `userId` could potentially eavesdrop on the conversation.
+**Caution:** If you're specifying a `userId` then in order to keep conversations private we strongly suggest [authenticating your users](#authenticating-users-optional). If a `userId` is used without a JWT credential, then anyone who can discover a user's `userId` could potentially eavesdrop on the conversation.
 </aside>
 
 After Smooch has been initialized, you can set the `userId` using the `login` API:
