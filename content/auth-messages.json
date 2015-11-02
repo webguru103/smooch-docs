@@ -1,28 +1,28 @@
 [{
     "sectionTitle": "What's new",
-    "title": "Help Scout + SupportKit: The most delightful way to kiss your users hello",
-    "image": "https://cdn.supportkit.io/docs/helpscout_campaign.png",
-    "content": "SupportKit and Help Scout joined forces to seamlessly integrate in-app messaging within Help Scout’s beloved customer support service.",
-    "buttonTarget": "https://supportkit.io/helpscout/",
+    "title": "Help Scout + Smooch: The most delightful way to kiss your users hello",
+    "image": "https://cdn.smooch.io/docs/helpscout_campaign.png",
+    "content": "Smooch and Help Scout joined forces to seamlessly integrate in-app messaging within Help Scout’s beloved customer support service.",
+    "buttonTarget": "https://smooch.io/helpscout/",
     "buttonText": "Learn more",
     "routes": ["login"],
-    "default": true
+    "default": false
 },
 {
     "sectionTitle": "What's new",
-    "title": "Look sir, SupportKit for Android is here!",
-    "image": "https://supportkit.github.io/supportkit-docs/images/messages/android_promo.png",
-    "content": "From the ground up SupportKit for Android uses purely native technologies, it’s uniquely designed for Android. This means it’s fast, like really fast. Not only does it run fast it’s quick to install. SupportKit for Android is just as easy and quick to add to your app as it is on iOS.",
-    "buttonTarget": "http://blog.supportkit.io/look-sir-supportkit-on-android/",
+    "title": "Look sir, Smooch for Android is here!",
+    "image": "https://smooch.github.io/smooch-docs/images/messages/android_promo.png",
+    "content": "From the ground up Smooch for Android uses purely native technologies, it’s uniquely designed for Android. This means it’s fast, like really fast. Not only does it run fast it’s quick to install. Smooch for Android is just as easy and quick to add to your app as it is on iOS.",
+    "buttonTarget": "http://blog.smooch.io/look-sir-smooch-on-android/",
     "buttonText": "Learn more",
     "routes": ["login"],
     "default": false
 },{
     "sectionTitle": "What's new",
     "title": "Make your app the pick of the litter",
-    "image": "https://supportkit.github.io/supportkit-docs/images/messages/prettyCat.png",
+    "image": "https://smooch.github.io/smooch-docs/images/messages/prettyCat.png",
     "content": "Drive 5-star reviews by politely reaching out to your users at exactly the right time, without annoying pop-ups. Automatically send targeted messages to your users to kickstart conversations and direct them to the App Store to review your app.",
-    "buttonTarget": "https://supportkit.io/ratings/",
+    "buttonTarget": "https://smooch.io/ratings/",
     "buttonText": "Learn more",
     "routes": ["login"],
     "default": false
@@ -36,4 +36,13 @@
     "routes": ["signup"],
     "query" :{ "ref": "hipchat"},
     "default": false
+},{
+    "sectionTitle": "HipChat",
+    "title": "HipChat + Smooch: team and customer communication together in one place.",
+    "image": "https://website.smooch.io/whats_new/hipchat.png",
+    "content": "Manage conversations, view profiles, and even leave customer notes for your team to see, entirely within HipChat.",
+    "buttonTarget": "https://smooch.io/hipchat",
+    "buttonText": "Learn more",
+    "routes": ["login"],
+    "default": true
 }]
