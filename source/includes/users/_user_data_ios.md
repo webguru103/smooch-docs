@@ -1,6 +1,6 @@
 ### Naming the current user
 
-You can set the sender's name by calling the method below. Once you set the user's name, it will be persisted by SupportKit so any future message from this user will be named with the input you provided. If the user changes, simply call the method above a second time and the new information will overwrite it.
+You can set the sender's name by calling the method below. Once you set the user's name, it will be persisted by Smooch so any future message from this user will be named with the input you provided. If the user changes, simply call the method above a second time and the new information will overwrite it.
 
 ```objective_c
 [SKTUser currentUser].firstName = @"Doctor";
@@ -24,7 +24,7 @@ SKTUser.currentUser().email = "bob@example.com"
 
 ### Setting the signed up date
 
-Setting the user's signed up date allows Whispers based on that date to be sent to the right people. If not set, we'll default to the first time SupportKit sees the user. It's best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.
+Setting the user's signed up date allows Whispers based on that date to be sent to the right people. If not set, we'll default to the first time Smooch sees the user. It's best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.
 
 ```objective_c
 [SKTUser currentUser].signedUpAt = [NSDate date];

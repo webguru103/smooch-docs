@@ -1,10 +1,10 @@
 ## Authenticating users (optional)
 
-Provided you're [assigning `userId`s to your users](#users-on-multiple-devices), you can authenticate users to SupportKit by issuing signed [JSON web token](http://jwt.io) (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as [parse.com](https://parse.com). There are JWT libraries available supporting a wide variety of popular languages and platforms.
+Provided you're [assigning `userId`s to your users](#users-on-multiple-devices), you can authenticate users to Smooch by issuing signed [JSON web token](http://jwt.io) (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as [parse.com](https://parse.com). There are JWT libraries available supporting a wide variety of popular languages and platforms.
 
 To issue JWTs:
 
-1. Generate a secret key for your SupportKit app. You can do this from the [SupportKit dashboard](https://app.supportkit.io) under the Settings tab.
+1. Generate a secret key for your Smooch app. You can do this from the [Smooch dashboard](https://app.smooch.io) under the Settings tab.
 
     ![Secret Keys](secret_keys.png)
 
@@ -37,36 +37,36 @@ To issue JWTs:
 
 
     ```objective_c
-    [SupportKit login:yourUserId jwt:yourJwt];
+    [Smooch login:yourUserId jwt:yourJwt];
     ```
     ```swift
-    SupportKit.login(yourUserId, jwt:yourJwt)
+    Smooch.login(yourUserId, jwt:yourJwt)
     ```
     ```javascript
-    SupportKit.login(yourUserId, yourJwt);
+    Smooch.login(yourUserId, yourJwt);
     ```
     ```java
-    SupportKit.login(yourUserId, yourJwt);
+    Smooch.login(yourUserId, yourJwt);
     ``` 
 
-Securing a `userId` happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual `userId` with SupportKit, that specific `userId` will require a JWT credential in all future init or login calls made to SupportKit.
+Securing a `userId` happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual `userId` with Smooch, that specific `userId` will require a JWT credential in all future init or login calls made to Smooch.
 
-Once you've issued a `userId` and `JWT` to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to `login` you can provide SupportKit with the `userId` and `JWT` parameters during app initialization:
+Once you've issued a `userId` and `JWT` to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to `login` you can provide Smooch with the `userId` and `JWT` parameters during app initialization:
 
 ```objective_c
 SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOUR_APP_TOKEN"];
 settings.userId = yourUserId;
 settings.jwt = yourJwt;
-[SupportKit initWithSettings:settings];
+[Smooch initWithSettings:settings];
 ```
 ```swift
 var settings = SKTSettings(appToken: "YOUR_APP_TOKEN")
 settings.userId = yourUserId
 settings.jwt = yourJwt
-SupportKit.initWithSettings(settings)
+Smooch.initWithSettings(settings)
 ```
 ```javascript
-SupportKit.init({
+Smooch.init({
     appToken: 'YOUR_APP_TOKEN',
     userId: yourUserId,
     jwt: yourJwt
@@ -76,9 +76,9 @@ SupportKit.init({
 Settings settings = new Settings("YOUR_APP_TOKEN");
 settings.setUserId(yourUserId);
 settings.setJWT(yourJwt);
-SupportKit.init(this, settings);
+Smooch.init(this, settings);
 ```
 
 <aside class="warning">
-If your secret key is ever compromised you can generate a new one. SupportKit will accept a JWT as long as it contains all required fields and is signed with any of your SupportKit app's valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
+If your secret key is ever compromised you can generate a new one. Smooch will accept a JWT as long as it contains all required fields and is signed with any of your Smooch app's valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
 </aside>
