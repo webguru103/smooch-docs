@@ -14,11 +14,11 @@
 		<div class="container" class="hide-in-xcode">
 			
 			<h1 id="library-title">
-				<a href="../index.html">SupportKit </a>
+				<a href="../index.html">Smooch </a>
 			</h1>
 
 			<p id="developer-home">
-				<a href="../index.html">Radialpoint</a>
+				<a href="../index.html">Smooch</a>
 			</p>
 			
 		</div>
@@ -60,15 +60,9 @@
 		
 		<option value="//api/name/conversationStatusBarStyle">conversationStatusBarStyle</option>
 		
-		<option value="//api/name/enableAppWideGesture">enableAppWideGesture</option>
-		
-		<option value="//api/name/enableGestureHintOnFirstLaunch">enableGestureHintOnFirstLaunch</option>
-		
-		<option value="//api/name/enableLocalNotification">enableLocalNotification</option>
-		
 		<option value="//api/name/jwt">jwt</option>
 		
-		<option value="//api/name/knowledgeBaseURL">knowledgeBaseURL</option>
+		<option value="//api/name/notificationDisplayTime">notificationDisplayTime</option>
 		
 		<option value="//api/name/userId">userId</option>
 		
@@ -83,12 +77,6 @@
 	</optgroup>
 	
 
-	
-	<optgroup label="Instance Methods">
-		
-		<option value="//api/name/excludeSearchResultsIf:categories:sections:">- excludeSearchResultsIf:categories:sections:</option>
-		
-	</optgroup>
 	
 	
 </select>
@@ -156,7 +144,7 @@
 				
 					<tr>
 						<th scope="row" class="argument-name"><code>appToken</code></th>
-						<td><p>A valid app token retrieved from the SupportKit web portal.</p></td>
+						<td><p>A valid app token retrieved from the Smooch web portal.</p></td>
 					</tr>
 				
 				</table>
@@ -171,85 +159,6 @@
 
 			
 
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTSettings.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/excludeSearchResultsIf:categories:sections:" title="excludeSearchResultsIf:categories:sections:"></a>
-	<h3 class="method-title"><code><a href="#//api/name/excludeSearchResultsIf:categories:sections:">&ndash;&nbsp;excludeSearchResultsIf:categories:sections:</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>Sets the filtering policy applied to user search results based on the given filter mode.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>- (void)excludeSearchResultsIf:(SKTSearchResultsFilterMode)<em>filterMode</em> categories:(NSArray *)<em>categories</em> sections:(NSArray *)<em>sections</em></code></div>
-
-		    
-			
-			<div class="method-subsection arguments-section parameters">
-				<h4 class="method-subtitle parameter-title">Parameters</h4>
-				<table class="argument-def parameter-def">
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>filterMode</code></th>
-						<td><p>The filter mode to use.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>categories</code></th>
-						<td><p>Array of category ids on which to filter search results. Can be objects of type NSString or NSNumber.</p></td>
-					</tr>
-				
-					<tr>
-						<th scope="row" class="argument-name"><code>sections</code></th>
-						<td><p>Array of section ids on which to filter search results. Can be objects of type NSString or NSNumber.</p></td>
-					</tr>
-				
-				</table>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Filtering may only be configured once, and configuration must be done at init time or no filtering will be applied.</p>
-
-<p>Filtering by category id is only possible for Zendesk instances that are using HelpCenter.</p>
-			</div>
-			
-
-			
-
-			
-			<div class="method-subsection see-also-section">
-				<h4 class="method-subtitle">See Also</h4>
-				<ul>
-					
-					<li><code><p><a href="../Constants/SKTSearchResultsFilterMode.html">SKTSearchResultsFilterMode</a></p></code></li>
-					
-				</ul>
-			</div>
 			
 
 			
@@ -290,199 +199,7 @@
 			
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
-				<p>App tokens are issued on the SupportKit web portal. This value may only be set once, and must be set at init time.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTSettings.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/knowledgeBaseURL" title="knowledgeBaseURL"></a>
-	<h3 class="method-title"><code><a href="#//api/name/knowledgeBaseURL">&nbsp;&nbsp;knowledgeBaseURL</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>The base URL of your Zendesk knowledge base, to be used in constructing the search endpoint.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy) NSString *knowledgeBaseURL</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>This value may only be set once. If the knowledgeBaseURL is not specified at init time, search is disabled.</p>
-
-<p>The URL must be fully qualified, including http or https (ex: &ldquo;https://supportkit.zendesk.com&rdquo;).</p>
-
-<p>The default value is nil.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTSettings.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/enableAppWideGesture" title="enableAppWideGesture"></a>
-	<h3 class="method-title"><code><a href="#//api/name/enableAppWideGesture">&nbsp;&nbsp;enableAppWideGesture</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>A boolean property that indicates whether to enable the app-wide gesture (two-finger swipe down) to present the SupportKit UI.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property BOOL enableAppWideGesture</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>Use option shift (⌥⇧) drag to perform the gesture on the simulator.</p>
-
-<p>The default value is YES.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTSettings.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/enableGestureHintOnFirstLaunch" title="enableGestureHintOnFirstLaunch"></a>
-	<h3 class="method-title"><code><a href="#//api/name/enableGestureHintOnFirstLaunch">&nbsp;&nbsp;enableGestureHintOnFirstLaunch</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>A boolean property that indicates whether to show a hint on how to perform the app-wide gesture when SupportKit is launched for the first time (without using the gesture).</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property BOOL enableGestureHintOnFirstLaunch</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The default value is YES.</p>
-			</div>
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection declared-in-section">
-				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTSettings.h</code></p>
-			</div>
-			
-			
-		</div>
-	</div>
-</div><div class="section-method">
-	<a name="//api/name/enableLocalNotification" title="enableLocalNotification"></a>
-	<h3 class="method-title"><code><a href="#//api/name/enableLocalNotification">&nbsp;&nbsp;enableLocalNotification</a></code>
-</h3>
-
-	<div class="method-info">
-		<div class="pointy-thing"></div>
-
-		<div class="method-info-container">
-			
-			
-			<div class="method-subsection brief-description">
-				<p>A Boolean property that indicates whether to show a local OS notification that brings your user into the conversation page once tapped.</p>
-			</div>
-			
-		    
-
-			<div class="method-subsection method-declaration"><code>@property BOOL enableLocalNotification</code></div>
-
-		    
-			
-
-			
-
-			
-
-			
-			<div class="method-subsection discussion-section">
-				<h4 class="method-subtitle">Discussion</h4>
-				<p>The local OS notification is only shown if a user searched for help and left the app within 20 seconds, but without reading any KB articles or attempting to start a conversation.</p>
-
-<p>The default value is YES.</p>
+				<p>App tokens are issued on the Smooch web portal. This value may only be set once, and must be set at init time.</p>
 			</div>
 			
 
@@ -687,6 +404,54 @@
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/notificationDisplayTime" title="notificationDisplayTime"></a>
+	<h3 class="method-title"><code><a href="#//api/name/notificationDisplayTime">&nbsp;&nbsp;notificationDisplayTime</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Maximum number of seconds to display in-app notifications before dismissing.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property NSUInteger notificationDisplayTime</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Setting this value to 0 will cause notications to stay on-screen until the user acts on them.</p>
+
+<p>The default value is 8.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">SKTSettings.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -702,7 +467,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Radialpoint. All rights reserved. Updated: 2015-10-13</p>
+						<p class="copyright">Copyright &copy; 2015 Smooch. All rights reserved. Updated: 2015-11-02</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
