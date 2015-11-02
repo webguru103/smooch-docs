@@ -1,15 +1,15 @@
 {
     "header1": "Trusted by some of the world's most innovative companies",
     "header2": "Why our customers love us",
-    "logos": "https://supportkit.github.io/supportkit-docs/images/auth/logos/logo_bunch.png",
+    "logos": "http://docs.smooch.io/images/auth/logos/logo_bunch.png",
     "quote1": "We almost never get a negative review anymore, because users now feel heard when they have issues.",
-    "quoteAvatar1": "https://supportkit.github.io/supportkit-docs/images/auth/faces/face1.png",
-    "quoteAvatarRetina1": "https://supportkit.github.io/supportkit-docs/images/auth/faces/face1@2x.png",
+    "quoteAvatar1": "http://docs.smooch.io/images/auth/faces/face1.png",
+    "quoteAvatarRetina1": "http://docs.smooch.io/images/auth/faces/face1@2x.png",
     "quotePersonName1": "Jason J. Williams",
     "quotePersonDescription1": "@jasonjwwilliams",
     "quote2": "SupportKit is the most feature-packed and all around best option for any kind of in-app support framework on the market right now.",
-    "quoteAvatar2": "https://supportkit.github.io/supportkit-docs/images/auth/faces/face2.png",
-    "quoteAvatarRetina2": "https://supportkit.github.io/supportkit-docs/images/auth/faces/face2@2x.png",
+    "quoteAvatar2": "http://docs.smooch.io/images/auth/faces/face2.png",
+    "quoteAvatarRetina2": "http://docs.smooch.io/images/auth/faces/face2@2x.png",
     "quotePersonName2": "Pauli Jokela",
     "quotePersonDescription2": "@Dids"
 }
