@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>SupportKit Documentation</title>
+    <title>Smooch Documentation</title>
 
     <link href="../images/favicon.ico" rel="icon" type="image/ico" />
     <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
@@ -43,11 +43,11 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a></li>
+            <li><a href='http://smooch.io/'>Sign up for Smooch, it's free</a></li>
             <li><br/></li>
             <li><a href='/ios'>iOS Guide</a> | <a href='/api/ios'>Class Reference</a></li>
             <li><a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a></li>
-            <li><a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a></li>
+            <li><a href='/javascript'>Web Guide</a> | <a href='https://github.com/smooch/smooch-js' target="_blank">Class Reference</a></li>
             <li><a href='/rest'>REST API Reference</a></li>
         </ul>
     </div>
@@ -56,30 +56,30 @@
       <div class="content">
         
           <h1 id='welcome'>Welcome</h1>
-<p>SupportKit adds beautifully simple messaging to your app to keep your users engaged and coming back. If you want to learn more about SupportKit, then visit our website at <a href="http://supportkit.io">http://supportkit.io</a> or <a href="https://app.supportkit.io">sign up here</a>. This page provides in-depth documentation on SupportKit&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
+<p>Smooch adds beautifully simple messaging to your app to keep your users engaged and coming back. If you want to learn more about Smooch, then visit our website at <a href="http://smooch.io">http://smooch.io</a> or <a href="https://app.smooch.io">sign up here</a>. This page provides in-depth documentation on Smooch&rsquo;s features and is meant to be a guide for developers integrating the SDK and app makers seeking to engage with their users.</p>
 
 <p>Source code examples are provided for all of our SDKs, including both Objective-C and Swift for iOS. You can view code examples inline, and you can switch the programming language of the examples with the tabs in the top left.</p>
 
-<p>If you have any other questions, feel free to reach out to us <a href="mailto:help@supportkit.io">here</a>.</p>
+<p>If you have any other questions, feel free to reach out to us <a href="mailto:help@smooch.io">here</a>.</p>
 
           <h1 id='references'>References</h1>
-<p>For more in-depth details on SupportKit&rsquo;s APIs check out our API Reference documentation. The API reference documents every method and property available through SupportKit.</p>
+<p>For more in-depth details on Smooch&rsquo;s APIs check out our API Reference documentation. The API reference documents every method and property available through Smooch.</p>
 
 <ul>
-<li><a href="http://docs.supportkit.io/api/ios" target="_blank">iOS SDK Reference</a></li>
-<li><a href="http://docs.supportkit.io/api/android" target="_blank">Android SDK Reference</a></li>
-<li><a href="https://github.com/supportkit/supportkit-js" target="_blank">Web SDK Reference</a></li>
+<li><a href="http://docs.smooch.io/api/ios" target="_blank">iOS SDK Reference</a></li>
+<li><a href="http://docs.smooch.io/api/android" target="_blank">Android SDK Reference</a></li>
+<li><a href="https://github.com/smooch/smooch-js" target="_blank">Web SDK Reference</a></li>
 <li><a href="/rest" target="_blank">REST API</a></li>
 </ul>
 
-          <h1 id='adding-supportkit-to-your-app'>Adding SupportKit to your app</h1>
-<p>There are a few ways you can include the SupportKit plugin on your Android project.</p>
+          <h1 id='adding-smooch-to-your-app'>Adding Smooch to your app</h1>
+<p>There are a few ways you can include the Smooch plugin on your Android project.</p>
 
-<p>The SupportKit library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR. The current supported <code class="prettyprint">compiledSdkVersion</code> must be at least <strong>21</strong>.</p>
+<p>The Smooch library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR. The current supported <code class="prettyprint">compiledSdkVersion</code> must be at least <strong>21</strong>.</p>
 <h2 id='android-studio-with-gradle'>Android Studio with Gradle</h2>
-<p><span class="badge"><a href="https://bintray.com/supportkitorg/maven/supportkit/_latestVersion"><img alt="Bintray" src="https://api.bintray.com/packages/supportkitorg/maven/supportkit/images/download.svg" /></a></span></p>
+<p><span class="badge"><a href="https://bintray.com/smoochorg/maven/smooch/_latestVersion"><img alt="Bintray" src="https://api.bintray.com/packages/smoochorg/maven/smooch/images/download.svg" /></a></span></p>
 
-<p>The SupportKit library is hosted on <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a> and is available on <a href="http://jcenter.bintray.com/io/supportkit/">JCenter</a>.</p>
+<p>The Smooch library is hosted on <a href="https://bintray.com/smoochorg/maven/smooch">Bintray</a> and is available on <a href="http://jcenter.bintray.com/io/smooch/">JCenter</a>.</p>
 
 <p>Setup JCenter as a repository.</p>
 <pre class="highlight plaintext"><code>repositories {
@@ -91,21 +91,21 @@
 <pre class="highlight plaintext"><code>compile 'com.google.android.gms:play-services-gcm:7.5.0'
 compile 'com.google.code.gson:gson:2.3.1'
 compile 'com.squareup.okhttp:okhttp:2.4.0'
-compile 'io.supportkit:core:latest.release'
-compile 'io.supportkit:ui:latest.release'
+compile 'io.smooch:core:latest.release'
+compile 'io.smooch:ui:latest.release'
 </code></pre>
 
-<p>Sync the Gradle project then add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
+<p>Sync the Gradle project then add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p>
 
 <p><aside class="notice">
-SupportKit depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
+Smooch depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
 </aside></p>
 <h2 id='eclipse-netbeans-and-the-ant-build-system'>Eclipse, Netbeans and the ant build system</h2><h3 id='core-and-ui-modules'>Core and UI modules</h3>
-<p>On Eclipse, we need to retrieve our <code class="prettyprint">eclipse</code> package to add SupportKit and our dependencies to your project. Also, we will need to manually add permissions and services to the manifest.</p>
+<p>On Eclipse, we need to retrieve our <code class="prettyprint">eclipse</code> package to add Smooch and our dependencies to your project. Also, we will need to manually add permissions and services to the manifest.</p>
 
 <ul>
-<li>Download the <code class="prettyprint">supportkit-eclipse-x.x.x.zip</code> file from <a href="https://bintray.com/supportkitorg/maven/supportkit">Bintray</a>. The package is located in <code class="prettyprint">Files/ui/x.x.x/supportkit-eclipse-x.x.x.zip</code>.</li>
-<li>Extract the zip and copy the <code class="prettyprint">appcompat</code> and <code class="prettyprint">supportkit</code> folders to <strong>the root of your project</strong>.</li>
+<li>Download the <code class="prettyprint">smooch-eclipse-x.x.x.zip</code> file from <a href="https://bintray.com/smoochorg/maven/smooch">Bintray</a>. The package is located in <code class="prettyprint">Files/ui/x.x.x/smooch-eclipse-x.x.x.zip</code>.</li>
+<li>Extract the zip and copy the <code class="prettyprint">appcompat</code> and <code class="prettyprint">smooch</code> folders to <strong>the root of your project</strong>.</li>
 </ul>
 
 <p><span class="half-width-img"><img alt="eclipse import" src="../images/eclipse_import.png" /></span></p>
@@ -118,7 +118,7 @@ SupportKit depends on a few external libraries that many applications already fe
 <p><span class="half-width-img"><img alt="eclipse libraries" src="../images/eclipse_libraries.png" /></span></p>
 
 <ul>
-<li><p>Go to the properties of your project (i.e. <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Properties</code>). Then under the Android item, add a reference to the SupportKit&rsquo;s <code class="prettyprint">ConversationActivity</code>.</p></li>
+<li><p>Go to the properties of your project (i.e. <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Properties</code>). Then under the Android item, add a reference to the Smooch&rsquo;s <code class="prettyprint">ConversationActivity</code>.</p></li>
 <li><p>Add these permissions in <strong>AndroidManifest.xml</strong>:</p></li>
 </ul>
 <pre class="highlight xml"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span><span class="nt">/&gt;</span>
@@ -129,23 +129,23 @@ SupportKit depends on a few external libraries that many applications already fe
 <ul>
 <li>Add these services in <strong>AndroidManifest.xml</strong>:</li>
 </ul>
-<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.service.SupportKitService"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.service.SmoochService"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/service&gt;</span>
 <span class="nt">&lt;receiver</span>
-        <span class="na">android:name=</span><span class="s">"io.supportkit.ui.notification.NotificationReceiver"</span>
+        <span class="na">android:name=</span><span class="s">"io.smooch.ui.notification.NotificationReceiver"</span>
         <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"io.supportkit.NOTIFICATION"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"io.smooch.NOTIFICATION"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/receiver&gt;</span>
 </code></pre>
@@ -153,20 +153,20 @@ SupportKit depends on a few external libraries that many applications already fe
 <ul>
 <li>Add this activity in <strong>AndroidManifest.xml</strong>:</li>
 </ul>
-<pre class="highlight xml"><code><span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"io.supportkit.ui.ConversationActivity"</span> <span class="na">android:theme=</span><span class="s">"@style/Theme.SupportKit"</span> <span class="nt">/&gt;</span>
+<pre class="highlight xml"><code><span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"io.smooch.ui.ConversationActivity"</span> <span class="na">android:theme=</span><span class="s">"@style/Theme.Smooch"</span> <span class="nt">/&gt;</span>
 </code></pre>
 
 <ul>
 <li>Follow <a href="https://developers.google.com/android/guides/setup">these instructions to install the Google Play Services</a> to your project.</li>
 </ul>
 
-<p>Clean and build your project then add the necessary code to <a href="#initialize-supportkit-in-your-app">initialize SupportKit in your app</a>.</p>
+<p>Clean and build your project then add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p>
 <h3 id='core-module-only'>Core module only</h3>
-<p>If you are planning on building your own UI and only <a href="http://docs.supportkit.io/api/android/io/supportkit/core/package-summary.html">use our API</a>, you can integrate the core module only.</p>
+<p>If you are planning on building your own UI and only <a href="http://docs.smooch.io/api/android/io/smooch/core/package-summary.html">use our API</a>, you can integrate the core module only.</p>
 
 <ul>
 <li>In your project directory, create a subdirectory called <strong>libs</strong> if it does not already exist</li>
-<li>Copy <strong>SupportKit-core.jar</strong> into the <strong>libs</strong> directory</li>
+<li>Copy <strong>Smooch-core.jar</strong> into the <strong>libs</strong> directory</li>
 <li>Add these permissions in <strong>AndroidManifest.xml</strong>:</li>
 </ul>
 <pre class="highlight xml"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span><span class="nt">/&gt;</span>
@@ -177,14 +177,14 @@ SupportKit depends on a few external libraries that many applications already fe
 <ul>
 <li>Add these services in <strong>AndroidManifest.xml</strong>:</li>
 </ul>
-<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.service.SupportKitService"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.service.SmoochService"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
 <span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.supportkit.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
     <span class="nt">&lt;intent-filter&gt;</span>
         <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
     <span class="nt">&lt;/intent-filter&gt;</span>
@@ -202,8 +202,8 @@ SupportKit depends on a few external libraries that many applications already fe
 </ul>
 <h4 id='troubleshooting'>Troubleshooting</h4>
 <p>If you get the following error when running your application</p>
-<pre class="highlight plaintext"><code>[2015-07-23 09:33:42 - Dex Loader] Unable to execute dex: Multiple dex files define Lio/supportkit/ui/BuildConfig;
-[2015-07-23 09:33:42 - MainActivity] Conversion to Dalvik format failed: Unable to execute dex: Multiple dex files define Lio/supportkit/ui/BuildConfig;
+<pre class="highlight plaintext"><code>[2015-07-23 09:33:42 - Dex Loader] Unable to execute dex: Multiple dex files define Lio/smooch/ui/BuildConfig;
+[2015-07-23 09:33:42 - MainActivity] Conversion to Dalvik format failed: Unable to execute dex: Multiple dex files define Lio/smooch/ui/BuildConfig;
 </code></pre>
 
 <p>The fix is:</p>
@@ -214,36 +214,36 @@ SupportKit depends on a few external libraries that many applications already fe
 </ul>
 
 <p>See <a href="http://stackoverflow.com/a/26856255/213272">http://stackoverflow.com/a/26856255/213272</a>.</p>
-<h2 id='initialize-supportkit-in-your-app'>Initialize SupportKit in your app</h2>
-<p>After following the steps above, your app is setup for working with the SupportKit SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
+<h2 id='initialize-smooch-in-your-app'>Initialize Smooch in your app</h2>
+<p>After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
 
-<p>This token is free and uniquely identifies your app and links it to the SupportKit backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
+<p>This token is free and uniquely identifies your app and links it to the Smooch backend that does the heavy lifting necessary to bridge the gap between you and your users.</p>
 
-<p>You can find your token by <a href="https://app.supportkit.io">logging into SupportKit</a> and copying it from the settings page as shown below.</p>
+<p>You can find your token by <a href="https://app.smooch.io">logging into Smooch</a> and copying it from the settings page as shown below.</p>
 
 <p><img alt="App Token on Overview Page" src="../images/apptoken.png" /></p>
 
-<p>Once you&rsquo;ve located your token, use the code below to initialize SupportKit.</p>
+<p>Once you&rsquo;ve located your token, use the code below to initialize Smooch.</p>
 
 <p>Add the following line of code to your <code class="prettyprint">onCreate</code> method on your <a href="http://developer.android.com/reference/android/app/Application.html">Application</a> class:</p>
-<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
 </code></pre>
 
 <p><aside class="notice">
     Make sure to replace <code class="prettyprint">YOUR_APP_TOKEN</code> with your app token.
 </aside></p>
 
-<p>If you don&rsquo;t have an <code class="prettyprint">Application</code> class, we recommend that you create one to make sure SupportKit is always initialized properly. If you don&rsquo;t have one, you can copy the following and save it to your application package.</p>
+<p>If you don&rsquo;t have an <code class="prettyprint">Application</code> class, we recommend that you create one to make sure Smooch is always initialized properly. If you don&rsquo;t have one, you can copy the following and save it to your application package.</p>
 <pre class="highlight java"><code><span class="kn">package</span> <span class="n">your</span><span class="o">.</span><span class="na">package</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">android.app.Application</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.supportkit.core.SupportKit</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">io.smooch.core.Smooch</span><span class="o">;</span>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">YourApplication</span> <span class="kd">extends</span> <span class="n">Application</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="n">onCreate</span><span class="o">()</span> <span class="o">{</span>
         <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">();</span>
-        <span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
+        <span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -258,10 +258,10 @@ SupportKit depends on a few external libraries that many applications already fe
 <p><aside class="notice">
     Remember to replace <code class="prettyprint">your.package</code>, <code class="prettyprint">YourApplication</code>, <code class="prettyprint">YOUR_APP_TOKEN</code> by the appropriate names and your app token.
 </aside></p>
-<h3 id='displaying-the-supportkit-user-interface'>Displaying the SupportKit User Interface</h3>
-<p>Once you&rsquo;ve initialized SupportKit, you&rsquo;re ready to try it out. </p>
+<h3 id='displaying-the-smooch-user-interface'>Displaying the Smooch User Interface</h3>
+<p>Once you&rsquo;ve initialized Smooch, you&rsquo;re ready to try it out. </p>
 
-<p>Find a suitable place in your app&rsquo;s interface to invoke SupportKit and use the code below to display the SupportKit user interface. You can bring up SupportKit whenever you think that your user will need access to help or a communication channel to contact you.</p>
+<p>Find a suitable place in your app&rsquo;s interface to invoke Smooch and use the code below to display the Smooch user interface. You can bring up Smooch whenever you think that your user will need access to help or a communication channel to contact you.</p>
 <pre class="highlight java"><code><span class="n">ConversationActivity</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
 </code></pre>
 
@@ -283,9 +283,9 @@ Following these steps will enable cloud messaging for your app and create a serv
 <li><p>Take note of the <em>Server API Key</em> and the <em>Sender ID</em>, we will need those in the second step</p></li>
 <li><p>Download the <code class="prettyprint">google-services.json</code> file generated by the tool and save the file at the root of your Android application</p></li>
 </ol>
-<h3 id='step-2--configure-push-notifications-in-supportkit'>Step 2. Configure push notifications in SupportKit</h3>
+<h3 id='step-2--configure-push-notifications-in-smooch'>Step 2. Configure push notifications in Smooch</h3>
 <ol>
-<li><p>Go to <a href="https://app.supportkit.io">https://app.supportkit.io</a> and log into your account.</p></li>
+<li><p>Go to <a href="https://app.smooch.io">https://app.smooch.io</a> and log into your account.</p></li>
 <li><p>Go to <strong>Settings</strong> &gt; <strong>Android</strong></p></li>
 <li><p>Enter your <em>Server API Key</em> and <em>Sender ID</em> (which was retrieved earlier in Step 1)</p></li>
 </ol>
@@ -331,17 +331,17 @@ You can&rsquo;t receive push notifications in the Android simulator, you must us
 
 <ol>
 <li><p>Kill and restart your app.</p></li>
-<li><p>Launch SupportKit.</p></li>
+<li><p>Launch Smooch.</p></li>
 <li><p>Send a message.</p></li>
 <li><p>Press the home button or navigate away from the conversation.</p></li>
-<li><p>Reply to the message from your choice of SupportKit integrated service</p></li>
+<li><p>Reply to the message from your choice of Smooch integrated service</p></li>
 </ol>
 
 <p>You&rsquo;ll receive a notification on the phone!</p>
 
           <h1 id='users'>Users</h1>
           <h2 id='user-data'>User data</h2>
-<p>SupportKit allows you to specify profile information about your users so that you can better understand the context around a user&rsquo;s message. </p>
+<p>Smooch allows you to specify profile information about your users so that you can better understand the context around a user&rsquo;s message. </p>
 
           <p>You can grab the current user with <code class="prettyprint">User.getCurrentUser</code> then set basic information with <code class="prettyprint">setFirstName</code>, <code class="prettyprint">setLastName</code>, <code class="prettyprint">setEmail</code> and <code class="prettyprint">setSignedUpAt</code>. You can also set your own custom properties by sending a map into <code class="prettyprint">addProperties</code>.</p>
 <pre class="highlight java"><code><span class="n">User</span> <span class="n">skUser</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">();</span>
@@ -364,74 +364,74 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 </aside></p>
 
           <h2 id='sensitive-user-data'>Sensitive user data</h2>
-<p>SupportKit sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through SupportKit messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
+<p>Smooch sends messages using standard encryption protocols, but in order to keep your users completely safe, the best way is to inform your users they should never send sensitive data through Smooch messages, for example: credit card numbers, passwords, sensitive documents, and private photos.</p>
 
-          <p>SupportKit allows you to identify new users on the fly, engage with them in a single conversation thread across multiple devices, and associate user and device profile information so that you can better understand the context of a user&rsquo;s message.</p>
+          <p>Smooch allows you to identify new users on the fly, engage with them in a single conversation thread across multiple devices, and associate user and device profile information so that you can better understand the context of a user&rsquo;s message.</p>
 <h2 id='users-on-multiple-devices'>Users on multiple devices</h2>
-<p>You may have users using your app on multiple devices. For example, suppose they have your app installed on both their iPhone and their iPad. You might also have SupportKit integrated in both your mobile app as well as on your web site.</p>
+<p>You may have users using your app on multiple devices. For example, suppose they have your app installed on both their iPhone and their iPad. You might also have Smooch integrated in both your mobile app as well as on your web site.</p>
 
-<p>If you want the user to see the same conversation across devices you can do so by assigning your users a <code class="prettyprint">userId</code>. This will link a user across all devices and platforms that have integrated with your SupportKit app. Specifying a <code class="prettyprint">userId</code> also facilitates <a href="#securing-your-users">user authentication</a>.</p>
+<p>If you want the user to see the same conversation across devices you can do so by assigning your users a <code class="prettyprint">userId</code>. This will link a user across all devices and platforms that have integrated with your Smooch app. Specifying a <code class="prettyprint">userId</code> also facilitates <a href="#securing-your-users">user authentication</a>.</p>
 
-<p>The <code class="prettyprint">userId</code> is a string that can be an email, GUID, or an existing ID from your own user directory. The <code class="prettyprint">userId</code> must be unique within a given SupportKit app, and it will only link devices within a single SupportKit app.</p>
+<p>The <code class="prettyprint">userId</code> is a string that can be an email, GUID, or an existing ID from your own user directory. The <code class="prettyprint">userId</code> must be unique within a given Smooch app, and it will only link devices within a single Smooch app.</p>
 
 <p><aside class="warning">
 <strong>Caution:</strong> If you&rsquo;re specifying a <code class="prettyprint">userId</code> then in order to keep conversations private we strongly suggest <a href="#securing-your-users">securing your users</a>. If a <code class="prettyprint">userId</code> is used without a JWT credential, then anyone who can discover a user&rsquo;s <code class="prettyprint">userId</code> could potentially eavesdrop on the conversation.
 </aside></p>
 
-<p>After SupportKit has been initialized, you can set the <code class="prettyprint">userId</code> using the <code class="prettyprint">login</code> API:</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
+<p>After Smooch has been initialized, you can set the <code class="prettyprint">userId</code> using the <code class="prettyprint">login</code> API:</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="nb">nil</span><span class="p">];</span>
 </code></pre>
-<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="kc">nil</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="kc">nil</span><span class="p">)</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">);</span>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">);</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
 </code></pre>
 
-<p>In most use cases SupportKit is initialized synchronously as your app loads. For this reason, once you&rsquo;ve set your user&rsquo;s <code class="prettyprint">userId</code> for the first time it is recommended that you store that <code class="prettyprint">userId</code> locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the <code class="prettyprint">userId</code> at app boot time, instead of calling <code class="prettyprint">login</code> you can specify the <code class="prettyprint">userId</code> during SupportKit initialization like so:</p>
+<p>In most use cases Smooch is initialized synchronously as your app loads. For this reason, once you&rsquo;ve set your user&rsquo;s <code class="prettyprint">userId</code> for the first time it is recommended that you store that <code class="prettyprint">userId</code> locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the <code class="prettyprint">userId</code> at app boot time, instead of calling <code class="prettyprint">login</code> you can specify the <code class="prettyprint">userId</code> during Smooch initialization like so:</p>
 <pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">];</span>
 <span class="n">settings</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span><span class="p">;</span>
-<span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+<span class="p">[</span><span class="n">Smooch</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
 </code></pre>
 <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span>
-<span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="kt">Smooch</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'YOUR_APP_TOKEN'</span><span class="p">,</span>
     <span class="na">userId</span><span class="p">:</span> <span class="nx">yourUserId</span>
 <span class="p">});</span>
 </code></pre>
 <pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
 <span class="n">settings</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
-<span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+<span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
 </code></pre>
 <h3 id='omitting-the-userid'>Omitting the userId</h3>
-<p>SupportKit will work perfectly fine without a <code class="prettyprint">userId</code>. Profile information can still be included but the user will only be able to access the conversation from the device they&rsquo;re currently using. This means that even if you specify the same profile information, if the same individual opens SupportKit on a new device, or runs your web app in an incognito browser session, they will see a newly created empty conversation when they open SupportKit. Only the <code class="prettyprint">userId</code> can be used to synchronize a conversation across devices.</p>
+<p>Smooch will work perfectly fine without a <code class="prettyprint">userId</code>. Profile information can still be included but the user will only be able to access the conversation from the device they&rsquo;re currently using. This means that even if you specify the same profile information, if the same individual opens Smooch on a new device, or runs your web app in an incognito browser session, they will see a newly created empty conversation when they open Smooch. Only the <code class="prettyprint">userId</code> can be used to synchronize a conversation across devices.</p>
 
-<p>A <code class="prettyprint">userId</code> can also be omitted at first and added at a later time. If you deploy an update to your app that assigns an existing user with a new <code class="prettyprint">userId</code> that they didn&rsquo;t have before, any existing conversation history they have will be preserved and their messages will start being synchronized across all devices where that <code class="prettyprint">userId</code> is being used. This is particularly useful if a user opens SupportKit and starts a conversation before having logged in to your app.</p>
+<p>A <code class="prettyprint">userId</code> can also be omitted at first and added at a later time. If you deploy an update to your app that assigns an existing user with a new <code class="prettyprint">userId</code> that they didn&rsquo;t have before, any existing conversation history they have will be preserved and their messages will start being synchronized across all devices where that <code class="prettyprint">userId</code> is being used. This is particularly useful if a user opens Smooch and starts a conversation before having logged in to your app.</p>
 <h3 id='switching-users'>Switching users</h3>
 <p>If your app allows a shared device to switch between multiple user identities you can call the <code class="prettyprint">login</code> API multiple times to switch between different <code class="prettyprint">userId</code>s.</p>
 <h4 id='logging-out'>Logging out</h4>
-<p>Your app may have a logout function which brings users back to a login screen. In this case you would want to revert SupportKit to a pre-login state. You can do this by calling the <code class="prettyprint">logout</code> API.</p>
+<p>Your app may have a logout function which brings users back to a login screen. In this case you would want to revert Smooch to a pre-login state. You can do this by calling the <code class="prettyprint">logout</code> API.</p>
 
-<p>Calling <code class="prettyprint">logout</code> will disconnect your user from any <code class="prettyprint">userId</code> they were previously logged in with and it will remove any conversation history stored on the device. Logging out will <em>not</em> disable SupportKit. While logged out, the user is free to start a new conversation but they will show up as if <code class="prettyprint">userId</code> was <a href="#omitting-the-userid">omitted</a> during SupportKit initialization.</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">logout</span><span class="p">];</span>
+<p>Calling <code class="prettyprint">logout</code> will disconnect your user from any <code class="prettyprint">userId</code> they were previously logged in with and it will remove any conversation history stored on the device. Logging out will <em>not</em> disable Smooch. While logged out, the user is free to start a new conversation but they will show up as if <code class="prettyprint">userId</code> was <a href="#omitting-the-userid">omitted</a> during Smooch initialization.</p>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">logout</span><span class="p">];</span>
 </code></pre>
-<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">logout</span><span class="p">()</span>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">logout</span><span class="p">()</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
 </code></pre>
 
           <h2 id='authenticating-users-optional'>Authenticating users (optional)</h2>
-<p>Provided you&rsquo;re <a href="#users-on-multiple-devices">assigning <code class="prettyprint">userId</code>s to your users</a>, you can authenticate users to SupportKit by issuing signed <a href="http://jwt.io">JSON web token</a> (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as <a href="https://parse.com">parse.com</a>. There are JWT libraries available supporting a wide variety of popular languages and platforms.</p>
+<p>Provided you&rsquo;re <a href="#users-on-multiple-devices">assigning <code class="prettyprint">userId</code>s to your users</a>, you can authenticate users to Smooch by issuing signed <a href="http://jwt.io">JSON web token</a> (JWT) credentials. This option requires your app to be connected to your own secure web service, or to a 3rd party equivalent such as <a href="https://parse.com">parse.com</a>. There are JWT libraries available supporting a wide variety of popular languages and platforms.</p>
 
 <p>To issue JWTs:</p>
 
 <ol>
-<li><p>Generate a secret key for your SupportKit app. You can do this from the <a href="https://app.supportkit.io">SupportKit dashboard</a> under the Settings tab.</p>
+<li><p>Generate a secret key for your Smooch app. You can do this from the <a href="https://app.smooch.io">Smooch dashboard</a> under the Settings tab.</p>
 
 <p><img alt="Secret Keys" src="../images/secret_keys.png" /></p></li>
 <li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>). The JWT body must specify a <code class="prettyprint">scope</code> of &lsquo;appUser&rsquo; and the <code class="prettyprint">userId</code> you&rsquo;ve assigned to the app user.</p>
@@ -456,30 +456,30 @@ var signJwt = function(userId) {
 </code></pre></li>
 <li><p>Issue a JWT for each user. You should tie-in the generation and delivery of this JWT with any existing user login process used by your app.</p></li>
 <li><p>Specify the JWT when calling <code class="prettyprint">login</code> on the client:</p>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">];</span>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">login</span><span class="p">:</span><span class="n">yourUserId</span> <span class="nf">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">];</span>
 </code></pre>
-<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">login</span><span class="p">(</span><span class="n">yourUserId</span><span class="p">,</span> <span class="nv">jwt</span><span class="p">:</span><span class="n">yourJwt</span><span class="p">)</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">,</span> <span class="nx">yourJwt</span><span class="p">);</span>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">,</span> <span class="nx">yourJwt</span><span class="p">);</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">,</span> <span class="n">yourJwt</span><span class="o">);</span>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">,</span> <span class="n">yourJwt</span><span class="o">);</span>
 </code></pre></li>
 </ol>
 
-<p>Securing a <code class="prettyprint">userId</code> happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual <code class="prettyprint">userId</code> with SupportKit, that specific <code class="prettyprint">userId</code> will require a JWT credential in all future init or login calls made to SupportKit.</p>
+<p>Securing a <code class="prettyprint">userId</code> happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual <code class="prettyprint">userId</code> with Smooch, that specific <code class="prettyprint">userId</code> will require a JWT credential in all future init or login calls made to Smooch.</p>
 
-<p>Once you&rsquo;ve issued a <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to <code class="prettyprint">login</code> you can provide SupportKit with the <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> parameters during app initialization:</p>
+<p>Once you&rsquo;ve issued a <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to <code class="prettyprint">login</code> you can provide Smooch with the <code class="prettyprint">userId</code> and <code class="prettyprint">JWT</code> parameters during app initialization:</p>
 <pre class="highlight objective_c"><code><span class="n">SKTSettings</span><span class="o">*</span> <span class="n">settings</span> <span class="o">=</span> <span class="p">[</span><span class="n">SKTSettings</span> <span class="nf">settingsWithAppToken</span><span class="p">:</span><span class="s">@"YOUR_APP_TOKEN"</span><span class="p">];</span>
 <span class="n">settings</span><span class="p">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span><span class="p">;</span>
 <span class="n">settings</span><span class="p">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">yourJwt</span><span class="p">;</span>
-<span class="p">[</span><span class="n">SupportKit</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
+<span class="p">[</span><span class="n">Smooch</span> <span class="nf">initWithSettings</span><span class="p">:</span><span class="n">settings</span><span class="p">];</span>
 </code></pre>
 <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">settings</span> <span class="o">=</span> <span class="kt">SKTSettings</span><span class="p">(</span><span class="nv">appToken</span><span class="p">:</span> <span class="s">"YOUR_APP_TOKEN"</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">userId</span> <span class="o">=</span> <span class="n">yourUserId</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">jwt</span> <span class="o">=</span> <span class="n">yourJwt</span>
-<span class="kt">SupportKit</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="kt">Smooch</span><span class="o">.</span><span class="nf">initWithSettings</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'YOUR_APP_TOKEN'</span><span class="p">,</span>
     <span class="na">userId</span><span class="p">:</span> <span class="nx">yourUserId</span><span class="p">,</span>
     <span class="na">jwt</span><span class="p">:</span> <span class="nx">yourJwt</span>
@@ -488,11 +488,11 @@ var signJwt = function(userId) {
 <pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="s">"YOUR_APP_TOKEN"</span><span class="o">);</span>
 <span class="n">settings</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
 <span class="n">settings</span><span class="o">.</span><span class="na">setJWT</span><span class="o">(</span><span class="n">yourJwt</span><span class="o">);</span>
-<span class="n">SupportKit</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+<span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
 </code></pre>
 
 <p><aside class="warning">
-If your secret key is ever compromised you can generate a new one. SupportKit will accept a JWT as long as it contains all required fields and is signed with any of your SupportKit app&rsquo;s valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
+If your secret key is ever compromised you can generate a new one. Smooch will accept a JWT as long as it contains all required fields and is signed with any of your Smooch app&rsquo;s valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
 </aside></p>
 
           <h1 id='sending-action-buttons'>Sending action buttons</h1>
@@ -500,7 +500,7 @@ If your secret key is ever compromised you can generate a new one. SupportKit wi
 <pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
 </code></pre>
 
-<p>This works from any channel you configured to use with SupportKit. </p>
+<p>This works from any channel you configured to use with Smooch. </p>
 
 <p>When the user taps your button, we&rsquo;ll launch the appropriate intent based on the URL, so it can be whatever you want! Anything ranging from a web url, deep link or play store link works like a charm. </p>
 
@@ -516,21 +516,19 @@ Buttons will always be appended at the bottom of your message bubble.
 
           <h1 id='integrations'>Integrations</h1>
           <h2 id='email'>Email</h2>
-<p>By default, all new SupportKit apps will have an email channel enabled using the email address of the account owner.</p>
+<p>By default, all new Smooch apps will have an email channel enabled using the email address of the account owner.</p>
 
-<p>When users send you a message using SupportKit, you will receive an email at the configured address(es). This e-mail contains the user&rsquo;s message, device information, and any profile information about the user that you captured in your app. You can respond to your user&rsquo;s message by responding directly to the email.</p>
+<p>When users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user&rsquo;s message, device information, and any profile information about the user that you captured in your app. You can respond to your user&rsquo;s message by responding directly to the email.</p>
 
 <p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
 <h3 id='getting-help-from-your-team'>Getting help from your team</h3>
-<p>If you want multiple team members to respond to your SupportKit requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
+<p>If you want multiple team members to respond to your Smooch requests, you can specify multiple email addresses, or use a mailing list. Whenever a team member replies, the incoming email address and associated name will be used to determine the team member displayed to the user alongside the message.</p>
 
           <h2 id='slack'>Slack</h2>
 <p>Slack is a communication tool that combines the best things about chat, email and the web to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
 
-<p>SupportKit has a Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack. Check out this video to see how it works:</p>
-
-<iframe style="margin-left:42px;" src="//player.vimeo.com/video/117524819?color=a02b8f&amp;byline=0&amp;portrait=0" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-<h3 id='configuring-slack'>Configuring Slack</h3><h4 id='step-1--quotauthorizifyquot-supportkit-so-that-it-can-talk-to-your-slack'>Step 1. &ldquo;Authorizify&rdquo; SupportKit so that it can talk to your Slack</h4><h4 id='step-2--set-up-a-new-quotslash-commandquot-so-that-you-can-send-messages-to-supportkit'>Step 2. Set up a new &ldquo;slash command&rdquo; so that you can send messages to SupportKit</h4>
+<p>Smooch has a Slack integration that allows your team to effortlessly speak to your app&rsquo;s users, without leaving Slack.</p>
+<h3 id='configuring-slack'>Configuring Slack</h3><h4 id='step-1--quotauthorizifyquot-smooch-so-that-it-can-talk-to-your-slack'>Step 1. &ldquo;Authorizify&rdquo; Smooch so that it can talk to your Slack</h4><h4 id='step-2--set-up-a-new-quotslash-commandquot-so-that-you-can-send-messages-to-smooch'>Step 2. Set up a new &ldquo;slash command&rdquo; so that you can send messages to Smooch</h4>
 <p><img src="/images/slashcmd.png" alt="Slash Command Setup"/></p>
 
 <p><aside class="notice">
@@ -539,83 +537,114 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <h4 id='step-3--choose-a-quotdispatch-channelquot-to-receive-new-message-notifications-from-your-app39s-users'>Step 3. Choose a &ldquo;dispatch channel&rdquo; to receive new message notifications from your app&rsquo;s users</h4>
 <p>Once you&rsquo;ve completed these 3 steps, you&rsquo;re ready to start speaking to your users with Slack.</p>
 
-<p>When users send you messages, SupportKit posts them to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel.</p>
+<p>When users send you messages, Smooch posts them to Slack. If it&rsquo;s a new conversation, a notification will appear in the dispatch channel.</p>
 
 <p>This notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
 
 <p>The messages you send in this channel are not automatically sent to your user. We do this so that you can invite teammates to read and collaborate on the user&rsquo;s issue, without exposing your internal conversation.</p>
 
-<p>When you&rsquo;re ready to send a message to the user, simply use SupportKit&rsquo;s slash command:</p>
+<p>When you&rsquo;re ready to send a message to the user, simply use Smooch&rsquo;s slash command:</p>
 <pre class="highlight plaintext"><code>/sk TYPE YOUR MESSAGE HERE
 </code></pre>
 
-<p>This command will make SupportKit send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
+<p>This command will make Smooch send your message directly to the app user. You&rsquo;ll get a notification in the channel confirming that the transmission was successful.</p>
 
-<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct SupportKit to display the most up to date metadata on a user.</p>
+<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct Smooch to display the most up to date metadata on a user.</p>
 <pre class="highlight plaintext"><code>/sk !profile
 </code></pre>
 
 <p><a href="#identifying-users">This section</a> how to associate profile information about users.</p>
 
           <h2 id='help-scout'>Help Scout</h2>
-<p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting SupportKit to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by SupportKit app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
-<h3 id='configuring-help-scout-to-work-with-supportkit'>Configuring Help Scout to work with SupportKit</h3>
+<p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting Smooch to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by Smooch app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
+<h3 id='configuring-help-scout-to-work-with-smooch'>Configuring Help Scout to work with Smooch</h3>
 <p>Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.</p>
 
 <ol>
 <li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key. </p></li>
-<li><p>On the Help Scout page in your SupportKit admin, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
-<li><p>Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using SupportKit, the conversation will appear in the Help Scout mailbox.</p></li>
+<li><p>On the Help Scout page in your Smooch admin, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
+<li><p>Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using Smooch, the conversation will appear in the Help Scout mailbox.</p></li>
 </ol>
 
 <p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page"></p>
 <h3 id='instant-messaging-from-a-help-scout-mailbox'>Instant messaging from a Help Scout mailbox</h3>
-<p>You can change or delete the Help Scout mailbox that SupportKit sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on SupportKit no longer exists, messages will be lost.</p>
+<p>You can change or delete the Help Scout mailbox that Smooch sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on Smooch no longer exists, messages will be lost.</p>
+
+          <h2 id='hipchat'>HipChat</h2>
+<p>HipChat is a team-based chat tool that helps to group all of your team&rsquo;s conversations and workflow into one beautiful, searchable place.</p>
+
+<p>Smooch has a HipChat integration that allows your team to communicate with your app&rsquo;s users, without leaving HipChat.</p>
+<h3 id='configuring-hipchat'>Configuring HipChat</h3><h4 id='step-1--authorize-smooch-so-that-it-can-talk-to-your-hipchat'>Step 1. Authorize Smooch so that it can talk to your HipChat</h4>
+<p><br/>
+<img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_smooch_integration.png" alt="HipChat integration"></p>
+<h4 id='step-2---'>Step 2. &hellip;</h4>
+<p><img alt="There is no Step 2" src="../images/step_2.png" />
+<br/></p>
+
+<p>HipChat Connect has allowed Smooch to integrate into HipChat in some awesome ways. 
+<br/>
+You can easily view your active conversations and user profiles at a glance.</p>
+
+<p><img alt="At a glance" src="../images/hipchat_glance.png" />
+<br/></p>
+
+<p>We&rsquo;ve also added some handy options to the context menu so that you can easily use Smooch&rsquo;s features directly within HipChat.</p>
+
+<p><img alt="HipChat actions" src="../images/hipchat_actions.png" /></p>
+
+<p>This makes adding internal notes for fellow colleagues really easy.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_note.png" alt="Note"></p>
+
+<p>And you can send your users action buttons through an interface we baked specially for HipChat.</p>
+
+<p><br/>
+<img style="width:50%; min-width:400px; max-width:800px;" src="/images/hipchat_add_action.png" alt="HipChat add action"></p>
 
           <h2 id='zendesk'>Zendesk</h2>
 <p>Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.</p>
 <h3 id='configuring-zendesk-ticketing'>Configuring Zendesk ticketing</h3>
-<p>Configuring SupportKit to communicate with Zendesk is easy. Go to your app settings on the SupportKit admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
+<p>Configuring Smooch to communicate with Zendesk is easy. Go to your app settings on the Smooch admin page, and in the Zendesk settings, enter your Zendesk subdomain and click on the authenticate button.</p>
 
 <p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
 
-<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s SupportKit integration.</p>
+<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s Smooch integration.</p>
 <h4 id='configuring-agent-images'>Configuring agent images</h4>
 <p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
 <img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
 <h4 id='working-with-zendesk-email-signatures'>Working with Zendesk email signatures</h4>
-<p>SupportKit automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
+<p>Smooch automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
 <img style="width:50%; min-width:200px; max-width:400px;" src="/images/unsightly_signature.png" alt="Oops, how unsightly"/></p>
 <h4 id='optional-additional-information-on-configuration'>Optional additional information on Configuration</h4>
-<p>Once you are authenticated with your Zendesk app, SupportKit will automatically configure targets and triggers so that your Zendesk agents can communicate with your SupportKit app users.</p>
+<p>Once you are authenticated with your Zendesk app, Smooch will automatically configure targets and triggers so that your Zendesk agents can communicate with your Smooch app users.</p>
 
-<p>During the configuration process any existing triggers in your Zendesk settings will be modified to not email the End-user if the ticket is tagged &ldquo;supportkit&rdquo;. We do this to avoid duplicating the conversation, and to remove any reason for the app user to leave your app to respond via email.</p>
+<p>During the configuration process any existing triggers in your Zendesk settings will be modified to not email the End-user if the ticket is tagged &ldquo;smooch&rdquo;. We do this to avoid duplicating the conversation, and to remove any reason for the app user to leave your app to respond via email.</p>
 
-<p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that SupportKit configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the SupportKit admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured SupportKit targets and triggers and refresh your configuration.</p>
+<p>It&rsquo;s suggested that you don&rsquo;t modify the targets and triggers that Smooch configures for you on Zendesk. However, if you do, and anything ever goes wrong, it&rsquo;s easy to fix. Just return to your app settings on the Smooch admin page and in the Zendesk settings click &ldquo;Remove Integration.&rdquo; Re-adding the integration will remove previously configured Smooch targets and triggers and refresh your configuration.</p>
 
-<p>Note: SupportKit only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple SupportKit accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all SupportKit apps have had the Zendesk integration removed.</p>
+<p>Note: Smooch only ever configures one target and trigger per a Zendesk subdomain. In the event that multiple apps, or even mutliple Smooch accounts are authorized for a Zendesk subdomain, the triggers and targets will not be removed until all Smooch apps have had the Zendesk integration removed.</p>
 <h3 id='rate-limiting'>Rate Limiting</h3>
 <p>Zendesk limits each account to 200 requests per a minute (globally). Additionally, they only allow 15 comments to be made on each individual ticket (regardless of whether the comment is an agent or app user) within a 10 minute period.</p>
 
 <p>In the unlikely event that a conversation surpasses the rate limit, the agent will recieve a message in the Zendesk UI saying as much, and preventing the ticket from being updated for a certain period of time, usually around 6 minutes. Your app user&rsquo;s messages will be queued up and sent after the time period specified by Zendesk.</p>
 
-<p>To reduce the likelihood of you bumping up against the rate limit, SupportKit batches together all messages sent from the app user within a 5 second period into a single comment.</p>
+<p>To reduce the likelihood of you bumping up against the rate limit, Smooch batches together all messages sent from the app user within a 5 second period into a single comment.</p>
 
           <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
-<p>SupportKit&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+<p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
 
-<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since SupportKit uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since Smooch uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
 
 <ol>
 <li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
-<li><p>Set SupportKit&rsquo;s forwarding address to the address you noted in step 1. </p></li>
+<li><p>Set Smooch&rsquo;s forwarding address to the address you noted in step 1. </p></li>
 <li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
 </ol>
 
           <h1 id='whispers'>Whispers</h1>
-<p>SupportKit allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
+<p>Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
 
-<p>To help get you started, we&rsquo;ve built in 3 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">SupportKit User</code> API.</p>
+<p>To help get you started, we&rsquo;ve built in 3 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">Smooch User</code> API.</p>
 
 <ul>
 <li><p><em>Welcome Whisper</em> : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.</p></li>
@@ -625,11 +654,11 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 
 <p>You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.</p>
 <h2 id='how-do-whispers-work'>How do Whispers work</h2>
-<p>You create Whispers from within the <a href="https://app.supportkit.io">SupportKit dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
+<p>You create Whispers from within the <a href="https://app.smooch.io">Smooch dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
 
 <p><img alt="Whisper creation form" src="../images/create_whisper.png" /></p>
 <h3 id='targeting-a-group-of-users'>Targeting a group of users</h3>
-<p>You can target your users based on any information that you&rsquo;ve stored using the <code class="prettyprint">SupportKit User</code> API. We also provide several built-in properties that you can use without instrumenting your app with calls to <code class="prettyprint">SupportKit User</code> class.</p>
+<p>You can target your users based on any information that you&rsquo;ve stored using the <code class="prettyprint">Smooch User</code> API. We also provide several built-in properties that you can use without instrumenting your app with calls to <code class="prettyprint">Smooch User</code> class.</p>
 
 <ul>
 <li><p><em>All users</em> : Send the Whisper to <em>everyone</em> that has your app. Whispers that target everyone must be <a href="#when-are-whispers-sent">linked to an event</a>.</p></li>
@@ -638,26 +667,26 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
 <li><p><em>App Version</em> : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleShortVersionString key in your app&rsquo;s info.plist file, and is updated each time the user launches your app.</p></li>
 </ul>
 
-<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">SupportKit User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
 <h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
-<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">SupportKit User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
+<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">Smooch User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
 
           <h2 id='when-are-whispers-sent'>When are Whispers sent</h2>
 <p>Whispers can be sent either when a specified event occurs in your app or when a user&rsquo;s profile information matches the criteria of the target group.</p>
 
-<p>Whispers that are based on custom events defined by you in your app are tied to the execution of the SupportKit <code class="prettyprint">track:</code> method. When <code class="prettyprint">track:</code> is called, SupportKit will check to see if the associated Whisper has already been seen by this user. If it hasn&rsquo;t, the Whisper will be immediately presented to the user through an in-app notification that leads to the messaging interface when tapped. When you create a Whisper, SupportKit will display a preview of this in-app notification.</p>
-<pre class="highlight java"><code><span class="n">SupportKit</span><span class="o">.</span><span class="na">track</span><span class="o">(</span><span class="s">"item-in-cart"</span><span class="o">);</span>
+<p>Whispers that are based on custom events defined by you in your app are tied to the execution of the Smooch <code class="prettyprint">track:</code> method. When <code class="prettyprint">track:</code> is called, Smooch will check to see if the associated Whisper has already been seen by this user. If it hasn&rsquo;t, the Whisper will be immediately presented to the user through an in-app notification that leads to the messaging interface when tapped. When you create a Whisper, Smooch will display a preview of this in-app notification.</p>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">track</span><span class="o">(</span><span class="s">"item-in-cart"</span><span class="o">);</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="nx">SupportKit</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">'item-in-cart'</span><span class="p">);</span>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">track</span><span class="p">(</span><span class="s1">'item-in-cart'</span><span class="p">);</span>
 </code></pre>
-<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">SupportKit</span> <span class="nf">track</span><span class="p">:</span><span class="s">@"user-on-promopage"</span><span class="p">];</span>
+<pre class="highlight objective_c"><code><span class="p">[</span><span class="n">Smooch</span> <span class="nf">track</span><span class="p">:</span><span class="s">@"user-on-promopage"</span><span class="p">];</span>
 </code></pre>
-<pre class="highlight swift"><code><span class="kt">SupportKit</span><span class="o">.</span><span class="nf">track</span><span class="p">(</span><span class="s">"user-on-promopage"</span><span class="p">);</span>
+<pre class="highlight swift"><code><span class="kt">Smooch</span><span class="o">.</span><span class="nf">track</span><span class="p">(</span><span class="s">"user-on-promopage"</span><span class="p">);</span>
 </code></pre>
 
-<p>If the Whisper is not tied to an event, SupportKit will monitor your userbase for changes and dispatch Whispers when a user&rsquo;s properties make them a fit for the target group of your Whisper. In many cases, this occurs when the user is not using your app. For instance, if you elect to send a Whisper to new users after 1 day has elapsed, SupportKit will deliver the message approximately 24 hours after the user first used your app. If you choose to use this powerful method of Whisper delivery, ensure that you&rsquo;ve enabled push notifications for your app in SupportKit. With push enabled, your users will receive a message that will bring them back into the conversation, even if they&rsquo;re not using your app.</p>
+<p>If the Whisper is not tied to an event, Smooch will monitor your userbase for changes and dispatch Whispers when a user&rsquo;s properties make them a fit for the target group of your Whisper. In many cases, this occurs when the user is not using your app. For instance, if you elect to send a Whisper to new users after 1 day has elapsed, Smooch will deliver the message approximately 24 hours after the user first used your app. If you choose to use this powerful method of Whisper delivery, ensure that you&rsquo;ve enabled push notifications for your app in Smooch. With push enabled, your users will receive a message that will bring them back into the conversation, even if they&rsquo;re not using your app.</p>
 
-<p>Note that users need to be prompted and accept to receive push notifications. To make sure we don&rsquo;t prompt the user at a bad moment, SupportKit will only request permission to send push notifications after a user sends his first message and only if the prompt wasn&rsquo;t shown earlier by your app. To get the full power of Whispers, we recommend you prompt for push permission as early as possible.</p>
+<p>Note that users need to be prompted and accept to receive push notifications. To make sure we don&rsquo;t prompt the user at a bad moment, Smooch will only request permission to send push notifications after a user sends his first message and only if the prompt wasn&rsquo;t shown earlier by your app. To get the full power of Whispers, we recommend you prompt for push permission as early as possible.</p>
 
           <h2 id='adding-user-actions-to-a-whisper'>Adding user actions to a Whisper</h2>
 <p>You can prompt your users to take actions by adding action buttons to your Whisper. Clicking on &lsquo;Add an action&rsquo; will open up a new input box where you can specify the button text and what action to take when the user clicks on the button.</p>
@@ -669,60 +698,60 @@ Make sure you remember to fill in the &ldquo;Token&rdquo; field of the form in S
           <h2 id='managing-whispers'>Managing Whispers</h2>
 <p><img alt="Manage Whispers" src="../images/whisper_manage.png" /></p>
 
-<p>Once you&rsquo;ve created a Whisper you can manage it from within the SupportKit web interface. By clicking on the &ldquo;Whispers&rdquo; link in the navigation bar, you&rsquo;ll be presented with a list of Whispers as well as the number of users who have been exposed to them while running your app.</p>
+<p>Once you&rsquo;ve created a Whisper you can manage it from within the Smooch web interface. By clicking on the &ldquo;Whispers&rdquo; link in the navigation bar, you&rsquo;ll be presented with a list of Whispers as well as the number of users who have been exposed to them while running your app.</p>
 
 <p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
 
           <h1 id='localization'>Localization</h1>
-<p>Every string you see in SupportKit can be <a href="#strings-customization">customized</a> and localized. SupportKit provides a few languages out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, SupportKit looks for values in the strings.xml in your app first then in the SupportKit ui bundle, enabling you to customize any strings and add support for other languages.</p>
+<p>Every string you see in Smooch can be <a href="#strings-customization">customized</a> and localized. Smooch provides a few languages out of the box, but <a href="#adding-more-languages">adding new languages</a> is easy to do. When localizing strings, Smooch looks for values in the strings.xml in your app first then in the Smooch ui bundle, enabling you to customize any strings and add support for other languages.</p>
 <h2 id='adding-more-languages'>Adding more languages</h2>
-<p>To enable other languages beside the provided ones, first copy the english strings.xml file from the SupportKit ui bundle to the corresponding values folder for that language. Then, translate the values to match that language.</p>
+<p>To enable other languages beside the provided ones, first copy the english strings.xml file from the Smooch ui bundle to the corresponding values folder for that language. Then, translate the values to match that language.</p>
 
-<p>If you translate SupportKit&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every SupportKit user can benefit from it. You can do so by <a href="https://github.com/supportkit/supportkit-android/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@supportkit.io">help@supportkit.io</a></p>
+<p>If you translate Smooch&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every Smooch user can benefit from it. You can do so by <a href="https://github.com/smooch/smooch-android/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@smooch.io">help@smooch.io</a></p>
 
           <h1 id='customization'>Customization</h1><h2 id='strings-customization'>Strings customization</h2>
-<p>SupportKit lets you customize any strings it displays by overwriting his keys. Simply add <code class="prettyprint">res/values/strings.xml</code> file in your Android project and specify new values for the keys used in SupportKit. You can find all available keys by browsing to the <code class="prettyprint">ui-x.x.x/res/values/values.xml</code> file in the External Libraries in Android Studio.</p>
+<p>Smooch lets you customize any strings it displays by overwriting his keys. Simply add <code class="prettyprint">res/values/strings.xml</code> file in your Android project and specify new values for the keys used in Smooch. You can find all available keys by browsing to the <code class="prettyprint">ui-x.x.x/res/values/values.xml</code> file in the External Libraries in Android Studio.</p>
 
 <p>Dates shown in the conversation view are already localized to the user&rsquo;s device.</p>
 <pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_activityConversation"</span><span class="nt">&gt;</span>Messages<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_startOfConversation"</span><span class="nt">&gt;</span>This is the start of your conversation with the team.<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_welcome"</span><span class="nt">&gt;</span>Feel free to leave us a message about anything that\'s on your mind.<span class="nt">&lt;/string&gt;</span>
-    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"SupportKit_messageHint"</span><span class="nt">&gt;</span>Type a message…<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_activityConversation"</span><span class="nt">&gt;</span>Messages<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_startOfConversation"</span><span class="nt">&gt;</span>This is the start of your conversation with the team.<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_welcome"</span><span class="nt">&gt;</span>Feel free to leave us a message about anything that\'s on your mind.<span class="nt">&lt;/string&gt;</span>
+    <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_messageHint"</span><span class="nt">&gt;</span>Type a message…<span class="nt">&lt;/string&gt;</span>
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre>
 
           <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
-<p>Using a <code class="prettyprint">colors.xml</code> file in your <code class="prettyprint">res/values</code> folder, you can change the colors used by SupportKit:</p>
+<p>Using a <code class="prettyprint">colors.xml</code> file in your <code class="prettyprint">res/values</code> folder, you can change the colors used by Smooch:</p>
 <pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accent"</span><span class="nt">&gt;</span>#9200aa<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accentDark"</span><span class="nt">&gt;</span>#76008a<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_accentLight"</span><span class="nt">&gt;</span>#be7cca<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_accent"</span><span class="nt">&gt;</span>#9200aa<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_accentDark"</span><span class="nt">&gt;</span>#76008a<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_accentLight"</span><span class="nt">&gt;</span>#be7cca<span class="nt">&lt;/color&gt;</span>
 
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_backgroundInput"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_backgroundInput"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
 
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_btnSendHollow"</span><span class="nt">&gt;</span>#c0c0c0<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_btnSendHollowBorder"</span><span class="nt">&gt;</span>#303030<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_btnSendHollow"</span><span class="nt">&gt;</span>#c0c0c0<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_btnSendHollowBorder"</span><span class="nt">&gt;</span>#303030<span class="nt">&lt;/color&gt;</span>
 
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_header"</span><span class="nt">&gt;</span>#989898<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_header"</span><span class="nt">&gt;</span>#989898<span class="nt">&lt;/color&gt;</span>
 
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_messageDate"</span><span class="nt">&gt;</span>@color/SupportKit_header<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_messageShadow"</span><span class="nt">&gt;</span>#7f999999<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_messageDate"</span><span class="nt">&gt;</span>@color/Smooch_header<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_messageShadow"</span><span class="nt">&gt;</span>#7f999999<span class="nt">&lt;/color&gt;</span>
 
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageAuthor"</span><span class="nt">&gt;</span>@color/SupportKit_header<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageBackground"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageBorder"</span><span class="nt">&gt;</span>#d9d9d9<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_remoteMessageText"</span><span class="nt">&gt;</span>#000000<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_remoteMessageAuthor"</span><span class="nt">&gt;</span>@color/Smooch_header<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_remoteMessageBackground"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_remoteMessageBorder"</span><span class="nt">&gt;</span>#d9d9d9<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_remoteMessageText"</span><span class="nt">&gt;</span>#000000<span class="nt">&lt;/color&gt;</span>
 
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageBackground"</span><span class="nt">&gt;</span>@color/SupportKit_accent<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageBorder"</span><span class="nt">&gt;</span>@color/SupportKit_accentDark<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageFailedBackground"</span><span class="nt">&gt;</span>@color/SupportKit_accentLight<span class="nt">&lt;/color&gt;</span>
-    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"SupportKit_userMessageText"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_userMessageBackground"</span><span class="nt">&gt;</span>@color/Smooch_accent<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_userMessageBorder"</span><span class="nt">&gt;</span>@color/Smooch_accentDark<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_userMessageFailedBackground"</span><span class="nt">&gt;</span>@color/Smooch_accentLight<span class="nt">&lt;/color&gt;</span>
+    <span class="nt">&lt;color</span> <span class="na">name=</span><span class="s">"Smooch_userMessageText"</span><span class="nt">&gt;</span>#ffffff<span class="nt">&lt;/color&gt;</span>
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre>
 
 <p>If you need to update the image of the Send button, simply add an image with the following name to your <code class="prettyprint">drawables</code>:</p>
-<pre class="highlight plaintext"><code>supportkit_btn_send_normal.png
+<pre class="highlight plaintext"><code>smooch_btn_send_normal.png
 </code></pre>
 
 <p>You can find the original resources by browsing external libraries through Android Studio.</p>

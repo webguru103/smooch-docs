@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>SupportKit API Reference</title>
+    <title>Smooch API Reference</title>
 
     <link href="../images/favicon.ico" rel="icon" type="image/ico" />
     <link href="../stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
@@ -41,11 +41,11 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='http://supportkit.io/'>Sign up for SupportKit, it's free</a></li>
+            <li><a href='http://smooch.io/'>Sign up for Smooch, it's free</a></li>
             <li><br/></li>
             <li><a href='/ios'>iOS Guide</a> | <a href='/api/ios'>Class Reference</a></li>
             <li><a href='/android'>Android Guide</a> | <a href='/api/android'>Class Reference</a></li>
-            <li><a href='/javascript'>Web Guide</a> | <a href='https://github.com/supportkit/supportkit-js' target="_blank">Class Reference</a></li>
+            <li><a href='/javascript'>Web Guide</a> | <a href='https://github.com/smooch/smooch-js' target="_blank">Class Reference</a></li>
             <li><a href='/rest'>REST API Reference</a></li>
         </ul>
     </div>
@@ -53,15 +53,15 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the SupportKit API. These APIs give you the means to build your own scenarios using SupportKit, custom tailored to your needs.</p>
+<p>Welcome to the Smooch API. These APIs give you the means to build your own scenarios using Smooch, custom tailored to your needs.</p>
 <h2 id='basics'>Basics</h2>
-<p>The SupportKit API is designed according to <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles.</p>
+<p>The Smooch API is designed according to <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles.</p>
 
 <p>The API accepts JSON in request bodies and requires that the <code class="prettyprint">content-type: application/json</code> header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may be returned as single objects or as arrays of objects, nested within the response object.</p>
 
 <p>The API also facilitates <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">cross-origin resource sharing</a> so that it can be called from a web application.</p>
 <h2 id='errors'>Errors</h2>
-<p>SupportKit uses standard HTTP status codes to communicate errors</p>
+<p>Smooch uses standard HTTP status codes to communicate errors</p>
 
 <table><thead>
 <tr>
@@ -95,7 +95,7 @@
 </tr>
 </tbody></table>
 <h1 id='authentication'>Authentication</h1>
-<p>SupportKit APIs offer two methods of authentication:</p>
+<p>Smooch APIs offer two methods of authentication:</p>
 
 <ol>
 <li>Using an <a href="#app-token">App Token</a></li>
@@ -123,20 +123,20 @@
 <blockquote>
 <p>Calling <code class="prettyprint">GET /v1/appusers</code> using an app token</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
-<p>When calling SupportKit APIs such as <a href="#app-users"><code class="prettyprint">/v1/appusers</code></a> on behalf of app users, an <code class="prettyprint">appToken</code> may be used for basic authentication.</p>
+<p>When calling Smooch APIs such as <a href="#app-users"><code class="prettyprint">/v1/appusers</code></a> on behalf of app users, an <code class="prettyprint">appToken</code> may be used for basic authentication.</p>
 
-<p>Every SupportKit app has an <code class="prettyprint">appToken</code> provisioned to it which can be found in the app settings tab. The <code class="prettyprint">appToken</code> is sent via the the <code class="prettyprint">app-token</code> HTTP header. This will link the caller to a specific SupportKit app.</p>
+<p>Every Smooch app has an <code class="prettyprint">appToken</code> provisioned to it which can be found in the app settings tab. The <code class="prettyprint">appToken</code> is sent via the the <code class="prettyprint">app-token</code> HTTP header. This will link the caller to a specific Smooch app.</p>
 
 <p>Specifying an <code class="prettyprint">appToken</code> alone is sufficient to call any of the app user facing API.</p>
 <h2 id='jwt'>JWT</h2>
 <blockquote>
 <p>Calling <code class="prettyprint">GET /v1/appusers</code> using a <code class="prettyprint">jwt</code></p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 
@@ -178,7 +178,7 @@
 
 <ol>
 <li><p>The <code class="prettyprint">appUser</code> scope grants access to an individual app user&rsquo;s data and conversation history, but nothing else. It is used when issuing tokens to individual users. A <code class="prettyprint">jwt</code> with <code class="prettyprint">appUser</code> scope must also specify a <code class="prettyprint">userId</code> which uniquely identifies the <code class="prettyprint">appUser</code> being accessed. <a href="https://gist.github.com/alavers/8f07b03895333d83b454">Node.js code sample</a></p></li>
-<li><p>The <code class="prettyprint">app</code> scope grants access to all users and conversations within a given SupportKit app. The <code class="prettyprint">app</code> scope is reserved for server-to-server scenarios, the creation of webhooks for example. <a href="https://gist.github.com/alavers/d9af102ca4cefac1a7e5">Node.js code sample</a></p></li>
+<li><p>The <code class="prettyprint">app</code> scope grants access to all users and conversations within a given Smooch app. The <code class="prettyprint">app</code> scope is reserved for server-to-server scenarios, the creation of webhooks for example. <a href="https://gist.github.com/alavers/d9af102ca4cefac1a7e5">Node.js code sample</a></p></li>
 </ol>
 
 <table><thead>
@@ -216,16 +216,16 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Webhooks are a fantastic way to extend the SupportKit platform beyond the built-in feature set. You can use webhooks to build your own SupportKit chat clients or to integrate more deeply with your favorite CRM.</p>
+<p>Webhooks are a fantastic way to extend the Smooch platform beyond the built-in feature set. You can use webhooks to build your own Smooch chat clients or to integrate more deeply with your favorite CRM.</p>
 
-<p>These webhook APIs require a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope. Furthermore, a webhook can only operate within the scope of a single SupportKit app.</p>
+<p>These webhook APIs require a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope. Furthermore, a webhook can only operate within the scope of a single Smooch app.</p>
 
 <p>When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.</p>
 <h2 id='create-webhook'>Create webhook</h2>
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/webhooks <span class="se">\</span>
      -X POST <span class="se">\</span>
      -d <span class="s1">'{"target": "http://example.com/callback"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -270,7 +270,7 @@
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>  curl https://api.supportkit.io/v1/webhooks <span class="se">\</span>
+<pre class="highlight shell"><code>  curl https://api.smooch.io/v1/webhooks <span class="se">\</span>
        -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 
@@ -298,7 +298,7 @@
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 
@@ -324,7 +324,7 @@
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
      -X PUT <span class="se">\</span>
      -d <span class="s1">'{"target": "http://example.com/callback"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -369,7 +369,7 @@
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
      -X DELETE <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
@@ -381,7 +381,7 @@
 <blockquote>
 <p>Post event</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/webhooks
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/webhooks
      -X POST <span class="se">\</span>
      -d <span class="s1">'{"target": "http://example.com/callback", "events": ["message:appUser"]}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -413,6 +413,10 @@
 <p>When a webhook is created, a shared secret will be generated for it. The secret can be used to determine the veracity of a request to your webhook route. It is included as an <code class="prettyprint">X-API-Key</code> header with each webhook request sent to the target URL.</p>
 
 <p>That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.</p>
+<h2 id='retry-policy'>Retry Policy</h2>
+<p>If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at exponential intervals of 5 seconds.</p>
+
+<p>I.e. the first retry will be after 5 seconds, then 25, 125, etc.</p>
 <h1 id='app-user-beta'>App User <beta/></h1>
 <p>The app user object represents an end user using your app. The app user document contains basic profile information such as <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, and <code class="prettyprint">email</code>, as well as any custom user properties you choose to configure.</p>
 
@@ -427,14 +431,14 @@ If a userId has been specified for a given app user, it can be used in place of 
 <blockquote>
 <p>Request by appUserId:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
 <blockquote>
 <p>Request by userId:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/steveb@channel5.com <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/steveb@channel5.com <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
@@ -462,7 +466,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se">\</span>
      -X PUT <span class="se">\</span>
      -d <span class="s1">'{"givenName": "Steve"}'</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -521,7 +525,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/events <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/events <span class="se">\</span>
      -X POST <span class="se">\</span>
      -d <span class="s1">'{"name":"completed_sale"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -538,7 +542,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 
 <p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/events</code></api></p>
 
-<p>Trigger an event for a given app user. Some SupportKit whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the <code class="prettyprint">completed_sale</code> event, calling this API is the way to trigger such a whisper.</p>
+<p>Trigger an event for a given app user. Some Smooch whispers are triggered on discrete events. This API is used to trigger such events. For example, if an app has a whisper configured to be sent whenever a user has triggered the <code class="prettyprint">completed_sale</code> event, calling this API is the way to trigger such a whisper.</p>
 
 <table><thead>
 <tr>
@@ -557,7 +561,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 <blockquote>
 <p>Request:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 
@@ -587,7 +591,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 <blockquote>
 <p>Post as app user:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
      -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appUser"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -597,7 +601,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 <blockquote>
 <p>Post as app maker:</p>
 </blockquote>
-<pre class="highlight shell"><code>curl https://api.supportkit.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
      -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
@@ -628,7 +632,7 @@ If a userId has been specified for a given app user, it can be used in place of 
 </tr>
 <tr>
 <td><strong>email</strong><br/><em>optional</em></td>
-<td>The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the SupportKit account is used, the configured profile avatar will be used. Otherwise, any <a href="http://gravatar.com">gravatar</a> matching the specified email will be used as the message avatar.</td>
+<td>The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the Smooch account is used, the configured profile avatar will be used. Otherwise, any <a href="http://gravatar.com">gravatar</a> matching the specified email will be used as the message avatar.</td>
 </tr>
 <tr>
 <td><strong>avatarUrl</strong><br/><em>optional</em></td>
