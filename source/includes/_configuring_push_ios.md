@@ -14,7 +14,7 @@ Push notifications are a great, unobtrusive way to let your users know that a re
 
 5. Right click on the certificate you created, and select 'Export "Apple Development IOS Push Services:..."'
 
-6. Save the .p12 file to your computer. Do NOT set a password on the file, just press OK.
+6. Save the .p12 file to your computer.
 
 ### Step 2. Upload the .p12 file to Smooch
 
