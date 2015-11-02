@@ -1,8 +1,8 @@
 # Getting conversations started
 
-SupportKit allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
+Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
 
-To help get you started, we've built in 3 basic templates and also allow you to create your own using any custom metadata that you're capturing with the `SupportKit.init` API.
+To help get you started, we've built in 3 basic templates and also allow you to create your own using any custom metadata that you're capturing with the `Smooch.init` API.
 
  * _Welcome Whisper_ : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.
 
@@ -14,19 +14,19 @@ To help get you started, we've built in 3 basic templates and also allow you to 
 
 ## How do Whispers work
 
-You create Whispers from within the [SupportKit dashboard](https://app.supportkit.io) by specifying which users should receive your message, the message you'd like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you'd create a custom Whisper with these settings:
+You create Whispers from within the [Smooch dashboard](https://app.smooch.io) by specifying which users should receive your message, the message you'd like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you'd create a custom Whisper with these settings:
 
 ![Whisper creation form](/images/create_whisper.png)
 
 ### Targeting a group of users
 
-You can target your users based on any information that you've stored in `properties` array first set during `init`. We also provide several built-in properties that you can use without instrumenting your app with calls to SupportKit object.
+You can target your users based on any information that you've stored in `properties` array first set during `init`. We also provide several built-in properties that you can use without instrumenting your app with calls to Smooch object.
 
  * _All users_ : Send the Whisper to *everyone* that has your app. Whispers that target everyone must be [linked to an event](#when-are-whispers-sent).
 
  * _Last Seen_ : Send the message based on when the user last interacted with your app. This value is updated automatically each time a user launches your app.
 
-In order to create Whispers based on properties you've defined using SupportKit object's `properties` array, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our [documentation on the subject](#identifying-your-users).
+In order to create Whispers based on properties you've defined using Smooch object's `properties` array, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our [documentation on the subject](#identifying-your-users).
 
 ### Personalizing the message text
 
