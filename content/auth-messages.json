@@ -1,5 +1,5 @@
 [{
-    "sectionTitle": "HipChat",
+    "sectionTitle": "New integration",
     "title": "HipChat + Smooch: team and customer communication together in one place.",
     "image": "https://website.smooch.io/whats_new/hipchat.png",
     "content": "Manage conversations, view profiles, and even leave customer notes for your team to see, entirely within HipChat.",
@@ -36,7 +36,7 @@
     "routes": ["login"],
     "default": false
 },{
-    "sectionTitle": "What's new",
+    "sectionTitle": "New integration",
     "title": "HipChat + Smooch: team and customer communication together in one place.",
     "image": "https://website.smooch.io/whats_new/hipchat.png",
     "content": "Manage conversations, view profiles, and even leave customer notes for your team to see, entirely within HipChat.",
