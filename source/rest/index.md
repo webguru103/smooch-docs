@@ -573,8 +573,10 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
     "messages": [{
       "_id": "55c8c1498590aa1900b9b9b1",
       "authorId": "c7f6e6d6c3a637261bd9656f",
+      "role": "appUser",
       "name": "Steve",
       "text": "Just put some vinegar on it",
+      "avatarUrl": "https://www.gravatar.com/image.jpg",
       "received": 1439220041.586
     }]
   }
@@ -607,10 +609,45 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/mes
      -H 'authorization: Bearer your-jwt'
 ```
 
+> Response:
+
+```
+{
+  "message": {
+    "_id": "55c8c1498590aa1900b9b9b1",
+    "authorId": "c7f6e6d6c3a637261bd9656f",
+    "role": "appMaker",
+    "name": "Steve",
+    "text": "Just put some vinegar on it",
+    "avatarUrl": "https://www.gravatar.com/image.jpg",
+    "received": 1439220041.586
+  },
+  "conversation": {
+    "_id": "df0ebe56cbeab98589b8bfa7",
+    "appMakers": [],
+    "appUsers": ["c7f6e6d6c3a637261bd9656f"],
+    "messages": [{
+      "_id": "55c8c1498590aa1900b9b9b1",
+      "authorId": "c7f6e6d6c3a637261bd9656f",
+      "role": "appMaker",
+      "name": "Steve",
+      "text": "Just put some vinegar on it",
+      "avatarUrl": "https://www.gravatar.com/image.jpg",
+      "received": 1439220041.586
+    }]
+  }
+}
+```
+
 <api>`POST /v1/appusers/{appUserId|userId}/conversation/messages`</api>
 
 Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message `text` and `role` must both be specified. For messages coming from the app user, set `role` to `appUser`. For messages coming from an app maker, set this parameter to `appMaker`.
 
+Images can be posted by reference using this API by specifying the `mediaUrl` and `mediaType` parameters. Alternatively, you may also upload images to the conversation directly using the [`/images`](#post-image) endpoint.
+
+<aside class="notice">
+For messages originating from an app maker, a `jwt` credential with `app` level scope must be included.
+</aside>
 
 | **Arguments**                |                            |
 |------------------------------|----------------------------|
@@ -623,6 +660,59 @@ Post a message to the app user. If the app user does not yet have a conversation
 | **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpg` |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
 
-<aside class="notice">
-For messages originating from an app maker, a `jwt` credential with `app` level scope must be included.
-</aside>
+## Upload Image
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/images \
+     -X POST \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt' \
+     -H 'content-type: multipart/form-data' \
+     -F 'source=@screenshot.jpg;type=image/jpeg' \
+     -F 'role=appUser' \
+     -F 'name=Steve'
+```
+
+> Response:
+
+```
+{
+  "message": {
+    "_id": "55c8c1498590aa1900b9b9b1",
+    "authorId": "c7f6e6d6c3a637261bd9656f",
+    "role": "appUser",
+    "name": "Steve",
+    "text": "https://media.smooch.io/image.jpg",
+    "mediaUrl": "https://media.smooch.io/image.jpg",
+    "mediaType": "image/jpeg",
+    "avatarUrl": "https://www.gravatar.com/image.jpg",
+    "received": 1446599350.851
+  },
+  "conversation": {
+    "_id": "df0ebe56cbeab98589b8bfa7",
+    "appMakers": [],
+    "appUsers": ["c7f6e6d6c3a637261bd9656f"],
+    "messages": [{
+      "_id": "55c8c1498590aa1900b9b9b1",
+      "authorId": "c7f6e6d6c3a637261bd9656f",
+      "role": "appUser",
+      "name": "Steve",
+      "text": "https://media.smooch.io/image.jpg",
+      "mediaUrl": "https://media.smooch.io/image.jpg",
+      "mediaType": "image/jpeg",
+      "avatarUrl": "https://www.gravatar.com/image.jpg",
+      "received": 1446599350.851
+    }]
+  }
+}
+```
+
+<api>`POST /v1/appusers/{appUserId|userId}/conversation/images`</api>
+
+Upload an image and post it to the conversation. Images are uploaded using the `multipart/form-data` content type. Similar to the `/messages` endpoint, a `role` parameter must be specified. The `/images` endpoint accepts the same parameters as `/messages` but they are sent as form parameters as opposed to being encoded in JSON bodies. The uploaded image will render as part of the message thread in all supported app maker channels (email, Slack, HipChat, Zendesk, Helpscout). 
+
+| **Form Parameters**          |                            |
+|------------------------------|----------------------------|
+| **source**<br/>*required*    | The image data.            |
+| **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
