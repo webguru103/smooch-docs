@@ -1,5 +1,14 @@
 @import 'variables';
 
+@font-face {
+    font-family: 'proxima-nova';
+    src: url('https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.eot');
+    src: url('https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.eot?#iefix') format('embedded-opentype'),
+         url('https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.woff2') format('woff2'),
+         url('https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.woff') format('woff'),
+         url('https://cdn.smooch.io/app/fonts/2F0A2B_2A_0.ttf') format('truetype');
+}
+
 .content h1,
 .content h2,
 .content h3,
