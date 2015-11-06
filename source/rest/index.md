@@ -136,7 +136,7 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 ```json
 {
-    "event": "message:appUser",
+    "triggers": "message:appUser",
     "messages":[{
         "_id": "55c8c1498590aa1900b9b9b1",
         "text": "Hi! Do you have time to chat?",
@@ -147,7 +147,12 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
         "metadata": [],
         "actions": []
     }],
-    "appUserId": "c7f6e6d6c3a637261bd9656f"
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z"
+    }
 }
 ```
 
@@ -155,7 +160,7 @@ Webhooks are a fantastic way to extend the Smooch platform beyond the built-in f
 
 These webhook APIs require a `jwt` credential with `app` level scope. Furthermore, a webhook can only operate within the scope of a single Smooch app.
 
-When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
+When a webhook trigger is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
 
 ## Create webhook
 
@@ -175,7 +180,7 @@ curl https://api.smooch.io/v1/webhooks \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-    "events": [
+    "triggers": [
       "message"
     ],
     "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -186,12 +191,12 @@ curl https://api.smooch.io/v1/webhooks \
 
 <api>`POST /v1/webhooks`</api>
 
-Create a webhook for the specified app. The response body will include a list of events that will trigger the webhook (currently only message events are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
+Create a webhook for the specified app. The response body will include a list of triggers that will trigger the webhook (currently only message triggers are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
 
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*required* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. The default event is `message`. This property is case sensitive. [More details](#webhook-events). |
+| **triggers**<br/>*optional*  | The trigger you wish to have the webhook listen to. The default trigger is `message`. This property is case sensitive. [More details](#webhook-triggers). |
 
 ## List webhooks
 
@@ -209,7 +214,7 @@ Create a webhook for the specified app. The response body will include a list of
   "webhooks": [
     {
       "_id": "55c8d9758590aa1900b9b9f6",
-      "events": [
+      "triggers": [
         "message"
       ],
       "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -238,7 +243,7 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-    "events": [
+    "triggers": [
       "message"
     ],
     "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -269,7 +274,7 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-    "events": [
+    "triggers": [
       "message"
     ],
     "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -285,7 +290,7 @@ Use this API to update your existing webhooks.
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*optional* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. The default event is `message`. This property is case sensitive. [More details](#webhook-events). |
+| **triggers**<br/>*optional*  | The triggers you wish to have the webhook listen to. The default trigger is `message`. This property is case sensitive. [More details](#webhook-triggers). |
 
 ## Delete webhook
 
@@ -301,21 +306,21 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 
 Deletes the specified webhook.
 
-## Webhook events
+## Webhook triggers
 
-> Post event
+> Request:
 
 ```shell
 curl https://api.smooch.io/v1/webhooks
      -X POST \
-     -d '{"target": "http://example.com/callback", "events": ["message:appUser"]}' \
+     -d '{"target": "http://example.com/callback", "triggers": ["message:appUser"]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
 
-A webhook will make a request to the target each time an event associated with the webhook occurs. Events are specified in an optional `events` array in the request body. If events are not specified, the webhook will be configured with the default events.
+A webhook will make a request to the target each time a trigger associated with the webhook occurs. Triggers are specified in an optional `triggers` array in the request body. If `triggers` is not specified the webhook will be configured with the `message` trigger by default.
 
-| event            |   |
+| trigger          |   |
 |------------------|---|
 | **message**<br/>*default* | all messages            |
 | **message:appUser**       | only app user messages  |
@@ -573,8 +578,10 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
     "messages": [{
       "_id": "55c8c1498590aa1900b9b9b1",
       "authorId": "c7f6e6d6c3a637261bd9656f",
+      "role": "appUser",
       "name": "Steve",
       "text": "Just put some vinegar on it",
+      "avatarUrl": "https://www.gravatar.com/image.jpg",
       "received": 1439220041.586
     }]
   }
@@ -607,10 +614,45 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/mes
      -H 'authorization: Bearer your-jwt'
 ```
 
+> Response:
+
+```
+{
+  "message": {
+    "_id": "55c8c1498590aa1900b9b9b1",
+    "authorId": "c7f6e6d6c3a637261bd9656f",
+    "role": "appMaker",
+    "name": "Steve",
+    "text": "Just put some vinegar on it",
+    "avatarUrl": "https://www.gravatar.com/image.jpg",
+    "received": 1439220041.586
+  },
+  "conversation": {
+    "_id": "df0ebe56cbeab98589b8bfa7",
+    "appMakers": [],
+    "appUsers": ["c7f6e6d6c3a637261bd9656f"],
+    "messages": [{
+      "_id": "55c8c1498590aa1900b9b9b1",
+      "authorId": "c7f6e6d6c3a637261bd9656f",
+      "role": "appMaker",
+      "name": "Steve",
+      "text": "Just put some vinegar on it",
+      "avatarUrl": "https://www.gravatar.com/image.jpg",
+      "received": 1439220041.586
+    }]
+  }
+}
+```
+
 <api>`POST /v1/appusers/{appUserId|userId}/conversation/messages`</api>
 
 Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message `text` and `role` must both be specified. For messages coming from the app user, set `role` to `appUser`. For messages coming from an app maker, set this parameter to `appMaker`.
 
+Images can be posted by reference using this API by specifying the `mediaUrl` and `mediaType` parameters. Alternatively, you may also upload images to the conversation directly using the [`/images`](#post-image) endpoint.
+
+<aside class="notice">
+For messages originating from an app maker, a `jwt` credential with `app` level scope must be included.
+</aside>
 
 | **Arguments**                |                            |
 |------------------------------|----------------------------|
@@ -623,6 +665,59 @@ Post a message to the app user. If the app user does not yet have a conversation
 | **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpg` |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
 
-<aside class="notice">
-For messages originating from an app maker, a `jwt` credential with `app` level scope must be included.
-</aside>
+## Upload Image
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/images \
+     -X POST \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt' \
+     -H 'content-type: multipart/form-data' \
+     -F 'source=@screenshot.jpg;type=image/jpeg' \
+     -F 'role=appUser' \
+     -F 'name=Steve'
+```
+
+> Response:
+
+```
+{
+  "message": {
+    "_id": "55c8c1498590aa1900b9b9b1",
+    "authorId": "c7f6e6d6c3a637261bd9656f",
+    "role": "appUser",
+    "name": "Steve",
+    "text": "https://media.smooch.io/image.jpg",
+    "mediaUrl": "https://media.smooch.io/image.jpg",
+    "mediaType": "image/jpeg",
+    "avatarUrl": "https://www.gravatar.com/image.jpg",
+    "received": 1446599350.851
+  },
+  "conversation": {
+    "_id": "df0ebe56cbeab98589b8bfa7",
+    "appMakers": [],
+    "appUsers": ["c7f6e6d6c3a637261bd9656f"],
+    "messages": [{
+      "_id": "55c8c1498590aa1900b9b9b1",
+      "authorId": "c7f6e6d6c3a637261bd9656f",
+      "role": "appUser",
+      "name": "Steve",
+      "text": "https://media.smooch.io/image.jpg",
+      "mediaUrl": "https://media.smooch.io/image.jpg",
+      "mediaType": "image/jpeg",
+      "avatarUrl": "https://www.gravatar.com/image.jpg",
+      "received": 1446599350.851
+    }]
+  }
+}
+```
+
+<api>`POST /v1/appusers/{appUserId|userId}/conversation/images`</api>
+
+Upload an image and post it to the conversation. Images are uploaded using the `multipart/form-data` content type. Similar to the `/messages` endpoint, a `role` parameter must be specified. The `/images` endpoint accepts the same parameters as `/messages` but they are sent as form parameters as opposed to being encoded in JSON bodies. The uploaded image will render as part of the message thread in all supported app maker channels (email, Slack, HipChat, Zendesk, Helpscout). 
+
+| **Form Parameters**          |                            |
+|------------------------------|----------------------------|
+| **source**<br/>*required*    | The image data.            |
+| **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
