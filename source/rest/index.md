@@ -136,7 +136,7 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 ```json
 {
-    "event": "message:appUser",
+    "triggers": "message:appUser",
     "messages":[{
         "_id": "55c8c1498590aa1900b9b9b1",
         "text": "Hi! Do you have time to chat?",
@@ -147,7 +147,12 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
         "metadata": [],
         "actions": []
     }],
-    "appUserId": "c7f6e6d6c3a637261bd9656f"
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z"
+    }
 }
 ```
 
@@ -155,7 +160,7 @@ Webhooks are a fantastic way to extend the Smooch platform beyond the built-in f
 
 These webhook APIs require a `jwt` credential with `app` level scope. Furthermore, a webhook can only operate within the scope of a single Smooch app.
 
-When a webhook event is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
+When a webhook trigger is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
 
 ## Create webhook
 
@@ -175,7 +180,7 @@ curl https://api.smooch.io/v1/webhooks \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-    "events": [
+    "triggers": [
       "message"
     ],
     "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -186,12 +191,12 @@ curl https://api.smooch.io/v1/webhooks \
 
 <api>`POST /v1/webhooks`</api>
 
-Create a webhook for the specified app. The response body will include a list of events that will trigger the webhook (currently only message events are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
+Create a webhook for the specified app. The response body will include a list of triggers that will trigger the webhook (currently only message triggers are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
 
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*required* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. The default event is `message`. This property is case sensitive. [More details](#webhook-events). |
+| **triggers**<br/>*optional*  | The trigger you wish to have the webhook listen to. The default trigger is `message`. This property is case sensitive. [More details](#webhook-triggers). |
 
 ## List webhooks
 
@@ -209,7 +214,7 @@ Create a webhook for the specified app. The response body will include a list of
   "webhooks": [
     {
       "_id": "55c8d9758590aa1900b9b9f6",
-      "events": [
+      "triggers": [
         "message"
       ],
       "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -238,7 +243,7 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-    "events": [
+    "triggers": [
       "message"
     ],
     "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -269,7 +274,7 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 {
   "webhook": {
     "_id": "55c8d9758590aa1900b9b9f6",
-    "events": [
+    "triggers": [
       "message"
     ],
     "secret": "8564b3e6a8b20a4bdb68b05d9ea97aace9bc5936",
@@ -285,7 +290,7 @@ Use this API to update your existing webhooks.
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*optional* | URL to be called when the webhook is triggered. |
-| **event**<br/>*optional*  | The event you wish to have the webhook listen to. The default event is `message`. This property is case sensitive. [More details](#webhook-events). |
+| **triggers**<br/>*optional*  | The triggers you wish to have the webhook listen to. The default trigger is `message`. This property is case sensitive. [More details](#webhook-triggers). |
 
 ## Delete webhook
 
@@ -301,21 +306,21 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 
 Deletes the specified webhook.
 
-## Webhook events
+## Webhook triggers
 
-> Post event
+> Request:
 
 ```shell
 curl https://api.smooch.io/v1/webhooks
      -X POST \
-     -d '{"target": "http://example.com/callback", "events": ["message:appUser"]}' \
+     -d '{"target": "http://example.com/callback", "triggers": ["message:appUser"]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
 
-A webhook will make a request to the target each time an event associated with the webhook occurs. Events are specified in an optional `events` array in the request body. If events are not specified, the webhook will be configured with the default events.
+A webhook will make a request to the target each time a trigger associated with the webhook occurs. Triggers are specified in an optional `triggers` array in the request body. If `triggers` is not specified the webhook will be configured with the `message` trigger by default.
 
-| event            |   |
+| trigger          |   |
 |------------------|---|
 | **message**<br/>*default* | all messages            |
 | **message:appUser**       | only app user messages  |
