@@ -136,7 +136,7 @@ The `jwt` body must specify the caller's scope of access. There are two levels o
 
 ```json
 {
-    "triggers": "message:appUser",
+    "trigger": "message:appUser",
     "messages":[{
         "_id": "55c8c1498590aa1900b9b9b1",
         "text": "Hi! Do you have time to chat?",
