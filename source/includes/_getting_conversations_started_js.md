@@ -1,4 +1,4 @@
-# Getting conversations started
+# Whispers
 
 Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
 
@@ -6,7 +6,7 @@ To help get you started, we've built in 3 basic templates and also allow you to 
 
  * _Welcome Whisper_ : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.
 
- * _Re-Engage Users_ : Send a message to users who were last seen using the app at least 7 days ago. 
+ * _Re-Engage Users_ : Send a message to users who were last seen using the app at least 7 days ago.
 
  * _Announcement_ : Send a message to all users when they launch the app.
 
@@ -30,4 +30,4 @@ In order to create Whispers based on properties you've defined using Smooch obje
 
 ### Personalizing the message text
 
-You can personalize the message that's being sent with the first or last name of the user. To do this, simply use the syntax `{{firstName || fallback }}` when creating your message. If the user's `givenName` hasn't been set by your code through the `init` call then the placeholder will be replaced with the string specified as `fallback`. 
+You can personalize the message that's being sent with the first or last name of the user. To do this, simply use the syntax `{{firstName || fallback }}` when creating your message. If the user's `firstName` hasn't been set by your code through the `init` call then the placeholder will be replaced with the string specified as `fallback`.

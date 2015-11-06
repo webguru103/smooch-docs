@@ -47,7 +47,7 @@ To issue JWTs:
     ```
     ```java
     Smooch.login(yourUserId, yourJwt);
-    ``` 
+    ```
 
 Securing a `userId` happens automatically by using a JWT for the first time. Once a JWT is used to authenticate an individual `userId` with Smooch, that specific `userId` will require a JWT credential in all future init or login calls made to Smooch.
 
@@ -71,7 +71,7 @@ Smooch.init({
     userId: yourUserId,
     jwt: yourJwt
 });
-``` 
+```
 ```java
 Settings settings = new Settings("YOUR_APP_TOKEN");
 settings.setUserId(yourUserId);

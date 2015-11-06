@@ -6,11 +6,11 @@
 
 Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.
 
-1. Log in to your Help Scout account, go to "Your Profile" -> "API Keys" and generate an API key. 
+1. Log in to your Help Scout account, go to "Your Profile" -> "API Keys" and generate an API key.
 
-2. On the Help Scout page in your Smooch admin, paste the API key into the field that says "Paste API Key here."
+2. On the Help Scout page in your [Smooch admin area](https://app.smooch.io), paste the API key into the field that says "Paste API Key here."
 
-3. Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using Smooch, the conversation will appear in the Help Scout mailbox.
+3. Now, pick the mailbox you want to receive app user messages in, and next time one of your users messages you using Smooch, the conversation will appear in the Help Scout mailbox.
 
 <img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page">
 
