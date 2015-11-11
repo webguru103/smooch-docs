@@ -343,10 +343,7 @@ If a webhook target responds with anything other than a 2xx status code, the cal
 ```shell
 curl https://api.smooch.io/v1/init \
      -X POST \
-     -d '{"device": {"id": "03f70682b7f5b21536a3674f38b3e220", \
-                     "platform": "ios", \
-                     "appVersion": "1.0"}, \
-          "userId": "bob@example.com"}' \
+     -d '{"device": {"id": "03f70682b7f5b21536a3674f38b3e220", "platform": "ios", "appVersion": "1.0"}, "userId": "bob@example.com"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -656,13 +653,13 @@ For messages originating from an app maker, a `jwt` credential with `app` level 
 
 | **Arguments**                |                            |
 |------------------------------|----------------------------|
-| **text**<br/>*required*      | The message content.       |
+| **text**<br/>*required*      | The message content. `text` becomes optional if `mediaUrl` and `mediaType` are both specified. |
 | **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
 | **name**<br/>*optional*      | The display name of the message author. Messages with role `appUser` will default to a friendly name based on the user's `givenName` and `surname`. Messages with role `appMaker` have no default name. |
 | **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the Smooch account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
 | **avatarUrl**<br/>*optional* | The URL of the desired message avatar image. This field will override any avatar chosen via the `email` parameter. |
-| **mediaUrl**<br/>*optional*  | The image URL used in an image message. |
-| **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpg` |
+| **mediaUrl**<br/>*optional*  | The image URL used in an image message. If a `mediaUrl` is specified, the `mediaType` must also be specified. |
+| **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpeg` |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
 
 ## Upload Image
