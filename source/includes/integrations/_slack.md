@@ -24,10 +24,8 @@ When you're ready to send a message to the user, simply use Smooch's slash comma
 
 You'll get a notification in the channel confirming that the message was received.
 
-If you want to consult any metadata you've associated with the user in order to aid the help process, simply use the command below to instruct Smooch to display the most up to date metadata on a user.
+If you want to consult any [user data](#user-data) that you've associated with the user in order to aid the help process, simply use the command below:
 
 ```
 /sk !profile
 ```
-
-[This section](#user-data) explains how to associate profile information about users.
