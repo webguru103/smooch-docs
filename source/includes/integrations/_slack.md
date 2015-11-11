@@ -22,7 +22,7 @@ When you're ready to send a message to the user, simply use Smooch's slash comma
 /sk TYPE YOUR MESSAGE HERE
 ```
 
-You'll get a notification in the channel confirming that the message was received by the user.
+You'll get a notification in the channel confirming that the message was received.
 
 If you want to consult any metadata you've associated with the user in order to aid the help process, simply use the command below to instruct Smooch to display the most up to date metadata on a user.
 
