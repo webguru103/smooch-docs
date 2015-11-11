@@ -69,6 +69,14 @@
 <li><a href="https://github.com/smooch/smooch-js" target="_blank">Web SDK Reference</a></li>
 <li><a href="/rest" target="_blank">REST API</a></li>
 </ul>
+<h2 id='upgrading-to-smooch'>Upgrading to Smooch</h2>
+<p>Upgrading the SDKs to Smooch requires some changes to your existing code. These changes are documented in our upgrade guides:</p>
+
+<ul>
+<li><a href="https://github.com/smooch/smooch-ios/releases/tag/v3.0.0" target="_blank">iOS Upgrade Guide</a></li>
+<li><a href="https://github.com/smooch/smooch-android/releases/tag/2.0.0" target="_blank">Android Upgrade Guide</a></li>
+<li><a href="https://github.com/smooch/smooch-js/releases/tag/2.0.0" target="_blank">Web SDK Upgrade Guide</a></li>
+</ul>
 
           <h1 id='adding-smooch-to-your-app'>Adding Smooch to your app</h1>
 <p>There are a few ways you can include the Smooch plugin on your Android project.</p>
@@ -543,11 +551,9 @@ Buttons will always be appended at the bottom of your message bubble.
 
 <p>You&rsquo;ll get a notification in the channel confirming that the message was received.</p>
 
-<p>If you want to consult any metadata you&rsquo;ve associated with the user in order to aid the help process, simply use the command below to instruct Smooch to display the most up to date metadata on a user.</p>
+<p>If you want to consult any <a href="#user-data">user data</a> that you&rsquo;ve associated with the user in order to aid the help process, simply use the command below:</p>
 <pre class="highlight plaintext"><code>/sk !profile
 </code></pre>
-
-<p><a href="#user-data">This section</a> explains how to associate profile information about users.</p>
 
           <h2 id='help-scout'>Help Scout</h2>
 <p><a href="http://www.helpscout.net/">Help Scout</a> is a scalable, elegant and intuitive help desk solution. By connecting Smooch to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team&rsquo;s e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by Smooch app users won&rsquo;t be sent by email, instead they will appear directly in the app.</p>
@@ -555,9 +561,9 @@ Buttons will always be appended at the bottom of your message bubble.
 <p>Configuring Help Scout is super easy. All you have to do is copy/paste a Help Scout API key into our integration page.</p>
 
 <ol>
-<li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key. </p></li>
-<li><p>On the Help Scout page in your Smooch admin, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
-<li><p>Now, pick the mailbox you want to recieve app user messages in, and next time one of your users messages you using Smooch, the conversation will appear in the Help Scout mailbox.</p></li>
+<li><p>Log in to your Help Scout account, go to &ldquo;Your Profile&rdquo; -&gt; &ldquo;API Keys&rdquo; and generate an API key.</p></li>
+<li><p>On the Help Scout page in your <a href="https://app.smooch.io">Smooch admin area</a>, paste the API key into the field that says &ldquo;Paste API Key here.&rdquo;</p></li>
+<li><p>Now, pick the mailbox you want to receive app user messages in, and next time one of your users messages you using Smooch, the conversation will appear in the Help Scout mailbox.</p></li>
 </ol>
 
 <p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/helpscout_settings.png" alt="Configure Help Scout integration page"></p>
