@@ -424,10 +424,7 @@
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/init <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"device": {"id": "03f70682b7f5b21536a3674f38b3e220", \
-                     "platform": "ios", \
-                     "appVersion": "1.0"}, \
-          "userId": "bob@example.com"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"device": {"id": "03f70682b7f5b21536a3674f38b3e220", "platform": "ios", "appVersion": "1.0"}, "userId": "bob@example.com"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
@@ -739,6 +736,80 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <td>The name of the triggered event.</td>
 </tr>
 </tbody></table>
+<h2 id='pre-create-app-user'>Pre-Create App User</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"userId": "steveb@channel5.com", "givenName": "Steve", "properties": {"favoriteFood": "prizza"}}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T23:52:11.677Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"favoriteFood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prizza"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"credentialRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers</code></api></p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>userId</strong><br/><em>required</em></td>
+<td>A unique identifier for the app user. The <code class="prettyprint">userId</code> can be used to link a user to the same conversation <a href="/#users-on-multiple-devices">across multiple devices</a>.</td>
+</tr>
+<tr>
+<td><strong>credentialRequired</strong><br/><em>optional</em></td>
+<td>Default is <code class="prettyprint">false</code>. Set to <code class="prettyprint">true</code> to ensure that the created app user requires a <code class="prettyprint">jwt</code> credential. See <a href="/#authenticating-users-optional">authenticating your users</a> for more information.</td>
+</tr>
+<tr>
+<td><strong>givenName</strong><br/><em>optional</em></td>
+<td>The user&rsquo;s given name (first name).</td>
+</tr>
+<tr>
+<td><strong>surname</strong><br/><em>optional</em></td>
+<td>The user&rsquo;s surname (last name).</td>
+</tr>
+<tr>
+<td><strong>email</strong><br/><em>optional</em></td>
+<td>The user&rsquo;s email address.</td>
+</tr>
+<tr>
+<td><strong>signedUpAt</strong><br/><em>optional</em></td>
+<td>The date at which the user signed up. Must be ISO 8601 time format (<code class="prettyprint">YYYY-MM-DDThh:mm:ss.sssZ</code>)</td>
+</tr>
+<tr>
+<td><strong>properties</strong><br/><em>optional</em></td>
+<td>A flat JSON object containing custom defined user properties.</td>
+</tr>
+</tbody></table>
+
+<p>In the vast majority of cases app users will be created from the device or browser using the <a href="#init-beta">init API</a>. In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A <code class="prettyprint">userId</code> must be specified so that a future <code class="prettyprint">init</code> call made from a device can use the same <code class="prettyprint">userId</code> to link the device to the pre-created app user.</p>
+
+<p>Suppose for example you begin a conversation with an end user <code class="prettyprint">bob@example.com</code> over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call <code class="prettyprint">POST /v1/appusers</code> to pre-create a Smooch identity with <code class="prettyprint">userId</code> <code class="prettyprint">bob@example.com</code>, to which you can import that existing conversation history. After Bob signs in to your app and your app calls <code class="prettyprint">init</code> with the same <code class="prettyprint">userId</code>, they will see their conversation history.</p>
+
+<p><aside class="notice">
+Unlike the other App User APIs in this section, this endpoint is not intended to be called form an end user device or from a browser. It requires a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope.
+</aside></p>
 <h1 id='conversations-beta'>Conversations <beta/></h1>
 <p>When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the <code class="prettyprint">/v1/appusers/</code> API.</p>
 <h2 id='get-conversation'>Get Conversation</h2>
@@ -842,7 +913,7 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </thead><tbody>
 <tr>
 <td><strong>text</strong><br/><em>required</em></td>
-<td>The message content.</td>
+<td>The message content. <code class="prettyprint">text</code> becomes optional if <code class="prettyprint">mediaUrl</code> and <code class="prettyprint">mediaType</code> are both specified.</td>
 </tr>
 <tr>
 <td><strong>role</strong><br/><em>required</em></td>
@@ -862,11 +933,11 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </tr>
 <tr>
 <td><strong>mediaUrl</strong><br/><em>optional</em></td>
-<td>The image URL used in an image message.</td>
+<td>The image URL used in an image message. If a <code class="prettyprint">mediaUrl</code> is specified, the <code class="prettyprint">mediaType</code> must also be specified.</td>
 </tr>
 <tr>
 <td><strong>mediaType</strong><br/><em>optional</em></td>
-<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpg</code></td>
+<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpeg</code></td>
 </tr>
 <tr>
 <td><strong>metadata</strong><br/><em>optional</em></td>
