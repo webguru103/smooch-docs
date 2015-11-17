@@ -551,6 +551,56 @@ Trigger an event for a given app user. Some Smooch whispers are triggered on dis
 |-------------------------|---|
 | **name**<br/>*required* | The name of the triggered event. |
 
+## Pre-Create App User
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers \
+     -X POST \
+     -d '{"userId": "steveb@channel5.com", "givenName": "Steve", "properties": {"favoriteFood": "prizza"}}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+
+> Response:
+
+```json
+{
+    "appUser": {
+        "_id": "deb920657bbc3adc3fec7963",
+        "userId": "steveb@channel5.com",
+        "givenName": "Steve",
+        "signedUpAt": "2015-10-08T23:52:11.677Z",
+        "properties": {
+          "favoriteFood": "prizza"
+        },
+        "conversationStarted": false,
+        "credentialRequired": false
+    }
+}
+```
+
+<api>`POST /v1/appusers`</api>
+
+| **Arguments**                 |                            |
+|-------------------------------|----------------------------|
+| **userId**<br/>*required*     | A unique identifier for the app user. The `userId` can be used to link a user to the same conversation [across multiple devices](/#users-on-multiple-devices).|
+| **credentialRequired**<br/>*optional* | Default is `false`. Set to `true` to ensure that the created app user requires a `jwt` credential. See [authenticating your users](/#authenticating-users-optional) for more information.
+| **givenName**<br/>*optional*  | The user's given name (first name). |
+| **surname**<br/>*optional*    | The user's surname (last name). |
+| **email**<br/>*optional*      | The user's email address. |
+| **signedUpAt**<br/>*optional* | The date at which the user signed up. Must be ISO 8601 time format (`YYYY-MM-DDThh:mm:ss.sssZ`) |
+| **properties**<br/>*optional* | A flat JSON object containing custom defined user properties. |
+
+In the vast majority of cases app users will be created from the device or browser using the [init API](#init-beta). In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A `userId` must be specified so that a future `init` call made from a device can use the same `userId` to link the device to the pre-created app user.
+
+Suppose for example you begin a conversation with an end user `bob@example.com` over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call `POST /v1/appusers` to pre-create a Smooch identity with `userId` `bob@example.com`, to which you can import that existing conversation history. After Bob signs in to your app and your app calls `init` with the same `userId`, they will see their conversation history.
+
+<aside class="notice">
+Unlike the other App User APIs in this section, this endpoint is not intended to be called form an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
+</aside>
+
 # Conversations <beta/>
 
 When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the `/v1/appusers/` API.
