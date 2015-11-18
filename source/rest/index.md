@@ -20,7 +20,7 @@ search: true
 
 # Introduction
 
-Welcome to the Smooch API. These APIs give you the means to build your own scenarios using Smooch, custom tailored to your needs.
+Welcome to the Smooch API. The API allows you to craft entirely unique messaging experiences for your app and website as well as talk to any backend or external service.
 
 ## Basics
 
