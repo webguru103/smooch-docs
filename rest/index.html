@@ -51,7 +51,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Smooch API. These APIs give you the means to build your own scenarios using Smooch, custom tailored to your needs.</p>
+<p>Welcome to the Smooch API. The API allows you to craft entirely unique messaging experiences for your app and website as well as talk to any backend or external service.</p>
 <h2 id='basics'>Basics</h2>
 <p>The Smooch API is designed according to <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles.</p>
 
@@ -808,7 +808,7 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <p>Suppose for example you begin a conversation with an end user <code class="prettyprint">bob@example.com</code> over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call <code class="prettyprint">POST /v1/appusers</code> to pre-create a Smooch identity with <code class="prettyprint">userId</code> <code class="prettyprint">bob@example.com</code>, to which you can import that existing conversation history. After Bob signs in to your app and your app calls <code class="prettyprint">init</code> with the same <code class="prettyprint">userId</code>, they will see their conversation history.</p>
 
 <p><aside class="notice">
-Unlike the other App User APIs in this section, this endpoint is not intended to be called form an end user device or from a browser. It requires a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope.
+Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope.
 </aside></p>
 <h1 id='conversations-beta'>Conversations <beta/></h1>
 <p>When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the <code class="prettyprint">/v1/appusers/</code> API.</p>
