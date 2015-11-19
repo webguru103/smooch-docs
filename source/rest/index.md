@@ -598,7 +598,7 @@ In the vast majority of cases app users will be created from the device or brows
 Suppose for example you begin a conversation with an end user `bob@example.com` over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call `POST /v1/appusers` to pre-create a Smooch identity with `userId` `bob@example.com`, to which you can import that existing conversation history. After Bob signs in to your app and your app calls `init` with the same `userId`, they will see their conversation history.
 
 <aside class="notice">
-Unlike the other App User APIs in this section, this endpoint is not intended to be called form an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
+Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
 </aside>
 
 # Conversations <beta/>
