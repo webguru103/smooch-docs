@@ -1,6 +1,6 @@
 ## Twilio
 
-[Twilio](https://www.twilio.com/) is an SMS messaging service. Our Twilio integration allows your users to send you text messages at your Twilio number for your to receice in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as an SMS to the user.
+[Twilio](https://www.twilio.com/) is an SMS messaging service. Our Twilio integration allows your users to send you text messages at your Twilio number for your to receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as an SMS to the user.
 
 ### Configuring Twilio
 
