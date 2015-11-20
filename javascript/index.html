@@ -109,9 +109,7 @@
 
           <h1 id='users'>Users</h1>
           <h2 id='user-data'>User data</h2>
-<p>Smooch allows you to specify profile information about your users so that you can better understand the context around a user&rsquo;s message. </p>
-
-          <p>You can set the sender&rsquo;s properties by initializing Smooch with a user object.</p>
+<p>Smooch allows you to specify profile information about your users so that you can better understand the context around a user&rsquo;s message.</p>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
     <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
@@ -122,11 +120,86 @@
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
+<h3 id='naming-the-current-user'>Naming the current user</h3>
+<p>Once you set the user&rsquo;s name it will be persisted by Smooch so any future message from this user contain the value you provided. If the user&rsquo;s information changes, simply call the method a second time and the new information will overwrite it.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">@"Doctor"</span><span class="p">;</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">@"Who"</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">Smooch</span><span class="o">/</span><span class="kt">Smooch</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
 
-<p>You can specify any user property you need, and they&rsquo;re all optional. So the object you pass into init could also look as simple as
-<code class="prettyprint">
-{appToken: &quot;your_app_token&quot;, givenName: &quot;Trogdor&quot;}
-</code></p>
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">firstName</span> <span class="o">=</span> <span class="s">"Doctor"</span>
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">lastName</span> <span class="o">=</span> <span class="s">"Who"</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">"Artour"</span><span class="o">);</span>
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setLastName</span><span class="o">(</span><span class="s">"Babaev"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Doctor'</span><span class="p">,</span>
+    <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who'</span>
+<span class="p">})</span>
+</code></pre>
+<h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
+<p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">@"bob@example.com"</span><span class="p">;</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">Smooch</span><span class="o">/</span><span class="kt">Smooch</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">"bob@example.com"</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setEmail</span><span class="o">(</span><span class="s">"2ez@4rtz.com"</span><span class="o">);</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s1">'the-doctor@smooch.io'</span>
+<span class="p">})</span>
+</code></pre>
+<h3 id='setting-the-signed-up-date'>Setting the signed up date</h3>
+<p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time Smooch sees the user, which is the moment the <code class="prettyprint">init</code> call is made for the first time for a given user. It&rsquo;s best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDate</span> <span class="nf">date</span><span class="p">];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">Smooch</span><span class="o">/</span><span class="kt">Smooch</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="n">signedUpAt</span> <span class="o">=</span> <span class="kt">NSDate</span><span class="p">()</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">setSignedUpAt</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="mi">1420070400000</span><span class="n">l</span><span class="o">));</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">signedUpAt</span><span class="p">:</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="s2">"Nov 6, 2013"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre>
+<h3 id='adding-custom-profile-information'>Adding custom profile information</h3>
+<p>You can also specify any other kind of profile information that will be sent along when users contact you. You can also use any properties you store using this API to send targeted messages to your users proactively using our Whispers feature.</p>
+<pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
+</span>
+<span class="p">[[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">]</span> <span class="nf">addProperties</span><span class="p">:</span><span class="err">@</span><span class="p">{</span> <span class="s">@"nickname"</span> <span class="o">:</span> <span class="s">@"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">@"weight"</span> <span class="o">:</span> <span class="mi">@650</span><span class="p">,</span> <span class="s">@"premiumUser"</span> <span class="o">:</span> <span class="nb">@YES</span> <span class="p">}];</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="err">#</span><span class="kd">import</span> <span class="o">&lt;</span><span class="kt">Smooch</span><span class="o">/</span><span class="kt">Smooch</span><span class="o">.</span><span class="n">h</span><span class="o">&gt;</span>
+
+<span class="kt">SKTUser</span><span class="o">.</span><span class="nf">currentUser</span><span class="p">()</span><span class="o">.</span><span class="nf">addProperties</span><span class="p">([</span> <span class="s">"nickname"</span> <span class="p">:</span> <span class="s">"Lil Big Daddy Slim"</span><span class="p">,</span> <span class="s">"weight"</span> <span class="p">:</span> <span class="mi">650</span><span class="p">,</span> <span class="s">"premiumUser"</span> <span class="p">:</span> <span class="kc">true</span> <span class="p">])</span>
+</code></pre>
+<pre class="highlight java"><code><span class="kn">import</span> <span class="nn">io.smooch.core.User</span><span class="o">;</span>
+
+<span class="kd">final</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">customProperties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDate"</span><span class="o">,</span> <span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customFlag"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+<span class="n">customProperties</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"customDigit"</span><span class="o">,</span> <span class="mi">322</span><span class="o">);</span>
+<span class="n">User</span><span class="o">.</span><span class="na">getCurrentUser</span><span class="o">().</span><span class="na">addProperties</span><span class="o">(</span><span class="n">customProperties</span><span class="o">);</span>
+</code></pre>
+
+          <p>All user properties are optional, so the object you pass into <code class="prettyprint">init</code> could also look as simple as:</p>
+<pre class="highlight javascript"><code><span class="p">{</span><span class="nl">appToken</span><span class="p">:</span> <span class="s2">"your_app_token"</span><span class="p">,</span> <span class="nx">givenName</span><span class="err">:</span> <span class="s2">"Trogdor"</span><span class="p">}</span>
+</code></pre>
 
           <p><aside class="notice">
 Note: The maximum size for a property key is 100 bytes and the maximum property string value is 800 bytes. User keys and string values that exceed these limits will be truncated.
