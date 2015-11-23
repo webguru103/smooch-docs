@@ -29,26 +29,26 @@ Remember — when you use CocoaPods to manage your app's dependencies, you have 
 </aside>
 
 ## Manual Method
-First, grab a copy of Smooch by [downloading the most recent release](https://github.com/smooch/smooch-ios/archive/master.zip) or visiting our [GitHub page](https://github.com/smooch/smooch-ios).
 
-Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
+1. First, grab a copy of Smooch by [downloading the most recent release](https://github.com/smooch/smooch-ios/archive/master.zip) or visiting our [GitHub page](https://github.com/smooch/smooch-ios).
 
+1. Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
 ![Dependencies in XCode](/images/dependencies.png)
 
-Now you'll have to add Smooch's dependencies to your project if they're not already linked in. Go to "Build phases" in your project's target and select "Link Binary With Libraries":
-
+1. Now you'll have to add Smooch's dependencies to your project if they're not already linked in. Go to "Build phases" in your project's target and select "Link Binary With Libraries":
+ * AssetsLibrary.framework
+ * AVFoundation.framework
+ * CFNetwork.framework
  * CoreGraphics.framework
  * CoreTelephony.framework
  * CoreText.framework
  * Foundation.framework
+ * Photos.framework
  * QuartzCore.framework
  * SystemConfiguration.framework
  * UIKit.framework
- * AssetsLibrary.framework
- * Photos.framework
- * AVFoundation.framework
-
- Smooch should now be available to your app and you're ready to add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
+1. Add the `-licucore` option to your app's `Other Linker Flags` build setting.
+1. Smooch should now be available to your app and you're ready to add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
 
 ## Import the Smooch header file
 
