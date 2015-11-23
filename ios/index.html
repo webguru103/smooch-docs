@@ -114,28 +114,28 @@
 Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
 </aside></p>
 <h2 id='manual-method'>Manual Method</h2>
-<p>First, grab a copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> or visiting our <a href="https://github.com/smooch/smooch-ios">GitHub page</a>.</p>
-
-<p>Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.</p>
-
-<p><img alt="Dependencies in XCode" src="../images/dependencies.png" /></p>
-
-<p>Now you&rsquo;ll have to add Smooch&rsquo;s dependencies to your project if they&rsquo;re not already linked in. Go to &ldquo;Build phases&rdquo; in your project&rsquo;s target and select &ldquo;Link Binary With Libraries&rdquo;:</p>
+<ol>
+<li><p>First, grab a copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> or visiting our <a href="https://github.com/smooch/smooch-ios">GitHub page</a>.</p></li>
+<li><p>Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
+<img alt="Dependencies in XCode" src="../images/dependencies.png" /></p></li>
+<li><p>Now you&rsquo;ll have to add Smooch&rsquo;s dependencies to your project if they&rsquo;re not already linked in. Go to &ldquo;Build phases&rdquo; in your project&rsquo;s target and select &ldquo;Link Binary With Libraries&rdquo;:</p>
 
 <ul>
+<li>AssetsLibrary.framework</li>
+<li>AVFoundation.framework</li>
+<li>CFNetwork.framework</li>
 <li>CoreGraphics.framework</li>
 <li>CoreTelephony.framework</li>
 <li>CoreText.framework</li>
 <li>Foundation.framework</li>
+<li>Photos.framework</li>
 <li>QuartzCore.framework</li>
 <li>SystemConfiguration.framework</li>
 <li>UIKit.framework</li>
-<li>AssetsLibrary.framework</li>
-<li>Photos.framework</li>
-<li>AVFoundation.framework</li>
-</ul>
-
-<p>Smooch should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p>
+</ul></li>
+<li><p>Add the <code class="prettyprint">-licucore</code> option to your app&rsquo;s <code class="prettyprint">Other Linker Flags</code> build setting.</p></li>
+<li><p>Smooch should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p></li>
+</ol>
 <h2 id='import-the-smooch-header-file'>Import the Smooch header file</h2>
 <p>Import the Smooch file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
 <pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
