@@ -26,7 +26,7 @@ You can target your users based on any information that you've stored in `proper
 
  * _Last Seen_ : Send the message based on when the user last interacted with your app. This value is updated automatically each time a user launches your app.
 
-In order to create Whispers based on properties you've defined using Smooch object's `properties` array, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our [documentation on the subject](#identifying-your-users).
+In order to create Whispers based on properties you've defined using Smooch object's `properties` array, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our [documentation on the subject](#user-data).
 
 ### Personalizing the message text
 

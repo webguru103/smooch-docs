@@ -8,7 +8,7 @@ Configuring Smooch to communicate with Zendesk is easy. Go to your app settings 
 
 <img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/>
 
-In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it's important to <a href="#identifying-your-users">set the email</a> of your user in your app's Smooch integration.
+In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it's important to <a href="#user-data">set the email</a> of your user in your app's Smooch integration.
 
 #### Configuring agent images
 You can set an agent's image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent's email address.
