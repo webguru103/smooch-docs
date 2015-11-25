@@ -613,7 +613,11 @@ Buttons will always be appended at the bottom of your message bubble.
 
 <p>This will send you to a Slack page where you will choose which slack team you want to add Smooch to, and it will show you the set of permissions Smooch is requesting in order to function. Once all is done, you&rsquo;ll be redirected back to Smooch. That&rsquo;s it, you&rsquo;re up and running.</p>
 
-<p>When users send you messages, Smooch posts them to Slack. If it&rsquo;s a new conversation, a notification will appear in your dispatch channel in Slack. Smooch will choose <code class="prettyprint">#general</code> as your dispatch channel by default, and you can change this if you wish. The dispatch notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.</p>
+<p>When users send you messages, Smooch posts them to Slack. If it&rsquo;s a new conversation, a notification will appear in your dispatch channel in Slack. Smooch will choose <code class="prettyprint">#general</code> as your dispatch channel by default, and you can change this if you wish. The dispatch notification contains a link to a channel associated to the specific user that sent you the message.</p>
+
+<p>By default, Smooch will generate random channel names for users who start conversations. If you want the channel names to be relevant, you must add a <a href="#user-data">first name, last name or email to the user</a>.</p>
+<h3 id='talking-to-the-user'>Talking to the User</h3>
+<p>From a channel associated with a user, you can get more information on the user and reply to their questions.</p>
 
 <p>The messages you send in this new channel are not visible to your user. We do this so that you can invite teammates to collaborate on the user&rsquo;s issue without exposing your internal conversation.</p>
 
@@ -680,7 +684,7 @@ You can easily view your active conversations and user profiles at a glance.</p>
 
 <p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
 
-<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#identifying-your-users">set the email</a> of your user in your app&rsquo;s Smooch integration.</p>
+<p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#user-data">set the email</a> of your user in your app&rsquo;s Smooch integration.</p>
 <h4 id='configuring-agent-images'>Configuring agent images</h4>
 <p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
 <img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
@@ -748,7 +752,7 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <li><p><em>App Version</em> : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleShortVersionString key in your app&rsquo;s info.plist file, and is updated each time the user launches your app.</p></li>
 </ul>
 
-<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#identifying-your-users">documentation on the subject</a>.</p>
+<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#user-data">documentation on the subject</a>.</p>
 <h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
 <p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">Smooch User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
 
