@@ -12,7 +12,13 @@ Click the "Connect to Slack" button on the Slack integration page.
 
 This will send you to a Slack page where you will choose which slack team you want to add Smooch to, and it will show you the set of permissions Smooch is requesting in order to function. Once all is done, you'll be redirected back to Smooch. That's it, you're up and running.
 
-When users send you messages, Smooch posts them to Slack. If it's a new conversation, a notification will appear in your dispatch channel in Slack. Smooch will choose `#general` as your dispatch channel by default, and you can change this if you wish. The dispatch notification contains a link to a channel associated to the specific user that sent you the message. From this channel you can get more information on the user and reply to their questions.
+When users send you messages, Smooch posts them to Slack. If it's a new conversation, a notification will appear in your dispatch channel in Slack. Smooch will choose `#general` as your dispatch channel by default, and you can change this if you wish. The dispatch notification contains a link to a channel associated to the specific user that sent you the message.
+
+By default, Smooch will generate random channel names for users who start conversations. If you want the channel names to be relevant, you must add a [first name, last name or email to the user](#user-data).
+
+### Talking to the User
+
+From a channel associated with a user, you can get more information on the user and reply to their questions.
 
 The messages you send in this new channel are not visible to your user. We do this so that you can invite teammates to collaborate on the user's issue without exposing your internal conversation.
 
