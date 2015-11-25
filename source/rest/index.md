@@ -489,7 +489,7 @@ Retrieve a specific app user. Like all other `/v1/appusers/` paths, an app user 
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -X PUT \
-     -d '{"givenName": "Steve"}'
+     -d '{"givenName": "Steve"}' \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
