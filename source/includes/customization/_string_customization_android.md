@@ -18,4 +18,4 @@ For example, if you wanted to override strings for English, you would create a f
 </resources>
 ```
 
-Please note that if you want to specify new strings for the default fallback language, you must override them in `res/values/string.xml`.
+<aside>Please note that if you want to specify new strings for the default fallback language, you must override them in `res/values/string.xml`.</aside>
