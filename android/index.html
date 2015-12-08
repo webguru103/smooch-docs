@@ -795,9 +795,12 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <p>If you translate Smooch&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every Smooch user can benefit from it. You can do so by <a href="https://github.com/smooch/smooch-android/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@smooch.io">help@smooch.io</a></p>
 
           <h1 id='customization'>Customization</h1><h2 id='strings-customization'>Strings customization</h2>
-<p>Smooch lets you customize any strings it displays by overwriting his keys. Simply add <code class="prettyprint">res/values/strings.xml</code> file in your Android project and specify new values for the keys used in Smooch. You can find all available keys by browsing to the <code class="prettyprint">ui-x.x.x/res/values/values.xml</code> file in the External Libraries in Android Studio.</p>
+<p>Smooch lets you customize any strings it displays by overwriting its keys. 
+In order to do so, simply add <code class="prettyprint">res/values-&lt;your-language-code&gt;/strings.xml</code> file in your Android project and specify new values for the keys used in Smooch. You can find all available keys by browsing to the <code class="prettyprint">ui-x.x.x/res/values/values.xml</code> file in the External Libraries in Android Studio.</p>
 
 <p>Dates shown in the conversation view are already localized to the user&rsquo;s device.</p>
+
+<p>For example, if you wanted to override strings for English, you would create a file <code class="prettyprint">res/values-en/strings.xml</code> and include the following in that file:</p>
 <pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
     <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_activityConversation"</span><span class="nt">&gt;</span>Messages<span class="nt">&lt;/string&gt;</span>
     <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_startOfConversation"</span><span class="nt">&gt;</span>This is the start of your conversation with the team.<span class="nt">&lt;/string&gt;</span>
@@ -805,6 +808,8 @@ You can easily view your active conversations and user profiles at a glance.</p>
     <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_messageHint"</span><span class="nt">&gt;</span>Type a message…<span class="nt">&lt;/string&gt;</span>
 <span class="nt">&lt;/resources&gt;</span>
 </code></pre>
+
+<p><aside>Please note that if you want to specify new strings for the default fallback language, you must override them in <code class="prettyprint">res/values/string.xml</code>.</aside></p>
 
           <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
 <p>Using a <code class="prettyprint">colors.xml</code> file in your <code class="prettyprint">res/values</code> folder, you can change the colors used by Smooch:</p>
