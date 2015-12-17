@@ -47,7 +47,7 @@ Smooch uses standard HTTP status codes to communicate errors
 
 ## Rate Limits
 
-Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a `429 Too Many Requests` HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications going consistantly over limits run the risk of being permantently disabled.
+Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a `429 Too Many Requests` HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications that consistently exceed limits run the risk of being permanently disabled.
 
 # Authentication
 
