@@ -41,7 +41,13 @@ Smooch uses standard HTTP status codes to communicate errors
 | **401** | Unauthorized - Necessary credentials were either missing or invalid. |
 | **403** | Forbidden - Your credentials are valid but you don't have access to the requested resource. |
 | **404** | Not Found - The object you're requesting doesn't exist. |
+| **409** | Conflict - You might be trying to update the same resource concurrently. |
+| **429** | Too Many Requests - You are calling our APIs more frequently than we allow. |
 | **500, 502, 503, 504** | Server Errors - Something went wrong on our end. |
+
+## Rate Limits
+
+Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a `429 Too Many Requests` HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications going consistantly over limits run the risk of being permantently disabled.
 
 # Authentication
 
