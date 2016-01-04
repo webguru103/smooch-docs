@@ -1,8 +1,8 @@
 [{
     "sectionTitle": "New integration",
-    "title": "SMS",
+    "title": "SMS & MMS",
     "image": "https://website.smooch.io/whats_new/sms.png",
-    "content": "Build SMS-based apps, or add another great messaging channel for your customers. Team replies work instantly with tools like Slack or Zendesk.",
+    "content": "Build SMS and MMS-based apps, or add another great messaging channel for your customers. Team replies work instantly with tools like Slack or Zendesk.",
     "buttonTarget": "http://blog.smooch.io/start-texting-your-users-today/",
     "buttonText": "Learn more",
     "routes": ["login"],
