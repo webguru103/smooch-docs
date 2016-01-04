@@ -1,12 +1,17 @@
 ## Stripe
 
-Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation. Credit card informations are never seen by our servers, everything related to transactions is all handled by Stripe.
+Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation.
+Credit card informations are never seen by our servers, everything related to transactions is all handled by Stripe.
 
 <div class="third-width-img">
 	<img alt="in conversation money request" src="../images/in_conversation_money_request.png" />
 	<img alt="card capture ui" src="../images/card_capture_ui.png" />
 	<img alt="payment completed ui" src="../images/payment_completed_ui.png" />
 </div>
+
+### Transaction fees
+
+Smooch takes a 0.5% fee on every payment we facilitate. This is separate from the [Stripe fees](https://stripe.com/ca/pricing) which are currently at 2.9% + 30¢. For example, on a $100 USD payment, Smooch will receive $0.50 USD and Stripe $3.20 USD.
 
 ### Configuring Stripe
 
