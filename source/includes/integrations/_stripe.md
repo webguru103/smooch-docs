@@ -11,7 +11,7 @@ Credit card informations are never seen by our servers, everything related to tr
 
 ### Transaction fees
 
-Smooch takes a 0.5% fee on every payment we facilitate. This is separate from the [Stripe fees](https://stripe.com/ca/pricing) which are currently at 2.9% + 30¢. For example, on a $100 USD payment, Smooch will receive $0.50 USD and Stripe $3.20 USD.
+Smooch takes a 0.5% + 20¢ fee on every payment we facilitate. This is separate from the [Stripe fees](https://stripe.com/ca/pricing) which are currently at 2.9% + 30¢. For example, on a $100 USD payment, Smooch will receive $0.70 USD and Stripe $3.20 USD.
 
 ### Configuring Stripe
 
