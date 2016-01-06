@@ -36,6 +36,7 @@ includes:
   - integrations/hipchat
   - integrations/zendesk
   - integrations/twilio
+  - integrations/stripe
   - integrations/connecting_crm
 
   - getting_conversations_started
