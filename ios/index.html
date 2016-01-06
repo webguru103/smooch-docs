@@ -608,7 +608,7 @@ Credit card informations are never seen by our servers, everything related to tr
 
 <p><img alt="Stripe integration page ui" src="../images/Stripe_integration_page_ui.png" /></p>
 
-<p>Use Test mode during development. While in this mode you can use Stripe&rsquo;s <a href="https://stripe.com/docs/testing#cards">test credit card numbers</a> to make transactions without using real money. Use Live mode to get real money 🤑.</p>
+<p>Use Test mode during development. While in this mode you can use Stripe&rsquo;s <a href="https://stripe.com/docs/testing#cards">test credit card numbers</a> to make transactions without using real money. Use Live mode to get real money 💸.</p>
 
 <p>Then Click &ldquo;Authenticate your Stripe account&rdquo;. This will send you to a Stripe page where you can select which Stripe account to link Smooch with. </p>
 
@@ -629,6 +629,17 @@ If you are using test mode, notice the &ldquo;Skip this account form&rdquo; at t
 <p><aside class="info">
 If your users are messaging you by SMS via our <a href="#twilio">Twillo</a> integration, they&rsquo;ll be getting a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch iOS SDK versions older than 3.3.
 </aside></p>
+
+          <h2 id='shopify'>Shopify</h2>
+<p><a href="https://www.shopify.com/">Shopify</a> is a simple way to set up an online store to organize products, accept credit card payments, and manage orders.</p>
+
+<p>This integration adds the Smooch web plugin to your Shopify online store. Smooch will set your <code class="prettyprint">appToken</code> and add the code snippet in your theme.</p>
+<h3 id='adding-smooch-to-your-store'>Adding Smooch to your store</h3>
+<p>In order to append the plugin to your theme, all you need to do is to press on <em>Authenticate</em> from the integration page or install Smooch from the <a href="https://apps.shopify.com/smooch">Shopify marketplace</a>.</p>
+
+<p><img alt="From the integration page" src="../images/shopify.png" /></p>
+
+<p><aside class="notice">Integrating Smooch will modify your current Shopify theme. If your theme ever changes, you will need to re-enable this integration.</aside></p>
 
           <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
 <p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
