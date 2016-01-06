@@ -19,7 +19,7 @@ From the Stripe integration page, select which Stripe mode you want Smooch to be
 
 ![Stripe integration page ui](Stripe_integration_page_ui.png)
 
-Use Test mode during development. While in this mode you can use Stripe's [test credit card numbers](https://stripe.com/docs/testing#cards) to make transactions without using real money. Use Live mode to get real money 🤑.
+Use Test mode during development. While in this mode you can use Stripe's [test credit card numbers](https://stripe.com/docs/testing#cards) to make transactions without using real money. Use Live mode to get real money 💸.
 
 Then Click "Authenticate your Stripe account". This will send you to a Stripe page where you can select which Stripe account to link Smooch with. 
 
