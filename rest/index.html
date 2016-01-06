@@ -88,10 +88,20 @@
 <td>Not Found - The object you&rsquo;re requesting doesn&rsquo;t exist.</td>
 </tr>
 <tr>
+<td><strong>409</strong></td>
+<td>Conflict - You might be trying to update the same resource concurrently.</td>
+</tr>
+<tr>
+<td><strong>429</strong></td>
+<td>Too Many Requests - You are calling our APIs more frequently than we allow.</td>
+</tr>
+<tr>
 <td><strong>500, 502, 503, 504</strong></td>
 <td>Server Errors - Something went wrong on our end.</td>
 </tr>
 </tbody></table>
+<h2 id='rate-limits'>Rate Limits</h2>
+<p>Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a <code class="prettyprint">429 Too Many Requests</code> HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications that consistently exceed limits run the risk of being permanently disabled.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>Smooch APIs offer two methods of authentication:</p>
 
