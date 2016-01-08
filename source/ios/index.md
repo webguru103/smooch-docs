@@ -36,6 +36,10 @@ includes:
   - integrations/hipchat
   - integrations/zendesk
   - integrations/twilio
+  - integrations/stripe_intro
+  - integrations/stripe_ios
+  - integrations/stripe
+  - integrations/stripe_notice_ios
   - integrations/stripe
   - integrations/shopify
   - integrations/connecting_crm

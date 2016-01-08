@@ -1,14 +1,3 @@
-## Stripe
-
-Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation.
-Credit card informations are never seen by our servers, everything related to transactions is all handled by Stripe.
-
-<div class="third-width-img">
-	<img alt="in conversation money request" src="../images/in_conversation_money_request.png" />
-	<img alt="card capture ui" src="../images/card_capture_ui.png" />
-	<img alt="payment completed ui" src="../images/payment_completed_ui.png" />
-</div>
-
 ### Transaction fees
 
 Smooch takes a 0.5% + 20¢ fee on every payment we facilitate. This is separate from the [Stripe fees](https://stripe.com/ca/pricing) which are currently at 2.9% + 30¢. For example, on a $100 USD payment, Smooch will receive $0.70 USD and Stripe $3.20 USD.
@@ -40,7 +29,3 @@ This works from any channel you configured to use with Smooch.
 The amount you specify can be just a dollars amount or dollars and cents as in the example. Note that all amounts are in USD.
 
 Once the user completes a payment you'll get a confirmation along with a link to the payment page on Stripe.
-
-<aside class="info">
-If your users are messaging you by SMS via our [Twillo](#twilio) integration, they'll be getting a web link instead of a buy button. It will take them to a payment web page where we use [Checkout.js](https://stripe.com/docs/checkout) from Stripe to secure the payment. This mechanism is also used for Smooch iOS SDK versions older than 3.3.
-</aside>
