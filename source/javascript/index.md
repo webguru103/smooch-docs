@@ -37,6 +37,7 @@ includes:
   - integrations/zendesk
   - integrations/twilio
   - integrations/shopify
+  - integrations/stripe
   - integrations/connecting_crm
 
   - getting_conversations_started_js
