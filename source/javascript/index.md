@@ -36,8 +36,11 @@ includes:
   - integrations/hipchat  
   - integrations/zendesk
   - integrations/twilio
-  - integrations/shopify
+  - integrations/stripe_intro
+  - integrations/stripe_web
   - integrations/stripe
+  - integrations/stripe_notice_web
+  - integrations/shopify
   - integrations/connecting_crm
 
   - getting_conversations_started_js

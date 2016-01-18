@@ -40,7 +40,6 @@ includes:
   - integrations/stripe_ios
   - integrations/stripe
   - integrations/stripe_notice_ios
-  - integrations/stripe
   - integrations/shopify
   - integrations/connecting_crm
 
