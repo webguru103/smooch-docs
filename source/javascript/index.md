@@ -17,7 +17,7 @@ includes:
   - welcome
   - references
   - adding_smooch_js
-
+  - configuring_agent_images
 
   - users/users
   - users/user_data_intro
