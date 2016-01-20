@@ -10,10 +10,6 @@ Configuring Smooch to communicate with Zendesk is easy. Go to your app settings 
 
 In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it's important to <a href="#user-data">set the email</a> of your user in your app's Smooch integration.
 
-#### Configuring agent images
-You can set an agent's image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent's email address.
-<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/>
-
 #### Working with Zendesk email signatures
 
 Smooch automagically removes agent's personal signatures from messages. Global signatures can be set, but must be prefixed with `--`, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
