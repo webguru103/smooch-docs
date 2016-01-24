@@ -389,7 +389,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 <li><p>Generate a secret key for your Smooch app. You can do this from the <a href="https://app.smooch.io">Smooch dashboard</a> under the Settings tab.</p>
 
 <p><img alt="Secret Keys" src="../images/secret_keys.png" /></p></li>
-<li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>). The JWT body must specify a <code class="prettyprint">scope</code> of &lsquo;appUser&rsquo; and the <code class="prettyprint">userId</code> you&rsquo;ve assigned to the app user.</p>
+<li><p>Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (<code class="prettyprint">kid</code>). The JWT payload must include a <code class="prettyprint">scope</code> claim of &lsquo;appUser&rsquo; and a <code class="prettyprint">userId</code> claim which you&rsquo;ve assigned to the app user.</p>
 
 <p>A node.js sample is provided below:</p>
 <pre class="highlight plaintext"><code>var jwt = require('jsonwebtoken');
@@ -404,6 +404,8 @@ var signJwt = function(userId) {
     SECRET,
     {
         headers: {
+            alg: 'HS256',
+            typ: 'JWT',
             kid: KEY_ID
         }
     });

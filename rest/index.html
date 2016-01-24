@@ -148,7 +148,7 @@
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 
-<p>JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A set of supported JWT libraries for a variety of languages and platforms can be found at <a href="http://jwt.io">http://jwt.io</a>. The full specification is described <a href="https://tools.ietf.org/html/rfc7519">here</a>.</p>
+<p>JSON Web Tokens (JWTs) are an industry standard authentication mechanism. The full specification is described <a href="https://tools.ietf.org/html/rfc7519">here</a>, and a set of supported JWT libraries for a variety of languages and platforms can be found at <a href="http://jwt.io">http://jwt.io</a>. To summarize, a JWT is composed of a header, a payload, and a signature. The payload contains information called <em>claims</em> which describe the subject to whom the token was issued.</p>
 
 <p>For added security when making calls on behalf of an app user, a <code class="prettyprint">jwt</code> credential can optionally be specified instead of an <code class="prettyprint">appToken</code>. However other APIs, such as <code class="prettyprint">/v1/webhooks</code> always require a valid <code class="prettyprint">jwt</code> credential.</p>
 
@@ -159,6 +159,7 @@
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HS256"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"typ"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JWT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"kid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b567635f883c819871ace8003c0db14b"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -166,7 +167,7 @@
 <p>The JWT header must contain the key id (<code class="prettyprint">kid</code>) of the secret key that is used to sign it. The algorithm (<code class="prettyprint">alg</code>) used to sign the JWT can be anything supported by the <a href="https://www.npmjs.com/package/jsonwebtoken#algorithms-supported">jsonwebtoken npm module v5.0.4</a>. Unsigned JWTs are not accepted.</p>
 
 <blockquote>
-<p>JWT body with <code class="prettyprint">appUser</code> scope:</p>
+<p>JWT payload with <code class="prettyprint">appUser</code> scope claim:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
@@ -175,14 +176,14 @@
 </span></code></pre>
 
 <blockquote>
-<p>JWT body with <code class="prettyprint">app</code> scope:</p>
+<p>JWT payload with <code class="prettyprint">app</code> scope:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id='scope'>Scope</h3>
-<p>The <code class="prettyprint">jwt</code> body must specify the caller&rsquo;s scope of access. There are two levels of scope:</p>
+<p>The <code class="prettyprint">jwt</code> payload must include a <code class="prettyprint">scope</code> claim which specifies the caller&rsquo;s scope of access. There are two levels of scope:</p>
 
 <ol>
 <li><p>The <code class="prettyprint">appUser</code> scope grants access to an individual app user&rsquo;s data and conversation history, but nothing else. It is used when issuing tokens to individual users. A <code class="prettyprint">jwt</code> with <code class="prettyprint">appUser</code> scope must also specify a <code class="prettyprint">userId</code> which uniquely identifies the <code class="prettyprint">appUser</code> being accessed. <a href="https://gist.github.com/alavers/8f07b03895333d83b454">Node.js code sample</a></p></li>
