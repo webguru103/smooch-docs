@@ -8,7 +8,7 @@ To issue JWTs:
 
     ![Secret Keys](secret_keys.png)
 
-1. Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (`kid`). The JWT body must specify a `scope` of 'appUser' and the `userId` you've assigned to the app user.
+1. Implement server side code to sign new JWTs using the key ID and secret provided. The JWT header must specify the key ID (`kid`). The JWT payload must include a `scope` claim of 'appUser' and a `userId` claim which you've assigned to the app user.
 
     A node.js sample is provided below:
 
@@ -25,6 +25,8 @@ To issue JWTs:
         SECRET,
         {
             headers: {
+                alg: 'HS256',
+                typ: 'JWT',
                 kid: KEY_ID
             }
         });

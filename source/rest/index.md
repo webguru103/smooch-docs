@@ -87,7 +87,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'authorization: Bearer your-jwt'
 ```
 
-JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A set of supported JWT libraries for a variety of languages and platforms can be found at [http://jwt.io](http://jwt.io). The full specification is described [here](https://tools.ietf.org/html/rfc7519).
+JSON Web Tokens (JWTs) are an industry standard authentication mechanism. The full specification is described [here](https://tools.ietf.org/html/rfc7519), and a set of supported JWT libraries for a variety of languages and platforms can be found at [http://jwt.io](http://jwt.io). To summarize, a JWT is composed of a header, a payload, and a signature. The payload contains information called *claims* which describe the subject to whom the token was issued.
 
 For added security when making calls on behalf of an app user, a `jwt` credential can optionally be specified instead of an `appToken`. However other APIs, such as `/v1/webhooks` always require a valid `jwt` credential.
 
@@ -100,13 +100,14 @@ The `jwt` itself is transmitted via the HTTP `authorization` header. The token s
 ```json
 {
     "alg": "HS256",
+    "typ": "JWT",
     "kid": "b567635f883c819871ace8003c0db14b"
 }
 ```
 
 The JWT header must contain the key id (`kid`) of the secret key that is used to sign it. The algorithm (`alg`) used to sign the JWT can be anything supported by the [jsonwebtoken npm module v5.0.4](https://www.npmjs.com/package/jsonwebtoken#algorithms-supported). Unsigned JWTs are not accepted.
 
-> JWT body with `appUser` scope:
+> JWT payload with `appUser` scope claim:
 
 ```json
 {
@@ -115,7 +116,7 @@ The JWT header must contain the key id (`kid`) of the secret key that is used to
 }
 ```
 
-> JWT body with `app` scope:
+> JWT payload with `app` scope:
 
 ```json
 {
@@ -125,7 +126,7 @@ The JWT header must contain the key id (`kid`) of the secret key that is used to
 
 ### Scope
 
-The `jwt` body must specify the caller's scope of access. There are two levels of scope:
+The `jwt` payload must include a `scope` claim which specifies the caller's scope of access. There are two levels of scope:
 
 1. The `appUser` scope grants access to an individual app user's data and conversation history, but nothing else. It is used when issuing tokens to individual users. A `jwt` with `appUser` scope must also specify a `userId` which uniquely identifies the `appUser` being accessed. [Node.js code sample](https://gist.github.com/alavers/8f07b03895333d83b454)
 
