@@ -27,27 +27,46 @@ Smooch.login(yourUserId);
 Smooch.login(yourUserId);
 ```
 
+Or, if you are using JWTs:
+
+```objective_c
+[Smooch login:yourUserId jwt:"<user-jwt>"];
+```
+```swift
+Smooch.login(yourUserId, jwt:"<user-jwt>")
+```
+```javascript
+Smooch.login(yourUserId, "<user-jwt>");
+```
+```java
+Smooch.login(yourUserId, "<user-jwt>");
+```
+
 In most use cases Smooch is initialized synchronously as your app loads. For this reason, once you've set your user's `userId` for the first time it is recommended that you store that `userId` locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the `userId` at app boot time, instead of calling `login` you can specify the `userId` during Smooch initialization like so:
 
 ```objective_c
 SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOUR_APP_TOKEN"];
 settings.userId = yourUserId;
+settings.jwt = "<user-jwt>"; // if you are using JWTs
 [Smooch initWithSettings:settings];
 ```
 ```swift
 var settings = SKTSettings(appToken: "YOUR_APP_TOKEN")
 settings.userId = yourUserId
+settings.jwt = "<user-jwt>" // if you are using JWTs
 Smooch.initWithSettings(settings)
 ```
 ```javascript
 Smooch.init({
     appToken: 'YOUR_APP_TOKEN',
-    userId: yourUserId
+    userId: yourUserId,
+    jwt: "<user-jwt>" // if you are using JWTs
 });
 ```
 ```java
 Settings settings = new Settings("YOUR_APP_TOKEN");
 settings.setUserId(yourUserId);
+settings.setJWT("<user-jwt>"); // if you are using JWTs
 Smooch.init(this, settings);
 ```
 
