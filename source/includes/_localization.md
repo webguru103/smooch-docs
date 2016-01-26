@@ -15,7 +15,7 @@ These languages are included with the iOS SDK: Arabic, English, Finnish, French,
 See how to support more languages in [Adding more languages](#adding-more-languages)
 
 <aside class="warning">
-Localization is subject to caching. If you can't see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good mesures.
+Localization is subject to caching. If you can't see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good measures.
 </aside>
 
 ## Adding more languages

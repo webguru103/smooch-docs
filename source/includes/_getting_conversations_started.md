@@ -34,7 +34,7 @@ You can target your users based on any information that you've stored using the 
 
  * _App Version_ : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleShortVersionString key in your app's info.plist file, and is updated each time the user launches your app.
 
-In order to create Whispers based on properties you've defined using the `Smooch User` class, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. Alternatively, you can make a HTTP request to `PUT /appusers` route of the [Smooch REST API](/rest). For more information on using custom properties, read our [documentation on the subject](#user-data).
+In order to create Whispers based on properties you've defined using the `Smooch User` class, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. Alternatively, you can make a HTTP request to the `PUT /appusers` route of the [Smooch REST API](/rest). For more information on using custom properties, read our [documentation on the subject](#user-data).
 
 ### Personalizing the message text
 
