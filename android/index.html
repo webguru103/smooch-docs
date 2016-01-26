@@ -463,7 +463,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">);</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
 </code></pre>
 
 <p>In most use cases Smooch is initialized synchronously as your app loads. For this reason, once you&rsquo;ve set your user&rsquo;s <code class="prettyprint">userId</code> for the first time it is recommended that you store that <code class="prettyprint">userId</code> locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the <code class="prettyprint">userId</code> at app boot time, instead of calling <code class="prettyprint">login</code> you can specify the <code class="prettyprint">userId</code> during Smooch initialization like so:</p>
@@ -781,16 +781,18 @@ If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> inte
           <h1 id='whispers'>Whispers</h1>
 <p>Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
 
-<p>To help get you started, we&rsquo;ve built in 3 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">Smooch User</code> API.</p>
+<p>To help get you started, we&rsquo;ve built in 5 basic templates and also allow you to create your own using any custom metadata that you&rsquo;re capturing with the <code class="prettyprint">Smooch User</code> API.</p>
 
 <ul>
 <li><p><em>Welcome Whisper</em> : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.</p></li>
-<li><p><em>Re-Engage Users</em> : Send a message to users who were last seen using the app at least 7 days ago. </p></li>
+<li><p><em>Re-Engage Users</em> : Send a message to users who were last seen using the app at least 7 days ago.</p></li>
 <li><p><em>Announcement</em> : Send a message to all users when they launch the app.</p></li>
+<li><p><em>Ask for app rating</em> : Send a message to all users who have signed up at least 5 days ago, prompting them to rate your app in the app store.</p></li>
+<li><p><em>Auto-response</em> : Inform users of when to expect an answer, when they send their first message.</p></li>
 </ul>
 
 <p>You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.</p>
-<h2 id='how-do-whispers-work'>How do Whispers work</h2>
+<h2 id='how-whispers-work'>How Whispers work</h2>
 <p>You create Whispers from within the <a href="https://app.smooch.io">Smooch dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
 
 <p><img alt="Whisper creation form" src="../images/create_whisper.png" /></p>
@@ -804,9 +806,9 @@ If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> inte
 <li><p><em>App Version</em> : Send the message to users who are using (or not using) a specific version of your app. The value for this property is taken from the CFBundleShortVersionString key in your app&rsquo;s info.plist file, and is updated each time the user launches your app.</p></li>
 </ul>
 
-<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. For more information on using custom properties, read our <a href="#user-data">documentation on the subject</a>.</p>
+<p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. Alternatively, you can make a HTTP request to the <code class="prettyprint">PUT /appusers</code> route of the <a href="/rest">Smooch REST API</a>. For more information on using custom properties, read our <a href="#user-data">documentation on the subject</a>.</p>
 <h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
-<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">Smooch User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
+<p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{ firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">Smooch User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
 
           <h2 id='when-are-whispers-sent'>When are Whispers sent</h2>
 <p>Whispers can be sent either when a specified event occurs in your app or when a user&rsquo;s profile information matches the criteria of the target group.</p>

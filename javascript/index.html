@@ -79,9 +79,11 @@
 </ul>
 
           <h1 id='adding-smooch-to-your-site'>Adding Smooch to your site</h1>
+<p><img alt="Web SDK's UI" src="../images/web_widget.png" /></p>
+
 <p>There are a few ways you can include the Smooch plugin on your web page.</p>
 
-<p>The recommended method is the Script Tag method, but you can also include it using bower or npm.</p>
+<p>The easiest way to get started is using the Script Tag method, but you can also include it using bower or npm.</p>
 <h2 id='script-tag-method'>Script Tag Method</h2><h4 id='step-1-include-the-smooch-plugin-on-your-web-page'>Step 1: Include the Smooch plugin on your web page</h4>
 <p>Add the following code towards the end of the <code class="prettyprint">body</code> section on your page. Placing it at the end allows the rest of the page to load first.</p>
 <pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.smooch.io/smooch.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
@@ -227,7 +229,7 @@ Note: The maximum size for a property key is 100 bytes and the maximum property 
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">login</span><span class="p">(</span><span class="nx">yourUserId</span><span class="p">);</span>
 </code></pre>
-<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">);</span>
+<pre class="highlight java"><code><span class="n">Smooch</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">yourUserId</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
 </code></pre>
 
 <p>In most use cases Smooch is initialized synchronously as your app loads. For this reason, once you&rsquo;ve set your user&rsquo;s <code class="prettyprint">userId</code> for the first time it is recommended that you store that <code class="prettyprint">userId</code> locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the <code class="prettyprint">userId</code> at app boot time, instead of calling <code class="prettyprint">login</code> you can specify the <code class="prettyprint">userId</code> during Smooch initialization like so:</p>
