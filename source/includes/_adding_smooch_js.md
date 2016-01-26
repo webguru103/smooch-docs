@@ -1,8 +1,11 @@
 # Adding Smooch to your site
 
+![Web SDK's UI](/images/web_widget.png)
+
 There are a few ways you can include the Smooch plugin on your web page.
 
-The recommended method is the Script Tag method, but you can also include it using bower or npm.
+The easiest way to get started is using the Script Tag method, but you can also include it using bower or npm.
+
 
 ## Script Tag Method
 

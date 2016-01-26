@@ -8,10 +8,14 @@ For Smooch to display a language other than English, your app needs to first ena
 
 ![Enable Localization](/images/add_language.png)
 
-Once you have this, Smooch will display itself in the device language for the supported language. English, French, Spanish, Chinese traditional, Arabic, German, Persian, Japanese and Finnish are currently included. See how to support more languages in [Adding more languages](#adding-more-languages)
+Once you have this, Smooch will display itself in the device language for the supported language.
+
+These languages are included with the iOS SDK: Arabic, English, Finnish, French, German, Italian, Japanese, Korean, Mandarin Chinese (traditional and simplified), Persian, Portuguese (Brazil and Portugal), Russian, Slovenian, Spanish, and Swedish.
+
+See how to support more languages in [Adding more languages](#adding-more-languages)
 
 <aside class="warning">
-Localization is subject to caching. If you can't see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good mesures.
+Localization is subject to caching. If you can't see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good measures.
 </aside>
 
 ## Adding more languages

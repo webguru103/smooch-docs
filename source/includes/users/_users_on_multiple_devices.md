@@ -24,7 +24,7 @@ Smooch.login(yourUserId, jwt:nil)
 Smooch.login(yourUserId);
 ```
 ```java
-Smooch.login(yourUserId);
+Smooch.login(yourUserId, null);
 ```
 
 In most use cases Smooch is initialized synchronously as your app loads. For this reason, once you've set your user's `userId` for the first time it is recommended that you store that `userId` locally on the device so that it does not need to be fetched again the next time the user opens the app. If your app knows the `userId` at app boot time, instead of calling `login` you can specify the `userId` during Smooch initialization like so:
