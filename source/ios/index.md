@@ -18,6 +18,7 @@ includes:
   - references
   - adding_smooch_ios
   - configuring_push_ios
+  - configuring_agent_images
 
   - users/users
   - users/user_data_intro
