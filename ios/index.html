@@ -222,6 +222,10 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <h3 id='step-5--repeat-for-production-mode'>Step 5. Repeat for Production mode</h3>
 <p>Take note that there are &ldquo;Development&rdquo; and &ldquo;Production&rdquo; certificates and profiles. Make sure that you upload the &ldquo;Production&rdquo; .p12 file to Smooch when you&rsquo;re ready to release your build through ad-hoc, enterprise or app store distribution.</p>
 
+          <h2 id='configuring-agent-images'>Configuring agent images</h2>
+<p>You can set an app maker&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the app maker&rsquo;s email address.
+<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
+
           <h1 id='users'>Users</h1>
           <h2 id='user-data'>User data</h2>
 <p>Smooch allows you to specify profile information about your users so that you can better understand the context around a user&rsquo;s message.</p>
@@ -564,9 +568,6 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <p><img style="width:50%; min-width:400px; max-width:800px;" src="/images/zendesk_integration.png" alt="Configure Zendesk integration page"/></p>
 
 <p>In order to maintain all your interactions with an app user under a single Zendesk End-user profile, it&rsquo;s important to <a href="#user-data">set the email</a> of your user in your app&rsquo;s Smooch integration.</p>
-<h4 id='configuring-agent-images'>Configuring agent images</h4>
-<p>You can set an agent&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the agent&rsquo;s email address.
-<img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
 <h4 id='working-with-zendesk-email-signatures'>Working with Zendesk email signatures</h4>
 <p>Smooch automagically removes agent&rsquo;s personal signatures from messages. Global signatures can be set, but must be prefixed with <code class="prettyprint">--</code>, if they aren’t, you’ll see them appear in SK message bubbles, and it can be unsightly.
 <img style="width:50%; min-width:200px; max-width:400px;" src="/images/unsightly_signature.png" alt="Oops, how unsightly"/></p>
@@ -602,6 +603,16 @@ Credit card informations are never seen by our servers, everything related to tr
     <img alt="in conversation money request" src="../images/in_conversation_money_request.png" />
     <img alt="card capture ui" src="../images/card_capture_ui.png" />
     <img alt="payment completed ui" src="../images/payment_completed_ui.png" />
+</div>
+
+          <h3 id='saved-credit-cards'>Saved Credit Cards</h3>
+<p>We will automatically save credit cards for users who are JWT protected.</p>
+
+<p>On subsequent purchases, they will be presented a dialog allowing them to buy without having to re-enter their card.</p>
+
+          <div class="third-width-img" style="text-align:center;">
+    <img alt="in conversation saved card money request" src="../images/stripe_saved_ios_request.png" />
+    <img alt="saved card ui" src="../images/stripe_saved_ios_card.png" />
 </div>
 
           <h3 id='transaction-fees'>Transaction fees</h3>
@@ -643,6 +654,20 @@ If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> inte
 <p><img alt="From the integration page" src="../images/shopify.png" /></p>
 
 <p><aside class="notice">Integrating Smooch will modify your current Shopify theme. If your theme ever changes, you will need to re-enable this integration.</aside></p>
+<h3 id='adding-more-customer-informations'>Adding more customer informations</h3>
+<p>If available, Smooch already includes the <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, <code class="prettyprint">email</code>, <em>order count</em>, <em>last order placed</em>, <em>lifetime spent</em> and the Admin url of the current <code class="prettyprint">customer</code>. It is also possible to retrieve more information for Shopify&rsquo;s <a href="https://docs.shopify.com/themes/liquid-documentation/objects/customer"><code class="prettyprint">customer</code> object</a> (it could also be <code class="prettyprint">orders</code>, <code class="prettyprint">address</code> or any object available in <a href="https://docs.shopify.com/themes/liquid-documentation/objects">your theme</a>). To do so, you need to <code class="prettyprint">Edit HTML/CSS</code> of your current theme to update the <code class="prettyprint">snippets/smooch.liquid</code> file and add them into <code class="prettyprint">properties</code> of the <code class="prettyprint">Smooch.updateUser</code> call.</p>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+  <span class="na">givenName</span><span class="p">:</span> <span class="s2">"{{ customer.first_name }}"</span><span class="p">,</span>
+  <span class="na">surname</span><span class="p">:</span> <span class="s2">"{{ customer.last_name }}"</span><span class="p">,</span>
+  <span class="na">email</span><span class="p">:</span> <span class="s2">"{{ customer.email }}"</span><span class="p">,</span>
+  <span class="na">properties</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"Customer Account"</span><span class="p">:</span> <span class="s2">"{{ shop.secure_url }}/admin/customers/{{ customer.id }}"</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="s2">"Location"</span><span class="p">:</span> <span class="s2">"{{ customer.default_address.city }}, {{ customer.default_address.country_code }}"</span><span class="p">,</span>
+    <span class="s2">"Cart Items"</span><span class="p">:</span> <span class="s2">"{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})"</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre>
 
           <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
 <p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
