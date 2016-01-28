@@ -38,6 +38,8 @@ includes:
   - integrations/twilio
   - integrations/stripe_intro
   - integrations/stripe_android
+  - integrations/stripe_saved_intro
+  - integrations/stripe_saved_android
   - integrations/stripe
   - integrations/stripe_notice_android
   - integrations/shopify
