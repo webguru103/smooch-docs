@@ -205,7 +205,7 @@
 <td>app</td>
 </tr>
 </tbody></table>
-<h1 id='webhooks-beta'>Webhooks <beta/></h1>
+<h1 id='webhooks'>Webhooks</h1>
 <blockquote>
 <p>Webhook example payload:</p>
 </blockquote>
@@ -249,6 +249,8 @@
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
@@ -291,6 +293,8 @@
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhooks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -319,6 +323,8 @@
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
@@ -348,6 +354,8 @@
 <blockquote>
 <p>Response</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"webhook"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8d9758590aa1900b9b9f6"</span><span class="p">,</span><span class="w">
@@ -386,6 +394,12 @@
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 <span class="se">\</span>
      -X DELETE <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
 </code></pre>
 
 <p><api><code class="prettyprint">DELETE /v1/webhooks/{webhookId}</code></api></p>
@@ -429,7 +443,7 @@
 <p>That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.</p>
 <h2 id='retry-policy'>Retry Policy</h2>
 <p>If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at an exponentially increasing interval.</p>
-<h1 id='init-beta'>Init <beta/></h1>
+<h1 id='init'>Init</h1>
 <blockquote>
 <p>Request:</p>
 </blockquote>
@@ -443,6 +457,8 @@
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"hasIcon"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -609,7 +625,7 @@
 <p><aside class="notice">
 In some scenarios, the <code class="prettyprint">appUser._id</code> returned in an app boot call may change. This is possible for example when the <code class="prettyprint">userId</code> is being used to log a user in on multiple devices, which may cause two distinct app users to merge together. The caller should always check if the returned <code class="prettyprint">appUser._id</code> has changed, and re-fetch conversation history whenever appropriate.
 </aside></p>
-<h1 id='app-user-beta'>App User <beta/></h1>
+<h1 id='app-user'>App User</h1>
 <p>The app user object represents an end user using your app. The app user document contains basic profile information such as <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, and <code class="prettyprint">email</code>, as well as any custom user properties you choose to configure.</p>
 
 <p>The <code class="prettyprint">/v1/appusers</code> path gives you APIs that can be used to update the user&rsquo;s properties, retrieve conversation history, post a message, and track app user events.</p>
@@ -637,6 +653,8 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
@@ -668,6 +686,8 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
@@ -727,6 +747,8 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"conversationUpdated"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -761,6 +783,8 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
@@ -814,14 +838,14 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 </tr>
 </tbody></table>
 
-<p>In the vast majority of cases app users will be created from the device or browser using the <a href="#init-beta">init API</a>. In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A <code class="prettyprint">userId</code> must be specified so that a future <code class="prettyprint">init</code> call made from a device can use the same <code class="prettyprint">userId</code> to link the device to the pre-created app user.</p>
+<p>In the vast majority of cases app users will be created from the device or browser using the <a href="#init">init API</a>. In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A <code class="prettyprint">userId</code> must be specified so that a future <code class="prettyprint">init</code> call made from a device can use the same <code class="prettyprint">userId</code> to link the device to the pre-created app user.</p>
 
 <p>Suppose for example you begin a conversation with an end user <code class="prettyprint">bob@example.com</code> over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call <code class="prettyprint">POST /v1/appusers</code> to pre-create a Smooch identity with <code class="prettyprint">userId</code> <code class="prettyprint">bob@example.com</code>, to which you can import that existing conversation history. After Bob signs in to your app and your app calls <code class="prettyprint">init</code> with the same <code class="prettyprint">userId</code>, they will see their conversation history.</p>
 
 <p><aside class="notice">
 Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope.
 </aside></p>
-<h1 id='conversations-beta'>Conversations <beta/></h1>
+<h1 id='conversations'>Conversations</h1>
 <p>When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the <code class="prettyprint">/v1/appusers/</code> API.</p>
 <h2 id='get-conversation'>Get Conversation</h2>
 <blockquote>
@@ -834,6 +858,8 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
 <blockquote>
 <p>Response</p>
 </blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"conversation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
@@ -879,6 +905,8 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
@@ -971,6 +999,8 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 <blockquote>
 <p>Response:</p>
 </blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">

@@ -79,9 +79,10 @@
 </ul>
 
           <h1 id='adding-smooch-to-your-app'>Adding Smooch to your app</h1>
-<p>There are a few ways you can include the Smooch plugin on your Android project.</p>
+<p>The Smooch library is distributed in both AAR and JAR format. If you are using Android Studio, follow the instructions for <a href="#android-studio-with-gradle">installation of the AAR package</a>. Users of Eclipse or Netbeans must follow the <a href="#eclipse-netbeans-and-the-ant-build-system">installation instructions for the JAR package</a>.</p>
 
-<p>The Smooch library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR. The current supported <code class="prettyprint">compiledSdkVersion</code> must be at least <strong>21</strong>.</p>
+<p><aside class="notice">The minimum supported SDK version is API level <strong>15</strong>, and your app must be compiled with at least API version <strong>21</strong>. If your app needs to support earlier versions of Android, you may still try to integrate, but it is untested and we cannot guarantee compatibility.
+</aside></p>
 <h2 id='android-studio-with-gradle'>Android Studio with Gradle</h2>
 <p><span class="badge"><a href="https://bintray.com/smoochorg/maven/smooch/_latestVersion"><img alt="Bintray" src="https://api.bintray.com/packages/smoochorg/maven/smooch/images/download.svg" /></a></span></p>
 
@@ -106,7 +107,9 @@ compile 'io.smooch:ui:latest.release'
 <p><aside class="notice">
 Smooch depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
 </aside></p>
-<h2 id='eclipse-netbeans-and-the-ant-build-system'>Eclipse, Netbeans and the ant build system</h2><h3 id='core-and-ui-modules'>Core and UI modules</h3>
+<h2 id='eclipse-netbeans-and-the-ant-build-system'>Eclipse, Netbeans and the ant build system</h2>
+<p><aside class="warning">This section only applies if you are using Eclipse or Netbeans. If you are using Android Studio and have already followed the <a href="#android-studio-with-gradle">installation instructions</a>, you can skip straight to the <a href="#initialize-smooch-in-your-app">initialization step</a>.</aside></p>
+<h3 id='core-and-ui-modules'>Core and UI modules</h3>
 <p>On Eclipse, we need to retrieve our <code class="prettyprint">eclipse</code> package to add Smooch and our dependencies to your project. Also, we will need to manually add permissions and services to the manifest.</p>
 
 <ul>
