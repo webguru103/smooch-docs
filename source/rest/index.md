@@ -137,7 +137,7 @@ The `jwt` payload must include a `scope` claim which specifies the caller's scop
 | [/v1/appusers](#app-user) | app, appUser          |
 | [/v1/webhooks](#webhook)  | app                   |
 
-# Webhooks <beta/>
+# Webhooks
 
 > Webhook example payload:
 
@@ -183,6 +183,9 @@ curl https://api.smooch.io/v1/webhooks \
 
 > Response:
 
+```
+201 CREATED
+```
 ```json
 {
   "webhook": {
@@ -216,6 +219,9 @@ Create a webhook for the specified app. The response body will include a list of
 
 > Response:
 
+```
+200 OK
+```
 ```json
 {
   "webhooks": [
@@ -246,6 +252,9 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 
 > Response:
 
+```
+200 OK
+```
 ```json
 {
   "webhook": {
@@ -277,6 +286,9 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
 
 > Response
 
+```
+200 OK
+```
 ```json
 {
   "webhook": {
@@ -307,6 +319,12 @@ Use this API to update your existing webhooks.
 curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -X DELETE \
      -H 'authorization: Bearer your-jwt'
+```
+
+> Response:
+
+```
+200 OK
 ```
 
 <api>`DELETE /v1/webhooks/{webhookId}`</api>
@@ -343,7 +361,7 @@ That secret is available in the response to the POST request used to generate th
 
 If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at an exponentially increasing interval.
 
-# Init <beta/>
+# Init
 
 > Request:
 
@@ -357,6 +375,9 @@ curl https://api.smooch.io/v1/init \
 
 > Response:
 
+```
+200 OK
+```
 ```json
 {
     "app": {
@@ -438,7 +459,7 @@ The API will respond with the `_id` of the app user in question, which can then 
 In some scenarios, the `appUser._id` returned in an app boot call may change. This is possible for example when the `userId` is being used to log a user in on multiple devices, which may cause two distinct app users to merge together. The caller should always check if the returned `appUser._id` has changed, and re-fetch conversation history whenever appropriate.
 </aside>
 
-# App User <beta/>
+# App User
 
 The app user object represents an end user using your app. The app user document contains basic profile information such as `givenName`, `surname`, and `email`, as well as any custom user properties you choose to configure.
 
@@ -470,6 +491,9 @@ curl https://api.smooch.io/v1/appusers/steveb@channel5.com \
 
 > Response:
 
+```
+200 OK
+```
 ```json
 {
     "appUser": {
@@ -503,6 +527,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
 
 > Response:
 
+```
+200 OK
+```
 ```json
 {
     "appUser": {
@@ -544,6 +571,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/events \
 
 > Response:
 
+```
+201 CREATED
+```
 ```json
 {
     "conversationUpdated": true
@@ -572,6 +602,9 @@ curl https://api.smooch.io/v1/appusers \
 
 > Response:
 
+```
+201 CREATED
+```
 ```json
 {
     "appUser": {
@@ -600,7 +633,7 @@ curl https://api.smooch.io/v1/appusers \
 | **signedUpAt**<br/>*optional* | The date at which the user signed up. Must be ISO 8601 time format (`YYYY-MM-DDThh:mm:ss.sssZ`) |
 | **properties**<br/>*optional* | A flat JSON object containing custom defined user properties. |
 
-In the vast majority of cases app users will be created from the device or browser using the [init API](#init-beta). In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A `userId` must be specified so that a future `init` call made from a device can use the same `userId` to link the device to the pre-created app user.
+In the vast majority of cases app users will be created from the device or browser using the [init API](#init). In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A `userId` must be specified so that a future `init` call made from a device can use the same `userId` to link the device to the pre-created app user.
 
 Suppose for example you begin a conversation with an end user `bob@example.com` over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call `POST /v1/appusers` to pre-create a Smooch identity with `userId` `bob@example.com`, to which you can import that existing conversation history. After Bob signs in to your app and your app calls `init` with the same `userId`, they will see their conversation history.
 
@@ -608,7 +641,7 @@ Suppose for example you begin a conversation with an end user `bob@example.com` 
 Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
 </aside>
 
-# Conversations <beta/>
+# Conversations
 
 When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the `/v1/appusers/` API.
 
@@ -623,6 +656,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
 
 > Response
 
+```
+200 OK
+```
 ```json
 {
   "conversation": {
@@ -671,6 +707,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/mes
 > Response:
 
 ```
+201 CREATED
+```
+```json
 {
   "message": {
     "_id": "55c8c1498590aa1900b9b9b1",
@@ -736,6 +775,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/ima
 > Response:
 
 ```
+201 CREATED
+```
+```json
 {
   "message": {
     "_id": "55c8c1498590aa1900b9b9b1",
