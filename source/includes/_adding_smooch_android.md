@@ -1,8 +1,9 @@
 # Adding Smooch to your app
 
-There are a few ways you can include the Smooch plugin on your Android project.
+The Smooch library is distributed in both AAR and JAR format. If you are using Android Studio, follow the instructions for [installation of the AAR package](#android-studio-with-gradle). Users of Eclipse or Netbeans must follow the [installation instructions for the JAR package](#eclipse-netbeans-and-the-ant-build-system).
 
-The Smooch library comes in both the AAR and JAR packages. The AAR package is the preferred one but if you are not using Android Studio, you will need to install the JAR. The current supported `compiledSdkVersion` must be at least **21**.
+<aside class="notice">The minimum supported SDK version is API level **15**, and your app must be compiled with at least API version **21**. If your app needs to support earlier versions of Android, you may still try to integrate, but it is untested and we cannot guarantee compatibility.
+</aside>
 
 ## Android Studio with Gradle
 <span class="badge">[![Bintray](https://api.bintray.com/packages/smoochorg/maven/smooch/images/download.svg)](https://bintray.com/smoochorg/maven/smooch/_latestVersion)</span>
@@ -34,6 +35,8 @@ Smooch depends on a few external libraries that many applications already featur
 </aside>
 
 ## Eclipse, Netbeans and the ant build system
+
+<aside class="warning">This section only applies if you are using Eclipse or Netbeans. If you are using Android Studio and have already followed the [installation instructions](#android-studio-with-gradle), you can skip straight to the [initialization step](#initialize-smooch-in-your-app).</aside>
 
 ### Core and UI modules
 
