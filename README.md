@@ -17,8 +17,8 @@ Grab the repo and install the dependencies
 
     $ git clone git@github.com:smooch/smooch-docs.git
     $ cd smooch-docs
-    $ [sudo] gem install bundler
-    $ [sudo] gem install middleman
+    $ gem install bundler
+    $ gem install middleman
     $ npm install
 
 Note: This will also run `bundle install` for the Slate dependencies automagically
