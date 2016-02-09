@@ -665,6 +665,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
     "_id": "df0ebe56cbeab98589b8bfa7",
     "appMakers": [],
     "appUsers": ["c7f6e6d6c3a637261bd9656f"],
+    "unreadCount": 0,
     "messages": [{
       "_id": "55c8c1498590aa1900b9b9b1",
       "authorId": "c7f6e6d6c3a637261bd9656f",
@@ -681,6 +682,25 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
 <api>`GET /v1/appusers/{appUserId|userId}/conversation`</api>
 
 Get the specified app user's conversation history, if it exists. If the conversation has not yet been created for the specified app user 404 will be returned.
+
+## Reset Unread Count
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/read \
+     -X POST \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+
+> Response
+
+```
+200 OK
+```
+
+<api>`POST /v1/appusers/{appUserId|userId}/conversation/read`</api>
+
+Reset the unread count of the conversation to 0. If the conversation has not yet been created for the specified app user 404 will be returned.
 
 ## Post Message
 
@@ -724,6 +744,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/mes
     "_id": "df0ebe56cbeab98589b8bfa7",
     "appMakers": [],
     "appUsers": ["c7f6e6d6c3a637261bd9656f"],
+    "unreadCount": 0,
     "messages": [{
       "_id": "55c8c1498590aa1900b9b9b1",
       "authorId": "c7f6e6d6c3a637261bd9656f",
