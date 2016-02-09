@@ -865,6 +865,7 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"appMakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"appUsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"unreadCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
@@ -881,6 +882,24 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
 <p><api><code class="prettyprint">GET /v1/appusers/{appUserId|userId}/conversation</code></api></p>
 
 <p>Get the specified app user&rsquo;s conversation history, if it exists. If the conversation has not yet been created for the specified app user 404 will be returned.</p>
+<h2 id='reset-unread-count'>Reset Unread Count</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/read <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/conversation/read</code></api></p>
+
+<p>Reset the unread count of the conversation to 0. If the conversation has not yet been created for the specified app user 404 will be returned.</p>
 <h2 id='post-message'>Post Message</h2>
 <blockquote>
 <p>Post as app user:</p>
@@ -921,6 +940,7 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
     </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"appMakers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="s2">"appUsers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"unreadCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
       </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
