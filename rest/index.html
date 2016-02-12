@@ -123,6 +123,10 @@
 <td><code class="prettyprint">jwt</code>, <code class="prettyprint">appToken</code></td>
 </tr>
 <tr>
+<td><a href="#init"><code class="prettyprint">/v1/init</code></a></td>
+<td><code class="prettyprint">jwt</code>, <code class="prettyprint">appToken</code></td>
+</tr>
+<tr>
 <td><a href="#webhook"><code class="prettyprint">/v1/webhooks</code></a></td>
 <td><code class="prettyprint">jwt</code></td>
 </tr>
@@ -150,9 +154,13 @@
 
 <p>JSON Web Tokens (JWTs) are an industry standard authentication mechanism. The full specification is described <a href="https://tools.ietf.org/html/rfc7519">here</a>, and a set of supported JWT libraries for a variety of languages and platforms can be found at <a href="http://jwt.io">http://jwt.io</a>. To summarize, a JWT is composed of a header, a payload, and a signature. The payload contains information called <em>claims</em> which describe the subject to whom the token was issued.</p>
 
-<p>For added security when making calls on behalf of an app user, a <code class="prettyprint">jwt</code> credential can optionally be specified instead of an <code class="prettyprint">appToken</code>. However other APIs, such as <code class="prettyprint">/v1/webhooks</code> always require a valid <code class="prettyprint">jwt</code> credential.</p>
+<p>For added security when making calls on behalf of an app user, a <code class="prettyprint">jwt</code> credential can optionally be specified instead of an <code class="prettyprint">appToken</code>.</p>
 
 <p>The <code class="prettyprint">jwt</code> itself is transmitted via the HTTP <code class="prettyprint">authorization</code> header. The token should be prefixed with &ldquo;Bearer&rdquo; followed by a space. For example: <code class="prettyprint">Bearer your-jwt</code>.</p>
+
+<p><aside class="warning">
+After using a <code class="prettyprint">jwt</code> with <code class="prettyprint">appUser</code> scope to authenticate an app user for the <code class="prettyprint">/appuser</code> or <code class="prettyprint">/init</code> routes, it becomes no longer possible to authenticate that app user with an <code class="prettyprint">appToken</code>.
+</aside></p>
 <h3 id='header'>Header</h3>
 <blockquote>
 <p>JWT header:</p>
@@ -171,7 +179,7 @@
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="w"> 
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -1054,7 +1062,7 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 
 <p><api><code class="prettyprint">POST /v1/appusers/{smoochId|userId}/conversation/images</code></api></p>
 
-<p>Upload an image and post it to the conversation. Images are uploaded using the <code class="prettyprint">multipart/form-data</code> content type. Similar to the <code class="prettyprint">/messages</code> endpoint, a <code class="prettyprint">role</code> parameter must be specified. The <code class="prettyprint">/images</code> endpoint accepts the same parameters as <code class="prettyprint">/messages</code> but they are sent as form parameters as opposed to being encoded in JSON bodies. The uploaded image will render as part of the message thread in all supported app maker channels (email, Slack, HipChat, Zendesk, Helpscout). </p>
+<p>Upload an image and post it to the conversation. Images are uploaded using the <code class="prettyprint">multipart/form-data</code> content type. Similar to the <code class="prettyprint">/messages</code> endpoint, a <code class="prettyprint">role</code> parameter must be specified. The <code class="prettyprint">/images</code> endpoint accepts the same parameters as <code class="prettyprint">/messages</code> but they are sent as form parameters as opposed to being encoded in JSON bodies. The uploaded image will render as part of the message thread in all supported app maker channels (email, Slack, HipChat, Zendesk, Helpscout).</p>
 
 <table><thead>
 <tr>

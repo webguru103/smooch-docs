@@ -709,6 +709,10 @@ If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> inte
 </ul>
 
 <p>In order to create Whispers based on properties you&rsquo;ve defined using the <code class="prettyprint">Smooch User</code> class, you&rsquo;ll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. Alternatively, you can make a HTTP request to the <code class="prettyprint">PUT /appusers</code> route of the <a href="/rest">Smooch REST API</a>. For more information on using custom properties, read our <a href="#user-data">documentation on the subject</a>.</p>
+
+<p>It&rsquo;s possible to add multiple conditions to a Whisper, allowing you to filter out users based on their properties. In the example below, you can see a Whisper that will be sent only if the platform of the user is iOS and if the user has signed up less than 7 days ago:</p>
+
+<p><img alt="Whisper with conditions" src="../images/whisper_conditions.png" /></p>
 <h3 id='personalizing-the-message-text'>Personalizing the message text</h3>
 <p>You can personalize the message that&rsquo;s being sent with the first or last name of the user. To do this, simply use the syntax <code class="prettyprint">{{ firstName || fallback }}</code> when creating your message. If the user&rsquo;s firstName hasn&rsquo;t been set by your code through the <code class="prettyprint">Smooch User</code> class then the placeholder will be replaced with the string specified as <code class="prettyprint">fallback</code>.</p>
 
