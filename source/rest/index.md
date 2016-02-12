@@ -60,8 +60,9 @@ Some APIs accept either of the two authentication methods while others require a
 
 | API                          | Valid authentication methods |
 |------------------------------|------------------------------|
-| [`/v1/appusers`](#app-user) | `jwt`, `appToken`            |
-| [`/v1/webhooks`](#webhook)  | `jwt`                        |
+| [`/v1/appusers`](#app-user)  | `jwt`, `appToken`            |
+| [`/v1/init`](#init)          | `jwt`, `appToken`            |
+| [`/v1/webhooks`](#webhook)   | `jwt`                        |
 
 ## App Token
 
@@ -89,9 +90,13 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
 
 JSON Web Tokens (JWTs) are an industry standard authentication mechanism. The full specification is described [here](https://tools.ietf.org/html/rfc7519), and a set of supported JWT libraries for a variety of languages and platforms can be found at [http://jwt.io](http://jwt.io). To summarize, a JWT is composed of a header, a payload, and a signature. The payload contains information called *claims* which describe the subject to whom the token was issued.
 
-For added security when making calls on behalf of an app user, a `jwt` credential can optionally be specified instead of an `appToken`. However other APIs, such as `/v1/webhooks` always require a valid `jwt` credential.
+For added security when making calls on behalf of an app user, a `jwt` credential can optionally be specified instead of an `appToken`.
 
 The `jwt` itself is transmitted via the HTTP `authorization` header. The token should be prefixed with "Bearer" followed by a space. For example: `Bearer your-jwt`.
+
+<aside class="warning">
+After using a `jwt` with `appUser` scope to authenticate an app user for the `/appuser` or `/init` routes, it becomes no longer possible to authenticate that app user with an `appToken`.
+</aside>
 
 ### Header
 
@@ -112,7 +117,7 @@ The JWT header must contain the key id (`kid`) of the secret key that is used to
 ```json
 {
     "scope": "appUser",
-    "userId": "bob@example.com" 
+    "userId": "bob@example.com"
 }
 ```
 
@@ -832,7 +837,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/ima
 
 <api>`POST /v1/appusers/{smoochId|userId}/conversation/images`</api>
 
-Upload an image and post it to the conversation. Images are uploaded using the `multipart/form-data` content type. Similar to the `/messages` endpoint, a `role` parameter must be specified. The `/images` endpoint accepts the same parameters as `/messages` but they are sent as form parameters as opposed to being encoded in JSON bodies. The uploaded image will render as part of the message thread in all supported app maker channels (email, Slack, HipChat, Zendesk, Helpscout). 
+Upload an image and post it to the conversation. Images are uploaded using the `multipart/form-data` content type. Similar to the `/messages` endpoint, a `role` parameter must be specified. The `/images` endpoint accepts the same parameters as `/messages` but they are sent as form parameters as opposed to being encoded in JSON bodies. The uploaded image will render as part of the message thread in all supported app maker channels (email, Slack, HipChat, Zendesk, Helpscout).
 
 | **Form Parameters**          |                            |
 |------------------------------|----------------------------|
