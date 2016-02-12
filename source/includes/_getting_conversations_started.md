@@ -36,6 +36,10 @@ You can target your users based on any information that you've stored using the 
 
 In order to create Whispers based on properties you've defined using the `Smooch User` class, you'll need to run your app and ensure that at least 1 of your users was tagged with the property you want to base your Whisper on. Alternatively, you can make a HTTP request to the `PUT /appusers` route of the [Smooch REST API](/rest). For more information on using custom properties, read our [documentation on the subject](#user-data).
 
+It's possible to add multiple conditions to a Whisper, allowing you to filter out users based on their properties. In the example below, you can see a Whisper that will be sent only if the platform of the user is iOS and if the user has signed up less than 7 days ago:
+
+![Whisper with conditions](/images/whisper_conditions.png)
+
 ### Personalizing the message text
 
 You can personalize the message that's being sent with the first or last name of the user. To do this, simply use the syntax `{{ firstName || fallback }}` when creating your message. If the user's firstName hasn't been set by your code through the `Smooch User` class then the placeholder will be replaced with the string specified as `fallback`.
