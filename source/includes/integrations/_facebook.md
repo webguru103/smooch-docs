@@ -1,6 +1,10 @@
 ## Facebook
 
-Facebook is an online social networking service that makes it easier for you to connect and share information with people. Our Facebook integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.
+Our Facebook integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.
+
+<aside class="warning">
+Since this integration relies on Facebook webhooks, which introduces delay, it takes a few seconds or more before new messages are received.
+</aside>
 
 ### Configuring Facebook
 
