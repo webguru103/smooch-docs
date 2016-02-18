@@ -37,6 +37,7 @@ includes:
   - integrations/hipchat
   - integrations/zendesk
   - integrations/twilio
+  - integrations/facebook
   - integrations/stripe_intro
   - integrations/stripe_ios
   - integrations/stripe_saved_intro
