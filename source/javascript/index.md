@@ -49,6 +49,7 @@ includes:
   - whispers/whisper_manage
 
   - customization/string_customization_js
+  - customization/email_capture_js
   - customization/styling_conversations_js
 
 search: true
