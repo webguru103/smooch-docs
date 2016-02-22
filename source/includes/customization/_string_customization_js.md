@@ -1,5 +1,3 @@
-# Customization
-
 ## Strings customization
 
 Smooch lets you customize any strings it displays by overwriting its keys. Simply add the `customText` key in your `Smooch.init()` call and specify new values for the keys used in Smooch. You can find all available keys by browsing to the `defaultText` object in the source.
