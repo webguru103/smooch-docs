@@ -614,7 +614,23 @@ If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> inte
 
 <p>You can pause Whispers at any time. When you do so, the Whisper will not be shown to any more users until you mark it as active by clicking &ldquo;Resume&rdquo;.</p>
 
-          <h1 id='customization'>Customization</h1><h2 id='strings-customization'>Strings customization</h2>
+          <h1 id='customization'>Customization</h1><h2 id='embedded-mode'>Embedded mode</h2>
+<p>To embed the widget in your existing markup, you need to pass <code class="prettyprint">embedded: true</code> when calling <code class="prettyprint">Smooch.init</code>. By doing so, you are disabling the auto-rendering mechanism and you will need to call <code class="prettyprint">Smooch.render</code> manually. This method accepts a DOM element which will be used as the container where the widget will be rendered.</p>
+
+<p><aside>
+The embedded widget will take full width and height of the container.<br>
+You must give it a height, otherwise, the widget will collapse.
+</aside></p>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
+    <span class="na">embedded</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+
+
+<span class="nx">Smooch</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'chat-container'</span><span class="p">));</span>
+</code></pre>
+
+          <h2 id='strings-customization'>Strings customization</h2>
 <p>Smooch lets you customize any strings it displays by overwriting its keys. Simply add the <code class="prettyprint">customText</code> key in your <code class="prettyprint">Smooch.init()</code> call and specify new values for the keys used in Smooch. You can find all available keys by browsing to the <code class="prettyprint">defaultText</code> object in the source.</p>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
