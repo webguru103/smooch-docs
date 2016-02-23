@@ -2,8 +2,8 @@
 
 Our Facebook integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.
 
-<aside class="warning">
-Since this integration relies on Facebook webhooks, which introduces delay, it takes a few seconds or more before new messages are received.
+<aside class="notice">
+Since this integration relies on Facebook webhooks, which introduces delay, it takes a few seconds or more to receive new messages from Facebook users.
 </aside>
 
 ### Configuring Facebook
