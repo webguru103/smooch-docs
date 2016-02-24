@@ -40,7 +40,7 @@ This adds the platform toggle support and turn the language links into a dropdow
 
         if (path.indexOf('android') !== -1) {
             selectPlaform('android');
-            /*  
+            /*
                 We need to switch the variable in localStorage which is being set not
                 only here but also in pushURL (the first time).
             */
@@ -82,7 +82,7 @@ This adds the platform toggle support and turn the language links into a dropdow
             }
         });
 
-        // make objective_c pretty 
+        // make objective_c pretty
         $('.language-dropdown, .lang-selector a').each(function() {
             $(this).text(underscoreToDash($(this).text()));
         })

@@ -140,37 +140,56 @@ body {
   margin-left: 300px;
 }
 
-.lang-selector {
-  background-color: #C158AD;
-  font-size: 14px;
-  margin-bottom: 24px;
-  position: absolute;
-  z-index: 9;
-  left: 0px;
-  font-weight: normal;
-  text-transform: capitalize;
-  top: 42px;
+.rest {
+    .lang-selector {
+      background-color: #C158AD;
+      font-size: 14px;
+      margin-bottom: 24px;
+      font-weight: normal;
+      text-transform: capitalize;
+      border-bottom-color: #504662;
+
+      a {
+          &.active {
+              background-image: linear-gradient(#3d3551, #433b56 50%, #504662);
+          }
+      }
+    }
 }
 
-.lang-selector a {
-  padding: 0 20px;
-  float: none;
-}
+.ios, .android, .web {
+    .lang-selector {
+      background-color: #C158AD;
+      font-size: 14px;
+      margin-bottom: 24px;
+      position: absolute;
+      z-index: 9;
+      left: 0px;
+      font-weight: normal;
+      text-transform: capitalize;
+      top: 42px;
+    }
 
-.lang-selector a:not(:last-child) {
-  border-bottom: 1px solid #CF65B7;
-}
+    .lang-selector a {
+      padding: 0 20px;
+      float: none;
+    }
 
-.lang-selector a.active {
-  background: none;
-}
+    .lang-selector a:not(:last-child) {
+      border-bottom: 1px solid #CF65B7;
+    }
 
-.lang-selector a:active {
-  background: none !important;
-}
+    .lang-selector a.active {
+      background: none;
+    }
 
-.lang-selector a:focus {
-  outline: 0;
+    .lang-selector a:active {
+      background: none !important;
+    }
+
+    .lang-selector a:focus {
+      outline: 0;
+    }
 }
 
 .content {
