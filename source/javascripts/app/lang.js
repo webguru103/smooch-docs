@@ -14,7 +14,7 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 ( function(global) {
-    var languages = ['javascript', 'java', 'swift', 'objective_c'];
+    var languages = ['shell', 'javascript', 'java', 'swift', 'objective_c'];
 
     global.setupLanguages = setupLanguages;
     global.activateLanguage = activateLanguage;

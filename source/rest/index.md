@@ -4,6 +4,7 @@ title: Smooch API Reference
 
 language_tabs:
   - shell
+  - javascript
 
 toc_footers:
   - <a href='http://smooch.io/'>Sign up for Smooch, it's free</a>
@@ -66,11 +67,18 @@ Some APIs accept either of the two authentication methods while others require a
 
 ## App Token
 
-> Calling `GET /v1/appusers` using an app token
 
 ```shell
+# Calling GET /v1/appusers using an app token
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+
+```js
+// Initializing Smooch Core with an app token
+var smooch = new SmoochCore({
+    appToken: 'cr2g6jgxrahuh68n1o3e2fcnt'
+});
 ```
 
 When calling Smooch APIs such as [`/v1/appusers`](#app-users) on behalf of app users, an `appToken` may be used for basic authentication.
@@ -81,11 +89,26 @@ Specifying an `appToken` alone is sufficient to call any of the app user facing 
 
 ## JWT
 
-> Calling `GET /v1/appusers` using a `jwt`
 
 ```shell
+# Calling GET /v1/appusers using a jwt
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'authorization: Bearer your-jwt'
+```
+```js
+// Initializing Smooch Core with a jwt in the browser
+var smooch = new SmoochCore({
+    jwt: 'your-jwt'
+});
+```
+```js
+// Initializing Smooch Core with a jwt in Node.js
+var smooch = new SmoochCore({
+    keyId: 'your-key-id',
+    secret: 'your-secret',
+    scope: 'appUser', // app or appUser
+    userId: 'some-id' // not necessary if scope === 'app'
+});
 ```
 
 JSON Web Tokens (JWTs) are an industry standard authentication mechanism. The full specification is described [here](https://tools.ietf.org/html/rfc7519), and a set of supported JWT libraries for a variety of languages and platforms can be found at [http://jwt.io](http://jwt.io). To summarize, a JWT is composed of a header, a payload, and a signature. The payload contains information called *claims* which describe the subject to whom the token was issued.
@@ -186,6 +209,14 @@ curl https://api.smooch.io/v1/webhooks \
      -H 'authorization: Bearer your-jwt'
 ```
 
+```js
+smooch.webhooks.create({
+    target: 'http://example.com/callback'
+}).then((response) => {
+    // async code
+});
+```
+
 > Response:
 
 ```
@@ -222,6 +253,12 @@ Create a webhook for the specified app. The response body will include a list of
        -H 'authorization: Bearer your-jwt'
 ```
 
+```js
+smooch.webhooks.list().then((response) => {
+    // async code
+});
+```
+
 > Response:
 
 ```
@@ -253,6 +290,12 @@ List all webhooks configured for a given app.
 ```shell
 curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -H 'authorization: Bearer your-jwt'
+```
+
+```js
+smooch.webhooks.get('55c8d9758590aa1900b9b9f6').then((response) => {
+    // async code
+});
 ```
 
 > Response:
@@ -287,6 +330,14 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -d '{"target": "http://example.com/callback"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
+```
+
+```js
+smooch.webhooks.update('55c8d9758590aa1900b9b9f6', {
+    target: 'http://example.com/callback'
+}).then((response) => {
+    // async code
+});
 ```
 
 > Response
@@ -325,6 +376,11 @@ curl https://api.smooch.io/v1/webhooks/55c8d9758590aa1900b9b9f6 \
      -X DELETE \
      -H 'authorization: Bearer your-jwt'
 ```
+```js
+smooch.webhooks.delete('55c8d9758590aa1900b9b9f6').then(() => {
+    // async code
+});
+```
 
 > Response:
 
@@ -346,6 +402,17 @@ curl https://api.smooch.io/v1/webhooks
      -d '{"target": "http://example.com/callback", "triggers": ["message:appUser"]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
+```
+
+```js
+smooch.webhooks.create({
+    target: 'http://example.com/callback',
+    triggers: [
+        'message:appUser'
+    ]
+}).then((response) => {
+    // async code
+});
 ```
 
 A webhook will make a request to the target each time a trigger associated with the webhook occurs. Triggers are specified in an optional `triggers` array in the request body. If `triggers` is not specified the webhook will be configured with the `message` trigger by default.
@@ -376,6 +443,19 @@ curl https://api.smooch.io/v1/init \
      -d '{"device": {"id": "03f70682b7f5b21536a3674f38b3e220", "platform": "ios", "appVersion": "1.0"}, "userId": "bob@example.com"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
+```
+
+```js
+smooch.appUsers.init({
+    device: {
+        id: '03f70682b7f5b21536a3674f38b3e220',
+        platform: 'ios',
+        appVersion: '1.0'
+    },
+    userId: 'bob@example.com'
+}).then((response) => {
+    // async code
+});
 ```
 
 > Response:
@@ -486,12 +566,22 @@ If a `userId` has been specified for a given app user, it can be used in place o
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
+```js
+smooch.appUsers.get('c7f6e6d6c3a637261bd9656f').then((response) => {
+    // async code
+});
+```
 
 > Request by userId:
 
 ```shell
 curl https://api.smooch.io/v1/appusers/steveb@channel5.com \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+```js
+smooch.appUsers.get('steveb@channel5.com').then((response) => {
+    // async code
+});
 ```
 
 > Response:
@@ -528,6 +618,13 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f \
      -d '{"givenName": "Steve"}' \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+```js
+smooch.appUsers.update('c7f6e6d6c3a637261bd9656f', {
+    givenName: 'Steve'
+}).then((response) => {
+    // async code
+});
 ```
 
 > Response:
@@ -573,6 +670,11 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/events \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
+```js
+smooch.appUsers.trackEvent('c7f6e6d6c3a637261bd9656f', 'completed_sale').then((response) => {
+    // async code
+});
+```
 
 > Response:
 
@@ -603,6 +705,16 @@ curl https://api.smooch.io/v1/appusers \
      -d '{"userId": "steveb@channel5.com", "givenName": "Steve", "properties": {"favoriteFood": "prizza"}}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.appUsers.create('steveb@channel5.com', {
+    givenName: 'Steve',
+    properties: {
+        favoriteFood: 'prizza'
+    }
+}).then((response) => {
+    // async code
+});
 ```
 
 > Response:
@@ -658,6 +770,11 @@ When the first message is sent to an app user or received from an app user, a co
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
+```js
+smooch.conversations.get('c7f6e6d6c3a637261bd9656f').then((response) => {
+    // async code
+});
+```
 
 > Response
 
@@ -696,6 +813,11 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/rea
      -X POST \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
+```js
+smooch.conversations.resetUnreadCount('c7f6e6d6c3a637261bd9656f').then(() => {
+    // async code
+});
+```
 
 > Response
 
@@ -718,6 +840,14 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/mes
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
+```js
+smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Just put some vinegar on it',
+    role: 'appUser'
+}).then(() => {
+    // async code
+});
+```
 
 > Post as app maker:
 
@@ -727,6 +857,14 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/mes
      -d '{"text":"Just put some vinegar on it", "role": "appMaker"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Just put some vinegar on it',
+    role: 'appMaker'
+}).then(() => {
+    // async code
+});
 ```
 
 > Response:
@@ -796,6 +934,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/ima
      -F 'source=@screenshot.jpg;type=image/jpeg' \
      -F 'role=appUser' \
      -F 'name=Steve'
+```
+```js
+// Not supported yet in the JS SDK
 ```
 
 > Response:
