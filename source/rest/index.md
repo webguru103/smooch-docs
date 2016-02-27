@@ -242,7 +242,7 @@ Create a webhook for the specified app. The response body will include a list of
 | **Arguments**             |   |
 |---------------------------|---|
 | **target**<br/>*required* | URL to be called when the webhook is triggered. |
-| **triggers**<br/>*optional*  | The trigger you wish to have the webhook listen to. The default trigger is `message`. This property is case sensitive. [More details](#webhook-triggers). |
+| **triggers**<br/>*optional*  | An array of triggers you wish to have the webhook listen to. If unspecified the default trigger is `message`. This property is case sensitive. [More details](#webhook-triggers). |
 
 ## List webhooks
 
