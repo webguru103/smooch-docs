@@ -94,30 +94,31 @@
 </ul>
 
           <h1 id='adding-smooch-to-your-app'>Adding Smooch to your app</h1>
-<p>There are two ways to install the Smooch SDK. The recommended and easier way makes use of <a href="http://cocoapods.org">CocoaPods</a> to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.</p>
+<p>There are two ways to install the Smooch SDK. Our recommended way to install Smooch is through <a href="#cocoapods-method">CocoaPods</a>. We support Carthage too and you can also go the <a href="#manual-method--carthage">manual route</a> and drop the SDK into your Xcode project.</p>
 
 <p>We&rsquo;ve documented both methods for adding Smooch to your app. Read on and follow your preferred way of adding the SDK to your project.</p>
 <h2 id='cocoapods-method'>CocoaPods Method</h2>
-<p>First, install Cocoapods if it isn&rsquo;t already available on your system: </p>
-<pre class="highlight plaintext"><code>sudo gem install cocoapods
+<p>First, Install <a href="https://cocoapods.org/">CocoaPods</a> if it isn&rsquo;t already</p>
+<pre class="highlight plaintext"><code>$ sudo gem install cocoapods
 </code></pre>
 
-<p>Now that you&rsquo;ve installed CocoaPods, we&rsquo;ll add Smooch to your project&rsquo;s dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file</p>
-<pre class="highlight plaintext"><code>$ echo "pod 'Smooch'" &gt;&gt; Podfile
+<p>Next, add the Smooch dependency to your <a href="https://guides.cocoapods.org/using/the-podfile.html">Podfile</a></p>
+<pre class="highlight plaintext"><code>pod 'Smooch'
 </code></pre>
+
+<p>Finally, install the pod</p>
 <pre class="highlight plaintext"><code>$ pod install
 </code></pre>
 
-<p>Open the .xcworkspace file and add the necessary code to <a href="#import-the-smooch-header-file">initialize Smooch in your app</a>. </p>
+<p>That&rsquo;s it! You&rsquo;re now ready to <a href="#import-the-smooch-header-file">initialize Smooch in your app</a>.</p>
 
 <p><aside class="notice">
-Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
+Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you have to build and run your app using the newly-generated .xcworkspace file and not the .xcodeproj file.
 </aside></p>
-<h2 id='manual-method'>Manual Method</h2>
+<h2 id='manual-method--carthage'>Manual Method / Carthage</h2>
 <ol>
-<li><p>First, grab a copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> or visiting our <a href="https://github.com/smooch/smooch-ios">GitHub page</a>.</p></li>
-<li><p>Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
-<img alt="Dependencies in XCode" src="../images/dependencies.png" /></p></li>
+<li><p>First, grab a copy of <code class="prettyprint">Smooch.framework</code> either through <a href="https://github.com/smooch/smooch-ios">GitHub</a>, <a href="https://github.com/Carthage/Carthage">Carthage</a>, or by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">direct download</a>.</p></li>
+<li><p>Add <code class="prettyprint">Smooch.framework</code> to your project, and link it to the desired targets.</p></li>
 <li><p>Now you&rsquo;ll have to add Smooch&rsquo;s dependencies to your project if they&rsquo;re not already linked in. Go to &ldquo;Build phases&rdquo; in your project&rsquo;s target and select &ldquo;Link Binary With Libraries&rdquo;:</p>
 
 <ul>
@@ -134,7 +135,7 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 <li>UIKit.framework</li>
 </ul></li>
 <li><p>Add the <code class="prettyprint">-licucore</code> option to your app&rsquo;s <code class="prettyprint">Other Linker Flags</code> build setting.</p></li>
-<li><p>Smooch should now be available to your app and you&rsquo;re ready to add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p></li>
+<li><p>You&rsquo;re now ready to <a href="#import-the-smooch-header-file">initialize Smooch in your app</a>.</p></li>
 </ol>
 <h2 id='import-the-smooch-header-file'>Import the Smooch header file</h2>
 <p>Import the Smooch file into the your app delegate&rsquo;s .m file and any other places you plan to use it.</p>
@@ -176,8 +177,12 @@ If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import thi
 <p>To update via cocoapods, simply execute this</p>
 <pre class="highlight plaintext"><code>$ pod update
 </code></pre>
+<h3 id='carthage'>Carthage</h3>
+<p>To update Carthage dependencies, you can simply run:</p>
+<pre class="highlight plaintext"><code>$ carthage update
+</code></pre>
 <h3 id='manual'>Manual</h3>
-<p>To manually update Smooch simply grab a fresh copy of Smooch by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">downloading the most recent release</a> and re-add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project</p>
+<p>First, grab the latest version of <code class="prettyprint">Smooch.framework</code> either through <a href="https://github.com/smooch/smooch-ios">GitHub</a> or by <a href="https://github.com/smooch/smooch-ios/archive/master.zip">direct download</a>. Then, find the location of the old .framework file on disk, and replace it with the new one.</p>
 
           <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
 <p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
@@ -782,10 +787,13 @@ Localization is subject to caching. If you can&rsquo;t see your changes, cleanin
 <p>If you translate Smooch&rsquo;s strings to a language not currently supported, we encourage you to share it with us so that every Smooch user can benefit from it. You can do so by <a href="https://github.com/smooch/smooch-ios/fork">forking</a> our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@smooch.io">help@smooch.io</a></p>
 
           <h1 id='customization'>Customization</h1><h2 id='strings-customization'>Strings customization</h2>
-<p>Smooch lets you customize any strings it displays via Apple&rsquo;s localization mechanism.
-Simply add an empty string file named SmoochLocalizable.strings in your Xcode project and specify new values for the keys present in the SmoochLocalizable.strings available in the Smooch bundle.</p>
+<p>Smooch lets you customize any strings it displays via Apple&rsquo;s localization mechanism. To override one or more strings, add an empty string file named <code class="prettyprint">SmoochLocalizable.strings</code> in your Xcode project and specify new values for the keys you would like to override. For example, to change the &ldquo;Messages&rdquo; header, and the &ldquo;Done&rdquo; button create a file with these contents:</p>
+<pre class="highlight plaintext"><code>"Messages" = "My Messages";
 
-<p>To enable string customization across languages, make sure you &ldquo;Localize&rdquo; your SmoochLocalizable.strings file in Xcode.</p>
+"Done" = "I'm Done";
+</code></pre>
+
+<p>The full list of keys can be found in the <code class="prettyprint">SmoochLocalizable.strings</code> file bundled with the Smooch SDK. To enable string customization across languages, make sure you &ldquo;Localize&rdquo; your <code class="prettyprint">SmoochLocalizable.strings</code> file in Xcode.</p>
 
 <p><img alt="Localize SmoochLocalizable.strings" src="../images/localize.png" /></p>
 
