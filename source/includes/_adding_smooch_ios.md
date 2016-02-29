@@ -1,39 +1,40 @@
 # Adding Smooch to your app
 
-There are two ways to install the Smooch SDK. The recommended and easier way makes use of [CocoaPods](http://cocoapods.org) to manage library dependencies and SDK updates. Alternatively, you can go the manual route and drop the SDK into your Xcode project.
+There are two ways to install the Smooch SDK. The recommended and easier way is through [CocoaPods](#cocoapods-method). Alternatively, you can go the [manual route](#manual-method--carthage) and drop the SDK into your Xcode project.
 
 We've documented both methods for adding Smooch to your app. Read on and follow your preferred way of adding the SDK to your project.
 
 ## CocoaPods Method
 
-First, install Cocoapods if it isn't already available on your system: 
+First, Install [CocoaPods](https://cocoapods.org/) if it isn't already
 
 ```
-sudo gem install cocoapods
+$ sudo gem install cocoapods
 ```
 
-Now that you've installed CocoaPods, we'll add Smooch to your project's dependencies. Run these commands in terminal from the directory that houses your .xcodeproj file
+Next, add the Smooch dependency to your [Podfile](https://guides.cocoapods.org/using/the-podfile.html)
 
 ```
-$ echo "pod 'Smooch'" >> Podfile
+pod 'Smooch'
 ```
+
+Finally, install the pod
 
 ```
 $ pod install
 ```
 
-Open the .xcworkspace file and add the necessary code to [initialize Smooch in your app](#import-the-smooch-header-file). 
+That's it! You're now ready to [initialize Smooch in your app](#import-the-smooch-header-file).
 
 <aside class="notice">
-Remember — when you use CocoaPods to manage your app's dependencies, you have to build and run your app using the .xcworkspace file and not the .xcodeproj file.
+Remember — when you use CocoaPods to manage your app's dependencies, you have to build and run your app using the newly-generated .xcworkspace file and not the .xcodeproj file.
 </aside>
 
-## Manual Method
+## Manual Method / Carthage
 
-1. First, grab a copy of Smooch by [downloading the most recent release](https://github.com/smooch/smooch-ios/archive/master.zip) or visiting our [GitHub page](https://github.com/smooch/smooch-ios).
+1. First, grab a copy of `Smooch.framework` either through [GitHub](https://github.com/smooch/smooch-ios), [Carthage](https://github.com/Carthage/Carthage), or by [direct download](https://github.com/smooch/smooch-ios/archive/master.zip).
 
-1. Next, add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project as shown below.
-![Dependencies in XCode](/images/dependencies.png)
+1. Add `Smooch.framework` to your project, and link it to the desired targets.
 
 1. Now you'll have to add Smooch's dependencies to your project if they're not already linked in. Go to "Build phases" in your project's target and select "Link Binary With Libraries":
  * AssetsLibrary.framework
@@ -48,7 +49,7 @@ Remember — when you use CocoaPods to manage your app's dependencies, you have 
  * SystemConfiguration.framework
  * UIKit.framework
 1. Add the `-licucore` option to your app's `Other Linker Flags` build setting.
-1. Smooch should now be available to your app and you're ready to add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
+1. You're now ready to [initialize Smooch in your app](#import-the-smooch-header-file).
 
 ## Import the Smooch header file
 
@@ -113,6 +114,14 @@ To update via cocoapods, simply execute this
 $ pod update
 ```
 
+### Carthage
+
+To update Carthage dependencies, you can simply run:
+
+```
+$ carthage update
+```
+
 ### Manual
 
-To manually update Smooch simply grab a fresh copy of Smooch by [downloading the most recent release](https://github.com/smooch/smooch-ios/archive/master.zip) and re-add the SDK to your XCode project by dragging both Smooch.framework and Smooch.bundle into your project
+First, grab the latest version of `Smooch.framework` either through [GitHub](https://github.com/smooch/smooch-ios) or by [direct download](https://github.com/smooch/smooch-ios/archive/master.zip). Then, find the location of the old .framework file on disk, and replace it with the new one.
