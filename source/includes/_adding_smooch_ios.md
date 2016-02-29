@@ -1,6 +1,6 @@
 # Adding Smooch to your app
 
-There are two ways to install the Smooch SDK. The recommended and easier way is through [CocoaPods](#cocoapods-method). Alternatively, you can go the [manual route](#manual-method--carthage) and drop the SDK into your Xcode project.
+There are two ways to install the Smooch SDK. Our recommended way to install Smooch is through [CocoaPods](#cocoapods-method). We support Carthage too and you can also go the [manual route](#manual-method--carthage) and drop the SDK into your Xcode project.
 
 We've documented both methods for adding Smooch to your app. Read on and follow your preferred way of adding the SDK to your project.
 
