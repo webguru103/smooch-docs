@@ -13,20 +13,55 @@ WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 License for the specific language governing permissions and limitations
 under the License.
 */
-( function(global) {
-    var languages = ['shell', 'javascript', 'java', 'swift', 'objective_c'];
+(function(global) {
+    var languages = ['java', 'swift', 'objective_c'];
+    var restLanguages =   ['shell', 'javascript'];
 
     global.setupLanguages = setupLanguages;
     global.activateLanguage = activateLanguage;
+
+    function getPlatform() {
+        var pathname = window.location.pathname;
+
+        if (pathname.indexOf('/ios') === 0) {
+            return 'ios'
+        }
+
+        if (pathname.indexOf('/android') === 0) {
+            return 'android'
+        }
+
+        if (pathname.indexOf('/javascript') === 0) {
+            return 'javascript'
+        }
+
+        if (pathname.indexOf('/rest') === 0) {
+            return 'rest'
+        }
+
+        return 'unknown';
+    }
+
+    function getLanguages() {
+        var platform = getPlatform();
+
+        if (platform === 'rest') {
+            return restLanguages;
+        }
+
+        return languages;
+    }
 
     function activateLanguage(language) {
         if (!language || language === "") return;
         $(".lang-selector a").removeClass('active');
         $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
-        for (var i = 0; i < languages.length; i++) {
-            $(".highlight." + languages[i]).hide();
+        for (var i = 0; i < getLanguages().length; i++) {
+            $(".highlight." + getLanguages()[i]).hide();
         }
         $(".highlight." + language).show();
+
+        localStorage.setItem("language_" + getPlatform(), language);
 
         if (window.location.hash && $(window.location.hash).get(0)) {
             // scroll to the new location of the position
@@ -48,24 +83,24 @@ under the License.
         history.pushState({}, '', '?' + language + '#' + hash);
 
         // save language as next default
-        localStorage.setItem("language", language);
+        localStorage.setItem("language_" + getPlatform(), language);
     }
 
     function setupLanguages(l) {
         var currentLanguage = l[0];
-        var defaultLanguage = localStorage.getItem("language");
+        var defaultLanguage = localStorage.getItem("language_" + getPlatform());
 
-        if ((location.search.substr(1) !== "") && (jQuery.inArray(location.search.substr(1), languages)) != -1) {
+        if ((location.search.substr(1) !== "") && (jQuery.inArray(location.search.substr(1), getLanguages())) != -1) {
             // the language is in the URL, so use that language!
             activateLanguage(location.search.substr(1));
 
-            localStorage.setItem("language", location.search.substr(1));
-        } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, languages) != -1)) {
+            localStorage.setItem("language_" + getPlatform(), location.search.substr(1));
+        } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, getLanguages()) != -1)) {
             // the language was the last selected one saved in localstorage, so use that language!
             activateLanguage(defaultLanguage);
         } else {
             // no language selected, so use the default
-            activateLanguage(languages[0]);
+            activateLanguage(getLanguages()[0]);
         }
     }
 
@@ -82,4 +117,4 @@ under the License.
         };
     });
 
-} )(window);
+})(window);
