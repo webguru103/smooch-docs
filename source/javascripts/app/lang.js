@@ -18,6 +18,7 @@ under the License.
     var androidLanguages = ['java'];
     var webLanguages = ['javascript'];
     var restLanguages = ['shell', 'javascript'];
+    var languages = [].concat(iosLanguages, androidLanguages, webLanguages, restLanguages);
 
     global.setupLanguages = setupLanguages;
     global.activateLanguage = activateLanguage;
@@ -69,8 +70,8 @@ under the License.
         }
         $('.lang-selector a').removeClass('active');
         $('.lang-selector a[data-language-name=\'' + language + '\']').addClass('active');
-        for (var i = 0; i < getLanguages().length; i++) {
-            $('.highlight.' + getLanguages()[i]).hide();
+        for (var i = 0; i < languages.length; i++) {
+            $('.highlight.' + languages[i]).hide();
         }
         $('.highlight.' + language).show();
 
