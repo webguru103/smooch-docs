@@ -53,7 +53,7 @@ This adds the platform toggle support and turn the language links into a dropdow
             setupLanguages(getLanguages());
         } else if (path.indexOf('javascript') !== -1) {
             selectPlaform('web');
-            localStorage.setItem("language_web", "javascript");
+            localStorage.setItem("language_javascript", "javascript");
             setupLanguages(getLanguages());
         } else {
             selectPlaform('ios');
