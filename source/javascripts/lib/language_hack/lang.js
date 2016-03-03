@@ -44,20 +44,20 @@ This adds the platform toggle support and turn the language links into a dropdow
                 We need to switch the variable in localStorage which is being set not
                 only here but also in pushURL (the first time).
             */
-            localStorage.setItem("language", "java");
+            localStorage.setItem("language_android", "java");
             /*
                 This needs to be done as the languages array has to contain the names of
                 all the languages for this view. For the 'iOS' view, the array has only two
                 values: objective_c and swift.
             */
-            setupLanguages(['java']);
+            setupLanguages(getLanguages());
         } else if (path.indexOf('javascript') !== -1) {
             selectPlaform('web');
-            localStorage.setItem("language", "javascript");
-            setupLanguages(['javascript']);
+            localStorage.setItem("language_javascript", "javascript");
+            setupLanguages(getLanguages());
         } else {
             selectPlaform('ios');
-            localStorage.setItem("language", "objective_c");
+            localStorage.setItem("language_ios", "objective_c");
         }
 
         var onLoadLang = window.location.search.substr(1);
