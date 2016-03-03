@@ -14,11 +14,15 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 (function(global) {
-    var languages = ['java', 'swift', 'objective_c'];
-    var restLanguages =   ['shell', 'javascript'];
+    var iosLanguages = ['swift', 'objective_c'];
+    var androidLanguages = ['java'];
+    var webLanguages = ['javascript'];
+    var restLanguages = ['shell', 'javascript'];
 
     global.setupLanguages = setupLanguages;
     global.activateLanguage = activateLanguage;
+    global.getPlatform = getPlatform;
+    global.getLanguages = getLanguages;
 
     function getPlatform() {
         var pathname = window.location.pathname;
@@ -45,29 +49,38 @@ under the License.
     function getLanguages() {
         var platform = getPlatform();
 
-        if (platform === 'rest') {
-            return restLanguages;
+        switch (platform) {
+            case 'ios':
+                return iosLanguages;
+            case 'android':
+                return androidLanguages;
+            case 'javascript':
+                return webLanguages;
+            case 'rest':
+                return restLanguages;
         }
 
-        return languages;
+        return iosLanguages;
     }
 
     function activateLanguage(language) {
-        if (!language || language === "") return;
-        $(".lang-selector a").removeClass('active');
-        $(".lang-selector a[data-language-name='" + language + "']").addClass('active');
-        for (var i = 0; i < getLanguages().length; i++) {
-            $(".highlight." + getLanguages()[i]).hide();
+        if (!language || language === '') {
+            return;
         }
-        $(".highlight." + language).show();
+        $('.lang-selector a').removeClass('active');
+        $('.lang-selector a[data-language-name=\'' + language + '\']').addClass('active');
+        for (var i = 0; i < getLanguages().length; i++) {
+            $('.highlight.' + getLanguages()[i]).hide();
+        }
+        $('.highlight.' + language).show();
 
-        localStorage.setItem("language_" + getPlatform(), language);
+        localStorage.setItem('language_' + getPlatform(), language);
 
         if (window.location.hash && $(window.location.hash).get(0)) {
             // scroll to the new location of the position
             $(window.location.hash).get(0).scrollIntoView(true);
         } else {
-            history.pushState("", document.title, window.location.pathname);
+            history.pushState('', document.title, window.location.pathname);
         }
     }
 
@@ -83,18 +96,18 @@ under the License.
         history.pushState({}, '', '?' + language + '#' + hash);
 
         // save language as next default
-        localStorage.setItem("language_" + getPlatform(), language);
+        localStorage.setItem('language_' + getPlatform(), language);
     }
 
     function setupLanguages(l) {
         var currentLanguage = l[0];
-        var defaultLanguage = localStorage.getItem("language_" + getPlatform());
+        var defaultLanguage = localStorage.getItem('language_' + getPlatform());
 
-        if ((location.search.substr(1) !== "") && (jQuery.inArray(location.search.substr(1), getLanguages())) != -1) {
+        if ((location.search.substr(1) !== '') && (jQuery.inArray(location.search.substr(1), getLanguages())) != -1) {
             // the language is in the URL, so use that language!
             activateLanguage(location.search.substr(1));
 
-            localStorage.setItem("language_" + getPlatform(), location.search.substr(1));
+            localStorage.setItem('language_' + getPlatform(), location.search.substr(1));
         } else if ((defaultLanguage !== null) && (jQuery.inArray(defaultLanguage, getLanguages()) != -1)) {
             // the language was the last selected one saved in localstorage, so use that language!
             activateLanguage(defaultLanguage);
@@ -106,8 +119,8 @@ under the License.
 
     // if we click on a language tab, activate that language
     $(function() {
-        $(".lang-selector a").on("click", function() {
-            var language = $(this).data("language-name");
+        $('.lang-selector a').on('click', function() {
+            var language = $(this).data('language-name');
             pushURL(language);
             activateLanguage(language);
             return false;
