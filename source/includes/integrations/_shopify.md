@@ -16,7 +16,7 @@ In order to append the plugin to your theme, all you need to do is to press on _
 
 If available, Smooch already includes the `givenName`, `surname`, `email`, *order count*, *last order placed*, *lifetime spent* and the Admin url of the current `customer`. It is also possible to retrieve more information for Shopify's [`customer` object](https://docs.shopify.com/themes/liquid-documentation/objects/customer) (it could also be `orders`, `address` or any object available in [your theme](https://docs.shopify.com/themes/liquid-documentation/objects)). To do so, you need to `Edit HTML/CSS` of your current theme to update the `snippets/smooch.liquid` file and add them into `properties` of the `Smooch.updateUser` call.
 
-```javascript
+```
 Smooch.updateUser({
   givenName: "{{ customer.first_name }}",
   surname: "{{ customer.last_name }}",
