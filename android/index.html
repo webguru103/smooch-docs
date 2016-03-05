@@ -795,17 +795,17 @@ If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> inte
 <p><aside class="notice">Integrating Smooch will modify your current Shopify theme. If your theme ever changes, you will need to re-enable this integration.</aside></p>
 <h3 id='adding-more-customer-informations'>Adding more customer informations</h3>
 <p>If available, Smooch already includes the <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, <code class="prettyprint">email</code>, <em>order count</em>, <em>last order placed</em>, <em>lifetime spent</em> and the Admin url of the current <code class="prettyprint">customer</code>. It is also possible to retrieve more information for Shopify&rsquo;s <a href="https://docs.shopify.com/themes/liquid-documentation/objects/customer"><code class="prettyprint">customer</code> object</a> (it could also be <code class="prettyprint">orders</code>, <code class="prettyprint">address</code> or any object available in <a href="https://docs.shopify.com/themes/liquid-documentation/objects">your theme</a>). To do so, you need to <code class="prettyprint">Edit HTML/CSS</code> of your current theme to update the <code class="prettyprint">snippets/smooch.liquid</code> file and add them into <code class="prettyprint">properties</code> of the <code class="prettyprint">Smooch.updateUser</code> call.</p>
-<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
-  <span class="na">givenName</span><span class="p">:</span> <span class="s2">"{{ customer.first_name }}"</span><span class="p">,</span>
-  <span class="na">surname</span><span class="p">:</span> <span class="s2">"{{ customer.last_name }}"</span><span class="p">,</span>
-  <span class="na">email</span><span class="p">:</span> <span class="s2">"{{ customer.email }}"</span><span class="p">,</span>
-  <span class="na">properties</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"Customer Account"</span><span class="p">:</span> <span class="s2">"{{ shop.secure_url }}/admin/customers/{{ customer.id }}"</span><span class="p">,</span>
-    <span class="p">...</span>
-    <span class="s2">"Location"</span><span class="p">:</span> <span class="s2">"{{ customer.default_address.city }}, {{ customer.default_address.country_code }}"</span><span class="p">,</span>
-    <span class="s2">"Cart Items"</span><span class="p">:</span> <span class="s2">"{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})"</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+<pre class="highlight plaintext"><code>Smooch.updateUser({
+  givenName: "{{ customer.first_name }}",
+  surname: "{{ customer.last_name }}",
+  email: "{{ customer.email }}",
+  properties: {
+    "Customer Account": "{{ shop.secure_url }}/admin/customers/{{ customer.id }}",
+    ...
+    "Location": "{{ customer.default_address.city }}, {{ customer.default_address.country_code }}",
+    "Cart Items": "{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})"
+  }
+});
 </code></pre>
 
           <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
