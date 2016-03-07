@@ -652,10 +652,19 @@ You must give it a height, otherwise, the widget will collapse.
         <span class="na">inputPlaceholder</span><span class="p">:</span> <span class="s1">'Type a message...'</span><span class="p">,</span>
         <span class="na">sendButtonText</span><span class="p">:</span> <span class="s1">'Send'</span><span class="p">,</span>
         <span class="na">introText</span><span class="p">:</span> <span class="s1">'This is the beginning of your conversation.&lt;br/&gt; Ask us anything!'</span><span class="p">,</span>
-        <span class="na">settingsText</span><span class="p">:</span> <span class="s1">'You can leave us your email so that we can get back to you this way.'</span>
+        <span class="na">settingsText</span><span class="p">:</span> <span class="s1">'You can leave us your email so that we can get back to you this way.'</span><span class="p">,</span>
+        <span class="na">settingsReadOnlyText</span><span class="p">:</span> <span class="s1">'We\'ll get back to you at this email address if we missed you.'</span><span class="p">,</span>
+        <span class="na">settingsInputPlaceholder</span><span class="p">:</span> <span class="s1">'Your email address'</span><span class="p">,</span>
+        <span class="na">settingsSaveButtonText</span><span class="p">:</span> <span class="s1">'Save'</span><span class="p">,</span>
+        <span class="na">settingsHeaderText</span><span class="p">:</span> <span class="s1">'Email Settings'</span><span class="p">,</span>
+        <span class="na">settingsNotificationText</span><span class="p">:</span> <span class="s1">'In case we\'re slow to respond you can &lt;a href="#" data-ui-settings-link&gt;leave us your email&lt;/a&gt;.'</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
+
+<p><aside>
+In order to have a working link in <code class="prettyprint">settingsNotificationText</code>, you must have an <code class="prettyprint">a</code> tag with a <code class="prettyprint">data-ui-settings-link</code> attribute on it.
+</aside></p>
 
           <h2 id='email-capture'>Email Capture</h2>
 <p><span class="half-width-img"><img alt="Email Capture" src="../images/email_capture.png" /></span></p>
