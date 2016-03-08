@@ -7,21 +7,11 @@ Make sure to [log in to Telegram](https://web.telegram.org/#/login) before conti
 </aside>
 
 ### Creating a Bot
-To [create a bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot), you need to talk to [BotFather](https://telegram.me/botfather).
-
-![BotFather](/images/botfather.png)
-
-To start a conversation with BotFather, click on "Start".
-
-![BotFather commands](/images/botfather_commands.png)
-
-BotFather will welcome you with a list of commands that he can handle. For now, click on "/newbot" to create a new bot.
+To [create a bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot), follow the instructions [here](https://core.telegram.org/bots#botfather).
 
 ![Create a bot with BotFather](/images/botfather_create_bot.png)
 
-BotFather will then ask you to choose the bot's name and username. The bot's username will only be used by users to add your bot to their contacts, while the name is official name of your bot. After choosing the bot's username, BotFather will generate an access token for the API, which Smooch will need to integrate with Telegram.
-
-If you want to customize your bot, you can do so with the available BotFather commands. You can, for example, change the bot's picture.
+After choosing the bot's username, BotFather will generate an access token for the API, which Smooch will need to integrate with Telegram.
 
 ### Configuring Telegram
 
