@@ -38,6 +38,7 @@ includes:
   - integrations/zendesk
   - integrations/twilio
   - integrations/facebook
+  - integrations/telegram
   - integrations/stripe_intro
   - integrations/stripe_android
   - integrations/stripe_saved_intro
