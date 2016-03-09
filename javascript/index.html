@@ -493,6 +493,31 @@ Since this integration relies on Facebook webhooks, which introduces delay, it t
 
 <p><img alt="Facebook Integration Page Settings" src="../images/facebook_settings.png" /></p>
 
+          <h2 id='telegram'>Telegram</h2>
+<p>Our Telegram integration allows your users to send you messages through a <a href="https://core.telegram.org/bots">Telegram bot</a>. You can receive the messages in any of our channels like Slack, HipChat or Help Scout, and your replies are sent back as Telegram messages from the bot to the user.</p>
+
+<p><aside class="notice">
+Make sure to <a href="https://web.telegram.org/#/login">log in to Telegram</a> before continuing the steps below.
+</aside></p>
+<h3 id='creating-a-bot'>Creating a Bot</h3>
+<p>To <a href="https://core.telegram.org/bots#3-how-do-i-create-a-bot">create a bot</a>, follow the instructions <a href="https://core.telegram.org/bots#botfather">here</a>.</p>
+
+<p><img alt="Create a bot with BotFather" src="../images/botfather_create_bot.png" /></p>
+
+<p>After choosing the bot&rsquo;s username, BotFather will generate an access token for the API, which Smooch will need to integrate with Telegram.</p>
+<h3 id='configuring-telegram'>Configuring Telegram</h3>
+<p><img alt="Telegram Integration Page Settings" src="../images/telegram_not_integrated.png" /></p>
+
+<p>Once you have created the bot, all you have to do is enter the bot&rsquo;s access token in the <a href="https://app.smooch.io">Smooch dashboard</a> and click on &ldquo;Authenticate your Telegram Bot&rdquo;. Your bot should now relay any message it receives to your backend channel.</p>
+<h3 id='conversations-through-the-bot'>Conversations Through the Bot</h3>
+<p>To send a user to the bot, Telegram users have to search for the username of your bot (obtained while creating a bot with BotFather). Once they have added your bot to their contacts, your bot will act as any other Telegram user. Any user will be able to send normal text messages to your bot or any of the supported file formats (documents, images, sound). If the user sends a file, the message will contain a link to the file that was sent.</p>
+
+<p><aside class="notice">
+Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file bigger than the limit, you will receive an alert.
+</aside></p>
+
+<p>When you reply from any of the configured backend channels, Telegram users will receive the message as though it was coming from the bot.</p>
+
           <h2 id='stripe'>Stripe</h2>
 <p>Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation.
 Credit card informations are never seen by our servers, everything related to transactions is all handled by Stripe.</p>
