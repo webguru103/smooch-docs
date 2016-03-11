@@ -44,6 +44,7 @@ includes:
   - integrations/stripe_notice_web
   - integrations/shopify
   - integrations/connecting_crm
+  - integrations/google_tag_manager
 
   - getting_conversations_started_js
   - whispers/whisper_when
