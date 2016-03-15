@@ -186,7 +186,23 @@ The `jwt` payload must include a `scope` claim which specifies the caller's scop
         "_id": "c7f6e6d6c3a637261bd9656f",
         "userId": "bob@example.com",
         "properties": {},
-        "signedUpAt": "2015-10-06T03:38:02.346Z"
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "devices": [
+          {
+            "active": true,
+            "appVersion": "1.0",
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "ios",
+            "pushNotificationToken": "<...>",
+            "info": {
+              "appName": "ShellApp",
+              "devicePlatform": "x86_64",
+              "os": "iPhone OS",
+              "osVersion": "9.2"
+            }
+          }
+        ]
     }
 }
 ```
@@ -474,7 +490,23 @@ smooch.appUsers.init({
         "_id": "c7f6e6d6c3a637261bd9656f",
         "userId": "bob@example.com",
         "properties": {},
-        "signedUpAt": "2015-10-06T03:38:02.346Z"
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "devices": [
+          {
+            "active": true,
+            "appVersion": "1.0",
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "ios",
+            "pushNotificationToken": "<...>",
+            "info": {
+              "appName": "ShellApp",
+              "devicePlatform": "x86_64",
+              "os": "iPhone OS",
+              "osVersion": "9.2"
+            }
+          }
+        ]
     }
 }
 ```
@@ -599,7 +631,23 @@ smooch.appUsers.get('steveb@channel5.com').then((response) => {
         "email": "steveb@channel5.com",
         "signedUpAt": "2015-10-08T23:52:11.677Z",
         "properties": {},
-        "conversationStarted": true
+        "conversationStarted": true,
+        "devices": [
+          {
+            "active": true,
+            "appVersion": "1.0",
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "ios",
+            "pushNotificationToken": "<...>",
+            "info": {
+              "appName": "ShellApp",
+              "devicePlatform": "x86_64",
+              "os": "iPhone OS",
+              "osVersion": "9.2"
+            }
+          }
+        ]
     }
 }
 ```
@@ -642,7 +690,23 @@ smooch.appUsers.update('c7f6e6d6c3a637261bd9656f', {
         "email": "steveb@channel5.com",
         "signedUpAt": "2015-10-08T23:52:11.677Z",
         "properties": {},
-        "conversationStarted": true
+        "conversationStarted": true,
+        "devices": [
+          {
+            "active": true,
+            "appVersion": "1.0",
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "ios",
+            "pushNotificationToken": "<...>",
+            "info": {
+              "appName": "ShellApp",
+              "devicePlatform": "x86_64",
+              "os": "iPhone OS",
+              "osVersion": "9.2"
+            }
+          }
+        ]
     }
 }
 ```
