@@ -247,7 +247,23 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"appVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pushNotificationToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;...&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ShellApp"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iPhone OS"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"osVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.2"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -535,7 +551,23 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"appVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pushNotificationToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;...&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ShellApp"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iPhone OS"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"osVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.2"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -738,7 +770,23 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
         </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T23:52:11.677Z"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"appVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pushNotificationToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;...&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ShellApp"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iPhone OS"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"osVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.2"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -777,7 +825,23 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
         </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T23:52:11.677Z"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"appVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pushNotificationToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;...&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ShellApp"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iPhone OS"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"osVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.2"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
