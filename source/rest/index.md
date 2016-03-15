@@ -194,6 +194,7 @@ The `jwt` payload must include a `scope` claim which specifies the caller's scop
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
             "lastSeen": "2016-03-09T19:09:01.431Z",
             "platform": "ios",
+            "pushNotificationToken": "<...>",
             "info": {
               "appName": "ShellApp",
               "devicePlatform": "x86_64",
@@ -497,6 +498,7 @@ smooch.appUsers.init({
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
             "lastSeen": "2016-03-09T19:09:01.431Z",
             "platform": "ios",
+            "pushNotificationToken": "<...>",
             "info": {
               "appName": "ShellApp",
               "devicePlatform": "x86_64",
@@ -637,6 +639,7 @@ smooch.appUsers.get('steveb@channel5.com').then((response) => {
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
             "lastSeen": "2016-03-09T19:09:01.431Z",
             "platform": "ios",
+            "pushNotificationToken": "<...>",
             "info": {
               "appName": "ShellApp",
               "devicePlatform": "x86_64",
@@ -695,6 +698,7 @@ smooch.appUsers.update('c7f6e6d6c3a637261bd9656f', {
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
             "lastSeen": "2016-03-09T19:09:01.431Z",
             "platform": "ios",
+            "pushNotificationToken": "<...>",
             "info": {
               "appName": "ShellApp",
               "devicePlatform": "x86_64",
