@@ -47,7 +47,6 @@ includes:
   - integrations/stripe_notice_ios
   - integrations/shopify
   - integrations/connecting_crm
-  - integrations/google_tag_manager
 
 
   - getting_conversations_started
