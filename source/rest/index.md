@@ -117,6 +117,8 @@ For added security when making calls on behalf of an app user, a `jwt` credentia
 
 The `jwt` itself is transmitted via the HTTP `authorization` header. The token should be prefixed with "Bearer" followed by a space. For example: `Bearer your-jwt`.
 
+To sign JWTs, you will need to create a secret key in the Smooch dashboard, by going into the Settings tab. Clicking on "Create New Secret Key" will generate a new key id and a secret key pair which you can use to sign JWTs.
+
 <aside class="warning">
 After using a `jwt` with `appUser` scope to authenticate an app user for the `/appuser` or `/init` routes, it becomes no longer possible to authenticate that app user with an `appToken`.
 </aside>
@@ -238,6 +240,8 @@ smooch.webhooks.create({
 <api>`POST /v1/webhooks`</api>
 
 Create a webhook for the specified app. The response body will include a list of triggers that will trigger the webhook (currently only message triggers are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
+
+Alternatively, you can use the Webhooks integration in the Smooch dashboard to easily create a webhook.
 
 | **Arguments**             |   |
 |---------------------------|---|
