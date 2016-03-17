@@ -66,7 +66,7 @@ On your Google Tag Manager dashboard, create a new tag and rename it "Smooch".
 
 At the end of the product list, click on "Customer HTML Tag" and continue.
 
-![GTM HTML Tag](/images/gtm_html_tag.png)
+<img style="width:50%; min-width:400px; max-width:800px;" src="images/gtm_html_tag.png" alt="GTM HTML Tag">
 
 ### 3. Paste Smooch's code snipet 
 
