@@ -108,6 +108,55 @@
 <p>In your code:</p>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 </code></pre>
+<h2 id='google-tag-manager'>Google Tag Manager</h2>
+<p>You can load Smooch&rsquo;s web widget through <a href="https://www.google.com/analytics/tag-manager/">Google Tag Manager</a>. Simply connect to your Google Tag Manager account, go inside your container and follow the guide below.</p>
+<h3 id='1--create-a-new-tag-and-give-it-a-cute-name-like-quotsmoochquot'>1. Create a new Tag and give it a cute name like &ldquo;Smooch&rdquo;</h3>
+<p>On your Google Tag Manager dashboard, create a new tag and rename it &ldquo;Smooch&rdquo;.</p>
+
+<p><img alt="GTM New Tag" src="../images/gtm_new_tag.png" /></p>
+<h3 id='2--select-quotcustom-html-tagquot'>2. Select &ldquo;Custom HTML Tag&rdquo;</h3>
+<p>At the end of the product list, click on &ldquo;Customer HTML Tag&rdquo; and continue.</p>
+
+<p><img style="width:50%; min-width:400px; max-width:800px;" src="images/gtm_html_tag.png" alt="GTM HTML Tag"></p>
+<h3 id='3--paste-smooch39s-code-snipet'>3. Paste Smooch&rsquo;s code snipet</h3>
+<p>Paste the code below in the suggested text field. Make sure to replace &lsquo;your-app-token&rsquo; with your Smooch&rsquo;s app token.</p>
+<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.smooch.io/smooch.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span> <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your-app-token'</span><span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+
+<p><img alt="GTM Snippet" src="../images/gtm_smooch_snippet.png" /></p>
+<h3 id='4--select-to-fire-on-quotall-pagesquot'>4. Select to Fire On &ldquo;All Pages&rdquo;</h3>
+<p>Choose the trigger &ldquo;All Pages&rdquo; to fire the initialization of our widget when the page loads.</p>
+
+<p><img alt="GTM Fire on" src="../images/gtm_fire_on.png" /></p>
+<h3 id='5--save-tag-and-publish'>5. Save Tag and Publish</h3>
+<p>You&rsquo;re almost there. Save your Tag and don&rsquo;t forget to publish your changes. You could need to clear the recent the cache and reload your web page to see the widget.</p>
+<h2 id='wordpress'>Wordpress</h2>
+<p>To install Smooch on your Wordpress site, you need to <a href="https://github.com/smooch/smooch-wordpress">download our plugin</a> and install it through Wordpress.</p>
+
+<ol>
+<li>Download the ZIP from our <a href="https://github.com/smooch/smooch-wordpress">plugin github page</a></li>
+<li>Connect on your Wordpress dasboard and go on the plugin section</li>
+<li><p>Click on &ldquo;Add New&rdquo; and then &ldquo;Upload Plugin&rdquo;</p>
+
+<p><img alt="Wordpress" src="../images/wordpress_plugin.png" /></p></li>
+<li><p>Choose the plugin and click on &ldquo;Install Now&rdquo;.</p></li>
+</ol>
+<h2 id='ghost'>Ghost</h2>
+<p>You are wondering how to load our widget on your Ghost blog. First connect to your Ghost dashboard (your-website.com/ghost). Go to the Code Injection menu (on the navigation left bar).</p>
+
+<p>In the Blog Footer section, paste our initialization code.</p>
+<pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdn.smooch.io/smooch.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+    <span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span> <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your-app-token'</span><span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+
+<p><img alt="Ghost" src="../images/ghost.png" /></p>
+
+<p>And don&rsquo;t forget to click on Save!</p>
 
           <h2 id='configuring-agent-images'>Configuring agent images</h2>
 <p>You can set an app maker&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the app maker&rsquo;s email address.
