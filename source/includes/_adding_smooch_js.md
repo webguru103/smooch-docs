@@ -54,7 +54,7 @@ Smooch.init({appToken: 'your_app_token'});
 ```
 ## Google Tag Manager
 
-You can load Smooch's web widget through Google Tag Manager. Simply connect to your Google Tag Manager account, go inside your container and follow the guide below. 
+You can load Smooch's web widget through [Google Tag Manager](https://www.google.com/analytics/tag-manager/). Simply connect to your Google Tag Manager account, go inside your container and follow the guide below.
 
 ### 1. Create a new Tag and give it a cute name like "Smooch"
 
@@ -68,7 +68,7 @@ At the end of the product list, click on "Customer HTML Tag" and continue.
 
 <img style="width:50%; min-width:400px; max-width:800px;" src="images/gtm_html_tag.png" alt="GTM HTML Tag">
 
-### 3. Paste Smooch's code snipet 
+### 3. Paste Smooch's code snipet
 
 Paste the code below in the suggested text field. Make sure to replace 'your-app-token' with your Smooch's app token.
 
@@ -99,7 +99,7 @@ To install Smooch on your Wordpress site, you need to [download our plugin](http
 2. Connect on your Wordpress dasboard and go on the plugin section
 3. Click on "Add New" and then "Upload Plugin"
 
-	![Wordpress](/images/wordpress_plugin.png) 
+	![Wordpress](/images/wordpress_plugin.png)
 
 4. Choose the plugin and click on "Install Now".
 
