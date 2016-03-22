@@ -18,9 +18,9 @@ Push notifications are a great, unobtrusive way to let your users know that a re
 
 ### Step 2. Upload the .p12 file to Smooch
 
-1. Go to http://app.smooch.io and log into your account.
+1. Go to [https://app.smooch.io](https://app.smooch.io) and log into your account.
 
-2. Select the app you want push notifications to enabled for.
+2. On the Overview page, select **iOS**
 
 3. Upload the .p12 file.
 
