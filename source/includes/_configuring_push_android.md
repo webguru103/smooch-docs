@@ -26,7 +26,7 @@ Following these steps will enable cloud messaging for your app and create a serv
 
 1. Go to [https://app.smooch.io](https://app.smooch.io) and log into your account.
 
-2. Go to **Settings** > **Android**
+2. On the Overview page, select **Android**
 
 3. Enter your *Server API Key* and *Sender ID* (which was retrieved earlier in Step 1)
 
