@@ -754,8 +754,17 @@ In order to have a working link in <code class="prettyprint">settingsNotificatio
 <span class="p">});</span>
 </code></pre>
 
-          <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
-<p>Using CSS, you can change the style used by Smooch. You can simply inspect any UI elements and override any class in the widget by targeting <code class="prettyprint">#sk-container #sk-wrapper .selector</code>. Our stylesheet only targets <code class="prettyprint">#sk-container .selector</code>, it would become less specific than yours.</p>
+          <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2><h3 id='basic-customization'>Basic Customization</h3>
+<p>For basic customization of colors, you can set an Accent Color and a Secondary Color in the web settings of the Smooch dashboard.</p>
+
+<ul>
+<li>The <strong>Accent Color</strong> customizes the color of user message bubbles, action buttons, and the Send button.</li>
+<li>The <strong>Secondary Color</strong> changes the appearance of hyperlinks in the web widget.</li>
+</ul>
+
+<p><img alt="Color Customization" src="../images/color_customization_web.png" /></p>
+<h3 id='advanced-customization'>Advanced Customization</h3>
+<p>For complete control over the styling of the widget, you can use CSS to override the style used by Smooch. You can simply inspect any UI elements and override any class in the widget by targeting <code class="prettyprint">#sk-container #sk-wrapper .selector</code>. Our stylesheet only targets <code class="prettyprint">#sk-container .selector</code>, it would become less specific than yours.</p>
 <pre class="highlight css"><code><span class="o">//</span> <span class="nt">To</span> <span class="nt">recolor</span> <span class="nt">bubbles</span> <span class="nt">to</span> <span class="nt">orange</span>
 <span class="nf">#sk-container</span> <span class="nf">#sk-wrapper</span> <span class="nc">.sk-msg</span> <span class="p">{</span>
     <span class="nl">background-color</span><span class="p">:</span> <span class="m">#ff3333</span><span class="p">;</span>

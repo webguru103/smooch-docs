@@ -172,6 +172,8 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f <span class="se"
 
 <p>The <code class="prettyprint">jwt</code> itself is transmitted via the HTTP <code class="prettyprint">authorization</code> header. The token should be prefixed with &ldquo;Bearer&rdquo; followed by a space. For example: <code class="prettyprint">Bearer your-jwt</code>.</p>
 
+<p>To sign JWTs, you will need to create a secret key in the Smooch dashboard, by going into the Settings tab. Clicking on &ldquo;Create New Secret Key&rdquo; will generate a new key id and a secret key pair which you can use to sign JWTs.</p>
+
 <p><aside class="warning">
 After using a <code class="prettyprint">jwt</code> with <code class="prettyprint">appUser</code> scope to authenticate an app user for the <code class="prettyprint">/appuser</code> or <code class="prettyprint">/init</code> routes, it becomes no longer possible to authenticate that app user with an <code class="prettyprint">appToken</code>.
 </aside></p>
@@ -310,6 +312,8 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 <p><api><code class="prettyprint">POST /v1/webhooks</code></api></p>
 
 <p>Create a webhook for the specified app. The response body will include a list of triggers that will trigger the webhook (currently only message triggers are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.</p>
+
+<p>Alternatively, you can use the Webhooks integration in the Smooch dashboard to easily create a webhook.</p>
 
 <table><thead>
 <tr>
