@@ -89,19 +89,22 @@ Choose the trigger "All Pages" to fire the initialization of our widget when the
 
 ### 5. Save Tag and Publish
 
-You're almost there. Save your Tag and don't forget to publish your changes. You could need to clear the recent the cache and reload your web page to see the widget.
+You're almost there. Save your Tag and don't forget to publish your changes. You might need to clear the recent the cache and reload your web page to see the widget.
 
 ## Wordpress
 
 To install Smooch on your Wordpress site, you need to [download our plugin](https://github.com/smooch/smooch-wordpress) and install it through Wordpress.
 
 1. Download the ZIP from our [plugin github page](https://github.com/smooch/smooch-wordpress)
-2. Connect on your Wordpress dasboard and go on the plugin section
+2. Connect on your Wordpress dashboard and go on the plugin section
 3. Click on "Add New" and then "Upload Plugin"
 
 	![Wordpress](/images/wordpress_plugin.png)
 
 4. Choose the plugin and click on "Install Now".
+5. In your Wordpress settings, you will see "Smooch". Paste your app token in the appropriate test input.
+
+	![Wordpress](/images/wordpress_settings.png)
 
 ## Ghost
 
