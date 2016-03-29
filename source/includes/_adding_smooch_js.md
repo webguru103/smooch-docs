@@ -102,7 +102,7 @@ To install Smooch on your Wordpress site, you need to [download our plugin](http
 	![Wordpress](/images/wordpress_plugin.png)
 
 4. Choose the plugin and click on "Install Now".
-5. In your Wordpress settings, you will see "Smooch". Paste your app token in the appropriate text field.
+5. In your Wordpress settings, click on "Smooch". Paste your app token in the appropriate text field.
 
 	![Wordpress](/images/wordpress_settings.png)
 
