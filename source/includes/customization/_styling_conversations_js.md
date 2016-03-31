@@ -4,8 +4,8 @@
 
 For basic customization of colors, you can set an Accent Color and a Secondary Color in the web settings of the Smooch dashboard.
 
-* The **Accent Color** customizes the color of user message bubbles, action buttons, and the Send button.
-* The **Secondary Color** changes the appearance of hyperlinks in the web widget.
+* The **Accent Color** customizes the color of customer messages and actions in the footer.
+* The **Secondary Color** changes the appearance of links and buttons in your messages.
 
 <img alt="Color Customization" src="../images/color_customization_web.png" />
 
