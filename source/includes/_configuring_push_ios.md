@@ -57,3 +57,7 @@ You'll receive a notification if you're in the app, or outside the app!
 ### Step 5. Repeat for Production mode
 
 Take note that there are "Development" and "Production" certificates and profiles. Make sure that you upload the "Production" .p12 file to Smooch when you're ready to release your build through ad-hoc, enterprise or app store distribution.
+
+<aside class="notice">
+Smooch automatically handles incoming push notifications by swizzling certain methods on your app's `UIApplicationDelegate`. To disable this behaviour, you can set `enableAppDelegateSwizzling` to `false` on your `SKTSettings` object. However, if you choose to do so, you **must** follow the instructions outlined in the [API documentation](http://docs.smooch.io/api/ios/Classes/SKTSettings.html#//api/name/enableAppDelegateSwizzling) to ensure that push notifications continue to be handled correctly.
+</aside>

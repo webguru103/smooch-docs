@@ -35,6 +35,7 @@ includes:
   - integrations/helpscout
   - integrations/hipchat  
   - integrations/zendesk
+  - integrations/front
   - integrations/twilio
   - integrations/facebook
   - integrations/telegram
