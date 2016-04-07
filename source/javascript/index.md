@@ -33,18 +33,23 @@ includes:
   - integrations/email
   - integrations/slack
   - integrations/helpscout
-  - integrations/hipchat  
+  - integrations/hipchat
   - integrations/zendesk
   - integrations/front
   - integrations/twilio
   - integrations/facebook
   - integrations/telegram
-  - integrations/stripe_intro
-  - integrations/stripe_web
-  - integrations/stripe
-  - integrations/stripe_notice_web
   - integrations/shopify
   - integrations/connecting_crm
+
+  - addons/addons
+  - addons/stripe_intro
+  - addons/stripe_web
+  - addons/stripe
+  - addons/stripe_notice_web
+  - addons/office_hours_intro
+  - addons/office_hours_js
+  - addons/office_hours_adding
 
   - getting_conversations_started_js
   - whispers/whisper_when

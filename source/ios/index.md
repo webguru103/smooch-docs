@@ -40,15 +40,19 @@ includes:
   - integrations/twilio
   - integrations/facebook
   - integrations/telegram
-  - integrations/stripe_intro
-  - integrations/stripe_ios
-  - integrations/stripe_saved_intro
-  - integrations/stripe_saved_ios
-  - integrations/stripe
-  - integrations/stripe_notice_ios
   - integrations/shopify
   - integrations/connecting_crm
 
+  - addons/addons
+  - addons/stripe_intro
+  - addons/stripe_ios
+  - addons/stripe_saved_intro
+  - addons/stripe_saved_ios
+  - addons/stripe
+  - addons/stripe_notice_ios
+  - addons/office_hours_intro
+  - addons/office_hours_ios
+  - addons/office_hours_adding
 
   - getting_conversations_started
   - whispers/whisper_when
