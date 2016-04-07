@@ -686,32 +686,32 @@ smooch.appUsers.update('c7f6e6d6c3a637261bd9656f', {
 ```
 ```json
 {
-    "appUser": {
-        "_id": "deb920657bbc3adc3fec7963",
-        "userId": "steveb@channel5.com",
-        "givenName": "Steve",
-        "surname": "Brule",
-        "email": "steveb@channel5.com",
-        "signedUpAt": "2015-10-08T23:52:11.677Z",
-        "properties": {},
-        "conversationStarted": true,
-        "devices": [
-          {
-            "active": true,
-            "appVersion": "1.0",
-            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
-            "lastSeen": "2016-03-09T19:09:01.431Z",
-            "platform": "ios",
-            "pushNotificationToken": "<...>",
-            "info": {
-              "appName": "ShellApp",
-              "devicePlatform": "x86_64",
-              "os": "iPhone OS",
-              "osVersion": "9.2"
-            }
-          }
-        ]
-    }
+  "appUser": {
+    "_id": "deb920657bbc3adc3fec7963",
+    "userId": "steveb@channel5.com",
+    "givenName": "Steve",
+    "surname": "Brule",
+    "email": "steveb@channel5.com",
+    "signedUpAt": "2015-10-08T23:52:11.677Z",
+    "properties": {},
+    "conversationStarted": true,
+    "devices": [
+      {
+        "active": true,
+        "appVersion": "1.0",
+        "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+        "lastSeen": "2016-03-09T19:09:01.431Z",
+        "platform": "ios",
+        "pushNotificationToken": "<...>",
+        "info": {
+          "appName": "ShellApp",
+          "devicePlatform": "x86_64",
+          "os": "iPhone OS",
+          "osVersion": "9.2"
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -726,6 +726,59 @@ Update an app user's basic profile information and specify custom profile data v
 | **email**<br/>*optional*      | The user's email address. |
 | **signedUpAt**<br/>*optional* | The date at which the user signed up. Must be ISO 8601 time format (`YYYY-MM-DDThh:mm:ss.sssZ`) |
 | **properties**<br/>*optional* | A flat JSON object containing custom defined user properties. |
+
+## Update Device
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/devices/5A7F8343-DF41-46A8-96EC-8583FCB422FB \
+     -X PUT \
+     -d '{"appVersion": "8.0"}' \
+     -H 'content-type: application/json' \
+     -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
+```
+```js
+smooch.appUsers.updateDevice('c7f6e6d6c3a637261bd9656f', '5A7F8343-DF41-46A8-96EC-8583FCB422FB', {
+    appVersion: '8.0'
+}).then((response) => {
+    // async code
+});
+```
+
+> Response:
+
+```
+200 OK
+```
+```json
+{
+  "device": {
+    "active": true,
+    "appVersion": "8.0",
+    "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+    "lastSeen": "2016-03-09T19:09:01.431Z",
+    "platform": "ios",
+    "pushNotificationToken": "<...>",
+    "info": {
+      "appName": "ShellApp",
+      "devicePlatform": "x86_64",
+      "os": "iPhone OS",
+      "osVersion": "9.2"
+    }
+  }
+}
+```
+
+<api>`PUT /v1/appusers/{smoochId|userId}/devices/{deviceId}`</api>
+
+Update the properties of a device. This API is additive; only the specific fields specified in the request body, and only the specific JSON sub-fields included in the `info` field will be updated. In other words, omitting a field will not delete that field.
+
+| **Arguments**                 |                            |
+|-------------------------------|----------------------------|
+| **pushNotificationToken**<br/>*optional* | The GCM or APN token to be used for sending push notifications to the device.
+| **appVersion**<br/>*optional* | A reserved string field for reporting the app version running on the device. For example: `8.0` |
+| **info**<br/>*optional* | A flat JSON structure detailing device properties. See [Device Info](#device-info). |
 
 ## Track Event
 
