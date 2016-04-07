@@ -712,6 +712,11 @@ You can easily view your active conversations and user profiles at a glance.</p>
 
 <p>To reduce the likelihood of you bumping up against the rate limit, Smooch batches together all messages sent from the app user within a 5 second period into a single comment.</p>
 
+          <h2 id='front'>Front</h2>
+<p><a href="https://frontapp.com/">Front</a> is a powerful multi-channel inbox management software that takes out the pain of team inboxes and enables you to scale your customer support, hiring, sales and more. This integration will allow Front to power your conversations with customers over messaging.</p>
+<h3 id='configuring-front-to-work-with-smooch'>Configuring Front to work with Smooch</h3>
+<p>The Front integration is built entirely on top of Smooch&rsquo;s public <a href="/rest">REST API</a>, which makes the integration steps different from other integrations like <a href="#slack">Slack</a> or <a href="#zendesk">Zendesk</a>. You can find the full installation instructions <a href="https://faq.frontapp.com/11682-Adding-a-New-Inbox-in-Front/how-to-add-a-smooch-inbox-in-front">here</a>.</p>
+
           <h2 id='twilio'>Twilio</h2>
 <p><a href="https://www.twilio.com/">Twilio</a> is an SMS messaging service. Our Twilio integration allows your users to send you text messages at your Twilio number for your to receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as an SMS to the user.</p>
 <h3 id='configuring-twilio'>Configuring Twilio</h3>
@@ -759,6 +764,43 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 
 <p>When you reply from any of the configured backend channels, Telegram users will receive the message as though it was coming from the bot.</p>
 
+          <h2 id='shopify'>Shopify</h2>
+<p><a href="https://www.shopify.com/">Shopify</a> is a simple way to set up an online store to organize products, accept credit card payments, and manage orders.</p>
+
+<p>This integration adds the Smooch web plugin to your Shopify online store. Smooch will set your <code class="prettyprint">appToken</code> and add the code snippet in your theme.</p>
+<h3 id='adding-smooch-to-your-store'>Adding Smooch to your store</h3>
+<p>In order to append the plugin to your theme, all you need to do is to press on <em>Authenticate</em> from the integration page or install Smooch from the <a href="https://apps.shopify.com/smooch">Shopify marketplace</a>.</p>
+
+<p><img alt="From the integration page" src="../images/shopify.png" /></p>
+
+<p><aside class="notice">Integrating Smooch will modify your current Shopify theme. If your theme ever changes, you will need to re-enable this integration.</aside></p>
+<h3 id='adding-more-customer-informations'>Adding more customer informations</h3>
+<p>If available, Smooch already includes the <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, <code class="prettyprint">email</code>, <em>order count</em>, <em>last order placed</em>, <em>lifetime spent</em> and the Admin url of the current <code class="prettyprint">customer</code>. It is also possible to retrieve more information for Shopify&rsquo;s <a href="https://docs.shopify.com/themes/liquid-documentation/objects/customer"><code class="prettyprint">customer</code> object</a> (it could also be <code class="prettyprint">orders</code>, <code class="prettyprint">address</code> or any object available in <a href="https://docs.shopify.com/themes/liquid-documentation/objects">your theme</a>). To do so, you need to <code class="prettyprint">Edit HTML/CSS</code> of your current theme to update the <code class="prettyprint">snippets/smooch.liquid</code> file and add them into <code class="prettyprint">properties</code> of the <code class="prettyprint">Smooch.updateUser</code> call.</p>
+<pre class="highlight plaintext"><code>Smooch.updateUser({
+  givenName: "{{ customer.first_name }}",
+  surname: "{{ customer.last_name }}",
+  email: "{{ customer.email }}",
+  properties: {
+    "Customer Account": "{{ shop.secure_url }}/admin/customers/{{ customer.id }}",
+    ...
+    "Location": "{{ customer.default_address.city }}, {{ customer.default_address.country_code }}",
+    "Cart Items": "{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})"
+  }
+});
+</code></pre>
+
+          <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
+<p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since Smooch uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+
+<ol>
+<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
+<li><p>Set Smooch&rsquo;s forwarding address to the address you noted in step 1. </p></li>
+<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
+</ol>
+
+          <h1 id='add-ons'>Add-ons</h1>
           <h2 id='stripe'>Stripe</h2>
 <p>Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation.
 Credit card informations are never seen by our servers, everything related to transactions is all handled by Stripe.</p>
@@ -808,41 +850,25 @@ If you are using test mode, notice the &ldquo;Skip this account form&rdquo; at t
 If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> integration, they&rsquo;ll be getting a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch Android SDK versions older than 2.1.
 </aside></p>
 
-          <h2 id='shopify'>Shopify</h2>
-<p><a href="https://www.shopify.com/">Shopify</a> is a simple way to set up an online store to organize products, accept credit card payments, and manage orders.</p>
+          <h2 id='office-hours'>Office Hours</h2>
+<p>Office Hours is an add-on built by Smooch which lets you send an automatic reply to customers who message your team outside of your preferred work hours.</p>
 
-<p>This integration adds the Smooch web plugin to your Shopify online store. Smooch will set your <code class="prettyprint">appToken</code> and add the code snippet in your theme.</p>
-<h3 id='adding-smooch-to-your-store'>Adding Smooch to your store</h3>
-<p>In order to append the plugin to your theme, all you need to do is to press on <em>Authenticate</em> from the integration page or install Smooch from the <a href="https://apps.shopify.com/smooch">Shopify marketplace</a>.</p>
+<p>This integration works with all messaging channel integrations.</p>
 
-<p><img alt="From the integration page" src="../images/shopify.png" /></p>
+          <p><span class="half-width-img"><img alt="Office Hours in Android" src="../images/office_hours_android.png" /></span></p>
 
-<p><aside class="notice">Integrating Smooch will modify your current Shopify theme. If your theme ever changes, you will need to re-enable this integration.</aside></p>
-<h3 id='adding-more-customer-informations'>Adding more customer informations</h3>
-<p>If available, Smooch already includes the <code class="prettyprint">givenName</code>, <code class="prettyprint">surname</code>, <code class="prettyprint">email</code>, <em>order count</em>, <em>last order placed</em>, <em>lifetime spent</em> and the Admin url of the current <code class="prettyprint">customer</code>. It is also possible to retrieve more information for Shopify&rsquo;s <a href="https://docs.shopify.com/themes/liquid-documentation/objects/customer"><code class="prettyprint">customer</code> object</a> (it could also be <code class="prettyprint">orders</code>, <code class="prettyprint">address</code> or any object available in <a href="https://docs.shopify.com/themes/liquid-documentation/objects">your theme</a>). To do so, you need to <code class="prettyprint">Edit HTML/CSS</code> of your current theme to update the <code class="prettyprint">snippets/smooch.liquid</code> file and add them into <code class="prettyprint">properties</code> of the <code class="prettyprint">Smooch.updateUser</code> call.</p>
-<pre class="highlight plaintext"><code>Smooch.updateUser({
-  givenName: "{{ customer.first_name }}",
-  surname: "{{ customer.last_name }}",
-  email: "{{ customer.email }}",
-  properties: {
-    "Customer Account": "{{ shop.secure_url }}/admin/customers/{{ customer.id }}",
-    ...
-    "Location": "{{ customer.default_address.city }}, {{ customer.default_address.country_code }}",
-    "Cart Items": "{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} ({{ cart.total_price | money }})"
-  }
-});
-</code></pre>
+          <h3 id='adding-office-hours-to-your-messaging-channels'>Adding Office Hours to your messaging channels</h3>
+<p>To enable the Office Hours add-on, you will need to select your preferred time zone, add your office hours, and write your away message.</p>
 
-          <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
-<p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+<p>By default, the Smooch dashboard is going to try to guess your current time zone. This time zone is going to be used for your users&#39; messages and your office hours in order to dispatch the message at the right moment.</p>
 
-<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since Smooch uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+<p>You will need to also provide the work hours during which you will be available to reply. You can set different time ranges on different days or set it to all day by selecting the 12:00 AM to 11:59 PM range.</p>
 
-<ol>
-<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
-<li><p>Set Smooch&rsquo;s forwarding address to the address you noted in step 1. </p></li>
-<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
-</ol>
+<p>The away message will only be dispatched when the user messages you outside of your work hours. This will give you the opportunity to tell your customer to come back later or message you through another channel.</p>
+
+<p>The Office Hours add-on can also be set to reply to specific messaging channels if needed. If you select <code class="prettyprint">iOS</code> and not <code class="prettyprint">Web</code> for example, a user sending a message from an iOS device will prompt the away message, but a user on Web will not.</p>
+
+<p><aside class="notice">There are a few exceptions that will prevent the message from being dispatched: if it&rsquo;s already been dispatched on that day, within the last 12 hours, or if you&rsquo;ve messaged the user in the last 15 minutes.</aside></p>
 
           <h1 id='whispers'>Whispers</h1>
 <p>Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
