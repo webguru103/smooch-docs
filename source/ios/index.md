@@ -46,6 +46,7 @@ includes:
   - integrations/stripe
   - integrations/stripe_notice_ios
   - integrations/shopify
+  - integrations/elevio
   - integrations/connecting_crm
 
 
