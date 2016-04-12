@@ -43,7 +43,7 @@ includes:
   - integrations/stripe
   - integrations/stripe_notice_web
   - integrations/shopify
-  -  integrations/elevio
+  - integrations/elevio
   - integrations/connecting_crm
 
   - getting_conversations_started_js
