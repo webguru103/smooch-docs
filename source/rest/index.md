@@ -1034,7 +1034,7 @@ For messages originating from an app maker, a `jwt` credential with `app` level 
 
 | **Arguments**                |                            |
 |------------------------------|----------------------------|
-| **text**<br/>*required*      | The message content. `text` becomes optional if `mediaUrl` and `mediaType` are both specified. |
+| **text**<br/>*required*      | The message content. `text` becomes optional if `mediaUrl` and `mediaType` are both specified or when actions are provided. |
 | **role**<br/>*required*      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
 | **name**<br/>*optional*      | The display name of the message author. Messages with role `appUser` will default to a friendly name based on the user's `givenName` and `surname`. Messages with role `appMaker` have no default name. |
 | **email**<br/>*optional*     | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the Smooch account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
@@ -1042,6 +1042,118 @@ For messages originating from an app maker, a `jwt` credential with `app` level 
 | **mediaUrl**<br/>*optional*  | The image URL used in an image message. If a `mediaUrl` is specified, the `mediaType` must also be specified. |
 | **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpeg` |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
+| **actions**<br/>*optional* | An array of action buttons (see section below) |
+
+### Action buttons
+Actions buttons can be sent through the API by including them in the message payload.
+
+There are 3 types of supported actions : **link**, **buy**, and **postback**. Type must be specified by providing a `type` argument in the action object.
+
+> Send link action:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+     -X POST \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "action": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Just put some vinegar on it',
+    role: 'appMaker',
+    actions: [
+      {
+        type: 'link',
+        text: 'Put vinegar',
+        uri: 'http://example.com'
+      }
+    ]
+}).then(() => {
+    // async code
+});
+```
+
+| **Link**                |                            |
+|------------------------------|----------------------------|
+| **text**<br/>*required*      | The button text. |
+| **type**<br/>*required*      | The action type. Must be `link`. |
+| **uri**<br/>*required*      | The action URI. This is the link that will be used in the clients when clicking the button. |
+| **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
+
+
+> Send buy action:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+     -X POST \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "action": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Just put some vinegar on it',
+    role: 'appMaker',
+    actions: [
+      {
+        type: 'buy',
+        text: 'Buy vinegar',
+        amount: 8000
+      }
+    ]
+}).then(() => {
+    // async code
+});
+```
+
+| **Buy**                |                  |
+|------------------------------|----------------------------|
+| **text**<br/>*required*      | The button text. |
+| **type**<br/>*required*      | The action type. Must be `buy`. |
+| **amount**<br/>*required*    | The amount being charged. Note that if you want to charge 9.99, you would use 999. The amount needs to be multiplied by 1000. |
+| **currency**<br/>*optional*  | The currency of the amount being charged. If not specified, it would use the default one set in your account. |
+| **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
+
+<aside class="notice">
+The Stripe integration must be configured and active in order to accept buy buttons.
+</aside>
+
+> Send postback action:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+     -X POST \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "action": [{"type": "postback", "text": "Send vinegar" }]}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Just put some vinegar on it',
+    role: 'appMaker',
+    actions: [
+      {
+        type: 'postback',
+        text: 'Buy vinegar'
+      }
+    ]
+}).then(() => {
+    // async code
+});
+```
+
+| **Postback**                |                  |
+|------------------------------|----------------------------|
+| **text**<br/>*required*      | The button text. |
+| **type**<br/>*required*      | The action type. Must be `postback`. |
+| **payload**<br/>*optional*    | A string payload to help you identify the action context. You can also use metadata for more complex needs. |
+| **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
+
+<aside class="notice">
+See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>.
+</aside>
+
 
 ## Upload Image
 
