@@ -1054,7 +1054,7 @@ There are 3 types of supported actions : **link**, **buy**, and **postback**. Ty
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "action": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -1087,7 +1087,7 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "action": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -1124,7 +1124,7 @@ The Stripe integration must be configured and active in order to accept buy butt
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "action": [{"type": "postback", "text": "Send vinegar" }]}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "postback", "text": "Send vinegar", "payload": "buy_vinegar" }]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -1135,7 +1135,8 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
     actions: [
       {
         type: 'postback',
-        text: 'Buy vinegar'
+        text: 'Buy vinegar',
+        payload: 'buy_vinegar'
       }
     ]
 }).then(() => {
