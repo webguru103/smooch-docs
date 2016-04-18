@@ -1077,7 +1077,7 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 | **Link**                |                            |
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The button text. |
-| **type**<br/>*required*      | The action type. Must be `link`. |
+| **type**<br/>*required*      | `link` |
 | **uri**<br/>*required*      | The action URI. This is the link that will be used in the clients when clicking the button. |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
 
@@ -1110,7 +1110,7 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 | **Buy**                |                  |
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The button text. |
-| **type**<br/>*required*      | The action type. Must be `buy`. |
+| **type**<br/>*required*      | `buy` |
 | **amount**<br/>*required*    | The amount being charged. Note that if you want to charge 9.99, you would use 999. The amount needs to be multiplied by 1000. |
 | **currency**<br/>*optional*  | The currency of the amount being charged. If not specified, it would use the default one set in your account. |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
@@ -1147,7 +1147,7 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 | **Postback**                |                  |
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The button text. |
-| **type**<br/>*required*      | The action type. Must be `postback`. |
+| **type**<br/>*required*      | `postback` |
 | **payload**<br/>*optional*    | A string payload to help you identify the action context. You can also use metadata for more complex needs. |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
 
