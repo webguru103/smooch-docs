@@ -9,3 +9,21 @@ You'll need a Twilio account with a phone number configured on it. A trial accou
 ![Enter API credentials](/images/twilio.png)
 
 Once your Twilio account is authenticated, select the phone number you want to use and hit save. You should now be able to receive messages from your Twilio phone number and reply via any of your configured channels.
+
+### Action Buttons
+
+Action buttons with the type of `link` will be translated into text. For example, if you link to `https://google.ca` with the text of the button as `Click Here`, and the text of the message as `This is a very special link`, the text message will look like:
+
+```
+This is a very special link
+
+Click Here https://google.ca
+```
+
+If the button has the type of `postback`, a list of options will be appended at the end of the message. For example if a message includes two postback actions: `Yes` and `No`, with a text of `Are you sure?`, the text message will look like this:
+
+```
+Are you sure?
+
+You can say: YES, NO
+```

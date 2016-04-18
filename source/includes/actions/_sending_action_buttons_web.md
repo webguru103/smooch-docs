@@ -1,4 +1,4 @@
-# Sending action buttons
+## Links
 
 You can send your users an action button with the following syntax:
 
@@ -6,7 +6,7 @@ You can send your users an action button with the following syntax:
 %[Button label here](http://anyurl.com)
 ```
 
-This works from any channel you configured to use with Smooch. 
+This works from any channel you configured to use with Smooch.
 
 When the user taps your button, it'll open whatever link you specified in a new tab.
 
