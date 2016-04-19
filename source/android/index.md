@@ -38,7 +38,7 @@ includes:
   - integrations/zendesk
   - integrations/front
   - integrations/twilio
-  - integrations/facebook
+  - integrations/messenger
   - integrations/telegram
   - integrations/shopify
   - integrations/connecting_crm
