@@ -1111,12 +1111,12 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The button text. |
 | **type**<br/>*required*      | `buy` |
-| **amount**<br/>*required*    | The amount being charged. Note that if you want to charge 9.99, you would use 999. The amount needs to be multiplied by 1000. |
-| **currency**<br/>*optional*  | The currency of the amount being charged. If not specified, it would use the default one set in your account. |
+| **amount**<br/>*required*    | The amount being charged. It needs to be specified in cents and is an integer (9.99$ -> 999).|
+| **currency**<br/>*optional*  | The currency of the amount being charged (USD, CAD, etc.). If not specified, it would use the default one set in your account. [See supported currencies](https://support.stripe.com/questions/which-currencies-does-stripe-support). |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
 
 <aside class="notice">
-The Stripe integration must be configured and active in order to accept buy buttons.
+The <a href="/javascript/#stripe">Stripe integration</a> must be configured and active in order to accept buy buttons.
 </aside>
 
 > Send postback action:
