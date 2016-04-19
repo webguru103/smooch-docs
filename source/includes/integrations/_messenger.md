@@ -4,7 +4,7 @@ Our Facebook Messenger integration allows your users to send you Facebook messag
 
 ### Configuring Facebook Messenger
 
-To use the Facebook Messenger integration, you need a Facebook account with permissions to manage a Facebook page. You then need to visit the Facebook Messenger integration page and press on "Connect your Facebook account". This will redirect you to Facebook where you will need to allow Smooch to access your account information.
+To use the Facebook Messenger integration, you need a Facebook account with permissions to manage a published Facebook page. You then need to visit the Facebook Messenger integration page and press on "Connect your Facebook account". This will redirect you to Facebook where you will need to allow Smooch to access your account information.
 
 Once your Facebook account is connected to Smooch, select the Facebook page you want to use and hit save. You should now be able to receive messages from your Facebook page and reply via any of your configured channels.
 
