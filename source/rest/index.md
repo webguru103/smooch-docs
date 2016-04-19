@@ -420,7 +420,7 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "authorId": "c7f6e6d6c3a637261bd9656f",
         "name": "Steve",
         "received": 1444348338.704,
-        "metadata": [],
+        "metadata": {},
         "actions": []
     }],
     "appUser": {
@@ -462,7 +462,7 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
             "authorId": "c7f6e6d6c3a637261bd9656f",
             "name": "Steve",
             "received": 1444348338.704,
-            "metadata": [],
+            "metadata": {},
             "actions": [{
                 "_id": "571530ee4fae94c32b78b170",
                 "type": "postback",
