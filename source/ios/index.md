@@ -41,6 +41,7 @@ includes:
   - integrations/facebook
   - integrations/telegram
   - integrations/shopify
+  - integrations/elevio
   - integrations/connecting_crm
 
   - addons/addons
