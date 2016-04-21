@@ -1057,7 +1057,9 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/ima
      -F 'name=Steve'
 ```
 ```js
-smooch.conversations.uploadImage('c7f6e6d6c3a637261bd9656f', source: './screenshot.jpg',
+// Frontend version
+var file = fileInput.files[0];
+smooch.conversations.uploadImage('c7f6e6d6c3a637261bd9656f', file,
 {
     text: 'Just put some vinegar on it',
     role: 'appUser'
@@ -1065,6 +1067,8 @@ smooch.conversations.uploadImage('c7f6e6d6c3a637261bd9656f', source: './screensh
 }).then(() => {
     // async code
 });
+
+// Not yet supported on Node.
 ```
 
 > Response:
