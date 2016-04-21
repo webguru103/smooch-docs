@@ -1057,7 +1057,14 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/ima
      -F 'name=Steve'
 ```
 ```js
-// Not supported yet in the JS SDK
+smooch.conversations.uploadImage('c7f6e6d6c3a637261bd9656f', source: './screenshot.jpg',
+{
+    text: 'Just put some vinegar on it',
+    role: 'appUser'
+
+}).then(() => {
+    // async code
+});
 ```
 
 > Response:
