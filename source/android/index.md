@@ -22,6 +22,7 @@ includes:
 
   - users/users
   - users/user_data_intro
+  - users/user_data_avatar
   - users/user_data_android
   - users/user_data_aside
   - users/sensitive_user_data
