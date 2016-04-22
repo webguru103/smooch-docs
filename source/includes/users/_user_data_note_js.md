@@ -8,12 +8,12 @@ You can either update the user right after the initialization using ".then":
 <script>
 Smooch.init({
   appToken: 'your-app-token',
-  emailCaptureEnabled: true,
-  })
+  emailCaptureEnabled: true
+})
   .then(function() {
     Smooch.updateUser({
-        givenName: 'New',
-        surname: 'Name'
+      givenName: 'New',
+      surname: 'Name'
     })   
   })
 <script>
@@ -23,8 +23,8 @@ Or you can update the information by binding your event before calling Smooch.in
 ```javascript
 Smooch.on('ready', function(){
   Smooch.updateUser({
-      givenName: 'New',
-      surname: 'Name'
+    givenName: 'New',
+    surname: 'Name'
   })
 });
 
