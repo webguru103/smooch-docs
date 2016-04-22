@@ -200,7 +200,38 @@
     <span class="na">surname</span><span class="p">:</span> <span class="s1">'Who'</span>
 <span class="p">})</span>
 </code></pre>
-<h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
+
+          <p><aside class="notice">
+You need to make sure the SDK is properly initialized before attempting to update a user information.
+</aside></p>
+
+<p>You can either update the user right after the initialization using &ldquo;.then&rdquo;:</p>
+<pre class="highlight javascript"><code><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+  <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your-app-token'</span><span class="p">,</span>
+  <span class="na">emailCaptureEnabled</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+      <span class="na">givenName</span><span class="p">:</span> <span class="s1">'New'</span><span class="p">,</span>
+      <span class="na">surname</span><span class="p">:</span> <span class="s1">'Name'</span>
+    <span class="p">})</span>   
+  <span class="p">})</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</code></pre>
+
+<p>Or you can update the information by binding your event before calling Smooch.init() with the method Smooch.on(&lsquo;ready&rsquo;) like below:</p>
+<pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'ready'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">Smooch</span><span class="p">.</span><span class="nx">updateUser</span><span class="p">({</span>
+    <span class="na">givenName</span><span class="p">:</span> <span class="s1">'New'</span><span class="p">,</span>
+    <span class="na">surname</span><span class="p">:</span> <span class="s1">'Name'</span>
+  <span class="p">})</span>
+<span class="p">});</span>
+
+<span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">(...);</span>
+</code></pre>
+
+          <h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
 <p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
 <pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
 </span>
@@ -599,6 +630,25 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
   }
 });
 </code></pre>
+
+          <h2 id='elev-io'>Elev.io</h2>
+<p><a href="https://elev.io">Elev.io</a> delivers rich onsite help to customers. To enable Smooch inside elev.io, follow the guide below:</p>
+<h3 id='1--log-in-to-elev-io-and-add-smooch39s-modules'>1. Log in to elev.io and add Smooch&rsquo;s modules</h3>
+<p>After connecting to your elev.io dashboard, click on the menu &ldquo;modules&rdquo;. Under the card named &ldquo;Chat&rdquo;, click on &ldquo;Install&rdquo;.</p>
+
+<p><img alt="Elev.io Dashboard" src="../images/elevio_dashboard.png" /></p>
+
+<p>Among the live chat solutions available on elev.io, choose Smooch.</p>
+
+<p><img style="width:75%; min-width:400px; max-width:800px;" src="../images/elevio_chat.png" alt="Elev.io Chat"></p>
+<h3 id='2--connect-to-smooch'>2. Connect to Smooch</h3>
+<p>Paste your Smooch app token in the appropriate text field.</p>
+
+<p><img style="width:75%; min-width:400px; max-width:800px;" src="../images/elevio_token.png" alt="Elev.io Token"></p>
+<h3 id='3--configure-the-widget'>3. Configure the widget</h3>
+<p>Finally, configure the text displayed on the widget and add the module to elev.io.</p>
+
+<p><img style="width:75%; min-width:400px; max-width:800px;" src="../images/elevio_config.png" alt="Elev.io Config"></p>
 
           <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
 <p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>

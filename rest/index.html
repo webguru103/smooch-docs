@@ -1261,7 +1261,18 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
      -F <span class="s1">'role=appUser'</span> <span class="se">\</span>
      -F <span class="s1">'name=Steve'</span>
 </code></pre>
-<pre class="highlight javascript"><code><span class="c1">// Not supported yet in the JS SDK</span>
+<pre class="highlight javascript"><code><span class="c1">// Frontend version</span>
+<span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="nx">smooch</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nx">uploadImage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="nx">file</span><span class="p">,</span>
+<span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appUser'</span>
+
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+
+<span class="c1">// Not yet supported on Node.</span>
 </code></pre>
 
 <blockquote>
