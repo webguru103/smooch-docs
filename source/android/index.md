@@ -29,7 +29,9 @@ includes:
   - users/users_on_multiple_devices
   - users/authenticating_users
 
-  - sending_action_buttons_android
+  - actions/actions
+  - actions/sending_action_buttons_android
+  - actions/postbacks
 
   - integrations/integrations
   - integrations/email
