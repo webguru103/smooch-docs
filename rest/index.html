@@ -230,51 +230,11 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </tr>
 </tbody></table>
 <h1 id='webhooks'>Webhooks</h1>
-<blockquote>
-<p>Webhook example payload:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message:appUser"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"messages"</span><span class="p">:[{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1444348338.704</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-    </span><span class="p">}],</span><span class="w">
-    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"appVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"pushNotificationToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;...&gt;"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ShellApp"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iPhone OS"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"osVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.2"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-
-<p>Webhooks are a fantastic way to extend the Smooch platform beyond the built-in feature set. You can use webhooks to build your own Smooch chat clients or to integrate more deeply with your favorite CRM.</p>
+<p>Webhooks are a fantastic way to extend the Smooch platform beyond the built-in feature set. You can use webhooks to build your own Smooch chat clients, to integrate more deeply with your favorite CRM, or to <a href="https://github.com/smooch/smooch-bot">build a bot</a>.</p>
 
 <p>These webhook APIs require a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope. Furthermore, a webhook can only operate within the scope of a single Smooch app.</p>
 
-<p>When a webhook trigger is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.</p>
+<p>When a webhook trigger is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload <a href="#webhooks-payload">here</a>.</p>
 <h2 id='create-webhook'>Create webhook</h2>
 <blockquote>
 <p>Request:</p>
@@ -493,6 +453,8 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 
 <p>A webhook will make a request to the target each time a trigger associated with the webhook occurs. Triggers are specified in an optional <code class="prettyprint">triggers</code> array in the request body. If <code class="prettyprint">triggers</code> is not specified the webhook will be configured with the <code class="prettyprint">message</code> trigger by default.</p>
 
+<p>A webhook with a <code class="prettyprint">postback</code> trigger will be fired every time a user clicks on <a href="#action-buttons">an action button with type <code class="prettyprint">postback</code></a>.</p>
+
 <table><thead>
 <tr>
 <th>trigger</th>
@@ -511,7 +473,100 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 <td><strong>message:appMaker</strong></td>
 <td>only app maker messages</td>
 </tr>
+<tr>
+<td><strong>postback</strong></td>
+<td>when a user clicks on a postback action</td>
+</tr>
 </tbody></table>
+<h2 id='webhooks-payload'>Webhooks payload</h2>
+<blockquote>
+<p>Webhook example payload for <code class="prettyprint">message</code>, <code class="prettyprint">message:appMaker</code> and <code class="prettyprint">message:appUser</code> triggers:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message:appUser"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1444348338.704</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"appVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pushNotificationToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;...&gt;"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ShellApp"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"devicePlatform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iPhone OS"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"osVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9.2"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Webhook example payload for the <code class="prettyprint">postback</code> trigger:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"postbacks"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appUser"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1444348338.704</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"571530ee4fae94c32b78b170"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Read more"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="w">
+            </span><span class="p">}]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"571530ee4fae94c32b78b170"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Read more"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"devices"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"telegram"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>When a webhook trigger is triggered, a <code class="prettyprint">POST</code> request will be made to the URL configured in your webhook object along with a JSON payload.</p>
+
+<p>The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.</p>
 <h2 id='securing-a-webhook'>Securing a webhook</h2>
 <p>When a webhook is created, a shared secret will be generated for it. The secret can be used to determine the veracity of a request to your webhook route. It is included as an <code class="prettyprint">X-API-Key</code> header with each webhook request sent to the target URL.</p>
 
@@ -1218,7 +1273,7 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </thead><tbody>
 <tr>
 <td><strong>text</strong><br/><em>required</em></td>
-<td>The message content. <code class="prettyprint">text</code> becomes optional if <code class="prettyprint">mediaUrl</code> and <code class="prettyprint">mediaType</code> are both specified.</td>
+<td>The message content. <code class="prettyprint">text</code> becomes optional if <code class="prettyprint">mediaUrl</code> and <code class="prettyprint">mediaType</code> are both specified or when actions are provided.</td>
 </tr>
 <tr>
 <td><strong>role</strong><br/><em>required</em></td>
@@ -1248,7 +1303,175 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 <td><strong>metadata</strong><br/><em>optional</em></td>
 <td>Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types.</td>
 </tr>
+<tr>
+<td><strong>actions</strong><br/><em>optional</em></td>
+<td>An array of action buttons (see section below)</td>
+</tr>
 </tbody></table>
+<h3 id='action-buttons'>Action buttons</h3>
+<p>Actions buttons can be sent through the API by including them in the message payload.</p>
+
+<p>There are 3 types of supported actions : <strong>link</strong>, <strong>buy</strong>, and <strong>postback</strong>. Type must be specified by providing a <code class="prettyprint">type</code> argument in the action object.</p>
+
+<p><aside class="notice">
+    Action buttons can only be sent with an <code class="prettyprint">appMaker</code> role.
+</aside></p>
+
+<blockquote>
+<p>Send link action:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Put vinegar'</span><span class="p">,</span>
+        <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.com'</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th><strong>Link</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><em>required</em></td>
+<td>The button text.</td>
+</tr>
+<tr>
+<td><strong>type</strong><br/><em>required</em></td>
+<td><code class="prettyprint">link</code></td>
+</tr>
+<tr>
+<td><strong>uri</strong><br/><em>required</em></td>
+<td>The action URI. This is the link that will be used in the clients when clicking the button.</td>
+</tr>
+<tr>
+<td><strong>metadata</strong><br/><em>optional</em></td>
+<td>Flat JSON object containing any custom properties associated with the action.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Send buy action:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'buy'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Buy vinegar'</span><span class="p">,</span>
+        <span class="na">amount</span><span class="p">:</span> <span class="mi">8000</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th><strong>Buy</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><em>required</em></td>
+<td>The button text.</td>
+</tr>
+<tr>
+<td><strong>type</strong><br/><em>required</em></td>
+<td><code class="prettyprint">buy</code></td>
+</tr>
+<tr>
+<td><strong>amount</strong><br/><em>required</em></td>
+<td>The amount being charged. It needs to be specified in cents and is an integer (9.99$ -&gt; 999).</td>
+</tr>
+<tr>
+<td><strong>currency</strong><br/><em>optional</em></td>
+<td>The currency of the amount being charged (USD, CAD, etc.). If not specified, it would use the default one set in your account. <a href="https://support.stripe.com/questions/which-currencies-does-stripe-support">See supported currencies</a>.</td>
+</tr>
+<tr>
+<td><strong>metadata</strong><br/><em>optional</em></td>
+<td>Flat JSON object containing any custom properties associated with the action.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">
+The <a href="/javascript/#stripe">Stripe integration</a> must be configured and active in order to accept buy buttons.
+</aside></p>
+
+<blockquote>
+<p>Send postback action:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "postback", "text": "Send vinegar", "payload": "buy_vinegar" }]}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'postback'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Buy vinegar'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'buy_vinegar'</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th><strong>Postback</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><em>required</em></td>
+<td>The button text.</td>
+</tr>
+<tr>
+<td><strong>type</strong><br/><em>required</em></td>
+<td><code class="prettyprint">postback</code></td>
+</tr>
+<tr>
+<td><strong>payload</strong><br/><em>optional</em></td>
+<td>A string payload to help you identify the action context. You can also use metadata for more complex needs.</td>
+</tr>
+<tr>
+<td><strong>metadata</strong><br/><em>optional</em></td>
+<td>Flat JSON object containing any custom properties associated with the action.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">
+See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>.
+</aside></p>
 <h2 id='upload-image'>Upload Image</h2>
 <blockquote>
 <p>Request:</p>

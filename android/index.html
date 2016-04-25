@@ -583,14 +583,15 @@ var signJwt = function(userId) {
 If your secret key is ever compromised you can generate a new one. Smooch will accept a JWT as long as it contains all required fields and is signed with any of your Smooch app&rsquo;s valid secret keys. Deleting a secret key will invalidate all JWTs that were signed with it.
 </aside></p>
 
-          <h1 id='sending-action-buttons'>Sending action buttons</h1>
-<p>You can send your users an action button with the following syntax:</p>
+          <h1 id='action-buttons'>Action Buttons</h1>
+          <h2 id='links'>Links</h2>
+<p>You can send a link action button to your users with the following syntax:</p>
 <pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
 </code></pre>
 
-<p>This works from any channel you configured to use with Smooch. </p>
+<p>This works from any channel you&rsquo;ve configured with Smooch.</p>
 
-<p>When the user taps your button, we&rsquo;ll launch the appropriate intent based on the URL, so it can be whatever you want! Anything ranging from a web url, deep link or play store link works like a charm. </p>
+<p>When the user taps your button, the appropriate intent is launched based on the URL, so it can be whatever you want! Anything ranging from a web url, deep link or play store link works like a charm.</p>
 
 <p><span class="half-width-img"><img alt="Action buttons" src="../images/action_button_android.png" /></span></p>
 
@@ -601,6 +602,15 @@ Buttons will always be appended at the bottom of your message bubble.
 <p>For a play store link, you&rsquo;ll need your app&rsquo;s package. The URL of your app&rsquo;s page in the play store will have your package name at the end. The link to use in the Action input will then be <code class="prettyprint">market://details?id=&lt;package_name&gt;</code></p>
 
 <p><img alt="Package Name" src="../images/package_name_from_url.png" /></p>
+
+          <h2 id='postbacks'>Postbacks</h2>
+<p>Postback buttons are a great way to enhance your conversations, since they can trigger server-side logic when a user clicks on them. When you send the postback button, you can attach a <code class="prettyprint">payload</code> and when the user clicks on it, it will trigger webhooks listening to the <code class="prettyprint">postback</code> trigger. The payload associated with the action clicked by the user will be included in the webhook body.</p>
+
+<p>This allows you to respond to the press of a button from your backend. The server-side logic can use the <code class="prettyprint">payload</code> to run different code based on the context of the conversation. These features are very useful when building a bot.</p>
+
+<p><aside class="notice">
+You can send postback buttons through the <a href="http://docs.smooch.io/rest#action-buttons">REST API</a>.
+</aside></p>
 
           <h1 id='integrations'>Integrations</h1>
           <h2 id='email'>Email</h2>
@@ -726,19 +736,31 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <p><img alt="Enter API credentials" src="../images/twilio.png" /></p>
 
 <p>Once your Twilio account is authenticated, select the phone number you want to use and hit save. You should now be able to receive messages from your Twilio phone number and reply via any of your configured channels.</p>
+<h3 id='action-buttons'>Action Buttons</h3>
+<p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
+<pre class="highlight plaintext"><code>This is a very special link
 
-          <h2 id='facebook'>Facebook</h2>
-<p>Our Facebook integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.</p>
+Click Here https://google.ca
+</code></pre>
 
-<p><aside class="notice">
-Since this integration relies on Facebook webhooks, which introduces delay, it takes a few seconds or more to receive new messages from Facebook users.
-</aside></p>
-<h3 id='configuring-facebook'>Configuring Facebook</h3>
-<p>To use the Facebook integration, you need a Facebook account with permissions to manage a Facebook page. You then need to visit the Facebook integration page and press on &ldquo;Connect your Facebook account&rdquo;. This will redirect you to Facebook where you will need to allow Smooch to access your account information.</p>
+<p>If the button has the type of <code class="prettyprint">postback</code>, a list of options will be appended at the end of the message. For example if a message includes two postback actions: <code class="prettyprint">Yes</code> and <code class="prettyprint">No</code>, with a text of <code class="prettyprint">Are you sure?</code>, the text message will look like this:</p>
+<pre class="highlight plaintext"><code>Are you sure?
+
+You can say: YES, NO
+</code></pre>
+
+          <h2 id='facebook-messenger'>Facebook Messenger</h2>
+<p>Our Facebook Messenger integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.</p>
+<h3 id='configuring-facebook-messenger'>Configuring Facebook Messenger</h3>
+<p>To use the Facebook Messenger integration, you need a Facebook account with permissions to manage a published Facebook page. You then need to visit the Facebook Messenger integration page and press on &ldquo;Connect your Facebook account&rdquo;. This will redirect you to Facebook where you will need to allow Smooch to access your account information.</p>
 
 <p>Once your Facebook account is connected to Smooch, select the Facebook page you want to use and hit save. You should now be able to receive messages from your Facebook page and reply via any of your configured channels.</p>
 
-<p><img alt="Facebook Integration Page Settings" src="../images/facebook_settings.png" /></p>
+<p><img alt="Facebook Messenger Integration Page Settings" src="../images/messenger_settings.png" /></p>
+<h3 id='action-buttons'>Action Buttons</h3>
+<p>Action buttons work as expected. A <code class="prettyprint">link</code> action button will bring the user to the specified URL while a <code class="prettyprint">postback</code> action button will trigger any <a href="/rest#webhooks">webhook</a> listening to the <code class="prettyprint">postback</code> trigger.</p>
+
+<p>Payment requests (action buttons of type <code class="prettyprint">buy</code>) will turn into link buttons which bring the user to a checkout page where payment information can be entered.</p>
 
           <h2 id='telegram'>Telegram</h2>
 <p>Our Telegram integration allows your users to send you messages through a <a href="https://core.telegram.org/bots">Telegram bot</a>. You can receive the messages in any of our channels like Slack, HipChat or Help Scout, and your replies are sent back as Telegram messages from the bot to the user.</p>
@@ -764,6 +786,10 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 </aside></p>
 
 <p>When you reply from any of the configured backend channels, Telegram users will receive the message as though it was coming from the bot.</p>
+<h3 id='action-buttons'>Action Buttons</h3>
+<p>When used with Telegram, action buttons work as expected. When a button with type of <code class="prettyprint">link</code> will bring the user to a web page, while postback buttons will trigger any Smooch webhook listening to the <code class="prettyprint">postback</code> trigger.</p>
+
+<p>Payment requests with the <a href="#stripe">Stripe integration</a> will turn into link buttons which bring the user to a checkout page where payment information can be entered.</p>
 
           <h2 id='shopify'>Shopify</h2>
 <p><a href="https://www.shopify.com/">Shopify</a> is a simple way to set up an online store to organize products, accept credit card payments, and manage orders.</p>
@@ -867,8 +893,10 @@ If you are using test mode, notice the &ldquo;Skip this account form&rdquo; at t
 <p>Once the user completes a payment you&rsquo;ll get a confirmation along with a link to the payment page on Stripe.</p>
 
           <p><aside class="notice">
-If your users are messaging you by SMS via our <a href="#twilio">Twilio</a> integration, they&rsquo;ll be getting a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch Android SDK versions older than 2.1.
+If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#facebook-messenger">Messenger</a> or <a href="#telegram">Telegram</a> integrations, they&rsquo;ll get a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch Android SDK versions older than 2.1.
 </aside></p>
+
+<p><span class="third-width-img"><img alt="Stripe hosted checkout" src="../images/stripe_hosted_checkout.png" /></span></p>
 
           <h2 id='office-hours'>Office Hours</h2>
 <p>Office Hours is an add-on built by Smooch which lets you send an automatic reply to customers who message your team outside of your preferred work hours.</p>
