@@ -1050,7 +1050,7 @@ Actions buttons can be sent through the API by including them in the message pay
 There are 3 types of supported actions : **link**, **buy**, and **postback**. Type must be specified by providing a `type` argument in the action object.
 
 <aside class="notice">
-    Action buttons can only be sent with an `appMaker` role. Buttons sent with an `appUser` role will be ignored by the API.
+    Action buttons can only be sent with an `appMaker` role.
 </aside>
 
 > Send link action:
