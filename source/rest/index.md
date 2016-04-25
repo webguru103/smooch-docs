@@ -169,51 +169,11 @@ The `jwt` payload must include a `scope` claim which specifies the caller's scop
 
 # Webhooks
 
-> Webhook example payload:
-
-```json
-{
-    "trigger": "message:appUser",
-    "messages":[{
-        "_id": "55c8c1498590aa1900b9b9b1",
-        "text": "Hi! Do you have time to chat?",
-        "role": "appUser",
-        "authorId": "c7f6e6d6c3a637261bd9656f",
-        "name": "Steve",
-        "received": 1444348338.704,
-        "metadata": [],
-        "actions": []
-    }],
-    "appUser": {
-        "_id": "c7f6e6d6c3a637261bd9656f",
-        "userId": "bob@example.com",
-        "properties": {},
-        "signedUpAt": "2015-10-06T03:38:02.346Z",
-        "devices": [
-          {
-            "active": true,
-            "appVersion": "1.0",
-            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
-            "lastSeen": "2016-03-09T19:09:01.431Z",
-            "platform": "ios",
-            "pushNotificationToken": "<...>",
-            "info": {
-              "appName": "ShellApp",
-              "devicePlatform": "x86_64",
-              "os": "iPhone OS",
-              "osVersion": "9.2"
-            }
-          }
-        ]
-    }
-}
-```
-
-Webhooks are a fantastic way to extend the Smooch platform beyond the built-in feature set. You can use webhooks to build your own Smooch chat clients or to integrate more deeply with your favorite CRM.
+Webhooks are a fantastic way to extend the Smooch platform beyond the built-in feature set. You can use webhooks to build your own Smooch chat clients, to integrate more deeply with your favorite CRM, or to [build a bot](https://github.com/smooch/smooch-bot).
 
 These webhook APIs require a `jwt` credential with `app` level scope. Furthermore, a webhook can only operate within the scope of a single Smooch app.
 
-When a webhook trigger is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload to the right.
+When a webhook trigger is triggered, a JSON payload will be posted to the URL configured in your webhook object. You can see an example of this payload [here](#webhooks-payload).
 
 ## Create webhook
 
@@ -437,11 +397,106 @@ smooch.webhooks.create({
 
 A webhook will make a request to the target each time a trigger associated with the webhook occurs. Triggers are specified in an optional `triggers` array in the request body. If `triggers` is not specified the webhook will be configured with the `message` trigger by default.
 
+A webhook with a `postback` trigger will be fired every time a user clicks on [an action button with type `postback`](#action-buttons).
+
 | trigger          |   |
 |------------------|---|
 | **message**<br/>*default* | all messages            |
 | **message:appUser**       | only app user messages  |
 | **message:appMaker**      | only app maker messages |
+| **postback**              | when a user clicks on a postback action |
+
+## Webhooks payload
+
+> Webhook example payload for `message`, `message:appMaker` and `message:appUser` triggers:
+
+```json
+{
+    "trigger": "message:appUser",
+    "messages":[{
+        "_id": "55c8c1498590aa1900b9b9b1",
+        "text": "Hi! Do you have time to chat?",
+        "role": "appUser",
+        "authorId": "c7f6e6d6c3a637261bd9656f",
+        "name": "Steve",
+        "received": 1444348338.704,
+        "metadata": {},
+        "actions": []
+    }],
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "devices": [
+          {
+            "active": true,
+            "appVersion": "1.0",
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "ios",
+            "pushNotificationToken": "<...>",
+            "info": {
+              "appName": "ShellApp",
+              "devicePlatform": "x86_64",
+              "os": "iPhone OS",
+              "osVersion": "9.2"
+            }
+          }
+        ]
+    }
+}
+```
+
+
+> Webhook example payload for the `postback` trigger:
+
+```json
+{
+    "trigger": "postback",
+    "postbacks":[{
+        "message": {
+            "_id": "55c8c1498590aa1900b9b9b1",
+            "text": "Hi! Do you have time to chat?",
+            "role": "appUser",
+            "authorId": "c7f6e6d6c3a637261bd9656f",
+            "name": "Steve",
+            "received": 1444348338.704,
+            "metadata": {},
+            "actions": [{
+                "_id": "571530ee4fae94c32b78b170",
+                "type": "postback",
+                "text": "Read more",
+                "payload": "1234"
+            }]
+        },
+        "action": {
+            "_id": "571530ee4fae94c32b78b170",
+            "type": "postback",
+            "text": "Read more",
+            "payload": "1234"
+        }
+    }],
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "devices": [
+          {
+            "active": true,
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "telegram"
+          }
+        ]
+    }
+}
+```
+
+When a webhook trigger is triggered, a `POST` request will be made to the URL configured in your webhook object along with a JSON payload.
+
+The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.
 
 ## Securing a webhook
 
