@@ -4,6 +4,12 @@ Postback buttons are a great way to enhance your conversations, since they can t
 
 This allows you to respond to the press of a button from your backend. The server-side logic can use the `payload` to run different code based on the context of the conversation. These features are very useful when building a bot.
 
+You can send your users an postback button with the following syntax:
+
+```
+%[Button label here](postback:PAYLOAD_HERE)
+```
+
 <aside class="notice">
-You can send postback buttons through the [REST API](http://docs.smooch.io/rest#action-buttons).
+You can also send postback buttons through the [REST API](http://docs.smooch.io/rest#action-buttons).
 </aside>
