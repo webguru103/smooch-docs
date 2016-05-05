@@ -69,6 +69,7 @@ includes:
 
   - customization/string_customization_android
   - customization/styling_conversations_android
+  - customization/notification_action
 
 search: true
 api_docs_link: http://docs.smooch.io/api/android
