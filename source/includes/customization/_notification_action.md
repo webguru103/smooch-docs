@@ -1,7 +1,7 @@
 ## Notification Action Intent Override
 
-The default behaviour of tapping on a push or in-app notification is to open the Smooch `ConversationActivity` intent.
-If you want to change this behaviour, simply override the following resource in `settings.xml` to the value of your choice:
+The default behavior of tapping on a push or in-app notification is to open the Smooch `ConversationActivity` intent.
+If you want to change this behavior, simply override the following resource in `settings.xml` to the value of your choice:
 
 ```xml
 <resources>
@@ -9,4 +9,4 @@ If you want to change this behaviour, simply override the following resource in 
 </resources>
 ```
 
-Note that the specified intent must extend from the `Activity` class.
+<aside class="notice">Note that the specified intent must extend from the `Activity` class.</aside>
