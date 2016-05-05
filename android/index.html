@@ -1048,6 +1048,16 @@ In order to do so, simply add <code class="prettyprint">res/values-&lt;your-lang
 
 <p>You can find the original resources by browsing external libraries through Android Studio.</p>
 
+          <h2 id='notification-action-intent-override'>Notification Action Intent Override</h2>
+<p>The default behavior of tapping on a push or in-app notification is to open the Smooch <code class="prettyprint">ConversationActivity</code> intent.
+If you want to change this behavior, simply override the following resource in <code class="prettyprint">settings.xml</code> to the value of your choice:</p>
+<pre class="highlight xml"><code><span class="nt">&lt;resources&gt;</span>
+  <span class="nt">&lt;string</span> <span class="na">name=</span><span class="s">"Smooch_settings_notificationIntent"</span><span class="nt">&gt;</span>io.smooch.ui.ConversationActivity<span class="nt">&lt;/string&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre>
+
+<p><aside class="notice">Note that the specified intent must extend from the <code class="prettyprint">Activity</code> class.</aside></p>
+
       </div>
       <div class="dark-box">
       </div>
