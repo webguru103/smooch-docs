@@ -27,124 +27,6 @@ compile 'io.smooch:ui:latest.release'
 
 Sync the Gradle project then add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
 
-<aside class="notice">
-Smooch depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
-</aside>
-
-## Eclipse, Netbeans and the ant build system
-
-<aside class="warning">This section only applies if you are using Eclipse or Netbeans. If you are using Android Studio and have already followed the [installation instructions](#android-studio-with-gradle), you can skip straight to the [initialization step](#initialize-smooch-in-your-app).</aside>
-
-### Core and UI modules
-
-On Eclipse, we need to retrieve our `eclipse` package to add Smooch and our dependencies to your project. Also, we will need to manually add permissions and services to the manifest.
-
-* Download the `smooch-eclipse-x.x.x.zip` file from [Bintray](https://bintray.com/smoochorg/maven/smooch). The package is located in `Files/ui/x.x.x/smooch-eclipse-x.x.x.zip`.
-* Extract the zip and copy the `appcompat` and `smooch` folders to **the root of your project**.
-
-<span class="half-width-img">![eclipse import](images/eclipse_import.png)</span>
-
-* In Eclipse, import both folders in your workspace as `Existing Android Code`. After this step you should have two new projects added to your workspace named `android-support-v7-appcompat` and `ConversationActivity`.
-
-* Expand the `android-support-v7-appcompat\libs` folder. Then on **every** library, right click on them and `Build Path` > `Add to Build Path`.
-
-<span class="half-width-img">![eclipse libraries](images/eclipse_libraries.png)</span>
-
-* Go to the properties of your project (i.e. `right-click` > `Properties`). Then under the Android item, add a reference to the Smooch's `ConversationActivity`.
-
-* Add these permissions in **AndroidManifest.xml**:
-
-```xml
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-```
-
-* Add these services in **AndroidManifest.xml**:
-
-```xml
-<service android:name="io.smooch.core.service.SmoochService"/>
-<service android:name="io.smooch.core.GcmInstanceIDListenerService" android:exported="false">
-    <intent-filter>
-        <action android:name="com.google.android.gms.iid.InstanceID"/>
-    </intent-filter>
-</service>
-<service android:name="io.smooch.core.GcmRegistrationIntentService" android:exported="false"/>
-<service android:name="io.smooch.core.GcmService" android:exported="false">
-    <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-    </intent-filter>
-</service>
-<receiver
-        android:name="io.smooch.ui.notification.NotificationReceiver"
-        android:exported="false">
-    <intent-filter>
-        <action android:name="io.smooch.NOTIFICATION"/>
-    </intent-filter>
-</receiver>
-```
-
-* Add this activity in **AndroidManifest.xml**:
-
-```xml
-<activity android:name="io.smooch.ui.ConversationActivity" android:theme="@style/Theme.Smooch" />
-```
-
-* Follow [these instructions to install the Google Play Services](https://developers.google.com/android/guides/setup) to your project.
-
-Clean and build your project then add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
-
-### Core module only
-
-If you are planning on building your own UI and only [use our API](http://docs.smooch.io/api/android/io/smooch/core/package-summary.html), you can integrate the core module only.
-
-* In your project directory, create a subdirectory called **libs** if it does not already exist
-* Copy **Smooch-core.jar** into the **libs** directory
-* Add these permissions in **AndroidManifest.xml**:
-
-```xml
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
-```
-* Add these services in **AndroidManifest.xml**:
-
-```xml
-<service android:name="io.smooch.core.service.SmoochService"/>
-<service android:name="io.smooch.core.GcmInstanceIDListenerService" android:exported="false">
-    <intent-filter>
-        <action android:name="com.google.android.gms.iid.InstanceID"/>
-    </intent-filter>
-</service>
-<service android:name="io.smooch.core.GcmRegistrationIntentService" android:exported="false"/>
-<service android:name="io.smooch.core.GcmService" android:exported="false">
-    <intent-filter>
-        <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-    </intent-filter>
-</service>
-```
-
-* Download and copy each dependency JAR into the **libs** subdirectory:
- * [Google-Gson](https://code.google.com/p/google-gson/)
- * [OkHttp and Okio](https://square.github.io/okhttp/)
-
-* Follow [these instructions to install the Google Play Services](https://developers.google.com/android/guides/setup) to your project.
-
-#### Troubleshooting
-
-If you get the following error when running your application
-
-```
-[2015-07-23 09:33:42 - Dex Loader] Unable to execute dex: Multiple dex files define Lio/smooch/ui/BuildConfig;
-[2015-07-23 09:33:42 - MainActivity] Conversion to Dalvik format failed: Unable to execute dex: Multiple dex files define Lio/smooch/ui/BuildConfig;
-```
-The fix is:
-
-* Eclipse project properties > `Java build path` > `Order and export`
-* Uncheck Android private libraries.
-
-See [http://stackoverflow.com/a/26856255/213272](http://stackoverflow.com/a/26856255/213272).
-
 ## Initialize Smooch in your app
 
 After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you'll have to initialize the library using your app's token.
@@ -198,7 +80,7 @@ You also need to **declare** your newly created `Application` class in the `<app
 
 ### Displaying the Smooch User Interface
 
-Once you've initialized Smooch, you're ready to try it out. 
+Once you've initialized Smooch, you're ready to try it out.
 
 Find a suitable place in your app's interface to invoke Smooch and use the code below to display the Smooch user interface. You can bring up Smooch whenever you think that your user will need access to help or a communication channel to contact you.
 
