@@ -39,10 +39,10 @@ Be sure to replace `<your_application_package>` with your application package!
 1. Add the dependency to your project's top-level `build.gradle`:
 
     ```
-    classpath 'com.google.gms:google-services:1.3.0-beta1'
+    classpath 'com.google.gms:google-services:2.0.0-alpha6'
     ```
 
-2. Add the plugin to your app-level `build.gradle`:
+2. Add the plugin to the bottom of your app-level `build.gradle`:
 
     ```
     apply plugin: 'com.google.gms.google-services'
@@ -54,7 +54,7 @@ Be sure to replace `<your_application_package>` with your application package!
     <permission
         android:name="<your_application_package>.permission.C2D_MESSAGE"
         android:protectionLevel="signature"/>
-    
+
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="<your_application_package>.permission.C2D_MESSAGE"/>
     ```
