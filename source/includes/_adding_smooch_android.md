@@ -1,6 +1,6 @@
 # Adding Smooch to your app
 
-The Smooch library is distributed in both AAR and JAR format. If you are using Android Studio, follow the instructions for [installation of the AAR package](#android-studio-with-gradle). Users of Eclipse or Netbeans must follow the [installation instructions for the JAR package](#eclipse-netbeans-and-the-ant-build-system).
+The Smooch library is distributed in both AAR and JAR format. If you are using Android Studio, follow the instructions for [installation of the AAR package](#android-studio-with-gradle).
 
 <aside class="notice">The minimum supported SDK version is API level **15**, and your app must be compiled with at least API version **21**. If your app needs to support earlier versions of Android, you may still try to integrate, but it is untested and we cannot guarantee compatibility.
 </aside>
