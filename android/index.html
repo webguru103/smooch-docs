@@ -79,7 +79,7 @@
 </ul>
 
           <h1 id='adding-smooch-to-your-app'>Adding Smooch to your app</h1>
-<p>The Smooch library is distributed in both AAR and JAR format. If you are using Android Studio, follow the instructions for <a href="#android-studio-with-gradle">installation of the AAR package</a>. Users of Eclipse or Netbeans must follow the <a href="#eclipse-netbeans-and-the-ant-build-system">installation instructions for the JAR package</a>.</p>
+<p>The Smooch library is distributed in both AAR and JAR format. If you are using Android Studio, follow the instructions for <a href="#android-studio-with-gradle">installation of the AAR package</a>.</p>
 
 <p><aside class="notice">The minimum supported SDK version is API level <strong>15</strong>, and your app must be compiled with at least API version <strong>21</strong>. If your app needs to support earlier versions of Android, you may still try to integrate, but it is untested and we cannot guarantee compatibility.
 </aside></p>
@@ -95,134 +95,11 @@
 </code></pre>
 
 <p>Add the dependencies right into your <code class="prettyprint">build.gradle</code> file.</p>
-<pre class="highlight plaintext"><code>compile 'com.google.android.gms:play-services-gcm:7.5.0'
-compile 'com.google.code.gson:gson:2.3.1'
-compile 'com.squareup.okhttp:okhttp:2.4.0'
-compile 'io.smooch:core:latest.release'
+<pre class="highlight plaintext"><code>compile 'io.smooch:core:latest.release'
 compile 'io.smooch:ui:latest.release'
 </code></pre>
 
 <p>Sync the Gradle project then add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p>
-
-<p><aside class="notice">
-Smooch depends on a few external libraries that many applications already feature. For this reason, it does not bundle those dependencies inside the AAR or JAR packages.
-</aside></p>
-<h2 id='eclipse-netbeans-and-the-ant-build-system'>Eclipse, Netbeans and the ant build system</h2>
-<p><aside class="warning">This section only applies if you are using Eclipse or Netbeans. If you are using Android Studio and have already followed the <a href="#android-studio-with-gradle">installation instructions</a>, you can skip straight to the <a href="#initialize-smooch-in-your-app">initialization step</a>.</aside></p>
-<h3 id='core-and-ui-modules'>Core and UI modules</h3>
-<p>On Eclipse, we need to retrieve our <code class="prettyprint">eclipse</code> package to add Smooch and our dependencies to your project. Also, we will need to manually add permissions and services to the manifest.</p>
-
-<ul>
-<li>Download the <code class="prettyprint">smooch-eclipse-x.x.x.zip</code> file from <a href="https://bintray.com/smoochorg/maven/smooch">Bintray</a>. The package is located in <code class="prettyprint">Files/ui/x.x.x/smooch-eclipse-x.x.x.zip</code>.</li>
-<li>Extract the zip and copy the <code class="prettyprint">appcompat</code> and <code class="prettyprint">smooch</code> folders to <strong>the root of your project</strong>.</li>
-</ul>
-
-<p><span class="half-width-img"><img alt="eclipse import" src="../images/eclipse_import.png" /></span></p>
-
-<ul>
-<li><p>In Eclipse, import both folders in your workspace as <code class="prettyprint">Existing Android Code</code>. After this step you should have two new projects added to your workspace named <code class="prettyprint">android-support-v7-appcompat</code> and <code class="prettyprint">ConversationActivity</code>.</p></li>
-<li><p>Expand the <code class="prettyprint">android-support-v7-appcompat\libs</code> folder. Then on <strong>every</strong> library, right click on them and <code class="prettyprint">Build Path</code> &gt; <code class="prettyprint">Add to Build Path</code>.</p></li>
-</ul>
-
-<p><span class="half-width-img"><img alt="eclipse libraries" src="../images/eclipse_libraries.png" /></span></p>
-
-<ul>
-<li><p>Go to the properties of your project (i.e. <code class="prettyprint">right-click</code> &gt; <code class="prettyprint">Properties</code>). Then under the Android item, add a reference to the Smooch&rsquo;s <code class="prettyprint">ConversationActivity</code>.</p></li>
-<li><p>Add these permissions in <strong>AndroidManifest.xml</strong>:</p></li>
-</ul>
-<pre class="highlight xml"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span><span class="nt">/&gt;</span>
-</code></pre>
-
-<ul>
-<li>Add these services in <strong>AndroidManifest.xml</strong>:</li>
-</ul>
-<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.service.SmoochService"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-<span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-<span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;receiver</span>
-        <span class="na">android:name=</span><span class="s">"io.smooch.ui.notification.NotificationReceiver"</span>
-        <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"io.smooch.NOTIFICATION"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-<span class="nt">&lt;/receiver&gt;</span>
-</code></pre>
-
-<ul>
-<li>Add this activity in <strong>AndroidManifest.xml</strong>:</li>
-</ul>
-<pre class="highlight xml"><code><span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">"io.smooch.ui.ConversationActivity"</span> <span class="na">android:theme=</span><span class="s">"@style/Theme.Smooch"</span> <span class="nt">/&gt;</span>
-</code></pre>
-
-<ul>
-<li>Follow <a href="https://developers.google.com/android/guides/setup">these instructions to install the Google Play Services</a> to your project.</li>
-</ul>
-
-<p>Clean and build your project then add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p>
-<h3 id='core-module-only'>Core module only</h3>
-<p>If you are planning on building your own UI and only <a href="http://docs.smooch.io/api/android/io/smooch/core/package-summary.html">use our API</a>, you can integrate the core module only.</p>
-
-<ul>
-<li>In your project directory, create a subdirectory called <strong>libs</strong> if it does not already exist</li>
-<li>Copy <strong>Smooch-core.jar</strong> into the <strong>libs</strong> directory</li>
-<li>Add these permissions in <strong>AndroidManifest.xml</strong>:</li>
-</ul>
-<pre class="highlight xml"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.permission.RECEIVE"</span><span class="nt">/&gt;</span>
-</code></pre>
-
-<ul>
-<li>Add these services in <strong>AndroidManifest.xml</strong>:</li>
-</ul>
-<pre class="highlight xml"><code><span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.service.SmoochService"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmInstanceIDListenerService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.gms.iid.InstanceID"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-<span class="nt">&lt;/service&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmRegistrationIntentService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">"io.smooch.core.GcmService"</span> <span class="na">android:exported=</span><span class="s">"false"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;intent-filter&gt;</span>
-        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"com.google.android.c2dm.intent.RECEIVE"</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;/intent-filter&gt;</span>
-<span class="nt">&lt;/service&gt;</span>
-</code></pre>
-
-<ul>
-<li><p>Download and copy each dependency JAR into the <strong>libs</strong> subdirectory:</p>
-
-<ul>
-<li><a href="https://code.google.com/p/google-gson/">Google-Gson</a></li>
-<li><a href="https://square.github.io/okhttp/">OkHttp and Okio</a></li>
-</ul></li>
-<li><p>Follow <a href="https://developers.google.com/android/guides/setup">these instructions to install the Google Play Services</a> to your project.</p></li>
-</ul>
-<h4 id='troubleshooting'>Troubleshooting</h4>
-<p>If you get the following error when running your application</p>
-<pre class="highlight plaintext"><code>[2015-07-23 09:33:42 - Dex Loader] Unable to execute dex: Multiple dex files define Lio/smooch/ui/BuildConfig;
-[2015-07-23 09:33:42 - MainActivity] Conversion to Dalvik format failed: Unable to execute dex: Multiple dex files define Lio/smooch/ui/BuildConfig;
-</code></pre>
-
-<p>The fix is:</p>
-
-<ul>
-<li>Eclipse project properties &gt; <code class="prettyprint">Java build path</code> &gt; <code class="prettyprint">Order and export</code></li>
-<li>Uncheck Android private libraries.</li>
-</ul>
-
-<p>See <a href="http://stackoverflow.com/a/26856255/213272">http://stackoverflow.com/a/26856255/213272</a>.</p>
 <h2 id='initialize-smooch-in-your-app'>Initialize Smooch in your app</h2>
 <p>After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
 
@@ -268,7 +145,7 @@ Smooch depends on a few external libraries that many applications already featur
     Remember to replace <code class="prettyprint">your.package</code>, <code class="prettyprint">YourApplication</code>, <code class="prettyprint">YOUR_APP_TOKEN</code> by the appropriate names and your app token.
 </aside></p>
 <h3 id='displaying-the-smooch-user-interface'>Displaying the Smooch User Interface</h3>
-<p>Once you&rsquo;ve initialized Smooch, you&rsquo;re ready to try it out. </p>
+<p>Once you&rsquo;ve initialized Smooch, you&rsquo;re ready to try it out.</p>
 
 <p>Find a suitable place in your app&rsquo;s interface to invoke Smooch and use the code below to display the Smooch user interface. You can bring up Smooch whenever you think that your user will need access to help or a communication channel to contact you.</p>
 <pre class="highlight java"><code><span class="n">ConversationActivity</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
@@ -305,9 +182,9 @@ Be sure to replace <code class="prettyprint">&lt;your_application_package&gt;</c
 
 <ol>
 <li><p>Add the dependency to your project&rsquo;s top-level <code class="prettyprint">build.gradle</code>:</p>
-<pre class="highlight plaintext"><code>classpath 'com.google.gms:google-services:1.3.0-beta1'
+<pre class="highlight plaintext"><code>classpath 'com.google.gms:google-services:2.0.0-alpha6'
 </code></pre></li>
-<li><p>Add the plugin to your app-level <code class="prettyprint">build.gradle</code>:</p>
+<li><p>Add the plugin to the bottom of your app-level <code class="prettyprint">build.gradle</code>:</p>
 <pre class="highlight plaintext"><code>apply plugin: 'com.google.gms.google-services'
 </code></pre></li>
 <li><p>Add the following permissions and uses-permissions to your <code class="prettyprint">AndroidManifest.xml</code> file (typically before the opening <code class="prettyprint">&lt;application&gt;</code> tag):</p>
