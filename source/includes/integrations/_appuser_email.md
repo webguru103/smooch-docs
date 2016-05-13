@@ -19,7 +19,7 @@ After you set up forwarding, all your responses to users will appear to come fro
 ![test email forwarding](/images/test_forwarding_email.png)
 
 
-#### configuring your email provider to forward email to your Smooch mailbox
+#### Configuring your email provider to forward email to your Smooch mailbox
 
 During configuration, your provider may send a confirmation email to your Smooch mailbox. It's important to have some kind of back-end messaging channel set up on Smooch so that you can act on the confirmation email sent by your provider.
 
