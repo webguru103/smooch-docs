@@ -145,7 +145,7 @@ Then, on the theme edition dashboard, select "footer" on the first dropdown menu
 
 <img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_footer.png" alt="Zendesk footer menu">
 
-Paste our javascript code, just before the ending footer tag.
+Paste the code provided below just before the ending footer tag.
 
 ```html
 <script src="https://cdn.smooch.io/smooch.min.js"></script>
