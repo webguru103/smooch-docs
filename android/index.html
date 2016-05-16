@@ -265,8 +265,8 @@ You can&rsquo;t receive push notifications in the Android simulator, you must us
 <span class="p">})</span>
 </code></pre>
 
-          <h3 id='getting-the-avatar-of-the-current-user'>Getting the avatar of the current user</h3>
-<p>Setting the user&rsquo;s e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.</p>
+          <h3 id='setting-the-user-email-address'>Setting the user email address</h3>
+<p>Setting the user&rsquo;s e-mail makes this information available in the user profile and allows Smooch to lets you see their gravatar. </p>
 <pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
 </span>
 <span class="p">[</span><span class="n">SKTUser</span> <span class="nf">currentUser</span><span class="p">].</span><span class="n">email</span> <span class="o">=</span> <span class="s">@"bob@example.com"</span><span class="p">;</span>
@@ -283,6 +283,10 @@ You can&rsquo;t receive push notifications in the Android simulator, you must us
     <span class="na">email</span><span class="p">:</span> <span class="s1">'the-doctor@smooch.io'</span>
 <span class="p">})</span>
 </code></pre>
+
+<p>Setting or updating the user email will send a notification inside your configured business system. Here&rsquo;s how it looks in Slack for example :</p>
+
+<p><img alt="Email updated in Slack" src="../images/email_updated.png" /></p>
 <h3 id='setting-the-signed-up-date'>Setting the signed up date</h3>
 <p>Setting the user&rsquo;s signed up date allows Whispers based on that date to be sent to the right people. If not set, we&rsquo;ll default to the first time Smooch sees the user, which is the moment the <code class="prettyprint">init</code> call is made for the first time for a given user. It&rsquo;s best to set it yourself to avoid sending a welcome message to users that in fact signed up a long while ago.</p>
 <pre class="highlight objective_c"><code><span class="cp">#import &lt;Smooch/Smooch.h&gt;
@@ -617,6 +621,51 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <p><img alt="Enter API credentials" src="../images/twilio.png" /></p>
 
 <p>Once your Twilio account is authenticated, select the phone number you want to use and hit save. You should now be able to receive messages from your Twilio phone number and reply via any of your configured channels.</p>
+<h3 id='action-buttons'>Action Buttons</h3>
+<p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
+<pre class="highlight plaintext"><code>This is a very special link
+
+Click Here https://google.ca
+</code></pre>
+
+<p>If the button has the type of <code class="prettyprint">postback</code>, a list of options will be appended at the end of the message. For example if a message includes two postback actions: <code class="prettyprint">Yes</code> and <code class="prettyprint">No</code>, with a text of <code class="prettyprint">Are you sure?</code>, the text message will look like this:</p>
+<pre class="highlight plaintext"><code>Are you sure?
+
+You can say: YES, NO
+</code></pre>
+
+          <h2 id='line'>LINE</h2>
+<p>LINE is a Japan based rapidly growing mobile messaging app that offers free voice and video calls, messages, and a limitless variety of stickers. With over 600 million users worldwide, LINE&rsquo;s expanding platform is a great way to stay in touch with your customers.</p>
+
+<p>Our LINE integration allows your users to send messages to your LINE bot which you receive in channels like Slack, HipChat or Help Scout. Your replies are sent back as coming from your LINE bot.</p>
+
+<p>You can also receive the user messages through a <a href="/rest#webhooks">webhook</a>.</p>
+<h3 id='creating-a-line-bot'>Creating a LINE bot</h3>
+<p>To create a bot you first need to create a LINE account through a <a href="http://line.me/en-US/download">mobile app</a>.</p>
+
+<p>After having signed up with your phone number, you will need to activate email registration and create a LINE business account.</p>
+
+<ol>
+<li><p>Go in the settings (see screenshot below) &gt; account and click on &ldquo;Email registration&rdquo;. Enter your email address and password and click &ldquo;Register&rdquo;. LINE will send you an email to confirm your registration. <span class="half-width-img"><img alt="Line settings" src="../images/line_settings.png" /></span></p></li>
+<li><p>Login to the <a href="https://business.line.me">LINE business section</a> with the credentials entered previously. You&rsquo;ll need your phone to login.</p></li>
+<li><p>Enter your account details, and confirm the registration by email.</p></li>
+<li><p>Enter information about your business to complete the LINE business account registration.</p></li>
+<li><p>Click &ldquo;Create a Business Account&rdquo;, and enter your account name.</p></li>
+<li><p>On the next screen, click the &ldquo;Start&rdquo; button to the right of &ldquo;BOT API Trial Account&rdquo;. Scroll down and click the blue &ldquo;Start&rdquo; button.</p></li>
+<li><p>Agree to the terms and click &ldquo;create&rdquo; to create your bot.</p></li>
+</ol>
+
+<p>You can now edit information about your bot such as the name and avatar by clicking &ldquo;EDIT&rdquo;. You&rsquo;re also ready to configure your LINE bot with Smooch.</p>
+<h3 id='configuring-line'>Configuring LINE</h3>
+<p>Once you&rsquo;ve configured your bot, login to the Smooch dashboard and select LINE in the list of integrations and follow these steps.</p>
+
+<ol>
+<li><p>Enter your Channel ID, Channel Secret and MID on the integration page.</p></li>
+<li><p>Copy the callback url displayed on the page. In the bot settings click on &ldquo;EDIT&rdquo; at the bottom of your bot settings in LINE, paste the provided Callback URL and click &ldquo;SAVE&rdquo;.</p></li>
+<li><p>In the Smooch dashboard, click &ldquo;Connect your LINE bot&rdquo; to complete the integration.</p></li>
+</ol>
+
+<p>You can now add your bot to your list of friends by scanning the QR code displayed in the LINE bot settings, and talk directly to it. All messages should be sent to any backend channel you&rsquo;ve configured.</p>
 <h3 id='action-buttons'>Action Buttons</h3>
 <p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
 <pre class="highlight plaintext"><code>This is a very special link
