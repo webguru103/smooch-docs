@@ -25,27 +25,32 @@ During configuration, your provider may send a confirmation email to your Smooch
 
 ##### Provider specific instructions
 
-[Google Apps and Gmail](https://support.google.com/mail/answer/10957)
+- [Google Apps and Gmail](https://support.google.com/mail/answer/10957)
 
-[Microsoft Exchange](https://technet.microsoft.com/en-us/library/dd351134.aspx)
+- Google Groups
 
-[Microsoft Exchange 2007](https://technet.microsoft.com/en-us/magazine/dd547068.aspx)
+    * 1. [Create a group](https://support.google.com/a/answer/33343)
+    * 2. [Add your smooch mailbox as a member of the group](https://support.google.com/groups/answer/2465464)
 
-[Yahoo](https://help.yahoo.com/kb/SLN17371.html)
+- [Microsoft Exchange](https://technet.microsoft.com/en-us/library/dd351134.aspx)
 
-[Bluehost](https://my.bluehost.com/cgi/help/forwarders)
+- [Microsoft Exchange 2007](https://technet.microsoft.com/en-us/magazine/dd547068.aspx)
 
-[Dreamhost](http://wiki.dreamhost.com/Email_Setup)
+- [Yahoo](https://help.yahoo.com/kb/SLN17371.html)
 
-[FatCow](http://www.fatcow.com/knowledgebase/read_article.bml?kbid=5745)
+- [Bluehost](https://my.bluehost.com/cgi/help/forwarders)
 
-[Rackspace](https://support.rackspace.com/how-to/set-up-email-forwarding-on-cloud-sites/)
+- [Dreamhost](http://wiki.dreamhost.com/Email_Setup)
 
-[Register.com](https://forum.web.com/register/faq/)
+- [FatCow](http://www.fatcow.com/knowledgebase/read_article.bml?kbid=5745)
 
-[OVH](http://help.ovh.co.uk/CreateEmailRedirection)
+- [Rackspace](https://support.rackspace.com/how-to/set-up-email-forwarding-on-cloud-sites/)
 
-[Mailgun](https://documentation.mailgun.com/api-routes.html#actions)
+- [Register.com](https://forum.web.com/register/faq/)
+
+- [OVH](http://help.ovh.co.uk/CreateEmailRedirection)
+
+- [Mailgun](https://documentation.mailgun.com/api-routes.html#actions)
 
 ### Action Buttons
 
