@@ -41,6 +41,7 @@ includes:
   - integrations/zendesk
   - integrations/front
   - integrations/twilio
+  - integrations/line
   - integrations/messenger
   - integrations/telegram
   - integrations/shopify
