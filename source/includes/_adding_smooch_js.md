@@ -122,3 +122,42 @@ In the Blog Footer section, paste our initialization code.
 ![Ghost](/images/ghost.png)
 
 And don't forget to click on Save!
+
+## Zendesk Help Center
+
+Zendesk Help Center is a self-service support software that provides a knowledge base for your team and customers.
+
+Follow the instructions below to add Smooch into your Zendesk Help Center:
+
+### 1. Connect to your Help Center dashboard and customize your theme
+
+On your Zendesk Help Center dashboard, click on the "General" menu and then "Customize design".
+
+<img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_custom_design.png" alt="Zendesk Customize design">
+
+### 2. Add Smooch javascript code to the footer of your theme
+
+On the newly displayed sidebar, click on "edit theme".
+
+<img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_edit_theme.png" alt="Zendesk Edit theme">
+
+Then, on the theme edition dashboard, select "footer" on the first dropdown menu.
+
+<img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_footer.png" alt="Zendesk footer menu">
+
+Paste the code provided below just before the ending footer tag.
+
+```html
+<script src="https://cdn.smooch.io/smooch.min.js"></script>
+<script>
+    Smooch.init({ appToken: 'your-app-token'});
+</script>
+```
+
+![Zendesk Smooch code](/images/zendeskhc_smooch.png)
+
+### 3. Save and publish!
+
+Click save and don't forget to publish your work.
+
+<img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_publish.png" alt="Zendesk Publish">
