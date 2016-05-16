@@ -125,19 +125,19 @@ And don't forget to click on Save!
 
 ## Zendesk Help Center
 
-Zendesk Help Center is a self-service support software that provides a knowledge base for your team and customers. 
+Zendesk Help Center is a self-service support software that provides a knowledge base for your team and customers.
 
 Follow the instructions below to add Smooch into your Zendesk Help Center:
 
 ### 1. Connect to your Help Center dashboard and customize your theme
 
-On your Zendesk Help Center dashboard, click on the "General" menu and then "Cutomize design".
+On your Zendesk Help Center dashboard, click on the "General" menu and then "Customize design".
 
 <img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_custom_design.png" alt="Zendesk Customize design">
 
 ### 2. Add Smooch javascript code to the footer of your theme
 
-On the newly displayed sidebar, click on "edit theme". 
+On the newly displayed sidebar, click on "edit theme".
 
 <img style="width:50%; min-width:400px; max-width:800px;" src="../images/zendeskhc_edit_theme.png" alt="Zendesk Edit theme">
 
