@@ -1,6 +1,6 @@
-### Getting the avatar of the current user
+### Setting the user email address
 
-Setting the user's e-mail lets you see their gravatar in the e-mail conversation. The user will not see their own gravatar in the chat.
+Setting the user's e-mail makes this information available in the user profile and allows Smooch to lets you see their gravatar. 
 
 ```objective_c
 #import <Smooch/Smooch.h>
@@ -22,6 +22,10 @@ Smooch.updateUser({
     email: 'the-doctor@smooch.io'
 })
 ```
+
+Setting or updating the user email will send a notification inside your configured business system. Here's how it looks in Slack for example :
+
+![Email updated in Slack](/images/email_updated.png)
 
 ### Setting the signed up date
 
