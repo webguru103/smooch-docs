@@ -54,23 +54,41 @@ During configuration, your provider may send a confirmation email to your Smooch
 
 ### Action Buttons
 
-Action buttons with the type of `link` will be translated into text. For example, if you link to `https://smooch.io` with the text of the button as `Click Here`, and the text of the message as `This is a very special link`, the text message will look like:
+[Action buttons](#links) will be rendered as links in the email. So
 
 ```
-This is a very special link
-
-Click Here https://smooch.io
+%[hyperlink button](https://smooch.io/)
 ```
 
-If the button has the type of `postback`, a list of options will be appended at the end of the message. For example if a message includes two postback actions: `Yes` and `No`, with a text of `Are you sure?`, the text message will look like this:
+will appear to the user as _[hyperlink button](https://smooch.io/)_.
+
+### Postback Buttons
+
+[Postback buttons](#postbacks) will be rendered as suggested responses, instead of as buttons. So a message like this:
 
 ```
-Are you sure?
-
-You can say: YES, NO
+Which do you prefer?
+%[Star Trek](postback:STAR_TREK)
+%[Star Wars](postback:STAR_WARS)
 ```
+
+will be rendered as:
+
+_Which do you prefer?<br>You can say: STAR TREK, STAR WARS_
+
+A user response of `STAR TREK`, will be cause the payload `STAR_TREK` to be delivered.
+
+### Buy Buttons
+
+[Buy buttons](#stripe) will redirect users to a web page where they can enter payment information, and will be rendered as hyperlinks.
+
+### Sending and receiving files
+
+Email attachments sent by the user will be either be rendered in your back-end channel, if they are images, or posted as hyperlinks, for other types of files.
+
+Images sent to the user via the RESTful API will be embedded in them email as html.
 
 ### Whispers
 
-Whispers sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
+[Whispers](#whispers) sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
 If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper emails as usual.
