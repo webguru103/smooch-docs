@@ -2,15 +2,13 @@
 
 The Email channel allows you to have conversations with your users by email via any of your connected business systems, be it Slack, Front or a bot connected to the Smooch API.
 
-When you enable the Email channel, you will be provided with a Smooch email address. Email messages sent to that email address will be delivered to your connected business systems.
+When you enable the Email channel, you will be provided with a Smooch email address. Emails sent to that address will be delivered to your connected business systems.
 
 ### Using your own email address
 
-After you set up your *from* address, all your emails to users will appear to come from your own email address instead of your smooch email address.
+After you set up your *from* address, all your messages to users will appear to come from your own email address instead of your smooch email address.
 
-1. To use your own email address to receive and respond to user emails, simply provide your email address in the "from address" field on the Smooch Email Channel page.
-
-![input from address](/images/input_forwarding_email.png)
+1. To use your own email address to receive and respond to user emails, simply provide your email address in the "from address" field on the Smooch Email Channel page. ![input from address](/images/input_forwarding_email.png)
 
 2. Configure your email provider to automatically forward incoming email to your Smooch email address (detailed instructions below).
 
@@ -84,11 +82,11 @@ A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be deliver
 
 ### Sending and receiving files
 
-Email attachments sent by the user will either be rendered in your back-end channel, if they are images, or posted as hyperlinks, for other types of files.
+Email attachments sent by the user will either be rendered in your business system, if they are images, or posted as hyperlinks, for other types of files.
 
 Images sent to the user will be embedded in the email as html images.
 
 ### Whispers
 
 [Whispers](#whispers) sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
-If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive to receive non-whisper messages.
+If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive receive non-whisper messages.
