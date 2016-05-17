@@ -23,6 +23,8 @@ During configuration, your provider may send a confirmation email to your Smooch
 
 ##### Provider specific instructions
 
+Below are links to tutorials detailing how to set up automatic email forwarding for a variety of email providers. If you think we're missing a provider feel free to get in touch with us! help@smooch.io
+
 - [Google Apps and Gmail](https://support.google.com/mail/answer/10957)
 
 - Google Groups
@@ -58,7 +60,9 @@ During configuration, your provider may send a confirmation email to your Smooch
 %[hyperlink button](https://smooch.io/)
 ```
 
-will appear to the user as _[hyperlink button](https://smooch.io/)_.
+will appear to the user as:
+
+![hyperlink](/images/email-hyperlink.png)
 
 ### Postback Buttons
 
@@ -72,7 +76,7 @@ Which do you prefer?
 
 will be rendered as:
 
-_Which do you prefer?<br>You can say: STAR TREK, STAR WARS_
+![postback](/images/email-postback.png)
 
 A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be delivered by [webhook](#webhook-triggers).
 
