@@ -1,8 +1,8 @@
 ## Email Channel
 
-The Email channel allows you to have conversations with your users by email via any of your back-end messaging channels, be it Slack, Front or a bot connected to the Smooch API.
+The Email channel allows you to have conversations with your users by email via any of your connected business systems, be it Slack, Front or a bot connected to the Smooch API.
 
-When you enable the Email channel, you will be provided with a Smooch email address. Email messages sent to that email address will be delivered to your back-end messaging channels.
+When you enable the Email channel, you will be provided with a Smooch email address. Email messages sent to that email address will be delivered to your connected business systems.
 
 ### Using your own email address
 
@@ -21,7 +21,7 @@ After you set up your *from* address, all your emails to users will appear to co
 
 #### Configuring your email provider to forward email to your Smooch email address
 
-During configuration, your provider may send a confirmation email to your Smooch email address. It's important to have at least one back-end messaging channel set up on Smooch so that you can act on the confirmation email sent by your provider.
+During configuration, your provider may send a confirmation email to your Smooch email address. It's important to have at least one business system set up on Smooch so that you can act on the confirmation email sent by your provider. For example, if you setup Gmail to forward to Smooch, you'll receive a message in your business system from the Gmail team, asking you to follow a link to confirm forwarding to your Smooch address.
 
 ##### Provider specific instructions
 
@@ -76,19 +76,19 @@ will be rendered as:
 
 _Which do you prefer?<br>You can say: STAR TREK, STAR WARS_
 
-A user response of `STAR TREK`, will be cause the payload `STAR_TREK` to be delivered.
+A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be delivered by [webhook](#webhook-triggers).
 
 ### Buy Buttons
 
-[Buy buttons](#stripe) will redirect users to a web page where they can enter payment information, and will be rendered as hyperlinks.
+[Buy buttons](#stripe) will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.
 
 ### Sending and receiving files
 
-Email attachments sent by the user will be either be rendered in your back-end channel, if they are images, or posted as hyperlinks, for other types of files.
+Email attachments sent by the user will either be rendered in your back-end channel, if they are images, or posted as hyperlinks, for other types of files.
 
-Images sent to the user via the RESTful API will be embedded in them email as html.
+Images sent to the user will be embedded in the email as html images.
 
 ### Whispers
 
 [Whispers](#whispers) sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
-If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper emails as usual.
+If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive to receive non-whisper messages.
