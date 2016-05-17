@@ -54,7 +54,7 @@ Below are links to tutorials detailing how to set up automatic email forwarding 
 
 ### Action Buttons
 
-[Action buttons](#links) will be rendered as links in the email. So
+Action buttons will be rendered as links in the email. So
 
 ```
 %[hyperlink button](https://smooch.io/)
@@ -66,7 +66,7 @@ will appear to the user as:
 
 ### Postback Buttons
 
-[Postback buttons](#postbacks) will be rendered as suggested responses, instead of as buttons. So a message like this:
+Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:
 
 ```
 Which do you prefer?
@@ -78,11 +78,11 @@ will be rendered as:
 
 ![postback](/images/email-postback.png)
 
-A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be delivered by [webhook](#webhook-triggers).
+A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be delivered by [webhook](/rest#webhooks).
 
 ### Buy Buttons
 
-[Buy buttons](#stripe) will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.
+Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.
 
 ### Sending and receiving files
 
@@ -92,5 +92,5 @@ Images sent to the user will be embedded in the email as html images.
 
 ### Whispers
 
-[Whispers](#whispers) sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
+Whispers sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
 If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive receive non-whisper messages.
