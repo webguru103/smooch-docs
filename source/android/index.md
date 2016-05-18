@@ -47,6 +47,7 @@ includes:
   - integrations/shopify
   - integrations/elevio
   - integrations/connecting_crm
+  - integrations/appuser_email
 
   - addons/addons
   - addons/stripe_intro
