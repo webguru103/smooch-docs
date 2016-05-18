@@ -6,7 +6,7 @@ When you enable the Email channel, you will be provided with a Smooch email addr
 
 ### Using your own email address
 
-After you set up your *from* address, all your messages to users will appear to come from your own email address instead of your smooch email address.
+After you set up your *from* address, all your messages to users will appear to come from your own email address instead of your Smooch email address.
 
 1. To use your own email address to receive and respond to user emails, simply provide your email address in the "from address" field on the Smooch Email Channel page. ![input from address](/images/input_forwarding_email.png)
 
@@ -23,7 +23,7 @@ During configuration, your provider may send a confirmation email to your Smooch
 
 ##### Provider specific instructions
 
-Below are links to tutorials detailing how to set up automatic email forwarding for a variety of email providers. If you think we're missing a provider feel free to get in touch with us! help@smooch.io
+Below are links to tutorials detailing how to set up automatic email forwarding for a variety of email providers. If you think we're missing a provider feel free to get in touch with us! <help@smooch.io>
 
 - [Google Apps and Gmail](https://support.google.com/mail/answer/10957)
 
@@ -92,5 +92,8 @@ Images sent to the user will be embedded in the email as html images.
 
 ### Whispers
 
-Whispers sent to email will contain a footer with an unsubscribe link that reads "Not interested in emails from us?".
-If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive receive non-whisper messages.
+Whispers sent to email will contain a footer with an unsubscribe link. Like so:
+
+<img src="/images/email-unsubscribe.png" alt="unsubscribe" style="max-width:520px;">
+
+If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper messages.
