@@ -504,10 +504,10 @@ You can also send postback buttons through the <a href="http://docs.smooch.io/re
 </aside></p>
 
           <h1 id='integrations'>Integrations</h1>
-          <h2 id='email'>Email</h2>
-<p>By default, all new Smooch apps will have an email channel enabled using the email address of the account owner.</p>
+          <h2 id='email-inbox'>Email Inbox</h2>
+<p>The Email Inbox integration allows you to receive Smooch messages in your inbox.</p>
 
-<p>When users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user&rsquo;s message, device information, and any profile information about the user that you captured in your app. You can respond to your user&rsquo;s message by responding directly to the email.</p>
+<p>If Email Inbox is enabled, when users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user&rsquo;s message, device information, and any profile information about the user that you captured in your app. You can respond to your user&rsquo;s message by responding directly to the email.</p>
 
 <p><img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/></p>
 <h3 id='getting-help-from-your-team'>Getting help from your team</h3>
@@ -782,6 +782,77 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 <li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
 </ol>
 
+          <h2 id='email-channel'>Email Channel</h2>
+<p>The Email channel allows you to have conversations with your users by email via any of your connected business systems, be it Slack, Front or a bot connected to the Smooch API.</p>
+
+<p>When you enable the Email channel, you will be provided with a Smooch email address. Emails sent to that address will be delivered to your connected business systems.</p>
+<h3 id='using-your-own-email-address'>Using your own email address</h3>
+<p>After you set up your <em>from</em> address, all your messages to users will appear to come from your own email address instead of your Smooch email address.</p>
+
+<ol>
+<li><p>To use your own email address to receive and respond to user emails, simply provide your email address in the &ldquo;from address&rdquo; field on the Smooch Email Channel page. <img alt="input from address" src="../images/input_forwarding_email.png" /></p></li>
+<li><p>Configure your email provider to automatically forward incoming email to your Smooch email address (detailed instructions below).</p></li>
+<li><p>Now click the <em><strong>Test email forwarding</strong></em> link on the Email channel page (shown below) to confirm that forwarding is working.</p></li>
+</ol>
+
+<p><img alt="test email forwarding" src="../images/test_forwarding_email.png" /></p>
+<h4 id='configuring-your-email-provider-to-forward-email-to-your-smooch-email-address'>Configuring your email provider to forward email to your Smooch email address</h4>
+<p>During configuration, your provider may send a confirmation email to your Smooch email address. It&rsquo;s important to have at least one business system set up on Smooch so that you can act on the confirmation email sent by your provider. For example, if you setup Gmail to forward to Smooch, you&rsquo;ll receive a message in your business system from the Gmail team, asking you to follow a link to confirm forwarding to your Smooch address.</p>
+<h5 id='provider-specific-instructions'>Provider specific instructions</h5>
+<p>Below are links to tutorials detailing how to set up automatic email forwarding for a variety of email providers. If you think we&rsquo;re missing a provider feel free to get in touch with us! <a href="mailto:help@smooch.io">help@smooch.io</a></p>
+
+<ul>
+<li><p><a href="https://support.google.com/mail/answer/10957">Google Apps and Gmail</a></p></li>
+<li><p>Google Groups</p>
+
+<ul>
+<li>1. <a href="https://support.google.com/a/answer/33343">Create a group</a></li>
+<li>2. <a href="https://support.google.com/groups/answer/2465464">Add your smooch email address as a member of the group</a></li>
+</ul></li>
+<li><p><a href="https://technet.microsoft.com/en-us/library/dd351134.aspx">Microsoft Exchange</a></p></li>
+<li><p><a href="https://technet.microsoft.com/en-us/magazine/dd547068.aspx">Microsoft Exchange 2007</a></p></li>
+<li><p><a href="https://help.yahoo.com/kb/SLN17371.html">Yahoo</a></p></li>
+<li><p><a href="https://my.bluehost.com/cgi/help/forwarders">Bluehost</a></p></li>
+<li><p><a href="http://wiki.dreamhost.com/Email_Setup">Dreamhost</a></p></li>
+<li><p><a href="http://www.fatcow.com/knowledgebase/read_article.bml?kbid=5745">FatCow</a></p></li>
+<li><p><a href="https://support.rackspace.com/how-to/set-up-email-forwarding-on-cloud-sites/">Rackspace</a></p></li>
+<li><p><a href="https://forum.web.com/register/faq/">Register.com</a></p></li>
+<li><p><a href="http://help.ovh.co.uk/CreateEmailRedirection">OVH</a></p></li>
+<li><p><a href="https://documentation.mailgun.com/api-routes.html#actions">Mailgun</a></p></li>
+</ul>
+<h3 id='action-buttons'>Action Buttons</h3>
+<p>Action buttons will be rendered as links in the email. So</p>
+<pre class="highlight plaintext"><code>%[hyperlink button](https://smooch.io/)
+</code></pre>
+
+<p>will appear to the user as:</p>
+
+<p><img alt="hyperlink" src="../images/email-hyperlink.png" /></p>
+<h3 id='postback-buttons'>Postback Buttons</h3>
+<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+%[Star Trek](postback:STAR_TREK)
+%[Star Wars](postback:STAR_WARS)
+</code></pre>
+
+<p>will be rendered as:</p>
+
+<p><img alt="postback" src="../images/email-postback.png" /></p>
+
+<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<h3 id='buy-buttons'>Buy Buttons</h3>
+<p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
+<h3 id='sending-and-receiving-files'>Sending and receiving files</h3>
+<p>Email attachments sent by the user will either be rendered in your business system, if they are images, or posted as hyperlinks, for other types of files.</p>
+
+<p>Images sent to the user will be embedded in the email as html images.</p>
+<h3 id='whispers'>Whispers</h3>
+<p>Whispers sent to email will contain a footer with an unsubscribe link. Like so:</p>
+
+<p><img src="/images/email-unsubscribe.png" alt="unsubscribe" style="max-width:520px;"></p>
+
+<p>If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper messages.</p>
+
           <h1 id='add-ons'>Add-ons</h1>
           <h2 id='stripe'>Stripe</h2>
 <p>Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation.
@@ -829,7 +900,7 @@ If you are using test mode, notice the &ldquo;Skip this account form&rdquo; at t
 <p>Once the user completes a payment you&rsquo;ll get a confirmation along with a link to the payment page on Stripe.</p>
 
           <p><aside class="notice">
-If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#facebook-messenger">Messenger</a> or <a href="#telegram">Telegram</a> integrations, they&rsquo;ll get a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch iOS SDK versions older than 3.3.
+If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#facebook-messenger">Messenger</a>, <a href="#email-channel">Email</a> or <a href="#telegram">Telegram</a> integrations, they&rsquo;ll get a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch iOS SDK versions older than 3.3.
 </aside></p>
 
 <p><span class="third-width-img"><img alt="Stripe hosted checkout" src="../images/stripe_hosted_checkout.png" /></span></p>
