@@ -1,4 +1,4 @@
-## Email Channel
+## Email Messaging
 
 The Email channel allows you to have conversations with your users by email via any of your connected business systems, be it Slack, Front or a bot connected to the Smooch API.
 

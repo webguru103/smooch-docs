@@ -1,8 +1,8 @@
-## Email Inbox
+## Email (Business system)
 
-The Email Inbox integration allows you to receive Smooch messages in your inbox.
+The Email integration allows you to receive Smooch messages in your inbox.
 
-If Email Inbox is enabled, when users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user's message, device information, and any profile information about the user that you captured in your app. You can respond to your user's message by responding directly to the email.
+If Email is enabled, when users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user's message, device information, and any profile information about the user that you captured in your app. You can respond to your user's message by responding directly to the email.
 
 <img src="/images/email_with_context.png" alt="Drawing" style="width: 80%;"/>
 
