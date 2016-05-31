@@ -76,6 +76,9 @@ Be sure to replace `<your_application_package>` with your application package!
     </receiver>
     ```
 
+<aside class="notice">
+Note: If your app has its own `GcmListenerService`, you need to trigger Smooch push notification by calling `triggerSmoochGcm` method on [`GcmService`](http://docs.smooch.io/api/android/io/smooch/core/GcmService.html) class.</aside>
+
 ### Step 4. Test it out!
 
 <aside class="warning">
