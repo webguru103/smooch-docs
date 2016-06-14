@@ -1,4 +1,4 @@
-## Email (Business system)
+## Email
 
 The Email integration allows you to receive Smooch messages in your inbox.
 

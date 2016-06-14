@@ -28,26 +28,29 @@ includes:
   - users/sensitive_user_data
   - users/users_on_multiple_devices
   - users/authenticating_users
+  - users/alternate_channels
+  - users/user_linking
 
   - actions/actions
   - actions/sending_action_buttons_web
   - actions/postbacks
 
-  - integrations/integrations
-  - integrations/email
-  - integrations/slack
-  - integrations/helpscout
-  - integrations/hipchat
-  - integrations/zendesk
-  - integrations/front
-  - integrations/twilio
-  - integrations/line
-  - integrations/messenger
-  - integrations/telegram
-  - integrations/shopify
-  - integrations/elevio
-  - integrations/connecting_crm
-  - integrations/appuser_email
+  - business_app_integrations/integrations
+  - business_app_integrations/email
+  - business_app_integrations/slack
+  - business_app_integrations/helpscout
+  - business_app_integrations/hipchat
+  - business_app_integrations/zendesk
+  - business_app_integrations/front
+  - business_app_integrations/connecting_crm
+  - messaging_channels/integrations
+  - messaging_channels/twilio
+  - messaging_channels/line
+  - messaging_channels/messenger
+  - messaging_channels/telegram
+  - messaging_channels/shopify
+  - messaging_channels/elevio
+  - messaging_channels/appuser_email
 
   - addons/addons
   - addons/stripe_intro
