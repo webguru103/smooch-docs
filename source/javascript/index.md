@@ -45,12 +45,17 @@ includes:
   - business_app_integrations/connecting_crm
   - messaging_channels/integrations
   - messaging_channels/twilio
+  - actions/action_buttons_text
   - messaging_channels/line
+  - actions/action_buttons_text
   - messaging_channels/messenger
   - messaging_channels/telegram
+  - messaging_channels/appuser_email
+  - actions/action_buttons_text
+  - messaging_channels/wechat
+  - actions/action_buttons_text
   - messaging_channels/shopify
   - messaging_channels/elevio
-  - messaging_channels/appuser_email
 
   - addons/addons
   - addons/stripe_intro

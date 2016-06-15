@@ -52,38 +52,6 @@ Below are links to tutorials detailing how to set up automatic email forwarding 
 
 - [Mailgun](https://documentation.mailgun.com/api-routes.html#actions)
 
-### Action Buttons
-
-Action buttons will be rendered as links in the email. So
-
-```
-%[hyperlink button](https://smooch.io/)
-```
-
-will appear to the user as:
-
-![hyperlink](/images/email-hyperlink.png)
-
-### Postback Buttons
-
-Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:
-
-```
-Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
-```
-
-will be rendered as:
-
-![postback](/images/email-postback.png)
-
-A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be delivered by [webhook](/rest#webhooks).
-
-### Buy Buttons
-
-Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.
-
 ### Sending and receiving files
 
 Email attachments sent by the user will either be rendered in your business system, if they are images, or posted as hyperlinks, for other types of files.
@@ -94,6 +62,6 @@ Images sent to the user will be embedded in the email as html images.
 
 Whispers sent to email will contain a footer with an unsubscribe link. Like so:
 
-<img src="/images/email-unsubscribe.png" alt="unsubscribe" style="max-width:520px;">
+<img src="/images/email_unsubscribe.png" alt="unsubscribe" style="max-width:520px;">
 
 If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper messages.
