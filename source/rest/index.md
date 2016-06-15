@@ -50,6 +50,10 @@ Smooch uses standard HTTP status codes to communicate errors
 
 Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a `429 Too Many Requests` HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications that consistently exceed limits run the risk of being permanently disabled.
 
+## Deprecations
+
+The "devices" array returned in the AppUser payload has been changed to "clients". In order to maintain compatibility, we will keep returning the "devices" array in v1, but in v2 this array will no longer exist.
+
 # Authentication
 
 Smooch APIs offer two methods of authentication:
@@ -428,7 +432,7 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "userId": "bob@example.com",
         "properties": {},
         "signedUpAt": "2015-10-06T03:38:02.346Z",
-        "devices": [
+        "clients": [
           {
             "active": true,
             "appVersion": "1.0",
@@ -482,7 +486,7 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "userId": "bob@example.com",
         "properties": {},
         "signedUpAt": "2015-10-06T03:38:02.346Z",
-        "devices": [
+        "clients": [
           {
             "active": true,
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
@@ -550,7 +554,7 @@ smooch.appUsers.init({
         "userId": "bob@example.com",
         "properties": {},
         "signedUpAt": "2015-10-06T03:38:02.346Z",
-        "devices": [
+        "clients": [
           {
             "active": true,
             "appVersion": "1.0",
@@ -691,7 +695,7 @@ smooch.appUsers.get('steveb@channel5.com').then((response) => {
         "signedUpAt": "2015-10-08T23:52:11.677Z",
         "properties": {},
         "conversationStarted": true,
-        "devices": [
+        "clients": [
           {
             "active": true,
             "appVersion": "1.0",
@@ -750,7 +754,7 @@ smooch.appUsers.update('c7f6e6d6c3a637261bd9656f', {
     "signedUpAt": "2015-10-08T23:52:11.677Z",
     "properties": {},
     "conversationStarted": true,
-    "devices": [
+    "clients": [
       {
         "active": true,
         "appVersion": "1.0",
