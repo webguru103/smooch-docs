@@ -52,7 +52,7 @@ Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will
 
 ## Deprecations
 
-The "devices" array returned in the AppUser payload has been changed to "clients". In order to maintain compatibility, we will keep returning the "devices" array in v1, but in v2 this array will no longer exist.
+The "devices" array returned in the AppUser payload has been changed to "clients". In order to maintain compatibility, we will keep returning the "devices" array in v1, but in the next version it will be removed.
 
 # Authentication
 
