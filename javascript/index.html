@@ -66,7 +66,7 @@
 <ul>
 <li><a href="http://docs.smooch.io/api/ios" target="_blank">iOS SDK Reference</a></li>
 <li><a href="http://docs.smooch.io/api/android" target="_blank">Android SDK Reference</a></li>
-<li><a href="https://github.com/smooch/smooch-js" target="_blank">Web SDK Reference</a></li>
+<li><a href="https://github.com/smooch/smooch-js" target="_blank">Web Messenger Reference</a></li>
 <li><a href="/rest" target="_blank">REST API</a></li>
 </ul>
 <h2 id='upgrading-to-smooch'>Upgrading to Smooch</h2>
@@ -75,7 +75,7 @@
 <ul>
 <li><a href="https://github.com/smooch/smooch-ios/releases/tag/v3.0.0" target="_blank">iOS Upgrade Guide</a></li>
 <li><a href="https://github.com/smooch/smooch-android/releases/tag/2.0.0" target="_blank">Android Upgrade Guide</a></li>
-<li><a href="https://github.com/smooch/smooch-js/releases/tag/2.0.0" target="_blank">Web SDK Upgrade Guide</a></li>
+<li><a href="https://github.com/smooch/smooch-js/releases/tag/2.0.0" target="_blank">Web Messenger Upgrade Guide</a></li>
 </ul>
 
           <h1 id='adding-smooch-to-your-site'>Adding Smooch to your site</h1>
@@ -193,6 +193,25 @@
           <h2 id='configuring-agent-images'>Configuring agent images</h2>
 <p>You can set an app maker&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the app maker&rsquo;s email address.
 <img style="width:50%; min-width:200px; max-width:400px;" src="/images/agent_thumb.png" alt="Set agent images"/></p>
+
+          <h1 id='web-messenger'>Web Messenger</h1>
+          <h2 id='alternate-channels'>Alternate Channels</h2>
+<p>The Web Messenger supports the ability for users to find and reach out to you on any channel you support.
+In order to offer additional channels, simply integrate with whichever <a href="#messaging-channels">messaging channel</a> you please and it will automatically be added to the list.</p>
+
+<p><span class="half-width-img"><img alt="Alternate Channels" src="../images/alternate_channels.png" /></span></p>
+
+<p><span class="half-width-img"><img alt="SMS Page" src="../images/sms.png" /></span></p>
+
+          <h2 id='user-linking'>User linking</h2>
+<p>If a user starts chatting with you and would like to continue the chat on another messaging channel such as Facebook Messenger, they will have the option to link their Facebook account and continue that same conversation.</p>
+
+<p>These conversations will be merged automatically, allowing you to reply to the customer from the same thread wherever they choose.
+When you reply to your user, Smooch will intelligently detect which messaging channel they most recently used and make sure that a user doesn&rsquo;t get spammed with push notifications if they happen to have multiple messaging channels linked.</p>
+
+<p>For example, if a user visits your site and would like to close the tab, they can choose to &lsquo;Send to Messenger&rsquo;. This will connect their conversation to Facebook Messenger and allow them to close the tab and move on.</p>
+
+<p><span class="half-width-img"><img alt="Send to Messenger" src="../images/send_to_messenger.png" /></span></p>
 
           <h1 id='users'>Users</h1>
           <h2 id='user-data'>User data</h2>
@@ -490,8 +509,8 @@ Buttons will always be appended at the bottom of your message bubble.
 You can also send postback buttons through the <a href="http://docs.smooch.io/rest#action-buttons">REST API</a>.
 </aside></p>
 
-          <h1 id='integrations'>Integrations</h1>
-          <h2 id='email-business-system'>Email (Business system)</h2>
+          <h1 id='business-app-integrations'>Business App Integrations</h1>
+          <h2 id='email'>Email</h2>
 <p>The Email integration allows you to receive Smooch messages in your inbox.</p>
 
 <p>If Email is enabled, when users send you a message using Smooch, you will receive an email at the configured address(es). This e-mail contains the user&rsquo;s message, device information, and any profile information about the user that you captured in your app. You can respond to your user&rsquo;s message by responding directly to the email.</p>
@@ -606,6 +625,18 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <h3 id='configuring-front-to-work-with-smooch'>Configuring Front to work with Smooch</h3>
 <p>The Front integration is built entirely on top of Smooch&rsquo;s public <a href="/rest">REST API</a>, which makes the integration steps different from other integrations like <a href="#slack">Slack</a> or <a href="#zendesk">Zendesk</a>. You can find the full installation instructions <a href="https://faq.frontapp.com/11682-Adding-a-New-Inbox-in-Front/how-to-add-a-smooch-inbox-in-front">here</a>.</p>
 
+          <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
+<p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
+
+<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since Smooch uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
+
+<ol>
+<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
+<li><p>Set Smooch&rsquo;s forwarding address to the address you noted in step 1. </p></li>
+<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
+</ol>
+
+          <h1 id='messaging-channels'>Messaging Channels</h1>
           <h2 id='twilio'>Twilio</h2>
 <p><a href="https://www.twilio.com/">Twilio</a> is an SMS messaging service. Our Twilio integration allows your users to send you text messages at your Twilio number for your to receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as an SMS to the user.</p>
 <h3 id='configuring-twilio'>Configuring Twilio</h3>
@@ -614,18 +645,28 @@ You can easily view your active conversations and user profiles at a glance.</p>
 <p><img alt="Enter API credentials" src="../images/twilio.png" /></p>
 
 <p>Once your Twilio account is authenticated, select the phone number you want to use and hit save. You should now be able to receive messages from your Twilio phone number and reply via any of your configured channels.</p>
-<h3 id='action-buttons'>Action Buttons</h3>
+
+          <h3 id='action-buttons'>Action Buttons</h3>
 <p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
 <pre class="highlight plaintext"><code>This is a very special link
 
 Click Here https://google.ca
 </code></pre>
-
-<p>If the button has the type of <code class="prettyprint">postback</code>, a list of options will be appended at the end of the message. For example if a message includes two postback actions: <code class="prettyprint">Yes</code> and <code class="prettyprint">No</code>, with a text of <code class="prettyprint">Are you sure?</code>, the text message will look like this:</p>
-<pre class="highlight plaintext"><code>Are you sure?
-
-You can say: YES, NO
+<h3 id='postback-buttons'>Postback Buttons</h3>
+<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+%[Star Trek](postback:STAR_TREK)
+%[Star Wars](postback:STAR_WARS)
 </code></pre>
+
+<p>will look like:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+You can say: STAR_TREK, STAR_WARS
+</code></pre>
+
+<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<h3 id='buy-buttons'>Buy Buttons</h3>
+<p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
           <h2 id='line'>LINE</h2>
 <p>LINE is a Japan based rapidly growing mobile messaging app that offers free voice and video calls, messages, and a limitless variety of stickers. With over 600 million users worldwide, LINE&rsquo;s expanding platform is a great way to stay in touch with your customers.</p>
@@ -659,18 +700,28 @@ You can say: YES, NO
 </ol>
 
 <p>You can now add your bot to your list of friends by scanning the QR code displayed in the LINE bot settings, and talk directly to it. All messages should be sent to any backend channel you&rsquo;ve configured.</p>
-<h3 id='action-buttons'>Action Buttons</h3>
+
+          <h3 id='action-buttons'>Action Buttons</h3>
 <p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
 <pre class="highlight plaintext"><code>This is a very special link
 
 Click Here https://google.ca
 </code></pre>
-
-<p>If the button has the type of <code class="prettyprint">postback</code>, a list of options will be appended at the end of the message. For example if a message includes two postback actions: <code class="prettyprint">Yes</code> and <code class="prettyprint">No</code>, with a text of <code class="prettyprint">Are you sure?</code>, the text message will look like this:</p>
-<pre class="highlight plaintext"><code>Are you sure?
-
-You can say: YES, NO
+<h3 id='postback-buttons'>Postback Buttons</h3>
+<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+%[Star Trek](postback:STAR_TREK)
+%[Star Wars](postback:STAR_WARS)
 </code></pre>
+
+<p>will look like:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+You can say: STAR_TREK, STAR_WARS
+</code></pre>
+
+<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<h3 id='buy-buttons'>Buy Buttons</h3>
+<p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
           <h2 id='facebook-messenger'>Facebook Messenger</h2>
 <p>Our Facebook Messenger integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.</p>
@@ -713,6 +764,120 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 <p>When used with Telegram, action buttons work as expected. When a button with type of <code class="prettyprint">link</code> will bring the user to a web page, while postback buttons will trigger any Smooch webhook listening to the <code class="prettyprint">postback</code> trigger.</p>
 
 <p>Payment requests with the <a href="#stripe">Stripe integration</a> will turn into link buttons which bring the user to a checkout page where payment information can be entered.</p>
+
+          <h2 id='email-messaging'>Email Messaging</h2>
+<p>The Email channel allows you to have conversations with your users by email via any of your connected business systems, be it Slack, Front or a bot connected to the Smooch API.</p>
+
+<p>When you enable the Email channel, you will be provided with a Smooch email address. Emails sent to that address will be delivered to your connected business systems.</p>
+<h3 id='using-your-own-email-address'>Using your own email address</h3>
+<p>After you set up your <em>from</em> address, all your messages to users will appear to come from your own email address instead of your Smooch email address.</p>
+
+<ol>
+<li><p>To use your own email address to receive and respond to user emails, simply provide your email address in the &ldquo;from address&rdquo; field on the Smooch Email Channel page. <img alt="input from address" src="../images/input_forwarding_email.png" /></p></li>
+<li><p>Configure your email provider to automatically forward incoming email to your Smooch email address (detailed instructions below).</p></li>
+<li><p>Now click the <em><strong>Test email forwarding</strong></em> link on the Email channel page (shown below) to confirm that forwarding is working.</p></li>
+</ol>
+
+<p><img alt="test email forwarding" src="../images/test_forwarding_email.png" /></p>
+<h4 id='configuring-your-email-provider-to-forward-email-to-your-smooch-email-address'>Configuring your email provider to forward email to your Smooch email address</h4>
+<p>During configuration, your provider may send a confirmation email to your Smooch email address. It&rsquo;s important to have at least one business system set up on Smooch so that you can act on the confirmation email sent by your provider. For example, if you setup Gmail to forward to Smooch, you&rsquo;ll receive a message in your business system from the Gmail team, asking you to follow a link to confirm forwarding to your Smooch address.</p>
+<h5 id='provider-specific-instructions'>Provider specific instructions</h5>
+<p>Below are links to tutorials detailing how to set up automatic email forwarding for a variety of email providers. If you think we&rsquo;re missing a provider feel free to get in touch with us! <a href="mailto:help@smooch.io">help@smooch.io</a></p>
+
+<ul>
+<li><p><a href="https://support.google.com/mail/answer/10957">Google Apps and Gmail</a></p></li>
+<li><p>Google Groups</p>
+
+<ul>
+<li>1. <a href="https://support.google.com/a/answer/33343">Create a group</a></li>
+<li>2. <a href="https://support.google.com/groups/answer/2465464">Add your smooch email address as a member of the group</a></li>
+</ul></li>
+<li><p><a href="https://technet.microsoft.com/en-us/library/dd351134.aspx">Microsoft Exchange</a></p></li>
+<li><p><a href="https://technet.microsoft.com/en-us/magazine/dd547068.aspx">Microsoft Exchange 2007</a></p></li>
+<li><p><a href="https://help.yahoo.com/kb/SLN17371.html">Yahoo</a></p></li>
+<li><p><a href="https://my.bluehost.com/cgi/help/forwarders">Bluehost</a></p></li>
+<li><p><a href="http://wiki.dreamhost.com/Email_Setup">Dreamhost</a></p></li>
+<li><p><a href="http://www.fatcow.com/knowledgebase/read_article.bml?kbid=5745">FatCow</a></p></li>
+<li><p><a href="https://support.rackspace.com/how-to/set-up-email-forwarding-on-cloud-sites/">Rackspace</a></p></li>
+<li><p><a href="https://forum.web.com/register/faq/">Register.com</a></p></li>
+<li><p><a href="http://help.ovh.co.uk/CreateEmailRedirection">OVH</a></p></li>
+<li><p><a href="https://documentation.mailgun.com/api-routes.html#actions">Mailgun</a></p></li>
+</ul>
+<h3 id='sending-and-receiving-files'>Sending and receiving files</h3>
+<p>Email attachments sent by the user will either be rendered in your business system, if they are images, or posted as hyperlinks, for other types of files.</p>
+
+<p>Images sent to the user will be embedded in the email as html images.</p>
+<h3 id='whispers'>Whispers</h3>
+<p>Whispers sent to email will contain a footer with an unsubscribe link. Like so:</p>
+
+<p><img src="/images/email_unsubscribe.png" alt="unsubscribe" style="max-width:520px;"></p>
+
+<p>If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper messages.</p>
+
+          <h3 id='action-buttons'>Action Buttons</h3>
+<p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
+<pre class="highlight plaintext"><code>This is a very special link
+
+Click Here https://google.ca
+</code></pre>
+<h3 id='postback-buttons'>Postback Buttons</h3>
+<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+%[Star Trek](postback:STAR_TREK)
+%[Star Wars](postback:STAR_WARS)
+</code></pre>
+
+<p>will look like:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+You can say: STAR_TREK, STAR_WARS
+</code></pre>
+
+<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<h3 id='buy-buttons'>Buy Buttons</h3>
+<p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
+
+          <h2 id='wechat'>WeChat</h2>
+<p>WeChat is a China-based mobile text and voice messaging communication service. With over 700 million active users, it’s become the de facto hub for Chinese conversational commerce.</p>
+
+<p>Our WeChat integration lets your customers message you from WeChat, while you reply using your favorite business apps.</p>
+<h3 id='configuring-wechat'>Configuring WeChat</h3>
+<p>In order to configure WeChat, you&rsquo;ll need a WeChat Official Account. You can apply for one <a href="http://apply.wechat.com">here</a>.</p>
+
+<p>Once you&rsquo;ve created your account, you will need to go through the account verification process. In order to do so, login to your <a href="https://mp.weixin.qq.com">WeChat dashboard</a> and go to the “WeChat Certification | 微信认证” page below the Set Up section.</p>
+
+<p>Once your account has been verified, login to the <a href="https://app.smooch.io">Smooch dashboard</a> and select WeChat in the list of integrations and follow these steps.</p>
+
+<ol>
+<li><p>In the WeChat dashboard, go to the “Basic Configuration | 基本配置” page below the Develop section and enter your App ID and App Secret on the Smooch integration page.</p></li>
+<li><p>In the WeChat dashboard, click on “Modify Configuration | 修改配置” below Basic Configuration, then copy the Webhook URL and Token from the Smooch integration page and paste it there.</p></li>
+<li><p>After saving your settings, click on Connect to WeChat to complete the integration.</p></li>
+</ol>
+<h3 id='safe-mode'>Safe Mode</h3>
+<p>Optionally, you can configure &ldquo;Safe Mode&rdquo; in the WeChat dashboard. With this mode enabled, all outgoing messages from WeChat will be encrypted using a secure 43 character AES key.</p>
+
+<p>In order to have Safe Mode functioning correctly with Smooch, simply copy your EncodingAESKey from WeChat and paste it in the WeChat integration page. Messages will be automatically decrypted in a secure fashion.</p>
+
+          <h3 id='action-buttons'>Action Buttons</h3>
+<p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
+<pre class="highlight plaintext"><code>This is a very special link
+
+Click Here https://google.ca
+</code></pre>
+<h3 id='postback-buttons'>Postback Buttons</h3>
+<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+%[Star Trek](postback:STAR_TREK)
+%[Star Wars](postback:STAR_WARS)
+</code></pre>
+
+<p>will look like:</p>
+<pre class="highlight plaintext"><code>Which do you prefer?
+You can say: STAR_TREK, STAR_WARS
+</code></pre>
+
+<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<h3 id='buy-buttons'>Buy Buttons</h3>
+<p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
           <h2 id='shopify'>Shopify</h2>
 <p><a href="https://www.shopify.com/">Shopify</a> is a simple way to set up an online store to organize products, accept credit card payments, and manage orders.</p>
@@ -758,88 +923,6 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 
 <p><img style="width:75%; min-width:400px; max-width:800px;" src="../images/elevio_config.png" alt="Elev.io Config"></p>
 
-          <h2 id='connecting-to-your-crm'>Connecting to your CRM</h2>
-<p>Smooch&rsquo;s been designed to fit into your existing workflow so you can focus on speaking to your users and take advantage of whatever medium makes you most effective.</p>
-
-<p>In addition to deep integration with <a href="#zendesk">Zendesk</a>, since Smooch uses e-mail to manage its communication, it&rsquo;s easy to use your favourite CRM to manage incoming conversations as tickets if you want to benefit from the additional tools this allows.</p>
-
-<ol>
-<li><p>Take note of the e-mail address that the CRM uses to receive new support requests.</p></li>
-<li><p>Set Smooch&rsquo;s forwarding address to the address you noted in step 1. </p></li>
-<li><p>Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.</p></li>
-</ol>
-
-          <h2 id='email-messaging'>Email Messaging</h2>
-<p>The Email channel allows you to have conversations with your users by email via any of your connected business systems, be it Slack, Front or a bot connected to the Smooch API.</p>
-
-<p>When you enable the Email channel, you will be provided with a Smooch email address. Emails sent to that address will be delivered to your connected business systems.</p>
-<h3 id='using-your-own-email-address'>Using your own email address</h3>
-<p>After you set up your <em>from</em> address, all your messages to users will appear to come from your own email address instead of your Smooch email address.</p>
-
-<ol>
-<li><p>To use your own email address to receive and respond to user emails, simply provide your email address in the &ldquo;from address&rdquo; field on the Smooch Email Channel page. <img alt="input from address" src="../images/input_forwarding_email.png" /></p></li>
-<li><p>Configure your email provider to automatically forward incoming email to your Smooch email address (detailed instructions below).</p></li>
-<li><p>Now click the <em><strong>Test email forwarding</strong></em> link on the Email channel page (shown below) to confirm that forwarding is working.</p></li>
-</ol>
-
-<p><img alt="test email forwarding" src="../images/test_forwarding_email.png" /></p>
-<h4 id='configuring-your-email-provider-to-forward-email-to-your-smooch-email-address'>Configuring your email provider to forward email to your Smooch email address</h4>
-<p>During configuration, your provider may send a confirmation email to your Smooch email address. It&rsquo;s important to have at least one business system set up on Smooch so that you can act on the confirmation email sent by your provider. For example, if you setup Gmail to forward to Smooch, you&rsquo;ll receive a message in your business system from the Gmail team, asking you to follow a link to confirm forwarding to your Smooch address.</p>
-<h5 id='provider-specific-instructions'>Provider specific instructions</h5>
-<p>Below are links to tutorials detailing how to set up automatic email forwarding for a variety of email providers. If you think we&rsquo;re missing a provider feel free to get in touch with us! <a href="mailto:help@smooch.io">help@smooch.io</a></p>
-
-<ul>
-<li><p><a href="https://support.google.com/mail/answer/10957">Google Apps and Gmail</a></p></li>
-<li><p>Google Groups</p>
-
-<ul>
-<li>1. <a href="https://support.google.com/a/answer/33343">Create a group</a></li>
-<li>2. <a href="https://support.google.com/groups/answer/2465464">Add your smooch email address as a member of the group</a></li>
-</ul></li>
-<li><p><a href="https://technet.microsoft.com/en-us/library/dd351134.aspx">Microsoft Exchange</a></p></li>
-<li><p><a href="https://technet.microsoft.com/en-us/magazine/dd547068.aspx">Microsoft Exchange 2007</a></p></li>
-<li><p><a href="https://help.yahoo.com/kb/SLN17371.html">Yahoo</a></p></li>
-<li><p><a href="https://my.bluehost.com/cgi/help/forwarders">Bluehost</a></p></li>
-<li><p><a href="http://wiki.dreamhost.com/Email_Setup">Dreamhost</a></p></li>
-<li><p><a href="http://www.fatcow.com/knowledgebase/read_article.bml?kbid=5745">FatCow</a></p></li>
-<li><p><a href="https://support.rackspace.com/how-to/set-up-email-forwarding-on-cloud-sites/">Rackspace</a></p></li>
-<li><p><a href="https://forum.web.com/register/faq/">Register.com</a></p></li>
-<li><p><a href="http://help.ovh.co.uk/CreateEmailRedirection">OVH</a></p></li>
-<li><p><a href="https://documentation.mailgun.com/api-routes.html#actions">Mailgun</a></p></li>
-</ul>
-<h3 id='action-buttons'>Action Buttons</h3>
-<p>Action buttons will be rendered as links in the email. So</p>
-<pre class="highlight plaintext"><code>%[hyperlink button](https://smooch.io/)
-</code></pre>
-
-<p>will appear to the user as:</p>
-
-<p><img alt="hyperlink" src="../images/email-hyperlink.png" /></p>
-<h3 id='postback-buttons'>Postback Buttons</h3>
-<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
-<pre class="highlight plaintext"><code>Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
-</code></pre>
-
-<p>will be rendered as:</p>
-
-<p><img alt="postback" src="../images/email-postback.png" /></p>
-
-<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
-<h3 id='buy-buttons'>Buy Buttons</h3>
-<p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
-<h3 id='sending-and-receiving-files'>Sending and receiving files</h3>
-<p>Email attachments sent by the user will either be rendered in your business system, if they are images, or posted as hyperlinks, for other types of files.</p>
-
-<p>Images sent to the user will be embedded in the email as html images.</p>
-<h3 id='whispers'>Whispers</h3>
-<p>Whispers sent to email will contain a footer with an unsubscribe link. Like so:</p>
-
-<p><img src="/images/email-unsubscribe.png" alt="unsubscribe" style="max-width:520px;"></p>
-
-<p>If the user clicks on this link, they will be permanently unsubscribed from further whispers, though they will still be able to receive non-whisper messages.</p>
-
           <h1 id='add-ons'>Add-ons</h1>
           <h2 id='stripe'>Stripe</h2>
 <p>Stripe is a developer-friendly platform that instantly enables businesses to accept and manage payments online and in mobile apps. Our Stripe integration allows you to request payment from your users directly within the conversation.
@@ -877,7 +960,7 @@ If you are using test mode, notice the &ldquo;Skip this account form&rdquo; at t
 <p>Once the user completes a payment you&rsquo;ll get a confirmation along with a link to the payment page on Stripe.</p>
 
           <p><aside class="notice">
-If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#facebook-messenger">Messenger</a>, <a href="#email-channel">Email</a> or <a href="#telegram">Telegram</a> integrations, they&rsquo;ll get a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch Web SDK versions older than 2.1.
+If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#facebook-messenger">Messenger</a>, <a href="#email-channel">Email</a> or <a href="#telegram">Telegram</a> integrations, they&rsquo;ll get a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for Smooch Web Messenger versions older than 2.1.
 </aside></p>
 
 <p><span class="third-width-img"><img alt="Stripe hosted checkout" src="../images/stripe_hosted_checkout.png" /></span></p>
