@@ -19,6 +19,10 @@ includes:
   - adding_smooch_js
   - configuring_agent_images
 
+  - web_messenger/web_messenger
+  - web_messenger/alternate_channels
+  - web_messenger/user_linking
+
   - users/users
   - users/user_data_intro
   - users/user_data_note_js
@@ -28,8 +32,6 @@ includes:
   - users/sensitive_user_data
   - users/users_on_multiple_devices
   - users/authenticating_users
-  - users/alternate_channels
-  - users/user_linking
 
   - actions/actions
   - actions/sending_action_buttons_web
