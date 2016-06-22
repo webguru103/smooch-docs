@@ -481,7 +481,8 @@ If your secret key is ever compromised you can generate a new one. Smooch will a
 </aside></p>
 
           <h1 id='action-buttons'>Action Buttons</h1>
-          <h2 id='links'>Links</h2>
+          <p><span class="half-width-img"><img alt="Action buttons" src="../images/action_button_web.png" /></span></p>
+<h2 id='links'>Links</h2>
 <p>You can send your users an action button with the following syntax:</p>
 <pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
 </code></pre>
@@ -489,8 +490,6 @@ If your secret key is ever compromised you can generate a new one. Smooch will a
 <p>This works from any channel you configured to use with Smooch.</p>
 
 <p>When the user taps your button, it&rsquo;ll open whatever link you specified in a new tab.</p>
-
-<p><span class="half-width-img"><img alt="Action buttons" src="../images/action_button_web.png" /></span></p>
 
 <p><aside class="notice">
 Buttons will always be appended at the bottom of your message bubble.
@@ -1061,33 +1060,18 @@ You must give it a height, otherwise, the widget will collapse.
 </code></pre>
 
           <h2 id='strings-customization'>Strings customization</h2>
-<p>Smooch lets you customize any strings it displays by overwriting its keys. Simply add the <code class="prettyprint">customText</code> key in your <code class="prettyprint">Smooch.init()</code> call and specify new values for the keys used in Smooch. You can find all available keys by browsing to the <code class="prettyprint">defaultText</code> object in the source. If something is between <code class="prettyprint">{}</code>, it&rsquo;s a variable and needs to stay in your customized text if you want to use it.</p>
+<p>Smooch lets you customize any strings it displays by overwriting its keys. Simply add the <code class="prettyprint">customText</code> key in your <code class="prettyprint">Smooch.init()</code> call and specify new values for the keys used in Smooch. You can find all available keys <a href="https://github.com/smooch/smooch-js/blob/master/src/js/reducers/ui-reducer.js#L6">here</a>. If some text is between <code class="prettyprint">{}</code>, or if there is an html tag such as <code class="prettyprint">&lt;a&gt;</code>, it needs to stay in your customized text.</p>
+
+<p>For example:</p>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
     <span class="na">customText</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">headerText</span><span class="p">:</span> <span class="s1">'How can we help?'</span><span class="p">,</span>
         <span class="na">inputPlaceholder</span><span class="p">:</span> <span class="s1">'Type a message...'</span><span class="p">,</span>
         <span class="na">sendButtonText</span><span class="p">:</span> <span class="s1">'Send'</span><span class="p">,</span>
-        <span class="na">introText</span><span class="p">:</span> <span class="s1">'This is the beginning of your conversation.&lt;br/&gt; Ask us anything!'</span><span class="p">,</span>
-        <span class="na">settingsText</span><span class="p">:</span> <span class="s1">'You can leave us your email so that we can get back to you this way.'</span><span class="p">,</span>
-        <span class="na">settingsReadOnlyText</span><span class="p">:</span> <span class="s1">'We\'ll get back to you at this email address if we missed you.'</span><span class="p">,</span>
-        <span class="na">settingsInputPlaceholder</span><span class="p">:</span> <span class="s1">'Your email address'</span><span class="p">,</span>
-        <span class="na">settingsSaveButtonText</span><span class="p">:</span> <span class="s1">'Save'</span><span class="p">,</span>
-        <span class="na">settingsHeaderText</span><span class="p">:</span> <span class="s1">'Email Settings'</span><span class="p">,</span>
-        <span class="na">settingsNotificationText</span><span class="p">:</span> <span class="s1">'In case we\'re slow to respond you can &lt;a href data-ui-settings-link&gt;leave us your email&lt;/a&gt;.'</span><span class="p">,</span>
-        <span class="na">actionPaymentError</span><span class="p">:</span> <span class="s1">'An error occurred while processing the card. &lt;br&gt; Please try again or use a different card.'</span><span class="p">,</span>
-        <span class="na">actionPaymentCompleted</span><span class="p">:</span> <span class="s1">'Payment Completed'</span><span class="p">,</span>
-        <span class="na">messageError</span><span class="p">:</span> <span class="s1">'An error occured while sending your message. Please try again.'</span><span class="p">,</span>
-        <span class="na">invalidFileError</span><span class="p">:</span> <span class="s1">'Sorry, but only images are supported currently. Please choose a file with a supported extension (jpg, jpeg, png, gif, or bmp).'</span><span class="p">,</span>
-        <span class="na">messageIndicatorTitleSingular</span><span class="p">:</span> <span class="s1">'({count}) New message'</span><span class="p">,</span>
-        <span class="na">messageIndicatorTitlePlural</span><span class="p">:</span> <span class="s1">'({count}) New messages'</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
-
-<p><aside>
-In order to have a working link in <code class="prettyprint">settingsNotificationText</code>, you must have an <code class="prettyprint">a</code> tag with a <code class="prettyprint">data-ui-settings-link</code> attribute on it.
-</aside></p>
 
           <h2 id='sound-notification'>Sound notification</h2>
 <p>By default, a sound notification will be played when a new message comes in and the window is not in focus.</p>
