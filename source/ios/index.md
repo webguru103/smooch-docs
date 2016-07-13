@@ -31,6 +31,7 @@ includes:
 
   - actions/actions
   - actions/sending_action_buttons
+  - actions/replies
   - actions/postbacks
 
   - business_app_integrations/integrations

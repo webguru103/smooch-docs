@@ -33,6 +33,18 @@ The API also facilitates [cross-origin resource sharing](https://en.wikipedia.or
 
 ## Errors
 
+```
+401 Unauthorized
+```
+```
+{
+  "error": {
+    "code": "unauthorized",
+    "description": "Authorization is required"
+  }
+}
+```
+
 Smooch uses standard HTTP status codes to communicate errors
 
 |         |   |
@@ -45,6 +57,8 @@ Smooch uses standard HTTP status codes to communicate errors
 | **409** | Conflict - You might be trying to update the same resource concurrently. |
 | **429** | Too Many Requests - You are calling our APIs more frequently than we allow. |
 | **500, 502, 503, 504** | Server Errors - Something went wrong on our end. |
+
+In addition to the status code, the HTTP body of the response will also contain a JSON representation of the error.
 
 ## Rate Limits
 
@@ -417,6 +431,9 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 ```json
 {
     "trigger": "message:appUser",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
     "messages":[{
         "_id": "55c8c1498590aa1900b9b9b1",
         "text": "Hi! Do you have time to chat?",
@@ -458,6 +475,9 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 ```json
 {
     "trigger": "postback",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
     "postbacks":[{
         "message": {
             "_id": "55c8c1498590aa1900b9b9b1",
@@ -510,7 +530,7 @@ That secret is available in the response to the POST request used to generate th
 
 ## Retry Policy
 
-If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at an exponentially increasing interval.
+If a webhook target responds with anything other than a 2xx status code, or if no response is received within 5 seconds, the call will be reattempted up to 5 times at an exponentially increasing interval.
 
 # Init
 
@@ -1102,11 +1122,12 @@ For messages originating from an app maker, a `jwt` credential with `app` level 
 | **mediaType**<br/>*optional* | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpeg`. If `mediaType` is not specified, the media type will be resolved with the `mediaUrl`. |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
 | **actions**<br/>*optional* | An array of action buttons (see section below) |
+| **payload**<br/>*optional* | The payload of a `reply` action, if applicable |
 
 ### Action buttons
 Actions buttons can be sent through the API by including them in the message payload.
 
-There are 3 types of supported actions : **link**, **buy**, and **postback**. Type must be specified by providing a `type` argument in the action object.
+There are 4 types of supported actions : **link**, **buy**, **postback**, and **reply**. Type must be specified by providing a `type` argument in the action object.
 
 <aside class="notice">
     Action buttons can only be sent with an `appMaker` role.
@@ -1211,13 +1232,52 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 |------------------------------|----------------------------|
 | **text**<br/>*required*      | The button text. |
 | **type**<br/>*required*      | `postback` |
-| **payload**<br/>*optional*    | A string payload to help you identify the action context. You can also use metadata for more complex needs. |
+| **payload**<br/>*required*    | A string payload to help you identify the action context. You can also use metadata for more complex needs. |
 | **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
 
 <aside class="notice">
 See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>.
 </aside>
 
+> Send reply action:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages \
+     -X POST \
+     -d '{"text":"Which do you prefer?", "role": "appMaker", "actions": [{"type": "reply", "text": "Burger King", "payload": "BURGER_KING" }, {"type": "reply", "text": "Pizza Hut", "payload": "PIZZA_HUT"}]}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Which do you prefer?',
+    role: 'appMaker',
+    actions: [
+      {
+        type: 'reply',
+        text: 'Burger King',
+        payload: 'BURGER_KING'
+      }, {
+        type: 'reply',
+        text: 'Pizza Hut',
+        payload: 'PIZZA_HUT'
+      }
+    ]
+}).then(() => {
+    // async code
+});
+```
+
+| **Reply**                |                  |
+|------------------------------|----------------------------|
+| **text**<br/>*required*      | The button text. |
+| **type**<br/>*required*      | `reply` |
+| **payload**<br/>*required*    | A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs. |
+| **metadata**<br/>*optional*  | Flat JSON object containing any custom properties associated with the action. |
+
+<aside class="notice">
+`reply` type actions are mutually exclusive with other action types. When specifying a `reply` action, all other actions on the same message must also be of type `reply`, otherwise the message will be considered invalid.
+</aside>
 
 ## Upload Image
 

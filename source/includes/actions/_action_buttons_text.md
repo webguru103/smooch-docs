@@ -8,23 +8,24 @@ This is a very special link
 Click Here https://google.ca
 ```
 
-### Postback Buttons
+### Reply and Postback Buttons
 
-Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:
+Reply buttons and Postback buttons will be rendered as text suggestions, instead of as buttons. So a message like this:
 
 ```
 Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
+%[Star Trek](reply:STAR_TREK)
+%[Star Wars](reply:STAR_WARS)
 ```
 
 will look like:
 
 ```
 Which do you prefer?
-You can say: STAR_TREK, STAR_WARS
+You can say: STAR TREK, STAR WARS
 ```
-A user response of `STAR TREK`, will cause the payload `STAR_TREK` to be delivered by [webhook](/rest#webhooks).
+
+Smooch will then do string matching on the user's reply to determine if they have selected one of the options, and take the appropriate action. For example, a user response of `STAR TREK` or `star trek`, will cause the payload `STAR_TREK` to be attached to the message.
 
 ### Buy Buttons
 
