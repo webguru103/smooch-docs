@@ -60,7 +60,16 @@
 <p>The API accepts JSON in request bodies and requires that the <code class="prettyprint">content-type: application/json</code> header be specified for all such requests. The API will always respond with a JSON object. Depending on context, resources may be returned as single objects or as arrays of objects, nested within the response object.</p>
 
 <p>The API also facilitates <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">cross-origin resource sharing</a> so that it can be called from a web application.</p>
-<h2 id='errors'>Errors</h2>
+<h2 id='errors'>Errors</h2><pre class="highlight plaintext"><code>401 Unauthorized
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unauthorized"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Authorization is required"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>Smooch uses standard HTTP status codes to communicate errors</p>
 
 <table><thead>
@@ -102,6 +111,8 @@
 <td>Server Errors - Something went wrong on our end.</td>
 </tr>
 </tbody></table>
+
+<p>In addition to the status code, the HTTP body of the response will also contain a JSON representation of the error.</p>
 <h2 id='rate-limits'>Rate Limits</h2>
 <p>Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a <code class="prettyprint">429 Too Many Requests</code> HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications that consistently exceed limits run the risk of being permanently disabled.</p>
 <h2 id='deprecations'>Deprecations</h2>
@@ -486,6 +497,9 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message:appUser"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5698edbf2a43bd081be982f1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"messages"</span><span class="p">:[{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
@@ -526,6 +540,9 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5698edbf2a43bd081be982f1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="s2">"postbacks"</span><span class="p">:[{</span><span class="w">
         </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"55c8c1498590aa1900b9b9b1"</span><span class="p">,</span><span class="w">
@@ -574,7 +591,7 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 
 <p>That secret is available in the response to the POST request used to generate the webhook, or through a GET request to the webhook route.</p>
 <h2 id='retry-policy'>Retry Policy</h2>
-<p>If a webhook target responds with anything other than a 2xx status code, the call will be reattempted up to 5 times at an exponentially increasing interval.</p>
+<p>If a webhook target responds with anything other than a 2xx status code, or if no response is received within 5 seconds, the call will be reattempted up to 5 times at an exponentially increasing interval.</p>
 <h1 id='init'>Init</h1>
 <blockquote>
 <p>Request:</p>
@@ -1261,7 +1278,7 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
 
 <p>Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. The message <code class="prettyprint">text</code> and <code class="prettyprint">role</code> must both be specified. For messages coming from the app user, set <code class="prettyprint">role</code> to <code class="prettyprint">appUser</code>. For messages coming from an app maker, set this parameter to <code class="prettyprint">appMaker</code>.</p>
 
-<p>Images can be posted by reference using this API by specifying the <code class="prettyprint">mediaUrl</code> and <code class="prettyprint">mediaType</code> parameters. Alternatively, you may also upload images to the conversation directly using the <a href="#post-image"><code class="prettyprint">/images</code></a> endpoint.</p>
+<p>Images can be posted by reference using this API by specifying the <code class="prettyprint">mediaUrl</code> parameter. Alternatively, you may also upload images to the conversation directly using the <a href="#post-image"><code class="prettyprint">/images</code></a> endpoint.</p>
 
 <p><aside class="notice">
 For messages originating from an app maker, a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope must be included.
@@ -1275,7 +1292,7 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </thead><tbody>
 <tr>
 <td><strong>text</strong><br/><em>required</em></td>
-<td>The message content. <code class="prettyprint">text</code> becomes optional if <code class="prettyprint">mediaUrl</code> and <code class="prettyprint">mediaType</code> are both specified or when actions are provided.</td>
+<td>The message content. <code class="prettyprint">text</code> becomes optional if <code class="prettyprint">mediaUrl</code> is specified or when actions are provided.</td>
 </tr>
 <tr>
 <td><strong>role</strong><br/><em>required</em></td>
@@ -1295,11 +1312,11 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </tr>
 <tr>
 <td><strong>mediaUrl</strong><br/><em>optional</em></td>
-<td>The image URL used in an image message. If a <code class="prettyprint">mediaUrl</code> is specified, the <code class="prettyprint">mediaType</code> must also be specified.</td>
+<td>The image URL used in an image message.</td>
 </tr>
 <tr>
 <td><strong>mediaType</strong><br/><em>optional</em></td>
-<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpeg</code></td>
+<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpeg</code>. If <code class="prettyprint">mediaType</code> is not specified, the media type will be resolved with the <code class="prettyprint">mediaUrl</code>.</td>
 </tr>
 <tr>
 <td><strong>metadata</strong><br/><em>optional</em></td>
@@ -1309,11 +1326,15 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 <td><strong>actions</strong><br/><em>optional</em></td>
 <td>An array of action buttons (see section below)</td>
 </tr>
+<tr>
+<td><strong>payload</strong><br/><em>optional</em></td>
+<td>The payload of a <code class="prettyprint">reply</code> action, if applicable</td>
+</tr>
 </tbody></table>
 <h3 id='action-buttons'>Action buttons</h3>
 <p>Actions buttons can be sent through the API by including them in the message payload.</p>
 
-<p>There are 3 types of supported actions : <strong>link</strong>, <strong>buy</strong>, and <strong>postback</strong>. Type must be specified by providing a <code class="prettyprint">type</code> argument in the action object.</p>
+<p>There are 4 types of supported actions : <strong>link</strong>, <strong>buy</strong>, <strong>postback</strong>, and <strong>reply</strong>. Type must be specified by providing a <code class="prettyprint">type</code> argument in the action object.</p>
 
 <p><aside class="notice">
     Action buttons can only be sent with an <code class="prettyprint">appMaker</code> role.
@@ -1462,7 +1483,7 @@ The <a href="/javascript/#stripe">Stripe integration</a> must be configured and 
 <td><code class="prettyprint">postback</code></td>
 </tr>
 <tr>
-<td><strong>payload</strong><br/><em>optional</em></td>
+<td><strong>payload</strong><br/><em>required</em></td>
 <td>A string payload to help you identify the action context. You can also use metadata for more complex needs.</td>
 </tr>
 <tr>
@@ -1473,6 +1494,62 @@ The <a href="/javascript/#stripe">Stripe integration</a> must be configured and 
 
 <p><aside class="notice">
 See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>.
+</aside></p>
+
+<blockquote>
+<p>Send reply action:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"text":"Which do you prefer?", "role": "appMaker", "actions": [{"type": "reply", "text": "Burger King", "payload": "BURGER_KING" }, {"type": "reply", "text": "Pizza Hut", "payload": "PIZZA_HUT"}]}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Which do you prefer?'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Burger King'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'BURGER_KING'</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Pizza Hut'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'PIZZA_HUT'</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<table><thead>
+<tr>
+<th><strong>Reply</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><em>required</em></td>
+<td>The button text.</td>
+</tr>
+<tr>
+<td><strong>type</strong><br/><em>required</em></td>
+<td><code class="prettyprint">reply</code></td>
+</tr>
+<tr>
+<td><strong>payload</strong><br/><em>required</em></td>
+<td>A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs.</td>
+</tr>
+<tr>
+<td><strong>metadata</strong><br/><em>optional</em></td>
+<td>Flat JSON object containing any custom properties associated with the action.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">
+<code class="prettyprint">reply</code> type actions are mutually exclusive with other action types. When specifying a <code class="prettyprint">reply</code> action, all other actions on the same message must also be of type <code class="prettyprint">reply</code>, otherwise the message will be considered invalid.
 </aside></p>
 <h2 id='upload-image'>Upload Image</h2>
 <blockquote>

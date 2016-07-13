@@ -471,6 +471,19 @@ If your secret key is ever compromised you can generate a new one. Smooch will a
 </aside></p>
 
           <h1 id='action-buttons'>Action Buttons</h1>
+<p>Action buttons can be used for a variety of different purposes, and come in many forms. The current supported types of actions are:</p>
+
+<ul>
+<li><a href="#links">Link Buttons</a> - Used to refer the user somewhere else (a webpage, phone number, mailto, deep link, etc.).</li>
+<li><a href="#requesting-payments">Buy Buttons</a> - Used to request payment from the user.</li>
+<li><a href="#replies">Reply Buttons</a> - Used to present the user with suggested reply options. Cannot be mixed with other action types.</li>
+<li><a href="#postbacks">Postback Buttons</a> - Used to trigger server-side logic when pressed.</li>
+</ul>
+
+<p><aside class="notice">
+Actions can be sent through the <a href="http://docs.smooch.io/rest#action-buttons">REST API</a>, or by using one of the <a href="http://blog.smooch.io/how-to-make-buttons-images-payments-with-smooch-a-syntax-cheatsheet/">shorthand syntaxes</a> in your message text.
+</aside></p>
+
           <h2 id='links'>Links</h2>
 <p>You can send your users an action button with the following syntax:</p>
 <pre class="highlight plaintext"><code>%[Button label here](http://anyurl.com)
@@ -490,18 +503,36 @@ Buttons will always be appended at the bottom of your message bubble.
 
 <p><img alt="App Store ID" src="../images/appstoreid_from_url.png" /></p>
 
-          <h2 id='postbacks'>Postbacks</h2>
-<p>Postback buttons are a great way to enhance your conversations, since they can trigger server-side logic when a user clicks on them. When you send the postback button, you can attach a <code class="prettyprint">payload</code> and when the user clicks on it, it will trigger webhooks listening to the <code class="prettyprint">postback</code> trigger. The payload associated with the action clicked by the user will be included in the webhook body.</p>
+          <h2 id='replies'>Replies</h2>
+<p>Reply buttons are a great way to walk the user through a specific flow, by suggesting various courses of action. A reply button, once tapped, will insert a reply on behalf of the user. Suggested replies are invaluable when building a bot or automated conversation flow, because they keep your user focused and provide clear instructions on how to proceed.</p>
 
-<p>This allows you to respond to the press of a button from your backend. The server-side logic can use the <code class="prettyprint">payload</code> to run different code based on the context of the conversation. These features are very useful when building a bot.</p>
+<p>Each reply button has an associated <code class="prettyprint">payload</code>, which should uniquely identify the intent of the action. When the user answers with one of the suggested replies, this payload will be included as part of the message object. The message will then be delivered as a normal message, appearing in any business system integrations, and delivered to webhooks subscribed to the <code class="prettyprint">message:appUser</code> event.</p>
 
-<p>You can send your users an postback button with the following syntax:</p>
-<pre class="highlight plaintext"><code>%[Button label here](postback:PAYLOAD_HERE)
+<p>You can send a reply button with the following syntax:</p>
+<pre class="highlight plaintext"><code>%[Button label here](reply:PAYLOAD_HERE)
 </code></pre>
 
 <p><aside class="notice">
-You can also send postback buttons through the <a href="http://docs.smooch.io/rest#action-buttons">REST API</a>.
+Reply buttons are mutually exclusive with other action types. When specifying a reply button, all other actions on the same message must also be replies, otherwise the message will be considered invalid.
+</aside>
+<aside class="notice">
+Reply buttons are currently supported on Facebook Messenger, LINE, WeChat, Telegram, SMS, and Email Messaging.
 </aside></p>
+
+          <h2 id='postbacks'>Postbacks</h2>
+<p>Postback buttons are a great way to enhance your conversations, since they can trigger server-side logic when a user clicks on them. When you send the postback button, you can attach a <code class="prettyprint">payload</code> and when the user clicks on it, it will trigger webhooks listening to the <code class="prettyprint">postback</code> trigger. The payload associated with the action clicked by the user will be included in the webhook body. This allows you to respond to the press of a button from your backend. The server-side logic can use the <code class="prettyprint">payload</code> to run different code based on the context of the conversation. These features are very useful when building a bot.</p>
+
+<p>Postback buttons are similar in function to <a href="#replies">reply buttons</a>, but with a few key differences:</p>
+
+<ol>
+<li>Postbacks are multi-use. The button does not disappear after the user taps on it, and therefore it can be clicked many times.</li>
+<li>Postbacks do not echo the user&rsquo;s selection in the conversation history.</li>
+<li>Postbacks use the <code class="prettyprint">postback</code> webhook event, rather than the <code class="prettyprint">message:appUser</code> event.</li>
+</ol>
+
+<p>You can send your users a postback button with the following syntax:</p>
+<pre class="highlight plaintext"><code>%[Button label here](postback:PAYLOAD_HERE)
+</code></pre>
 
           <h1 id='business-app-integrations'>Business App Integrations</h1>
           <h2 id='email'>Email</h2>
@@ -646,19 +677,19 @@ You can easily view your active conversations and user profiles at a glance.</p>
 
 Click Here https://google.ca
 </code></pre>
-<h3 id='postback-buttons'>Postback Buttons</h3>
-<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<h3 id='reply-and-postback-buttons'>Reply and Postback Buttons</h3>
+<p>Reply buttons and Postback buttons will be rendered as text suggestions, instead of as buttons. So a message like this:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
+%[Star Trek](reply:STAR_TREK)
+%[Star Wars](reply:STAR_WARS)
 </code></pre>
 
 <p>will look like:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-You can say: STAR_TREK, STAR_WARS
+You can say: STAR TREK, STAR WARS
 </code></pre>
 
-<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<p>Smooch will then do string matching on the user&rsquo;s reply to determine if they have selected one of the options, and take the appropriate action. For example, a user response of <code class="prettyprint">STAR TREK</code> or <code class="prettyprint">star trek</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be attached to the message.</p>
 <h3 id='buy-buttons'>Buy Buttons</h3>
 <p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
@@ -701,19 +732,19 @@ You can say: STAR_TREK, STAR_WARS
 
 Click Here https://google.ca
 </code></pre>
-<h3 id='postback-buttons'>Postback Buttons</h3>
-<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<h3 id='reply-and-postback-buttons'>Reply and Postback Buttons</h3>
+<p>Reply buttons and Postback buttons will be rendered as text suggestions, instead of as buttons. So a message like this:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
+%[Star Trek](reply:STAR_TREK)
+%[Star Wars](reply:STAR_WARS)
 </code></pre>
 
 <p>will look like:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-You can say: STAR_TREK, STAR_WARS
+You can say: STAR TREK, STAR WARS
 </code></pre>
 
-<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<p>Smooch will then do string matching on the user&rsquo;s reply to determine if they have selected one of the options, and take the appropriate action. For example, a user response of <code class="prettyprint">STAR TREK</code> or <code class="prettyprint">star trek</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be attached to the message.</p>
 <h3 id='buy-buttons'>Buy Buttons</h3>
 <p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
@@ -814,19 +845,19 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 
 Click Here https://google.ca
 </code></pre>
-<h3 id='postback-buttons'>Postback Buttons</h3>
-<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<h3 id='reply-and-postback-buttons'>Reply and Postback Buttons</h3>
+<p>Reply buttons and Postback buttons will be rendered as text suggestions, instead of as buttons. So a message like this:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
+%[Star Trek](reply:STAR_TREK)
+%[Star Wars](reply:STAR_WARS)
 </code></pre>
 
 <p>will look like:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-You can say: STAR_TREK, STAR_WARS
+You can say: STAR TREK, STAR WARS
 </code></pre>
 
-<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<p>Smooch will then do string matching on the user&rsquo;s reply to determine if they have selected one of the options, and take the appropriate action. For example, a user response of <code class="prettyprint">STAR TREK</code> or <code class="prettyprint">star trek</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be attached to the message.</p>
 <h3 id='buy-buttons'>Buy Buttons</h3>
 <p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
@@ -857,19 +888,19 @@ You can say: STAR_TREK, STAR_WARS
 
 Click Here https://google.ca
 </code></pre>
-<h3 id='postback-buttons'>Postback Buttons</h3>
-<p>Postback buttons will be rendered as suggested responses, instead of as buttons. So a message like this:</p>
+<h3 id='reply-and-postback-buttons'>Reply and Postback Buttons</h3>
+<p>Reply buttons and Postback buttons will be rendered as text suggestions, instead of as buttons. So a message like this:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-%[Star Trek](postback:STAR_TREK)
-%[Star Wars](postback:STAR_WARS)
+%[Star Trek](reply:STAR_TREK)
+%[Star Wars](reply:STAR_WARS)
 </code></pre>
 
 <p>will look like:</p>
 <pre class="highlight plaintext"><code>Which do you prefer?
-You can say: STAR_TREK, STAR_WARS
+You can say: STAR TREK, STAR WARS
 </code></pre>
 
-<p>A user response of <code class="prettyprint">STAR TREK</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be delivered by <a href="/rest#webhooks">webhook</a>.</p>
+<p>Smooch will then do string matching on the user&rsquo;s reply to determine if they have selected one of the options, and take the appropriate action. For example, a user response of <code class="prettyprint">STAR TREK</code> or <code class="prettyprint">star trek</code>, will cause the payload <code class="prettyprint">STAR_TREK</code> to be attached to the message.</p>
 <h3 id='buy-buttons'>Buy Buttons</h3>
 <p>Buy buttons will be rendered as hyperlinks and redirect users to a web page where they can enter payment information.</p>
 
