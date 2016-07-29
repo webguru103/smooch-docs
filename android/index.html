@@ -531,6 +531,16 @@ Reply buttons are currently supported on Facebook Messenger, LINE, WeChat, Teleg
 <pre class="highlight plaintext"><code>%[Button label here](postback:PAYLOAD_HERE)
 </code></pre>
 
+          <h1 id='images'>Images</h1>
+<p>To send the user an image from one of your Business System integrations, use the following syntax with a publicly visible web url:</p>
+<pre class="highlight plaintext"><code>![](http://url-of.the/image.jpg)
+</code></pre>
+
+<p>This works from any channel you configured to use with Smooch. You can also use the <a href="/rest#upload-image">REST API</a> to upload images.</p>
+
+<p><aside class='notice'>Images can&rsquo;t be sent along with text. On most frontend channels, only the image will be displayed.</aside>
+<aside class='notice'>Only one image per message is supported; multiple image syntaxes in a same message will be rendered as links.</aside></p>
+
           <h1 id='business-app-integrations'>Business App Integrations</h1>
           <h2 id='email'>Email</h2>
 <p>The Email integration allows you to receive Smooch messages in your inbox.</p>

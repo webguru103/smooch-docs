@@ -539,6 +539,16 @@ Reply buttons are currently supported on Facebook Messenger, LINE, WeChat, Teleg
 <pre class="highlight plaintext"><code>%[Button label here](postback:PAYLOAD_HERE)
 </code></pre>
 
+          <h1 id='images'>Images</h1>
+<p>To send the user an image from one of your Business System integrations, use the following syntax with a publicly visible web url:</p>
+<pre class="highlight plaintext"><code>![](http://url-of.the/image.jpg)
+</code></pre>
+
+<p>This works from any channel you configured to use with Smooch. You can also use the <a href="/rest#upload-image">REST API</a> to upload images.</p>
+
+<p><aside class='notice'>Images can&rsquo;t be sent along with text. On most frontend channels, only the image will be displayed.</aside>
+<aside class='notice'>Only one image per message is supported; multiple image syntaxes in a same message will be rendered as links.</aside></p>
+
           <h1 id='business-app-integrations'>Business App Integrations</h1>
           <h2 id='email'>Email</h2>
 <p>The Email integration allows you to receive Smooch messages in your inbox.</p>
@@ -1130,12 +1140,21 @@ You must give it a height, otherwise, the widget will collapse.
 <span class="p">});</span>
 </code></pre>
 
-          <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2><h3 id='basic-customization'>Basic Customization</h3>
-<p>For basic customization of colors, you can set an Accent Color and a Secondary Color in the web settings of the Smooch dashboard.</p>
+          <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
+<p>The web messenger settings page allows for customization of various fields.</p>
+
+<p><img alt="Web Messenger Settings" src="../images/web_messenger_settings.png" /></p>
+<h3 id='display-style'>Display Style</h3>
+<p>The web messenger can be displayed as a button or as a tab. You can select the style in the web settings of the Smooch dashboard. The default style is the button mode.</p>
+
+<p>With the button style web messenger, you have the option of selecting your own button icon. The image must be at least 200 x 200 pixels and must be in either JPG, PNG, or GIF format. </p>
+<h3 id='basic-color-customization'>Basic Color Customization</h3>
+<p>For basic customization of colors, you can set the Brand Color, Conversation Color and Action Color in the web settings of the Smooch dashboard.</p>
 
 <ul>
-<li>The <strong>Accent Color</strong> customizes the color of customer messages and actions in the footer.</li>
-<li>The <strong>Secondary Color</strong> changes the appearance of links and buttons in your messages.</li>
+<li>The <strong>Brand Color</strong> customizes the color of the messenger header. It is also used for the color of the button or tab in idle state, as well as the color of the default app icon. If no color is specified, the brand color will default to <span style='color: #65758e; font-weight:bold;'>#65758e</span>.</li>
+<li>The <strong>Conversation Color</strong> customizes the color of customer messages and actions in the footer. If no color is specified, the conversation color will default to <span style='color: #0099ff; font-weight: bold;'>#0099ff</span>.</li>
+<li>The <strong>Action Color</strong> changes the appearance of links and buttons in your messages. It is also used for the &lsquo;Send&rsquo; button when it is in active state. If no color is specified, the action color will default to <span style='color: #0099ff; font-weight: bold;'>#0099ff<span>.</li>
 </ul>
 
 <p><img alt="Color Customization" src="../images/color_customization_web.png" /></p>
@@ -1149,6 +1168,10 @@ You must give it a height, otherwise, the widget will collapse.
     <span class="nl">border-left-color</span><span class="p">:</span> <span class="m">#ff3333</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+
+<p><aside class="warning">
+If you use CSS customizations, we strongly suggest you add Smooch to your site through <a href="#npm-and-browserify">npm</a> or through <a href="#bower">bower</a>. The version we have on <a href="#script-tag-method">CDN</a> has our latest updates. Any new changes we push may break your CSS customizations.
+</aside></p>
 
       </div>
       <div class="dark-box">
