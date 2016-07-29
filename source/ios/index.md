@@ -34,6 +34,8 @@ includes:
   - actions/replies
   - actions/postbacks
 
+  - images
+
   - business_app_integrations/integrations
   - business_app_integrations/email
   - business_app_integrations/slack
