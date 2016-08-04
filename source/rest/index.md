@@ -481,24 +481,29 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
     "postbacks":[{
         "message": {
             "_id": "55c8c1498590aa1900b9b9b1",
-            "text": "Hi! Do you have time to chat?",
-            "role": "appUser",
+            "text": "Do you want to see more options?",
+            "role": "appMaker",
             "authorId": "c7f6e6d6c3a637261bd9656f",
-            "name": "Steve",
+            "name": "LunchBot",
             "received": 1444348338.704,
             "metadata": {},
             "actions": [{
                 "_id": "571530ee4fae94c32b78b170",
                 "type": "postback",
-                "text": "Read more",
-                "payload": "1234"
+                "text": "Yes",
+                "payload": "YES"
+            }, {
+                "_id": "571530ee4fae94c32b78b171",
+                "type": "postback",
+                "text": "No",
+                "payload": "NO"
             }]
         },
         "action": {
             "_id": "571530ee4fae94c32b78b170",
             "type": "postback",
             "text": "Read more",
-            "payload": "1234"
+            "payload": "YES"
         }
     }],
     "appUser": {
