@@ -1131,7 +1131,7 @@ You must give it a height, otherwise, the widget will collapse.
 
 <p>As illustrated above, it&rsquo;s possible to prompt your users for their email, after they send their first message. By clicking on &ldquo;leave us your email&rdquo;, your users will be able to enter their email address which will then be accessible in Slack by using the <code class="prettyprint">/sk !profile</code> command or in HipChat by opening the profile sidebar.</p>
 
-<p>To enable this feature, you need add the <code class="prettyprint">emailCapturedEnabled</code> option to the <code class="prettyprint">Smooch.init</code> call, like this:</p>
+<p>To enable this feature, you need add the <code class="prettyprint">emailCaptureEnabled</code> option to the <code class="prettyprint">Smooch.init</code> call, like this:</p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">skPromise</span> <span class="o">=</span> <span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
     <span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">,</span>
     <span class="na">givenName</span><span class="p">:</span> <span class="s1">'Cool'</span><span class="p">,</span>
