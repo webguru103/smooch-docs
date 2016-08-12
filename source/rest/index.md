@@ -963,6 +963,108 @@ Suppose for example you begin a conversation with an end user `bob@example.com` 
 Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
 </aside>
 
+## Link App User To Channel
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels \
+     -X POST \
+     -d '{"type": "twilio", "phoneNumber": "+15145555555"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.appUsers.linkChannel('steveb@channel5.com', {
+    type: 'twilio',
+    phoneNumber: '+15145555555'
+}).then((response) => {
+    // async code
+});
+```
+
+> Response:
+
+```
+200 OK
+```
+```json
+{
+    "appUser": {
+        "_id": "deb920657bbc3adc3fec7963",
+        "userId": "steveb@channel5.com",
+        "givenName": "Steve",
+        "signedUpAt": "2015-10-08T23:52:11.677Z",
+        "properties": {
+          "favoriteFood": "pizza"
+        },
+        "conversationStarted": false,
+        "credentialRequired": false,
+        "clients": [],
+        "pendingClients": [
+            {
+                "id": "d383f9f4-c8d2-42dd-9f7c-f525fad6849d",
+                "platform": "twilio",
+                "displayName": "+15145555555"
+            }
+        ]
+    }
+}
+```
+
+<api>`POST /v1/appusers/{smoochId|userId}/channels`</api>
+
+| **Arguments**                 |                            |
+|-------------------------------|----------------------------|
+| **type**<br/><span class='req'>required</span>     | The channel to link.|
+| **{entity}**<br/><span class='req'>required</span> | The required entity for linking. This is [different for each channel](#linkable-channels-and-entities).|
+| **skipConfirmation**<br/><span class='opt'>optional</span> | Flag to specify whether or not the confirmation message is sent. Requires app scope JWT.|
+
+Linking allows users to continue conversations on their preferred channels. An appUser's linked channels will be found in the `clients` field. 
+
+When a link request is first made, the channel will be added to the `pendingClients` field. The appUser is then prompted to accept the linking request. If they do so, the corresponding channel is then moved from the `pendingClients` field to `clients` field. If they reject the linking request then the channel is removed from `pendingClients`.
+
+It is possible to skip the confirmation step with the `skipConfirmation` flag. App scope JWT is required to specify the confirmation option.
+
+### Linkable channels and entities
+
+Given that there is no way for you to provide Smooch with the necessary ID to connect Messenger, LINE, WeChat or Telegram, we have limited the API to only accept ‘Twilio’ for now.
+Support for Frontend Email is coming soon.
+
+| Channel type                 | Required entity              |
+|------------------------------|------------------------------|
+| twilio                       | **phoneNumber**<br/> A String of the appUser's phone number. It must contain the `+` prefix and the country code.<br/> Examples of valid phone numbers: `+1 212-555-2368`, `+12125552368`, `+1 212 555 2368`.<br/> Examples of invalid phone numbers: `212 555 2368`, `1 212 555 2368`.                  |
+
+
+
+## Unlink App User From Channel
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels/twilio \
+     -X DELETE \
+     -d '{"type": "twilio"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.appUsers.unlinkChannel('steveb@channel5.com', 'twilio')
+.then(() => { 
+    // async code
+});
+```
+
+> Response:
+
+```
+200 OK
+```
+
+<api>`DELETE /v1/appusers/{smoochId|userId}/channels/{channel}`</api>
+
+Removes the specified channel from the appUser's clients.
+
 # Conversations
 
 When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the `/v1/appusers/` API.
