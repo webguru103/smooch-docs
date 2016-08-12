@@ -15,4 +15,4 @@ Once your Facebook account is connected to Smooch, select the Facebook page you 
 
 Action buttons work as expected. A `link` action button will bring the user to the specified URL while a `postback` action button will trigger any [webhook](/rest#webhooks) listening to the `postback` trigger.
 
-Payment requests (action buttons of type `buy`) will turn into link buttons which bring the user to a checkout page where payment information can be entered.
+Because of new [Facebook terms of service](https://developers.facebook.com/policy/#messengerplatform), payment requests (action buttons of type `buy`) cannot currently be sent to Messenger.
