@@ -1148,6 +1148,119 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <p><aside class="notice">
 Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope.
 </aside></p>
+<h2 id='link-app-user-to-channel'>Link App User To Channel</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"type": "twilio", "phoneNumber": "+15145555555"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">linkChannel</span><span class="p">(</span><span class="s1">'steveb@channel5.com'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'twilio'</span><span class="p">,</span>
+    <span class="na">phoneNumber</span><span class="p">:</span> <span class="s1">'+15145555555'</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deb920657bbc3adc3fec7963"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"steveb@channel5.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"givenName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T23:52:11.677Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"favoriteFood"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pizza"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"credentialRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clients"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"pendingClients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d383f9f4-c8d2-42dd-9f7c-f525fad6849d"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twilio"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15145555555"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers/{smoochId|userId}/channels</code></api></p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong><br/><span class='req'>required</span></td>
+<td>The channel to link.</td>
+</tr>
+<tr>
+<td><strong>{entity}</strong><br/><span class='req'>required</span></td>
+<td>The required entity for linking. This is <a href="#linkable-channels-and-entities">different for each channel</a>.</td>
+</tr>
+<tr>
+<td><strong>skipConfirmation</strong><br/><span class='opt'>optional</span></td>
+<td>Flag to specify whether or not the confirmation message is sent. Requires app scope JWT.</td>
+</tr>
+</tbody></table>
+
+<p>Linking allows users to continue conversations on their preferred channels. An appUser&rsquo;s linked channels will be found in the <code class="prettyprint">clients</code> field. </p>
+
+<p>When a link request is first made, the channel will be added to the <code class="prettyprint">pendingClients</code> field. The appUser is then prompted to accept the linking request. If they do so, the corresponding channel is then moved from the <code class="prettyprint">pendingClients</code> field to <code class="prettyprint">clients</code> field. If they reject the linking request then the channel is removed from <code class="prettyprint">pendingClients</code>.</p>
+
+<p>It is possible to skip the confirmation step with the <code class="prettyprint">skipConfirmation</code> flag. App scope JWT is required to specify the confirmation option.</p>
+<h3 id='linkable-channels-and-entities'>Linkable channels and entities</h3>
+<p>Given that there is no way for you to provide Smooch with the necessary ID to connect Messenger, LINE, WeChat or Telegram, we have limited the API to only accept ‘Twilio’ for now.
+Support for Frontend Email is coming soon.</p>
+
+<table><thead>
+<tr>
+<th>Channel type</th>
+<th>Required entity</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>twilio</td>
+<td><strong>phoneNumber</strong><br/> A String of the appUser&rsquo;s phone number. It must contain the <code class="prettyprint">+</code> prefix and the country code.<br/> Examples of valid phone numbers: <code class="prettyprint">+1 212-555-2368</code>, <code class="prettyprint">+12125552368</code>, <code class="prettyprint">+1 212 555 2368</code>.<br/> Examples of invalid phone numbers: <code class="prettyprint">212 555 2368</code>, <code class="prettyprint">1 212 555 2368</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='unlink-app-user-from-channel'>Unlink App User From Channel</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels/twilio <span class="se">\</span>
+     -X DELETE <span class="se">\</span>
+     -d <span class="s1">'{"type": "twilio"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">unlinkChannel</span><span class="p">(</span><span class="s1">'steveb@channel5.com'</span><span class="p">,</span> <span class="s1">'twilio'</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+
+<p><api><code class="prettyprint">DELETE /v1/appusers/{smoochId|userId}/channels/{channel}</code></api></p>
+
+<p>Removes the specified channel from the appUser&rsquo;s clients.</p>
 <h1 id='conversations'>Conversations</h1>
 <p>When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the <code class="prettyprint">/v1/appusers/</code> API.</p>
 <h2 id='get-conversation'>Get Conversation</h2>
