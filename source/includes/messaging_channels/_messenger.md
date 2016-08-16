@@ -16,3 +16,9 @@ Once your Facebook account is connected to Smooch, select the Facebook page you 
 Action buttons work as expected. A `link` action button will bring the user to the specified URL while a `postback` action button will trigger any [webhook](/rest#webhooks) listening to the `postback` trigger.
 
 Because of new [Facebook terms of service](https://developers.facebook.com/policy/#messengerplatform), payment requests (action buttons of type `buy`) cannot currently be sent to Messenger.
+
+### Persistent Menu
+
+![Facebook Messenger Persistent Menu](/images/messenger_menu.png)
+
+It's possible to configure a menu of 1-5 buttons on the Messenger UI by calling [the Smooch REST API](/rest#persistent-menus). Menus are configured per an app, not per user. Menu items can be [link](#links) or [postback](#postbacks) type actions.

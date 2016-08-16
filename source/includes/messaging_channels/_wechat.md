@@ -23,3 +23,9 @@ Once your account has been verified, login to the [Smooch dashboard](https://app
 Optionally, you can configure "Safe Mode" in the WeChat dashboard. With this mode enabled, all outgoing messages from WeChat will be encrypted using a secure 43 character AES key.
 
 In order to have Safe Mode functioning correctly with Smooch, simply copy your EncodingAESKey from WeChat and paste it in the WeChat integration page. Messages will be automatically decrypted in a secure fashion.
+
+### Persistent Menu
+
+![WeChat Persistent Menu](/images/wechat_menu.png)
+
+It's possible to configure a menu of 1-5 buttons on the WeChat UI by calling [the Smooch REST API](/rest#persistent-menus). Menus are configured per an app, not per user. Menu items can be [link](#links) or [postback](#postbacks) type actions.
