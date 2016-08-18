@@ -775,6 +775,10 @@ You can say: STAR TREK, STAR WARS
 <p>Action buttons work as expected. A <code class="prettyprint">link</code> action button will bring the user to the specified URL while a <code class="prettyprint">postback</code> action button will trigger any <a href="/rest#webhooks">webhook</a> listening to the <code class="prettyprint">postback</code> trigger.</p>
 
 <p>Because of new <a href="https://developers.facebook.com/policy/#messengerplatform">Facebook terms of service</a>, payment requests (action buttons of type <code class="prettyprint">buy</code>) cannot currently be sent to Messenger.</p>
+<h3 id='persistent-menu'>Persistent Menu</h3>
+<p><img alt="Facebook Messenger Persistent Menu" src="../images/messenger_menu.png" /></p>
+
+<p>It&rsquo;s possible to configure a menu of 1-5 buttons on the Messenger UI by calling <a href="/rest#persistent-menus">the Smooch REST API</a>. Menus are configured per app, not per user. Menu items can be <a href="#links">link</a> or <a href="#postbacks">postback</a> type actions.</p>
 
           <h2 id='telegram'>Telegram</h2>
 <p>Our Telegram integration allows your users to send you messages through a <a href="https://core.telegram.org/bots">Telegram bot</a>. You can receive the messages in any of our channels like Slack, HipChat or Help Scout, and your replies are sent back as Telegram messages from the bot to the user.</p>
@@ -896,6 +900,10 @@ You can say: STAR TREK, STAR WARS
 <p>Optionally, you can configure &ldquo;Safe Mode&rdquo; in the WeChat dashboard. With this mode enabled, all outgoing messages from WeChat will be encrypted using a secure 43 character AES key.</p>
 
 <p>In order to have Safe Mode functioning correctly with Smooch, simply copy your EncodingAESKey from WeChat and paste it in the WeChat integration page. Messages will be automatically decrypted in a secure fashion.</p>
+<h3 id='persistent-menu'>Persistent Menu</h3>
+<p><img alt="WeChat Persistent Menu" src="../images/wechat_menu.png" /></p>
+
+<p>It&rsquo;s possible to configure a menu of 1-5 buttons on the WeChat UI by calling <a href="/rest#persistent-menus">the Smooch REST API</a>. Menus are configured per app, not per user. Menu items can be <a href="#links">link</a> or <a href="#postbacks">postback</a> type actions.</p>
 
           <h3 id='action-buttons'>Action Buttons</h3>
 <p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>

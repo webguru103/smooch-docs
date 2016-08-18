@@ -588,9 +588,42 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
+<blockquote>
+<p>Webhook example payload for the <code class="prettyprint">postback</code> trigger originating from a menu:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5698edbf2a43bd081be982f1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"postbacks"</span><span class="p">:[{</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"571530ee4fae94c32b78b170"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Read more"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YES"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bob@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"signedUpAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-06T03:38:02.346Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5A7F8343-DF41-46A8-96EC-8583FCB422FB"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastSeen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-03-09T19:09:01.431Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"telegram"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
 <p>When a webhook trigger is triggered, a <code class="prettyprint">POST</code> request will be made to the URL configured in your webhook object along with a JSON payload.</p>
 
-<p>The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.</p>
+<p>The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers. Postbacks originating from a <a href="#persistent-menus">persistent menu</a> do not have messages associated with them, and so omit the message property.</p>
 <h2 id='securing-a-webhook'>Securing a webhook</h2>
 <p>When a webhook is created, a shared secret will be generated for it. The secret can be used to determine the veracity of a request to your webhook route. It is included as an <code class="prettyprint">X-API-Key</code> header with each webhook request sent to the target URL.</p>
 
@@ -1216,7 +1249,7 @@ Unlike the other App User APIs in this section, this endpoint is not intended to
 </tr>
 </tbody></table>
 
-<p>Linking allows users to continue conversations on their preferred channels. An appUser&rsquo;s linked channels will be found in the <code class="prettyprint">clients</code> field. </p>
+<p>Linking allows users to continue conversations on their preferred channels. An appUser&rsquo;s linked channels will be found in the <code class="prettyprint">clients</code> field.</p>
 
 <p>When a link request is first made, the channel will be added to the <code class="prettyprint">pendingClients</code> field. The appUser is then prompted to accept the linking request. If they do so, the corresponding channel is then moved from the <code class="prettyprint">pendingClients</code> field to <code class="prettyprint">clients</code> field. If they reject the linking request then the channel is removed from <code class="prettyprint">pendingClients</code>.</p>
 
@@ -1247,7 +1280,7 @@ Support for Frontend Email is coming soon.</p>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">unlinkChannel</span><span class="p">(</span><span class="s1">'steveb@channel5.com'</span><span class="p">,</span> <span class="s1">'twilio'</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="c1">// async code</span>
 <span class="p">});</span>
 </code></pre>
@@ -1748,7 +1781,7 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 </code></pre>
 
 <blockquote>
-<p>Response: </p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>201 CREATED
 </code></pre>
@@ -1934,6 +1967,167 @@ More info http://example.org
 <td>The role of the individual posting the message. Can be either <code class="prettyprint">appUser</code> or <code class="prettyprint">appMaker</code>.</td>
 </tr>
 </tbody></table>
+<h1 id='persistent-menus'>Persistent Menus</h1>
+<p>Smooch provides a /v1/menu/ API to set persistent menus on messaging channels that support custom menus in their chat UIs (<a href="http://docs.smooch.io/javascript/#facebook-messenger">Facebook Messenger</a> and <a href="http://docs.smooch.io/javascript/#wechat">WeChat</a>). Menus are configured on a per app basis (not per user).</p>
+<h2 id='get-menu'>Get Menu</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/menu <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">get</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"menu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Awesome Menu"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smooch"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://smooch.io"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57b331fbf1c6aeba1f940dc7"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HELLO"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57b331fbf1c6aeba1f940dc6"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/menu</code></api></p>
+
+<p>Get the specified app&rsquo;s menu.</p>
+<h2 id='update-menu'>Update Menu</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/menu <span class="se">\</span>
+     -X PUT <span class="se">\</span>
+     -d <span class="s1">'{"items": [{"type": "link", "text": "Smooch", "uri": "http://smooch.io"}]}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">configure</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span> <span class="s1">'My Awesome Menu'</span><span class="p">,</span>
+    <span class="na">items</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Smooch'</span><span class="p">,</span>
+        <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://smooch.io'</span>
+    <span class="p">}]</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"menu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"My Awesome Menu"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Smooch"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://smooch.io"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57b331fbf1c6aeba1f940dc7"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">PUT /v1/menu</code></api></p>
+
+<p>Configure the specified app&rsquo;s menu.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>items</strong><br/><span class='req'>required</span></td>
+<td>A list of menu items. See below.</td>
+</tr>
+<tr>
+<td><strong>name</strong><br/><span class='opt'>optional</span></td>
+<td>An optional text to use as a menu name. If none is provided defaults to &ldquo;Menu&rdquo;. Not all channels support a custom menu name (e.g. Facebook Messenger&rsquo;s menu name is fixed)</td>
+</tr>
+</tbody></table>
+<h3 id='menu-items'>Menu Items</h3>
+<p>Menus contain 1 to 5 menu items.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong><br/><span class='req'>required</span></td>
+<td>Can either be <a href="/javascript/#links">link</a> or <a href="/javascript/#postbacks">postback</a>, which correspond to Smooch&rsquo;s <a href="/javascript/#action-buttons">link and postback actions</a></td>
+</tr>
+<tr>
+<td><strong>text</strong><br/><span class='opt'>required</span></td>
+<td>The button text of the menu item.</td>
+</tr>
+<tr>
+<td><strong>uri</strong><br/><span class='opt'>optional</span></td>
+<td>A valid address, like http://smooch.io. Required for a &ldquo;link&rdquo; type item.</td>
+</tr>
+<tr>
+<td><strong>postback</strong><br/><span class='opt'>optional</span></td>
+<td>A payload for a postback. Required for a &ldquo;postback&rdquo; type item.</td>
+</tr>
+</tbody></table>
+<h2 id='delete-menu'>Delete Menu</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/menu <span class="se">\</span>
+     -X DELETE <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">menu</span><span class="p">.</span><span class="nx">remove</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"menu"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">DELETE /v1/menu</code></api></p>
+
+<p>Remove the specified app&rsquo;s menu.</p>
 
       </div>
     </div>
