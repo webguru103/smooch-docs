@@ -523,9 +523,44 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 }
 ```
 
+
+> Webhook example payload for the `postback` trigger originating from a menu:
+
+```json
+{
+    "trigger": "postback",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
+    "postbacks":[{
+        "action": {
+            "_id": "571530ee4fae94c32b78b170",
+            "type": "postback",
+            "text": "Read more",
+            "payload": "YES"
+        }
+    }],
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "clients": [
+          {
+            "active": true,
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "telegram"
+          }
+        ]
+    }
+}
+```
+
+
 When a webhook trigger is triggered, a `POST` request will be made to the URL configured in your webhook object along with a JSON payload.
 
-The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.
+The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers. Postbacks originating from a [persistent menu](#persistent-menus) do not have messages associated with them, and so omit the message property.
 
 ## Securing a webhook
 
