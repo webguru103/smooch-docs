@@ -523,9 +523,44 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 }
 ```
 
+
+> Webhook example payload for the `postback` trigger originating from a menu:
+
+```json
+{
+    "trigger": "postback",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
+    "postbacks":[{
+        "action": {
+            "_id": "571530ee4fae94c32b78b170",
+            "type": "postback",
+            "text": "Read more",
+            "payload": "YES"
+        }
+    }],
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "clients": [
+          {
+            "active": true,
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "telegram"
+          }
+        ]
+    }
+}
+```
+
+
 When a webhook trigger is triggered, a `POST` request will be made to the URL configured in your webhook object along with a JSON payload.
 
-The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.
+The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers. Postbacks originating from a [persistent menu](#persistent-menus) do not have messages associated with them, and so omit the message property.
 
 ## Securing a webhook
 
@@ -1020,7 +1055,7 @@ smooch.appUsers.linkChannel('steveb@channel5.com', {
 | **{entity}**<br/><span class='req'>required</span> | The required entity for linking. This is [different for each channel](#linkable-channels-and-entities).|
 | **skipConfirmation**<br/><span class='opt'>optional</span> | Flag to specify whether or not the confirmation message is sent. Requires app scope JWT.|
 
-Linking allows users to continue conversations on their preferred channels. An appUser's linked channels will be found in the `clients` field. 
+Linking allows users to continue conversations on their preferred channels. An appUser's linked channels will be found in the `clients` field.
 
 When a link request is first made, the channel will be added to the `pendingClients` field. The appUser is then prompted to accept the linking request. If they do so, the corresponding channel is then moved from the `pendingClients` field to `clients` field. If they reject the linking request then the channel is removed from `pendingClients`.
 
@@ -1050,7 +1085,7 @@ curl https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels/twilio 
 ```
 ```js
 smooch.appUsers.unlinkChannel('steveb@channel5.com', 'twilio')
-.then(() => { 
+.then(() => {
     // async code
 });
 ```
@@ -1463,7 +1498,7 @@ smooch.conversations.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-> Response: 
+> Response:
 
 ```
 201 CREATED
@@ -1634,3 +1669,152 @@ Upload an image and post it to the conversation. Images are uploaded using the `
 |------------------------------|----------------------------|
 | **source**<br/><span class='req'>required</span>    | The image data.            |
 | **role**<br/><span class='req'>required</span>      | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
+
+# Persistent Menus
+
+Smooch provides a /v1/menu/ API to set persistent menus on messaging channels that support custom menus in their chat UIs ([Facebook Messenger](http://docs.smooch.io/javascript/#facebook-messenger) and [WeChat](http://docs.smooch.io/javascript/#wechat)). Menus are configured on a per app basis (not per user).
+
+## Get Menu
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/menu \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.menu.get()
+.then(() => {
+    // async code
+});
+```
+
+> Response
+
+```
+200 OK
+```
+```json
+{
+    "menu": {
+        "name": "My Awesome Menu",
+        "items": [
+            {
+                "type": "link",
+                "text": "Smooch",
+                "uri": "http://smooch.io",
+                "_id": "57b331fbf1c6aeba1f940dc7"
+            },
+            {
+                "type": "postback",
+                "text": "Hello",
+                "payload": "HELLO",
+                "_id": "57b331fbf1c6aeba1f940dc6"
+            }
+        ]
+    }
+}
+```
+
+<api>`GET /v1/menu`</api>
+
+Get the specified app's menu.
+
+## Update Menu
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/menu \
+     -X PUT \
+     -d '{"items": [{"type": "link", "text": "Smooch", "uri": "http://smooch.io"}]}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.menu.configure({
+    name: 'My Awesome Menu',
+    items: [{
+        type: 'link',
+        text: 'Smooch',
+        uri: 'http://smooch.io'
+    }]
+})
+.then(() => {
+    // async code
+});
+```
+
+> Response
+
+```
+200 OK
+```
+```json
+{
+    "menu": {
+        "name": "My Awesome Menu",
+        "items": [{
+            "type": "link",
+            "text": "Smooch",
+            "uri": "http://smooch.io",
+            "_id": "57b331fbf1c6aeba1f940dc7"
+        }]
+    }
+}
+```
+
+<api>`PUT /v1/menu`</api>
+
+Configure the specified app's menu.
+
+| **Arguments**               |   |
+|-----------------------------|---|
+| **items**<br/><span class='req'>required</span> | A list of menu items. See below. |
+| **name**<br/><span class='opt'>optional</span> | An optional text to use as a menu name. If none is provided defaults to "Menu". Not all channels support a custom menu name (e.g. Facebook Messenger's menu name is fixed)|
+
+### Menu Items
+
+Menus contain 1 to 5 menu items.
+
+| **Arguments**               |   |
+|-----------------------------|---|
+| **type**<br/><span class='req'>required</span> | Can either be [link](/javascript/#links) or [postback](/javascript/#postbacks), which correspond to Smooch's [link and postback actions](/javascript/#action-buttons) |
+| **text**<br/><span class='opt'>required</span> | The button text of the menu item. |
+| **uri**<br/><span class='opt'>optional</span> | A valid address, like http://smooch.io. Required for a "link" type item. |
+| **postback**<br/><span class='opt'>optional</span> | A payload for a postback. Required for a "postback" type item.|
+
+## Delete Menu
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/menu \
+     -X DELETE \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.menu.remove()
+.then(() => {
+    // async code
+});
+```
+
+> Response
+
+```
+200 OK
+```
+```json
+{
+    "menu": {
+        "items": []
+    }
+}
+```
+
+<api>`DELETE /v1/menu`</api>
+
+Remove the specified app's menu.
