@@ -28,4 +28,4 @@ In order to have Safe Mode functioning correctly with Smooch, simply copy your E
 
 ![WeChat Persistent Menu](/images/wechat_menu.png)
 
-It's possible to configure a menu of 1-5 buttons on the WeChat UI by calling [the Smooch REST API](/rest#persistent-menus). Menus are configured per an app, not per user. Menu items can be [link](#links) or [postback](#postbacks) type actions.
+It's possible to configure a menu of 1-5 buttons on the WeChat UI by calling [the Smooch REST API](/rest#persistent-menus). Menus are configured per app, not per user. Menu items can be [link](#links) or [postback](#postbacks) type actions.
