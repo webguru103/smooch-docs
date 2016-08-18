@@ -1637,7 +1637,7 @@ Upload an image and post it to the conversation. Images are uploaded using the `
 
 # Persistent Menus
 
-Smooch provides an /v1/menu/ API to set persistent menus on messaging channels that support custom menus in their chat UIs ([Facebook Messenger](http://docs.smooch.io/javascript/#facebook-messenger) and [WeChat](http://docs.smooch.io/javascript/#wechat)). Menus are configured on a per an app basis (not per a user).
+Smooch provides a /v1/menu/ API to set persistent menus on messaging channels that support custom menus in their chat UIs ([Facebook Messenger](http://docs.smooch.io/javascript/#facebook-messenger) and [WeChat](http://docs.smooch.io/javascript/#wechat)). Menus are configured on a per app basis (not per user).
 
 ## Get Menu
 
