@@ -27,6 +27,11 @@ compile 'io.smooch:ui:latest.release'
 
 Sync the Gradle project then add the necessary code to [initialize Smooch in your app](#initialize-smooch-in-your-app).
 
+<aside class="notice">
+    Smooch uses a FileProvider to store photos.
+    If your application has a FileProvider specified in the manifest, [follow these instructions](#replacing-the-smooch-fileprovider)
+</aside>
+
 ## Initialize Smooch in your app
 
 After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you'll have to initialize the library using your app's token.
@@ -89,3 +94,28 @@ ConversationActivity.show(this);
 ```
 
 You should also take the time to [configure the push notifications setup](#configuring-push-notifications).
+
+## Replacing the Smooch FileProvider
+<aside class="notice">
+    If you do not have a `FileProvider` entry in your `AndroidManifest.xml` file, you can safely ignore this section.
+    These steps will fix the `Manifest merger failed : Attribute provider#android.support.v4.content.FileProvider@authorities` compile error
+</aside>
+
+
+In order to replace the Smooch FileProvider with your own, please do the following:
+
+1. Add `tools:replace="android:authorities"` to the `<provider>` entry.
+
+2. Add the following path to your `android.support.FILE_PROVIDER_PATHS` resource file:
+
+```xml
+<external-path name="dcim" path="DCIM"/>
+```
+
+3. When initializing Smooch, call `settings.setFileProviderAuthorities(authoritiesString);` on the settings object.
+
+```java
+Settings settings = new Settings(appToken);
+settings.setFileProviderAuthorities(authoritiesString);
+Smooch.init(this, settings);
+```
