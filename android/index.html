@@ -100,6 +100,11 @@ compile 'io.smooch:ui:latest.release'
 </code></pre>
 
 <p>Sync the Gradle project then add the necessary code to <a href="#initialize-smooch-in-your-app">initialize Smooch in your app</a>.</p>
+
+<p><aside class="notice">
+    Smooch uses a FileProvider to store photos.
+    If your application has a FileProvider specified in the manifest, <a href="#replacing-the-smooch-fileprovider">follow these instructions</a>
+</aside></p>
 <h2 id='initialize-smooch-in-your-app'>Initialize Smooch in your app</h2>
 <p>After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
 
@@ -152,6 +157,28 @@ compile 'io.smooch:ui:latest.release'
 </code></pre>
 
 <p>You should also take the time to <a href="#configuring-push-notifications">configure the push notifications setup</a>.</p>
+<h2 id='replacing-the-smooch-fileprovider'>Replacing the Smooch FileProvider</h2>
+<p><aside class="notice">
+    If you do not have a <code class="prettyprint">FileProvider</code> entry in your <code class="prettyprint">AndroidManifest.xml</code> file, you can safely ignore this section.
+    These steps will fix the <code class="prettyprint">Manifest merger failed : Attribute provider#android.support.v4.content.FileProvider@authorities</code> compile error
+</aside></p>
+
+<p>In order to replace the Smooch FileProvider with your own, please do the following:</p>
+
+<ol>
+<li><p>Add <code class="prettyprint">tools:replace=&quot;android:authorities&quot;</code> to the <code class="prettyprint">&lt;provider&gt;</code> entry.</p></li>
+<li><p>Add the following path to your <code class="prettyprint">android.support.FILE_PROVIDER_PATHS</code> resource file:</p></li>
+</ol>
+<pre class="highlight xml"><code><span class="nt">&lt;external-path</span> <span class="na">name=</span><span class="s">"dcim"</span> <span class="na">path=</span><span class="s">"DCIM"</span><span class="nt">/&gt;</span>
+</code></pre>
+
+<ol>
+<li>When initializing Smooch, call <code class="prettyprint">settings.setFileProviderAuthorities(authoritiesString);</code> on the settings object.</li>
+</ol>
+<pre class="highlight java"><code><span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Settings</span><span class="o">(</span><span class="n">appToken</span><span class="o">);</span>
+<span class="n">settings</span><span class="o">.</span><span class="na">setFileProviderAuthorities</span><span class="o">(</span><span class="n">authoritiesString</span><span class="o">);</span>
+<span class="n">Smooch</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">settings</span><span class="o">);</span>
+</code></pre>
 
           <h2 id='configuring-push-notifications'>Configuring push notifications</h2>
 <p>Push notifications are a great, unobtrusive way to let your users know that a reply to their message has arrived.</p>
