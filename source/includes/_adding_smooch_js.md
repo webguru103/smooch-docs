@@ -52,6 +52,33 @@ In your code:
 ```javascript
 Smooch.init({appToken: 'your_app_token'});
 ```
+
+## RequireJS
+
+Since the library is self-defining its name to be `Smooch` in the context of RequireJS, you should do the following to use it :
+
+```javascript
+
+// alias Smooch in your config
+require.config({
+    "paths": {
+        "Smooch": "https://cdn.smooch.io/smooch.min"
+    }
+});
+
+require(['require', 'Smooch'], function(require){
+    var Smooch = require('Smooch');
+	// ...
+});
+
+// or
+
+define(function(require) {
+	var Smooch = require('Smooch');
+	// ...
+});
+```
+
 ## Google Tag Manager
 
 You can load Smooch's web widget through [Google Tag Manager](https://www.google.com/analytics/tag-manager/). Simply connect to your Google Tag Manager account, go inside your container and follow the guide below.
