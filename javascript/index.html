@@ -108,6 +108,28 @@
 <p>In your code:</p>
 <pre class="highlight javascript"><code><span class="nx">Smooch</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span><span class="na">appToken</span><span class="p">:</span> <span class="s1">'your_app_token'</span><span class="p">});</span>
 </code></pre>
+<h2 id='requirejs'>RequireJS</h2>
+<p>Since the library is self-defining its name to be <code class="prettyprint">Smooch</code> in the context of RequireJS, you should do the following to use it :</p>
+<pre class="highlight javascript"><code>
+<span class="c1">// alias Smooch in your config</span>
+<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+    <span class="s2">"paths"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"Smooch"</span><span class="p">:</span> <span class="s2">"https://cdn.smooch.io/smooch.min"</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">require</span><span class="p">([</span><span class="s1">'require'</span><span class="p">,</span> <span class="s1">'Smooch'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">Smooch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'Smooch'</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+
+<span class="c1">// or</span>
+
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">Smooch</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'Smooch'</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre>
 <h2 id='google-tag-manager'>Google Tag Manager</h2>
 <p>You can load Smooch&rsquo;s web widget through <a href="https://www.google.com/analytics/tag-manager/">Google Tag Manager</a>. Simply connect to your Google Tag Manager account, go inside your container and follow the guide below.</p>
 <h3 id='1--create-a-new-tag-and-give-it-a-cute-name-like-quotsmoochquot'>1. Create a new Tag and give it a cute name like &ldquo;Smooch&rdquo;</h3>
