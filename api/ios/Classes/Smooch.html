@@ -64,6 +64,8 @@
 		
 		<option value="//api/name/handlePushNotification:">+ handlePushNotification:</option>
 		
+		<option value="//api/name/handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler:">+ handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler:</option>
+		
 		<option value="//api/name/initWithSettings:">+ initWithSettings:</option>
 		
 		<option value="//api/name/login:jwt:">+ login:jwt:</option>
@@ -83,6 +85,10 @@
 		<option value="//api/name/showConversationFromViewController:">+ showConversationFromViewController:</option>
 		
 		<option value="//api/name/track:">+ track:</option>
+		
+		<option value="//api/name/userNotificationCategories">+ userNotificationCategories</option>
+		
+		<option value="//api/name/userNotificationCenterDelegate">+ userNotificationCenterDelegate</option>
 		
 	</optgroup>
 	
@@ -877,6 +883,206 @@
 			
 		</div>
 	</div>
+</div><div class="section-method">
+	<a name="//api/name/userNotificationCenterDelegate" title="userNotificationCenterDelegate"></a>
+	<h3 class="method-title"><code><a href="#//api/name/userNotificationCenterDelegate">+&nbsp;userNotificationCenterDelegate</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>An object conforming to UNUserNotificationCenterDelegate protocol, used to handle notifications on iOS 10 and above.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;UNUserNotificationCenterDelegate&gt;)userNotificationCenterDelegate</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>An object conforming to UNUserNotificationCenterDelegate protocol, or nil if +initWithSettings: hasn&rsquo;t been called yet.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Implements both methods of UNUserNotificationCenterDelegate.</p>
+
+<p>By default this object will automatically be set as the UNUserNotificationCenter delegate at init time. Smooch will maintain a reference to your app&rsquo;s existing delegate (if applicable), and automatically forward any calls for notifications that did not originate from Smooch.</p>
+
+<p>To disable automatic overriding, you must set SKTSettings.enableUserNotificationCenterDelegateOverride to NO before calling +initWithSettings:. If you choose to do so, you must manually forward any relevant calls from your own delegate object. To check the origin of a notification, see the documentation for SKTPushNotificationIdentifier. For example:</p>
+
+<p>-(void)userNotificationCenter:(UNUserNotificationCenter <em>)center willPresentNotification:(UNNotification </em>)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler
+{
+if(notification.request.content.userInfo[SKTPushNotificationIdentifier] != nil){
+[[Smooch userNotificationCenterDelegate] userNotificationCenter:center willPresentNotification:notification withCompletionHandler:completionHandler];
+return;
+}
+}</p>
+
+<p>-(void)userNotificationCenter:(UNUserNotificationCenter <em>)center didReceiveNotificationResponse:(UNNotificationResponse </em>)response withCompletionHandler:(void (^)())completionHandler
+{
+if(response.notification.request.content.userInfo[SKTPushNotificationIdentifier] != nil){
+[[Smooch userNotificationCenterDelegate] userNotificationCenter:center didReceiveNotificationResponse:response withCompletionHandler:completionHandler];
+return;
+}
+}</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">Smooch.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler:" title="handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler:">+&nbsp;handleUserNotificationActionWithIdentifier:withResponseInfo:completionHandler:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Handle the user input from a reply type notification action.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)handleUserNotificationActionWithIdentifier:(NSString *)<em>identifier</em> withResponseInfo:(NSDictionary *)<em>responseInfo</em> completionHandler:(void ( ^ ) ( ))<em>completionHandler</em></code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Call this method in your -application:handleActionWithIdentifier:forRemoteNotification:withResponseInfo:completionHandler:, passing the action identifier, responseInfo dictionary, and completionHandler callback.</p>
+
+<p>This method will post a message on behalf of the user, with the contents of their inline reply. When the message upload completes (either in success or failure), the completion handler will be called.</p>
+
+<p>If the action identifier does not match SKTUserNotificationReplyActionIdentifier, the completion handler will be called immediately and the notification will be ignored.</p>
+
+<p>This method is called automatically if SKTSettings.enableAppDelegateSwizzling is set to YES.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">Smooch.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/userNotificationCategories" title="userNotificationCategories"></a>
+	<h3 class="method-title"><code><a href="#//api/name/userNotificationCategories">+&nbsp;userNotificationCategories</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>A set of categories used for handling and displaying Smooch user notification actions.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (NSSet *)userNotificationCategories</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>On iOS 8, returns an empty set.
+On iOS 9, returns a set of UIUserNotificationCategory objects, to be used with <code>UIUserNotificationSettings</code> +settingsForTypes:categories:
+On iOS 10, returns a set of UNNotificationCategory objects, to be used with <code>UNUserNotificationCenter</code> -setNotificationCategories:</p>
+
+<p>Categories are registered automatically if SKTSettings.requestPushPermissionOnFirstMessage is set to YES. If automatic registration is disabled, you must make sure to include the Smooch categories in your calls to the above mentioned methods.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/SKTSettings.html">SKTSettings</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">Smooch.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
 </div>
 						</div>
 						
@@ -892,7 +1098,7 @@
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2016 Smooch. All rights reserved. Updated: 2016-09-02</p>
+						<p class="copyright">Copyright &copy; 2016 Smooch. All rights reserved. Updated: 2016-09-07</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
