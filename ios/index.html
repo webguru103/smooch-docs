@@ -220,7 +220,7 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <li><p>Kill and restart your app.</p></li>
 <li><p>Launch Smooch.</p></li>
 <li><p>Send a message. Important! You must resend a message after uploading the p12 file.</p></li>
-<li><p>Reply to the message from your email inbox</p></li>
+<li><p>Reply to the message from the Business System integration of your choice</p></li>
 </ol>
 
 <p>You&rsquo;ll receive a notification if you&rsquo;re in the app, or outside the app!</p>
@@ -228,8 +228,16 @@ You can&rsquo;t receive push notifications in the Xcode simulator, you must use 
 <p>Take note that there are &ldquo;Development&rdquo; and &ldquo;Production&rdquo; certificates and profiles. Make sure that you upload the &ldquo;Production&rdquo; .p12 file to Smooch when you&rsquo;re ready to release your build through ad-hoc, enterprise or app store distribution.</p>
 
 <p><aside class="notice">
-Smooch automatically handles incoming push notifications by swizzling certain methods on your app&rsquo;s <code class="prettyprint">UIApplicationDelegate</code>. To disable this behaviour, you can set <code class="prettyprint">enableAppDelegateSwizzling</code> to <code class="prettyprint">false</code> on your <code class="prettyprint">SKTSettings</code> object. However, if you choose to do so, you <strong>must</strong> follow the instructions outlined in the <a href="http://docs.smooch.io/api/ios/Classes/SKTSettings.html#//api/name/enableAppDelegateSwizzling">API documentation</a> to ensure that push notifications continue to be handled correctly.
+Smooch automatically handles incoming push notifications by swizzling certain methods on your app&rsquo;s <code class="prettyprint">UIApplicationDelegate</code>. To disable this behaviour, you can set <code class="prettyprint">enableAppDelegateSwizzling</code> to <code class="prettyprint">false</code> on your <code class="prettyprint">SKTSettings</code> object. However, if you choose to do so, you <strong>must</strong> follow the instructions outlined in the <a href="http://docs.smooch.io/api/ios/Classes/SKTSettings.html#//api/name/enableAppDelegateSwizzling">API documentation</a> to ensure that push notifications continue to be handled correctly.</p>
+
+<p>Additionally, on iOS 10 and above, Smooch will handle user notification presentation and on-tap handling by overriding the <code class="prettyprint">UNUserNotificationCenterDelegate</code> for your application. To disable this behaviour, you can set <code class="prettyprint">enableUserNotificationCenterDelegateOverride</code> to <code class="prettyprint">false</code> on your <code class="prettyprint">SKTSettings</code> object. As above, if you choose to disable automatic handling of notifications, you <strong>must</strong> follow the instructions outlined in the <a href="http://docs.smooch.io/api/ios/Classes/Smooch.html#//api/name/userNotificationCenterDelegate">API documentation</a>.
 </aside></p>
+<h2 id='rich-notifications'>Rich Notifications</h2>
+<p>On iOS 10 and above, it&rsquo;s now possible to display a custom user interface when the user interacts with your application&rsquo;s remote and local notifications. Smooch provides the ability to display the user&rsquo;s conversation history when viewing a notification:</p>
+
+<p><img alt="iOS Rich Notifications" src="../images/ios_rich_notifications.png" /></p>
+
+<p>To enable this behaviour, sample code and configuration instructions can be found in the <a href="https://github.com/smooch/smooch-ios-rich-notifications">smooch-ios-rich-notifications</a> repository.</p>
 
           <h2 id='configuring-agent-images'>Configuring agent images</h2>
 <p>You can set an app maker&rsquo;s image in your app (as pictured below) by creating a <a href="http://www.gravatar.com/">Gravatar</a> image associated with the app maker&rsquo;s email address.
@@ -1247,6 +1255,9 @@ Localization is subject to caching. If you can&rsquo;t see your changes, cleanin
  3. App name (Uses CFBundleDisplayName)
  */
 "You're about to send $%@ %@ securely to %@" = "...";
+
+/* Title for user notification action */
+"Reply" = "Reply";
 </code></pre>
 
           <h2 id='styling-the-conversation-interface'>Styling the Conversation Interface</h2>
