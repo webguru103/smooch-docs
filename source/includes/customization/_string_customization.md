@@ -126,4 +126,7 @@ The full set of keys is listed below. To enable string customization across lang
  3. App name (Uses CFBundleDisplayName)
  */
 "You're about to send $%@ %@ securely to %@" = "...";
+
+/* Title for user notification action */
+"Reply" = "Reply";
 ```

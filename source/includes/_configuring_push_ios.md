@@ -50,7 +50,7 @@ You can't receive push notifications in the Xcode simulator, you must use a phys
 
 3. Send a message. Important! You must resend a message after uploading the p12 file.
 
-4. Reply to the message from your email inbox
+4. Reply to the message from the Business System integration of your choice
 
 You'll receive a notification if you're in the app, or outside the app!
 
@@ -60,4 +60,14 @@ Take note that there are "Development" and "Production" certificates and profile
 
 <aside class="notice">
 Smooch automatically handles incoming push notifications by swizzling certain methods on your app's `UIApplicationDelegate`. To disable this behaviour, you can set `enableAppDelegateSwizzling` to `false` on your `SKTSettings` object. However, if you choose to do so, you **must** follow the instructions outlined in the [API documentation](http://docs.smooch.io/api/ios/Classes/SKTSettings.html#//api/name/enableAppDelegateSwizzling) to ensure that push notifications continue to be handled correctly.
+
+Additionally, on iOS 10 and above, Smooch will handle user notification presentation and on-tap handling by overriding the `UNUserNotificationCenterDelegate` for your application. To disable this behaviour, you can set `enableUserNotificationCenterDelegateOverride` to `false` on your `SKTSettings` object. As above, if you choose to disable automatic handling of notifications, you **must** follow the instructions outlined in the [API documentation](http://docs.smooch.io/api/ios/Classes/Smooch.html#//api/name/userNotificationCenterDelegate).
 </aside>
+
+## Rich Notifications
+
+On iOS 10 and above, it's now possible to display a custom user interface when the user interacts with your application's remote and local notifications. Smooch provides the ability to display the user's conversation history when viewing a notification:
+
+![iOS Rich Notifications](/images/ios_rich_notifications.png)
+
+To enable this behaviour, sample code and configuration instructions can be found in the [smooch-ios-rich-notifications](https://github.com/smooch/smooch-ios-rich-notifications) repository.
