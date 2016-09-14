@@ -390,7 +390,7 @@
             if (self.hasClass("section-header")) {
                 return $("<li/>", {
                     "class": "section-header-toc"
-                }).append($("<h3/>", {
+                }).append($("<h4/>", {
                     "text": self.text(),
                     "class": "sidebar-nav-heading"
                 }));
@@ -588,7 +588,7 @@
                 "mouseenter.tocify": function() {
 
                     // Ignore section headers hack by anastasi.smooch
-                    if($(this).hasClass('section-header')) {
+                    if($(this).hasClass('section-header-toc')) {
                         return;
                     }
 
