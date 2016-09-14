@@ -386,6 +386,16 @@
 
             }
 
+            // handle section headers hack by anastasi.smooch
+            if (self.hasClass("section-header")) {
+                return $("<li/>", {
+                    "class": "section-header-toc"
+                }).append($("<h3/>", {
+                    "text": self.text(),
+                    "class": "sidebar-nav-heading"
+                }));
+            }
+
             hashValue = this._generateHashValue(arr, self, index);
 
             // ADDED BY ROBERT
@@ -541,6 +551,11 @@
             // Event delegation that looks for any clicks on list item elements inside of the HTML element calling the plugin
             this.element.on("click.tocify", "li", function(event) {
 
+                // Ignore section headers hack by anastasi.smooch
+                if($(this).hasClass('section-header-toc')) {
+                    return;
+                }
+
                 if(self.options.history) {
 
                     window.location.hash = $(this).attr("data-unique");
@@ -571,6 +586,11 @@
 
                 // Mouseenter event handler
                 "mouseenter.tocify": function() {
+
+                    // Ignore section headers hack by anastasi.smooch
+                    if($(this).hasClass('section-header')) {
+                        return;
+                    }
 
                     // Adds a hover CSS class to the current list item
                     $(this).addClass(self.hoverClass);

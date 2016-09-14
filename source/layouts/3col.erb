@@ -84,7 +84,11 @@ under the License.
       <div class="content">
         <%= yield %>
         <% current_page.data.includes && current_page.data.includes.each do |include| %>
-          <%= partial "includes/#{include}" %>
+          <% if include.match(/^--/) %>
+              <h1 class="section-header"><%= include.match(/^--(.*)/)[1] %></h1>
+          <% else %>
+              <%= partial "includes/#{include}" %>
+          <% end %>
         <% end %>
       </div>
     </div>
