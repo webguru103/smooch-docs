@@ -48,12 +48,32 @@ Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will
 
 The "devices" array returned in the AppUser payload has been changed to "clients". In order to maintain compatibility, we will keep returning the "devices" array in v1, but in the next version it will be removed.
 
+# Authorization
+
+This is an overview of how authorization works with the Smooch API.
+
+Smooch offers two methods for authentication JSON Web Token (JWT) and app token. [See below](#authentication) for more details. There are three different scopes of authorization available. These are _appUser_, _app_, and _appMaker_.
+
+| Scope        | Methods  | Authorized APIs  |
+|--------------|---------------|------------------|
+| **appUser** | JWT, appToken | [Init](#init), [App User](#app-user), [Conversations](#conversations) |
+| **app**      | JWT           |  [Webhooks](#webhooks), [Init](#init), [App User](#app-user), [Conversations](#conversations) [Persistent Menus](#persistent-menus), [Integrations](#integrations) |
+| **appMaker**| JWT           | All APIs  |
+
+**App user scoped JWTs** are user specific, and once specified, secure a user so that only a JWT scoped specifically for that user (or an app or app maker JWT) can be used to call the API on behalf of that user.
+
+The **appToken** authentication method only allows you to call the API on behalf of users who have not yet been secured by an app user scoped JWT.
+
+**App scoped JWTs** can be used to access any of the Smooch Core APIs on behalf of the app, or any app user.
+
+For more information on **app maker scope**, please [see the Messaging Inside API](#messaging-inside-api).
+
 # Authentication
 
 Smooch APIs offer two methods of authentication:
 
 1. Using an [App Token](#app-token)
-1. Using a [JSON Web Token (JWT)](#jwt)
+2. Using a [JSON Web Token (JWT)](#jwt)
 
 Some APIs accept either of the two authentication methods while others require a `jwt` credential.
 
