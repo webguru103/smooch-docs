@@ -90,10 +90,10 @@ body {
 }
 
 .tocify-wrapper li {
-  color: #FFF;
+  color: white;
   font-size: 15px;
   font-weight: 600;
-  line-height: 40px;
+  line-height: 32px;
   margin-left: 36px;
   margin-right: 36px;
 }
@@ -585,9 +585,12 @@ span.opt {
 }
 
 .sidebar-nav-heading {
-  color: #d3d3d3;
-  font-weight: lighter;
+  color: #c2b9d5;
+  font-size: 12px;
+  font-weight: 600;
   margin-bottom: 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: default;
 }
 

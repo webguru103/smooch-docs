@@ -1,26 +1,45 @@
 
 # Introduction
 
-The Messaging Inside API allows software vendors to provision and configure their own Smooch apps to make use of Smooch's front-end messaging channels and the Core REST API.
+The Messaging Inside API allows software vendors to offer rich, engaging multi-channel communications as a feature inside their software without the technical overhead of maintaining multiple APIs.
 
-Apps that are provisioned in this way will be API only, the management dashboard won’t be available.
+Apps that are created this way will be available via the API only, they won't be available in the smooch dashboard.
 
 # Authentication
 
-Software vendors will be issued an app maker scoped JSON Web Token that can be used to create and manage Smooch apps. For more information on how Smooch uses JWTs, [see here](#authentication).
+Software vendors will be issued a special JWT access token with appMaker scope. The Inside API endpoints defined in this section can only be accessed with appMaker scope.
 
-## Acquiring your App Maker Scoped Token
+### Acquiring your App Maker Scoped Token
 
-To acquire the app maker scoped token, visit our [partner page](https://smooch.io/partners/) (no jerks allowed).
+To acquire the app maker scoped token, visit our [partner page](https://smooch.io/partners/).
 
-## Using the App Maker Scoped Token
+### Using the App Maker Scoped Token
 
-Use the app maker scoped Token in the same way that you would use an app or appUser scoped JSON Web Token, by passing it as an Authorization header, with the token prefaced by the _Bearer_ keyword.
+Use the appMaker scoped Token in the same way that you would use an app or appUser scoped JSON Web Token, by passing it as an Authorization header, with the token prefaced by the _Bearer_ keyword.
+
+All of the existing app management APIs such as /v1/appusers and /v1/webhooks will be accessible using an appMaker JWT, provided the app id is included in the front of the path.
+
+> Create a webhook:
 
 ```shell
-curl https://api.smooch.io/v1/apps \
-    -H 'content-type: application/json' \
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/webhooks \
+    -d '{"target": "http://example.com/callback"}' \
     -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Fetch a conversation:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/appusers/c7f6e6d6c3a637261bd9656f/conversation \
+    -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 # Apps
@@ -37,6 +56,10 @@ curl https://api.smooch.io/v1/apps \
      -d '{"name": "My App"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -69,6 +92,10 @@ Creates a new app. The response body will include the appToken, which can be use
 ```shell
   curl https://api.smooch.io/v1/apps \
        -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -109,6 +136,10 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6 \
      -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -126,30 +157,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6 \
 
 <api>`GET /v1/apps/{appId}`</api>
 
-Fetches individual apps.
-
-## App Management API
-
-All of the existing app management APIs such as /v1/appusers and /v1/webhooks will be accessible using an appMaker JWT, provided the app id is included in the front of the path.
-
-For example, to create a webhook for an app
-
-```shell
-curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/webhooks \
-    -d '{"target": "http://example.com/callback"}' \
-    -H 'authorization: Bearer your-appmaker-token'
-```
-
-<br/>
-<br/>
-<br/>
-
-Or to fetch a conversation
-
-```shell
-curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/appusers/c7f6e6d6c3a637261bd9656f/conversation \
-    -H 'authorization: Bearer your-appmaker-token'
-```
+Fetches an individual app.
 
 # App Keys
 
@@ -167,6 +175,10 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys \
      -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -182,7 +194,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys \
 }
 ```
 
-<api>POST /v1/apps/{appId}/keys</api>
+<api>`POST /v1/apps/{appId}/keys`</api>
 
 Creates a secret key for the specified app. The response body will include a secret as well it's corresponding id, which you can use to generate JSON Web Tokens to securely make API calls on behalf of the app.
 
@@ -197,6 +209,10 @@ Creates a secret key for the specified app. The response body will include a sec
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys \
        -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -234,6 +250,10 @@ Lists all secret keys for a given app.
        -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -263,6 +283,10 @@ Returns a secret key.
        -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -285,6 +309,10 @@ Removes a secret key.
        -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -302,35 +330,31 @@ Returns an app-scoped JWT signed using the requested keyId/secret pair.
 
 # Integrations
 
-This set of endpoints is used to configure and manage various front-end messaging channels. A JWT is required with either 'app' or 'appMaker' scope. The paths below assume that the call will be made using an 'appMaker' scoped JWT, and thus the /apps/:appId portion of the URL is required. If using an 'app' scope JWT, this path is implied, and may be omitted.
+This set of endpoints is used to configure and manage various front-end messaging channels. A JWT is required with `appMaker` scope. The paths below assume that the call will be made using an 'appMaker' scoped JWT.
 
-Some integrations require some additional setup. [See below](#) for more channel specific details.
-
-The currently supported integration types are: Messenger, Line, Telegram and Twilio (SMS).
+The currently supported integration types are: Messenger, LINE, Telegram and Twilio SMS.
 
 ## Create Integration
 
 <api>`POST /v1/apps/{appId}/integrations`</api>
 
-The create integration API currently allows you to provision apps with four channels: _Messenger_, _Twilio_, _Telegram_, and _Line_. See the sections below for channel specific instructions.
+The create integration API currently allows you to provision apps with four channels: _Facebook Messenger_, _Twilio_, _Telegram_, _LINE_, _WeChat_, and _Email_. See the sections below for channel specific instructions.
 
-## Create Integration: Messenger
+## Facebook Messenger
 
-Setting up Messenger to work with Smooch requires several steps, documented below.
+Facebook Messenger Setup steps:
 
-To configure the Facebook Messenger integration you will need to collect information about your Facebook app and submit the app for approval
+1. Take note of your Facebook app ID and secret (apps can be created at [developer.facebook.com](https://developer.facebook.com));
+2. The Facebook app must have been submitted to Facebook for approval with the "manage_pages" and "pages_messaging" permissions.
 
-1. Take note of your Facebook app ID and secret (apps can be created at developer.facebook.com);
-2. The Facebook app must have been submitted for approval with the "manage_pages" and "pages_messaging" permissions.
-
-In order to integrate a Messenger app you must acquire a Page Access Token from your user. Once you have acquired a page access token from your user, call the Create Integration endpoint with your app secret and ID and the user’s page access token.
+In order to integrate a Facebook Messenger app you must acquire a Page Access Token from your user. Once you have acquired a page access token from your user, call the Create Integration endpoint with your app secret and ID and the user’s page access token.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type. _messenger_, _line_, _telegram_, or _twilio_. |
-| **pageAccessToken**<br/><span class='req'>Messenger only (required)</span> | A Facebook Page Access Token. |
-| **appId**<br/><span class='req'>Messenger only (required)</span> | A Facebook App ID. |
-| **appSecret**<br/><span class='req'>Messenger only (required)</span> | A Facebook App Secret. |
+| **type**<br/><span class='req'>required</span> | The integration type: _messenger_. |
+| **pageAccessToken**<br/><span class='req'>required</span> | A Facebook Page Access Token. |
+| **appId**<br/><span class='req'>required</span> | A Facebook App ID. |
+| **appSecret**<br/><span class='req'>required</span> | A Facebook App Secret. |
 
 > Request:
 
@@ -343,6 +367,10 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -350,26 +378,25 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 ```
 ```json
 {
-  "integration": {
-    "_id": "5735dded48011972d621dc02",
-    "userId": "140537932994989",
-    "username": "Mike Spensieri",
-    "pageId": "841556169307232",
-    "type": "messenger"
-  }
+    "integration": {
+        "type": "messenger",
+        "pageAccessToken": "your_access_token",
+        "appId": "your_fb_app_id",
+        "appSecret": "your_fb_app_secret"
+    }
 }
 ```
 
-## Create Integration: Twilio
+## Twilio
 
-There is no setup required to be able to use the Twilio integration, just acquire the required information from the user and call the Create Integration endpoint.
+To configure a Twilio integration, acquire the required information from the user and call the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type. _messenger_, _line_, _telegram_, or _twilio_. |
-| **accountSid**<br/><span class='req'>Twilio only (required)</span> | Twilio Account SID. |
-| **authToken**<br/><span class='req'>Twilio only (required)</span> | Twilio Auth Token. |
-| **phoneNumberSid**<br/><span class='req'>Twilio only (required)</span> | SID for specific phone number. |
+| **type**<br/><span class='req'>required</span> | The integration type: _twilio_. |
+| **accountSid**<br/><span class='req'>required</span> | Twilio Account SID. |
+| **authToken**<br/><span class='req'>required</span> | Twilio Auth Token. |
+| **phoneNumberSid**<br/><span class='req'>required</span> | SID for specific phone number. |
 
 > Request:
 
@@ -379,6 +406,10 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -d '{"type": "twilio", "accountSid": "ACa1b4c65ee0722712fab89867cb14eac7", "authToken": "160c024303f53049e1e060fd67ca6aefc", "phoneNumberSid": "PN0674df0ecee0c9819bca0ff0bc0a159e"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -399,14 +430,14 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-## Create Integration: Telegram
+## Telegram
 
-There is no setup required to be able to use the Telegram integration, just acquire the required information from the user and call the "Create Integration" API.
+To configure a Telegram integration, acquire the required information from the user and call the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type. _messenger_, _line_, _telegram_, or _twilio_. |
-| **token**<br/><span class='req'>Telegram only (required)</span> | Telegram Bot Token. |
+| **type**<br/><span class='req'>required</span> | The integration type: _telegram_. |
+| **token**<br/><span class='req'>required</span> | Telegram Bot Token. |
 
 > Request:
 
@@ -416,6 +447,10 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -d '{"type": "telegram", "token": "192033615:AAEuee2FS2JYKWfDlTulfygjaIGJi4s"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -433,17 +468,22 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-## Create Integration: Line
+## LINE
 
-There is no one-time setup required to be able to use the LINE integration. However, each of your users will need to manually configure a webhook in their LINE configuration page that will point to Smooch servers. You must instruct your users how to configure this manually on their LINE bot page. For more information on how to configure this, see the entry "Callback URL" on the LINE integration page on app.smooch.io. The URL that users must use includes the Smooch app id, and should look like the following: "https://app.smooch.io:443/api/line/webhooks/<appId>"
-Then, call the "Create Integration" API with the required information acquired from the user.
+For LINE, each of your customers will need to manually configure a webhook in their LINE configuration page that will point to Smooch servers. You must instruct your customers how to configure this manually on their LINE bot page.
+
+Your customers must set the Callback URL field in their [LINE Business Center page](https://business.line.me/en/).
+
+The URL should look like the following: `https://api.smooch.io:443/api/line/webhooks/{appId}`.
+
+Once you've acquired all the required information and the callback url has been configured, call the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type. _messenger_, _line_, _telegram_, or _twilio_. |
-| **channelId**<br/><span class='req'>Line only (required)</span> | Line Channel ID. |
-| **channelSecret**<br/><span class='req'>Line only (required)</span> | Line Channel Secret. |
-| **mid**<br/><span class='req'>Line only (required)</span> | Authorized user ID |
+| **type**<br/><span class='req'>required</span> | The integration type: _line_. |
+| **channelId**<br/><span class='req'>required</span> | LINE Channel ID. |
+| **channelSecret**<br/><span class='req'>required</span> | LINE Channel Secret. |
+| **mid**<br/><span class='req'>required</span> | Authorized user ID |
 
 > Request:
 
@@ -453,6 +493,10 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -d '{"type": "line", "channelId": "1462776483", "channelSecret": "04ee6a24c099d8e4e35f7f4d20", "mid": "uf0c0bc1813d372ac5af4c5b5faee9923"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -472,9 +516,84 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-<api>`POST /v1/apps/{appId}/integrations`</api>
+## WeChat
 
-Creates a new app. The response body will include the appToken, which can be used to initialize the Web, iOS and Android clients and make calls to the app user facing API.
+To configure a WeChat integration, acquire the WeChat app ID and app secret from the customer and call the Create Integration endpoint.
+
+In their [WeChat dashboard](https://mp.weixin.qq.com/), the customer must set the "URL" field to `https://api.smooch.io/api/wechat/webhooks/{smoochAppId}`, and set the "Token" field to the value of the webhookSecret found in the response to the call to the Create Integration endpoint.
+
+| **Arguments**             |   |
+|---------------------------|---|
+| **type**<br/><span class='req'>required</span> | The integration type: _wechat_. |
+| **appId**<br/><span class='req'>required</span> | WeChat App ID. |
+| **appSecret**<br/><span class='req'>required</span> | WeChat App Secret. |
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
+     -X POST \
+     -d '{"type": "wechat", "appId": "ACa1b4c65ee0722712fab89867cb14eac7", "appSecret": "160c024303f53049e1e060fd67ca6aefc"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+    "integration": {
+        "_id": "5735ddfd48011972d621dc0a",
+        "appId": "c69175d6d125b772b",
+        "webhookSecret": "3889794ab2fd4a70940a97c4b4a6372e"
+    }
+}
+```
+
+## Email
+
+To configure an Email integration, simply call the Create Integration endpoint with the type argument _frontendEmail_.
+
+| **Arguments**             |   |
+|---------------------------|---|
+| **type**<br/><span class='req'>required</span> | The integration type: _frontendEmail_. |
+| **fromAddress**<br/><span class='opt'>optional</span> | Email will display as coming from this address. |
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
+     -X POST \
+     -d '{"type": "frontendEmail"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+    "integration": {
+        "_id": "5735ddfd48011972d621dc0a",
+        "shortId": "tki1106",
+        "smoochAddress": "app.tki1106@mail.smooch.io"
+    }
+}
+```
 
 ## List Integrations
 
@@ -483,6 +602,10 @@ Creates a new app. The response body will include the appToken, which can be use
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
        -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
@@ -542,6 +665,10 @@ Lists all integrations for a given app.
        -H 'authorization: Bearer your-appmaker-token'
 ```
 
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
@@ -572,6 +699,10 @@ Return the specified integration.
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations/5735dded48011972d621dc02 \
        -X DELETE \
        -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
 ```
 
 > Response:
