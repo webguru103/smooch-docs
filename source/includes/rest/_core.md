@@ -66,7 +66,7 @@ The **appToken** authentication method only allows you to call the API on behalf
 
 **App scoped JWTs** can be used to access any of the Smooch Core APIs on behalf of the app, or any app user.
 
-For more information on **app maker scope**, please [see the Messaging Inside API](#inside).
+For more information on **app maker scope**, please [see the Inside API](#inside).
 
 # Authentication
 
