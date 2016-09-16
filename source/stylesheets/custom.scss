@@ -90,10 +90,10 @@ body {
 }
 
 .tocify-wrapper li {
-  color: #FFF;
+  color: white;
   font-size: 15px;
   font-weight: 600;
-  line-height: 40px;
+  line-height: 32px;
   margin-left: 36px;
   margin-right: 36px;
 }
@@ -414,7 +414,7 @@ beta:after {
 
 #nav-button span {
   background-color: #912d8d;
-  color: #fff;
+  color: white;
   padding: 6px 10px 6px;
 }
 
@@ -473,7 +473,7 @@ beta:after {
 }
 
 .btn-default {
-  color: #fff;
+  color: white;
   background-color: transparent;
 }
 
@@ -556,7 +556,7 @@ beta:after {
   height: 0;
   border-left: $arrow-size solid transparent;
   border-right: $arrow-size solid transparent;
-  border-top: $arrow-size solid #FFF;
+  border-top: $arrow-size solid white;
   top: 18px;
   position: absolute;
   right: 15px;
@@ -582,4 +582,20 @@ span.mut {
 }
 span.opt {
   color: #808080;
+}
+
+.sidebar-nav-heading {
+  color: #c2b9d5;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.content .section-header {
+    color: #a3a3a3;
+    font-weight: lighter;
+    margin-bottom: -1em;
 }
