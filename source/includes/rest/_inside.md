@@ -338,7 +338,7 @@ The currently supported integration types are: Messenger, LINE, Telegram and Twi
 
 <api>`POST /v1/apps/{appId}/integrations`</api>
 
-The create integration API currently allows you to provision apps with four channels: _Facebook Messenger_, _Twilio_, _Telegram_, _LINE_, _WeChat_, and _Email_. See the sections below for channel specific instructions.
+The Create Integration endpoint currently allows you to provision apps with four channels: _Facebook Messenger_, _Twilio_, _Telegram_, _LINE_, _WeChat_, and _Email_. See the sections below for channel specific instructions.
 
 ## Facebook Messenger
 
