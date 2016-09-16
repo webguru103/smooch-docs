@@ -541,6 +541,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 {
     "integration": {
         "_id": "5735ddfd48011972d621dc0a",
+        "type": "wechat",
         "appId": "c69175d6d125b772b",
         "webhookSecret": "3889794ab2fd4a70940a97c4b4a6372e"
     }
@@ -556,6 +557,7 @@ In their [WeChat dashboard](https://mp.weixin.qq.com/), the customer must set th
 | **type**<br/><span class='req'>required</span> | The integration type: _wechat_. |
 | **appId**<br/><span class='req'>required</span> | WeChat App ID. |
 | **appSecret**<br/><span class='req'>required</span> | WeChat App Secret. |
+| **encodingAesKey**<br/><span class='opt'>optional</span> | AES Encoding Key. |
 
 ## Email
 
