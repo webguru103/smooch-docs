@@ -3,7 +3,7 @@
 
 The Messaging Inside API allows software vendors to offer rich, engaging multi-channel communications as a feature inside their software without the technical overhead of maintaining multiple APIs.
 
-Apps that are created this way will be available via the API only, they won't be available in the smooch dashboard.
+Apps that are created this way will be available via the API only, they won't be available in the Smooch dashboard.
 
 # Authentication
 
@@ -332,13 +332,13 @@ Returns an app-scoped JWT signed using the requested keyId/secret pair.
 
 This set of endpoints is used to configure and manage various front-end messaging channels. A JWT is required with `appMaker` scope. The paths below assume that the call will be made using an 'appMaker' scoped JWT.
 
-The currently supported integration types are: Messenger, LINE, Telegram and Twilio SMS.
+The currently supported integration types are: Facebook Messenger, LINE, Telegram, Twilio SMS, WeChat, and Email.
 
 ## Create Integration
 
 <api>`POST /v1/apps/{appId}/integrations`</api>
 
-The Create Integration endpoint currently allows you to provision apps with four channels: _Facebook Messenger_, _Twilio_, _Telegram_, _LINE_, _WeChat_, and _Email_. See the sections below for channel specific instructions.
+The Create Integration endpoint currently allows you to provision apps with front-end messaging channels. See the sections below for channel specific instructions.
 
 ## Facebook Messenger
 
@@ -474,7 +474,7 @@ For LINE, each of your customers will need to manually configure a webhook in th
 
 Your customers must set the Callback URL field in their [LINE Business Center page](https://business.line.me/en/).
 
-The URL should look like the following: `https://api.smooch.io:443/api/line/webhooks/{appId}`.
+The URL should look like the following: `https://app.smooch.io:443/api/line/webhooks/{appId}`.
 
 Once you've acquired all the required information and the callback url has been configured, call the Create Integration endpoint.
 
@@ -520,7 +520,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 
 To configure a WeChat integration, acquire the WeChat app ID and app secret from the customer and call the Create Integration endpoint.
 
-In their [WeChat dashboard](https://mp.weixin.qq.com/), the customer must set the "URL" field to `https://api.smooch.io/api/wechat/webhooks/{smoochAppId}`, and set the "Token" field to the value of the webhookSecret found in the response to the call to the Create Integration endpoint.
+In their [WeChat dashboard](https://mp.weixin.qq.com/), the customer must set the "URL" field to `https://app.smooch.io/api/wechat/webhooks/{smoochAppId}`, and set the "Token" field to the value of the webhookSecret found in the response to the call to the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
