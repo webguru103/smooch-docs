@@ -584,6 +584,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 {
     "integration": {
         "_id": "5735ddfd48011972d621dc0a",
+        "type": "frontendEmail",
         "shortId": "tki1106",
         "smoochAddress": "app.tki1106@mail.smooch.io"
     }
