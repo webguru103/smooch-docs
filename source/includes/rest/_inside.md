@@ -342,20 +342,6 @@ The Create Integration endpoint currently allows you to provision apps with fron
 
 ## Facebook Messenger
 
-Facebook Messenger Setup steps:
-
-1. Take note of your Facebook app ID and secret (apps can be created at [developer.facebook.com](https://developer.facebook.com));
-2. The Facebook app must have been submitted to Facebook for approval with the "manage_pages" and "pages_messaging" permissions.
-
-In order to integrate a Facebook Messenger app you must acquire a Page Access Token from your user. Once you have acquired a page access token from your user, call the Create Integration endpoint with your app secret and ID and the user’s page access token.
-
-| **Arguments**             |   |
-|---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type: _messenger_. |
-| **pageAccessToken**<br/><span class='req'>required</span> | A Facebook Page Access Token. |
-| **appId**<br/><span class='req'>required</span> | A Facebook App ID. |
-| **appSecret**<br/><span class='req'>required</span> | A Facebook App Secret. |
-
 > Request:
 
 ```shell
@@ -387,16 +373,21 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-## Twilio
+Facebook Messenger Setup steps:
 
-To configure a Twilio integration, acquire the required information from the user and call the Create Integration endpoint.
+1. Take note of your Facebook app ID and secret (apps can be created at [developer.facebook.com](https://developer.facebook.com));
+2. The Facebook app must have been submitted to Facebook for approval with the "manage_pages" and "pages_messaging" permissions.
+
+In order to integrate a Facebook Messenger app you must acquire a Page Access Token from your user. Once you have acquired a page access token from your user, call the Create Integration endpoint with your app secret and ID and the user’s page access token.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type: _twilio_. |
-| **accountSid**<br/><span class='req'>required</span> | Twilio Account SID. |
-| **authToken**<br/><span class='req'>required</span> | Twilio Auth Token. |
-| **phoneNumberSid**<br/><span class='req'>required</span> | SID for specific phone number. |
+| **type**<br/><span class='req'>required</span> | The integration type: _messenger_. |
+| **pageAccessToken**<br/><span class='req'>required</span> | A Facebook Page Access Token. |
+| **appId**<br/><span class='req'>required</span> | A Facebook App ID. |
+| **appSecret**<br/><span class='req'>required</span> | A Facebook App Secret. |
+
+## Twilio
 
 > Request:
 
@@ -430,14 +421,16 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-## Telegram
-
-To configure a Telegram integration, acquire the required information from the user and call the Create Integration endpoint.
+To configure a Twilio integration, acquire the required information from the user and call the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type: _telegram_. |
-| **token**<br/><span class='req'>required</span> | Telegram Bot Token. |
+| **type**<br/><span class='req'>required</span> | The integration type: _twilio_. |
+| **accountSid**<br/><span class='req'>required</span> | Twilio Account SID. |
+| **authToken**<br/><span class='req'>required</span> | Twilio Auth Token. |
+| **phoneNumberSid**<br/><span class='req'>required</span> | SID for specific phone number. |
+
+## Telegram
 
 > Request:
 
@@ -468,22 +461,14 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-## LINE
-
-For LINE, each of your customers will need to manually configure a webhook in their LINE configuration page that will point to Smooch servers. You must instruct your customers how to configure this manually on their LINE bot page.
-
-Your customers must set the Callback URL field in their [LINE Business Center page](https://business.line.me/en/).
-
-The URL should look like the following: `https://app.smooch.io:443/api/line/webhooks/{appId}`.
-
-Once you've acquired all the required information and the callback url has been configured, call the Create Integration endpoint.
+To configure a Telegram integration, acquire the required information from the user and call the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type: _line_. |
-| **channelId**<br/><span class='req'>required</span> | LINE Channel ID. |
-| **channelSecret**<br/><span class='req'>required</span> | LINE Channel Secret. |
-| **mid**<br/><span class='req'>required</span> | Authorized user ID |
+| **type**<br/><span class='req'>required</span> | The integration type: _telegram_. |
+| **token**<br/><span class='req'>required</span> | Telegram Bot Token. |
+
+## LINE
 
 > Request:
 
@@ -516,17 +501,22 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 }
 ```
 
-## WeChat
+For LINE, each of your customers will need to manually configure a webhook in their LINE configuration page that will point to Smooch servers. You must instruct your customers how to configure this manually on their LINE bot page.
 
-To configure a WeChat integration, acquire the WeChat app ID and app secret from the customer and call the Create Integration endpoint.
+Your customers must set the Callback URL field in their [LINE Business Center page](https://business.line.me/en/).
 
-In their [WeChat dashboard](https://mp.weixin.qq.com/), the customer must set the "URL" field to `https://app.smooch.io/api/wechat/webhooks/{smoochAppId}`, and set the "Token" field to the value of the webhookSecret found in the response to the call to the Create Integration endpoint.
+The URL should look like the following: `https://app.smooch.io:443/api/line/webhooks/{appId}`.
+
+Once you've acquired all the required information and the callback url has been configured, call the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type: _wechat_. |
-| **appId**<br/><span class='req'>required</span> | WeChat App ID. |
-| **appSecret**<br/><span class='req'>required</span> | WeChat App Secret. |
+| **type**<br/><span class='req'>required</span> | The integration type: _line_. |
+| **channelId**<br/><span class='req'>required</span> | LINE Channel ID. |
+| **channelSecret**<br/><span class='req'>required</span> | LINE Channel Secret. |
+| **mid**<br/><span class='req'>required</span> | Authorized user ID |
+
+## WeChat
 
 > Request:
 
@@ -551,20 +541,25 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 {
     "integration": {
         "_id": "5735ddfd48011972d621dc0a",
+        "type": "wechat",
         "appId": "c69175d6d125b772b",
         "webhookSecret": "3889794ab2fd4a70940a97c4b4a6372e"
     }
 }
 ```
 
-## Email
+To configure a WeChat integration, acquire the WeChat app ID and app secret from the customer and call the Create Integration endpoint.
 
-To configure an Email integration, simply call the Create Integration endpoint with the type argument _frontendEmail_.
+In their [WeChat dashboard](https://mp.weixin.qq.com/), the customer must set the "URL" field to `https://app.smooch.io/api/wechat/webhooks/{smoochAppId}`, and set the "Token" field to the value of the webhookSecret found in the response to the call to the Create Integration endpoint.
 
 | **Arguments**             |   |
 |---------------------------|---|
-| **type**<br/><span class='req'>required</span> | The integration type: _frontendEmail_. |
-| **fromAddress**<br/><span class='opt'>optional</span> | Email will display as coming from this address. |
+| **type**<br/><span class='req'>required</span> | The integration type: _wechat_. |
+| **appId**<br/><span class='req'>required</span> | WeChat App ID. |
+| **appSecret**<br/><span class='req'>required</span> | WeChat App Secret. |
+| **encodingAesKey**<br/><span class='opt'>optional</span> | AES Encoding Key. |
+
+## Email
 
 > Request:
 
@@ -589,11 +584,19 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 {
     "integration": {
         "_id": "5735ddfd48011972d621dc0a",
+        "type": "frontendEmail",
         "shortId": "tki1106",
         "smoochAddress": "app.tki1106@mail.smooch.io"
     }
 }
 ```
+
+To configure an Email integration, simply call the Create Integration endpoint with the type argument _frontendEmail_.
+
+| **Arguments**             |   |
+|---------------------------|---|
+| **type**<br/><span class='req'>required</span> | The integration type: _frontendEmail_. |
+| **fromAddress**<br/><span class='opt'>optional</span> | Email will display as coming from this address. |
 
 ## List Integrations
 
