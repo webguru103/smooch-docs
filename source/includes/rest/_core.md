@@ -1388,9 +1388,22 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
-     -d '{"text":"Which do you prefer?", "role": "appMaker", "actions": [{"type": "reply", "text": "Burger King", "payload": "BURGER_KING" }, {"type": "reply", "text": "Pizza Hut", "payload": "PIZZA_HUT"}]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
+     -d '
+{
+    "text":"Which do you prefer?",
+    "role": "appMaker",
+    "actions": [{
+        "type": "reply",
+        "text": "Tacos",
+        "payload": "TACOS"
+    }, {
+        "type": "reply",
+        "text": "Burritos",
+        "payload": "BURRITOS"
+    }]
+}'
 ```
 ```js
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
@@ -1399,12 +1412,12 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     actions: [
       {
         type: 'reply',
-        text: 'Burger King',
-        payload: 'BURGER_KING'
+        text: 'Tacos',
+        payload: 'TACOS'
       }, {
         type: 'reply',
-        text: 'Pizza Hut',
-        payload: 'PIZZA_HUT'
+        text: 'Burritos',
+        payload: 'BURRITOS'
       }
     ]
 }).then(() => {
@@ -1417,11 +1430,64 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 | **text**<br/><span class='req'>required</span>      | The button text. |
 | **type**<br/><span class='req'>required</span>      | `reply` |
 | **payload**<br/><span class='req'>required</span>    | A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs. |
+| **iconUrl**<br/><span class='opt'>optional</span>  | An icon to render next to the reply option (Facebook Messenger only) |
 | **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
 
 <aside class="notice">
 `reply` type actions are mutually exclusive with other action types. When specifying a `reply` action, all other actions on the same message must also be of type `reply`, otherwise the message will be considered invalid.
 </aside>
+
+### Facebook Messenger Reply Actions
+
+> Send reply actions with icon URLs:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+     -d '
+{
+    "text":"Which do you prefer?",
+    "role": "appMaker",
+    "actions": [{
+        "type": "reply",
+        "text": "Tacos",
+        "iconUrl": "http://example.org/taco.png"
+        "payload": "TACOS"
+    }, {
+        "type": "reply",
+        "text": "Burritos",
+        "iconUrl": "http://example.org/burrito.png"
+        "payload": "BURRITOS"
+    }]
+}'
+```
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Which do you prefer?',
+    role: 'appMaker',
+    actions: [
+      {
+        type: 'reply',
+        text: 'Tacos',
+        iconUrl: 'http://example.org/taco.png',
+        payload: 'TACOS'
+      }, {
+        type: 'reply',
+        text: 'Burritos',
+        iconUrl: 'http://example.org/burrito.png',
+        payload: 'BURRITOS'
+      }
+    ]
+}).then(() => {
+    // async code
+});
+```
+
+For `reply` actions sent to Facebook Messenger you may optionally specify an `iconUrl` which will render as an icon for each option.
+
+![Facebook Messenger reply icons](/images/fb_reply_icon.png)
 
 ## Carousel Messages
 
@@ -1567,9 +1633,56 @@ Only the `appMaker` role can used to send a carousel message.
 
 ### Carousel Actions
 
-Carousel actions have the same structure as [action buttons](#action-buttons), however only `link` and `postback` action types are permitted.
+Carousel actions have the same structure as [action buttons](#action-buttons), however only `link`, `postback` and `share` action types are permitted.
 
-### Channel Support
+### Carousel Share Button
+
+> Send share action:
+
+```shell
+curl http://localhost:8091/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -H 'content-type: application/json' \
+     -H "authorization: Bearer your-jwt" \
+     -d '
+{
+    "role": "appMaker",
+    "items": [{
+        "title": "Title",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "mediaType": "image/jpeg",
+        "actions": [{
+            "type": "share"
+        }]
+    }]
+}'
+```
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Title',
+    role: 'appMaker',
+    items: [{
+      title: 'Title',
+      actions: [{
+        type: 'share'
+      }]
+    }]
+}).then(() => {
+    // async code
+});
+```
+
+Carousel actions may also include a share button. Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform [documentation](https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button).
+
+![messenger carousel](/images/facebook_share_button.png)
+
+| **Share**                |                  |
+|------------------------------|----------------------------|
+| **type**<br/><span class='req'>required</span>      | `share` |
+| **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
+
+### Channel Support for Carousel Messages
 
 Smooch will deliver carousel messages to users across all messaging channels regardless of whether or not a given channel can natively render a carousel message UI. For channels that don't render carousels, a raw text representation is sent. In the future, the Smooch API will expand to support new messaging app carousel experiences as they become available. For current messaging channels, carousel messages will render in the following ways:
 
