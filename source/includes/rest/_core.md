@@ -1640,7 +1640,7 @@ Carousel actions have the same structure as [action buttons](#action-buttons), h
 > Send share action:
 
 ```shell
-curl http://localhost:8091/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
      -H 'content-type: application/json' \
      -H "authorization: Bearer your-jwt" \
