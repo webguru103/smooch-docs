@@ -1666,9 +1666,22 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Which do you prefer?", "role": "appMaker", "actions": [{"type": "reply", "text": "Burger King", "payload": "BURGER_KING" }, {"type": "reply", "text": "Pizza Hut", "payload": "PIZZA_HUT"}]}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
+     -d <span class="s1">'
+{
+    "text":"Which do you prefer?",
+    "role": "appMaker",
+    "actions": [{
+        "type": "reply",
+        "text": "Tacos",
+        "payload": "TACOS"
+    }, {
+        "type": "reply",
+        "text": "Burritos",
+        "payload": "BURRITOS"
+    }]
+}'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Which do you prefer?'</span><span class="p">,</span>
@@ -1676,12 +1689,12 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
     <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
-        <span class="na">text</span><span class="p">:</span> <span class="s1">'Burger King'</span><span class="p">,</span>
-        <span class="na">payload</span><span class="p">:</span> <span class="s1">'BURGER_KING'</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Tacos'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'TACOS'</span>
       <span class="p">},</span> <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
-        <span class="na">text</span><span class="p">:</span> <span class="s1">'Pizza Hut'</span><span class="p">,</span>
-        <span class="na">payload</span><span class="p">:</span> <span class="s1">'PIZZA_HUT'</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Burritos'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'BURRITOS'</span>
       <span class="p">}</span>
     <span class="p">]</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -1708,6 +1721,10 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 <td>A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs.</td>
 </tr>
 <tr>
+<td><strong>iconUrl</strong><br/><span class='opt'>optional</span></td>
+<td>An icon to render next to the reply option (Facebook Messenger only)</td>
+</tr>
+<tr>
 <td><strong>metadata</strong><br/><span class='opt'>optional</span></td>
 <td>Flat JSON object containing any custom properties associated with the action.</td>
 </tr>
@@ -1716,6 +1733,55 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 <p><aside class="notice">
 <code class="prettyprint">reply</code> type actions are mutually exclusive with other action types. When specifying a <code class="prettyprint">reply</code> action, all other actions on the same message must also be of type <code class="prettyprint">reply</code>, otherwise the message will be considered invalid.
 </aside></p>
+<h3 id='facebook-messenger-reply-actions'>Facebook Messenger Reply Actions</h3>
+<blockquote>
+<p>Send reply actions with icon URLs:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+     -d <span class="s1">'
+{
+    "text":"Which do you prefer?",
+    "role": "appMaker",
+    "actions": [{
+        "type": "reply",
+        "text": "Tacos",
+        "iconUrl": "http://example.org/taco.png"
+        "payload": "TACOS"
+    }, {
+        "type": "reply",
+        "text": "Burritos",
+        "iconUrl": "http://example.org/burrito.png"
+        "payload": "BURRITOS"
+    }]
+}'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Which do you prefer?'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Tacos'</span><span class="p">,</span>
+        <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'http://example.org/taco.png'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'TACOS'</span>
+      <span class="p">},</span> <span class="p">{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'Burritos'</span><span class="p">,</span>
+        <span class="na">iconUrl</span><span class="p">:</span> <span class="s1">'http://example.org/burrito.png'</span><span class="p">,</span>
+        <span class="na">payload</span><span class="p">:</span> <span class="s1">'BURRITOS'</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>For <code class="prettyprint">reply</code> actions sent to Facebook Messenger you may optionally specify an <code class="prettyprint">iconUrl</code> which will render as an icon for each option.</p>
+
+<p><img alt="Facebook Messenger reply icons" src="../images/fb_reply_icon.png" /></p>
 <h2 id='carousel-messages'>Carousel Messages</h2>
 <blockquote>
 <p>Request:</p>
@@ -1872,8 +1938,63 @@ Only the <code class="prettyprint">appMaker</code> role can used to send a carou
 </tr>
 </tbody></table>
 <h3 id='carousel-actions'>Carousel Actions</h3>
-<p>Carousel actions have the same structure as <a href="#action-buttons">action buttons</a>, however only <code class="prettyprint">link</code> and <code class="prettyprint">postback</code> action types are permitted.</p>
-<h3 id='channel-support'>Channel Support</h3>
+<p>Carousel actions have the same structure as <a href="#action-buttons">action buttons</a>, however only <code class="prettyprint">link</code>, <code class="prettyprint">postback</code> and <code class="prettyprint">share</code> action types are permitted.</p>
+<h3 id='carousel-share-button'>Carousel Share Button</h3>
+<blockquote>
+<p>Send share action:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s2">"authorization: Bearer your-jwt"</span> <span class="se">\</span>
+     -d <span class="s1">'
+{
+    "role": "appMaker",
+    "items": [{
+        "title": "Title",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "mediaType": "image/jpeg",
+        "actions": [{
+            "type": "share"
+        }]
+    }]
+}'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Title'</span><span class="p">,</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">items</span><span class="p">:</span> <span class="p">[{</span>
+      <span class="na">title</span><span class="p">:</span> <span class="s1">'Title'</span><span class="p">,</span>
+      <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'share'</span>
+      <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<p>Carousel actions may also include a share button. Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform <a href="https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button">documentation</a>.</p>
+
+<p><img alt="messenger carousel" src="../images/facebook_share_button.png" /></p>
+
+<table><thead>
+<tr>
+<th><strong>Share</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>type</strong><br/><span class='req'>required</span></td>
+<td><code class="prettyprint">share</code></td>
+</tr>
+<tr>
+<td><strong>metadata</strong><br/><span class='opt'>optional</span></td>
+<td>Flat JSON object containing any custom properties associated with the action.</td>
+</tr>
+</tbody></table>
+<h3 id='channel-support-for-carousel-messages'>Channel Support for Carousel Messages</h3>
 <p>Smooch will deliver carousel messages to users across all messaging channels regardless of whether or not a given channel can natively render a carousel message UI. For channels that don&rsquo;t render carousels, a raw text representation is sent. In the future, the Smooch API will expand to support new messaging app carousel experiences as they become available. For current messaging channels, carousel messages will render in the following ways:</p>
 <h4 id='facebook-messenger'>Facebook Messenger</h4>
 <p>Full support.
