@@ -147,6 +147,17 @@ Remember — when you use CocoaPods to manage your app&rsquo;s dependencies, you
 <p><aside class="notice">
 If you&rsquo;re writing an app using Swift, then you&rsquo;ll need to import this header into a &ldquo;bridging header&rdquo;. More info on this is available from <a href="https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Apple</a>
 </aside></p>
+<h2 id='add-required-keys-in-your-app39s-info-plist'>Add Required Keys in your app&rsquo;s Info.plist</h2>
+<p>The Smooch SDK allows users to send images to you. To support this feature, you must provide a description in your app&rsquo;s Info.plist to explain why access to the camera and photo library is required. These descriptions will be displayed as part of the alert when the system prompts the user to allow access. The keys are:</p>
+
+<ul>
+<li>NSCameraUsageDescription: describes the reason your app access the camera (ex: <code class="prettyprint">Camera permission is required to send images to ${PRODUCT_NAME}</code>). More information available <a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW24">here</a></li>
+<li>NSPhotoLibraryUsageDescription: describes the reason your app accesses the photo library (ex: <code class="prettyprint">Photo library permission is required to send images to ${PRODUCT_NAME}</code>). More information available <a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17">here</a></li>
+</ul>
+
+<p><aside class="notice">
+Starting from iOS 10, these values are required. If they are not present in your app&rsquo;s Info.plist, the option to send an image will not be displayed.
+</aside></p>
 <h2 id='initialize-smooch-in-your-app'>Initialize Smooch in your app</h2>
 <p>After following the steps above, your app is setup for working with the Smooch SDK. Before your code can invoke its functionality, you&rsquo;ll have to initialize the library using your app&rsquo;s token.</p>
 
