@@ -66,6 +66,17 @@ Import the Smooch file into the your app delegate's .m file and any other places
 If you're writing an app using Swift, then you'll need to import this header into a "bridging header". More info on this is available from [Apple](https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html)
 </aside>
 
+## Add Required Keys in your app's Info.plist
+
+The Smooch SDK allows users to send images to you. To support this feature, you must provide a description in your app's Info.plist to explain why access to the camera and photo library is required. These descriptions will be displayed as part of the alert when the system prompts the user to allow access. The keys are:
+
+* NSCameraUsageDescription: describes the reason your app access the camera (ex: `Camera permission is required to send images to ${PRODUCT_NAME}`). More information available [here](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW24)
+* NSPhotoLibraryUsageDescription: describes the reason your app accesses the photo library (ex: `Photo library permission is required to send images to ${PRODUCT_NAME}`). More information available [here](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17)
+
+<aside class="notice">
+Starting from iOS 10, these values are required. If they are not present in your app's Info.plist, the option to send an image will not be displayed.
+</aside>
+
 ## Initialize Smooch in your app
 
 
