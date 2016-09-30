@@ -15,10 +15,7 @@ toc_footers:
   - <a href='/rest'>REST API Reference</a>
 
 includes:
-    - --Core
     - rest/core
-    - --Inside
-    - rest/inside
 
 search: true
 ---
