@@ -52,7 +52,8 @@
         </div>
     </div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
+        
+              <h1 id='introduction'>Introduction</h1>
 <p>Welcome to the Smooch API. The API allows you to craft entirely unique messaging experiences for your app and website as well as talk to any backend or external service.</p>
 <h2 id='basics'>Basics</h2>
 <p>The Smooch API is designed according to <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> principles.</p>
@@ -117,6 +118,42 @@
 <p>Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will start returning a <code class="prettyprint">429 Too Many Requests</code> HTTP status code. We apply rate limits to prevent abuse, spam, denial-of-service attacks, and similar issues. Our goal is to keep the limits high enough so that any application using Smooch as intended will never hit them. However, applications that consistently exceed limits run the risk of being permanently disabled.</p>
 <h2 id='deprecations'>Deprecations</h2>
 <p>The &ldquo;devices&rdquo; array returned in the AppUser payload has been changed to &ldquo;clients&rdquo;. In order to maintain compatibility, we will keep returning the &ldquo;devices&rdquo; array in v1, but in the next version it will be removed.</p>
+<h1 id='authorization'>Authorization</h1>
+<p>This is an overview of how authorization works with the Smooch API.</p>
+
+<p>Smooch offers two methods for authentication JSON Web Token (JWT) and app token. <a href="#authentication">See below</a> for more details. There are three different scopes of authorization available. These are <em>appUser</em>, <em>app</em>, and <em>appMaker</em>.</p>
+
+<table><thead>
+<tr>
+<th>Scope</th>
+<th>Methods</th>
+<th>Authorized APIs</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>appUser</strong></td>
+<td>JWT, appToken</td>
+<td><a href="#init">Init</a>, <a href="#app-user">App User</a>, <a href="#conversations">Conversations</a></td>
+</tr>
+<tr>
+<td><strong>app</strong></td>
+<td>JWT</td>
+<td><a href="#webhooks">Webhooks</a>, <a href="#init">Init</a>, <a href="#app-user">App User</a>, <a href="#conversations">Conversations</a> <a href="#persistent-menus">Persistent Menus</a></td>
+</tr>
+<tr>
+<td><strong>appMaker</strong></td>
+<td>JWT</td>
+<td>All APIs</td>
+</tr>
+</tbody></table>
+
+<p><strong>App user scoped JWTs</strong> are user specific, and once specified, secure a user so that only a JWT scoped specifically for that user (or an app or app maker JWT) can be used to call the API on behalf of that user.</p>
+
+<p>The <strong>appToken</strong> authentication method only allows you to call the API on behalf of users who have not yet been secured by an app user scoped JWT.</p>
+
+<p><strong>App scoped JWTs</strong> can be used to access any of the Smooch Core APIs on behalf of the app, or any app user.</p>
+
+<p>For more information on <strong>app maker scope</strong>, please <a href="#inside">see the Inside API</a>.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>Smooch APIs offer two methods of authentication:</p>
 
@@ -480,15 +517,19 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </tr>
 <tr>
 <td><strong>message:appUser</strong></td>
-<td>only app user messages</td>
+<td>only messages with role <code class="prettyprint">appUser</code></td>
 </tr>
 <tr>
 <td><strong>message:appMaker</strong></td>
-<td>only app maker messages</td>
+<td>only messages with role <code class="prettyprint">appMaker</code> or <code class="prettyprint">whisper</code></td>
 </tr>
 <tr>
 <td><strong>postback</strong></td>
 <td>when a user clicks on a postback action</td>
+</tr>
+<tr>
+<td><strong>merge:appUser</strong></td>
+<td>when two or more users are merged into one</td>
 </tr>
 </tbody></table>
 <h2 id='webhooks-payload'>Webhooks payload</h2>
@@ -618,6 +659,26 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
           </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Webhook example payload for the <code class="prettyprint">merge:appUser</code> trigger:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"merge:appUser"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5698edbf2a43bd081be982f1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"surviving"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a79a0ecfba3260bf145be257"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"discarded"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ac30dad829178f6378f61f4"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2247,6 +2308,174 @@ More info http://example.org
 <p><api><code class="prettyprint">DELETE /v1/menu</code></api></p>
 
 <p>Remove the specified app&rsquo;s menu.</p>
+<h1 id='smooch-connect'>Smooch Connect</h1>
+<p>Smooch has a rapidly growing partner ecosystem which helps you unlock messaging in your product or service and lets customers find you alongside complementary partners. If you&rsquo;re interested in becoming a partner, tell us what you&rsquo;re building with Smooch using our <a href="https://smooch.io/partners/">partner application</a> and we&rsquo;ll provision you with everything you&rsquo;ll need to build your end of the OAuth flow using Smooch Connect. In the meantime the OAuth endpoints detailed below can be tested by impersonating Shoplifter, a partnership we built for testing purposes.</p>
+<h2 id='add-to-smooch-button'>Add to Smooch Button</h2><pre class="highlight html"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://app.smooch.io/oauth/authorize?client_id=shoplifter&amp;response_type=code"</span><span class="nt">&gt;&lt;img</span> <span class="na">alt=</span><span class="s">"Add to Smooch"</span> <span class="na">height=</span><span class="s">"40"</span> <span class="na">width=</span><span class="s">"165"</span> <span class="na">src=</span><span class="s">"https://cdn.smooch.io/images/add_to_smooch.png"</span> <span class="na">srcset=</span><span class="s">"https://cdn.smooch.io/images/add_to_smooch.png 1x, https://cdn.smooch.io/images/add_to_smooch@2x.png 2x"</span><span class="nt">/&gt;&lt;/a&gt;</span>
+</code></pre>
+
+<p>This HTML template can be used to place an &ldquo;Add to Smooch&rdquo; button on your website.</p>
+
+<p class="add-to-smooch-button">
+    <a href="https://app.smooch.io/oauth/authorize?client_id=shoplifter&response_type=code"><img alt="Add to Smooch" height="40" width="165" src="https://cdn.smooch.io/images/add_to_smooch.png" srcset="https://cdn.smooch.io/images/add_to_smooch.png 1x, https://cdn.smooch.io/images/add_to_smooch@2x.png 2x"/></a>
+</p>
+<h2 id='authorize-endpoint'>Authorize Endpoint</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://app.smooch.io/oauth/authorize?client_id<span class="o">=</span>shoplifter&amp;response_type<span class="o">=</span>code
+</code></pre>
+<pre class="highlight javascript"><code><span class="c1">// This endpoint is not currently wrapped in a JavaScript lib</span>
+</code></pre>
+
+<p><api><code class="prettyprint">GET https://app.smooch.io/oauth/authorize</code></api></p>
+
+<p>This endpoint begins the OAuth flow. It relies on a browser session for authentication. If the user is not logged in to Smooch they will be redirected to the login page. If the user has many apps, they will first be prompted to select the one they wish to integrate with. They will then be presented with an Allow/Deny dialog, describing details of the access your integration is requesting.</p>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>client_id</strong><br/><span class='req'>required</span></td>
+<td>Your integration&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td><strong>response_type</strong><br/><span class='req'>required</span></td>
+<td>For now the only acceptable value is <code class="prettyprint">code</code></td>
+</tr>
+<tr>
+<td><strong>state</strong><br/><span class='opt'>optional</span></td>
+<td>You may pass in any arbitrary string value here which will be returned to you along with the code via browser redirect</td>
+</tr>
+</tbody></table>
+<h3 id='success-response'>Success Response</h3>
+<p>A successful response is delivered via a 302 redirect to the redirect URI configured by your integration.</p>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>code</strong></td>
+<td>An authorization code which can be exchanged for an access token</td>
+</tr>
+<tr>
+<td><strong>state</strong></td>
+<td>Your state parameter (if one was provided)</td>
+</tr>
+</tbody></table>
+<h3 id='error-response'>Error Response</h3>
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>error</strong></td>
+<td>For example: <code class="prettyprint">access_denied</code></td>
+</tr>
+<tr>
+<td><strong>state</strong></td>
+<td>Your state parameter (if one was provided)</td>
+</tr>
+</tbody></table>
+<h3 id='error-codes'>Error Codes</h3>
+<table><thead>
+<tr>
+<th><em>Error Code</em></th>
+<th><em>Delivery Method</em></th>
+<th><em>Description</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>access_denied</strong></td>
+<td>302</td>
+<td>The user denied access</td>
+</tr>
+</tbody></table>
+<h2 id='token-endpoint'>Token Endpoint</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST https://api.smooch.io/oauth/token <span class="se">\</span>
+     -d <span class="nv">code</span><span class="o">=</span>your_code <span class="se">\</span>
+     -d <span class="nv">grant_type</span><span class="o">=</span>authorization_code <span class="se">\</span>
+     -d <span class="nv">client_id</span><span class="o">=</span>shoplifter <span class="se">\</span>
+     -d <span class="nv">client_secret</span><span class="o">=</span>secret
+</code></pre>
+<pre class="highlight javascript"><code><span class="c1">// This endpoint is not currently wrapped in a JavaScript lib</span>
+</code></pre>
+
+<p><api><code class="prettyprint">POST https://app.smooch.io/oauth/token</code></api></p>
+
+<p>This endpoint is used to exchange an authorization code for an access token. It should only be used in server-to-server calls.</p>
+
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>code</strong><br/><span class='req'>required</span></td>
+<td>The authorization code received via <code class="prettyprint">/oauth/authorize</code></td>
+</tr>
+<tr>
+<td><strong>grant_type</strong><br/><span class='req'>required</span></td>
+<td>Must be set to <code class="prettyprint">authorization_code</code></td>
+</tr>
+<tr>
+<td><strong>client_id</strong><br/><span class='req'>required</span></td>
+<td>Your integration&rsquo;s unique identifier</td>
+</tr>
+<tr>
+<td><strong>client_secret</strong><br/><span class='req'>required</span></td>
+<td>Your integration&rsquo;s secret</td>
+</tr>
+</tbody></table>
+<h3 id='success-response'>Success Response:</h3>
+<table><thead>
+<tr>
+<th><em>Parameter</em></th>
+<th><em>Description</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>access_token</strong></td>
+<td>An access token that can now be used to call Smooch APIs</td>
+</tr>
+<tr>
+<td><strong>token_type</strong></td>
+<td><code class="prettyprint">Bearer</code>. All issued tokens are of this type</td>
+</tr>
+</tbody></table>
+<h2 id='scope'>Scope</h2>
+<p>The default scope of an issued access token is <code class="prettyprint">integration</code> scope. This allows API calls to be made to a specific Smooch app on behalf of an integration, identified by the integration&rsquo;s <code class="prettyprint">clientId</code>. The access token grants permission to get and create app users and conversations associated with the app. The token also grants permission to create webhooks, however only webhooks created for the integration will be visible. An access token with <code class="prettyprint">integration</code> scope cannot see or modify webhooks that were created by other integrations for example.</p>
+
+<table><thead>
+<tr>
+<th><em>API Root</em></th>
+<th><em>Access</em></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>/v1/appusers/</strong>*</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>/v1/webhooks/</strong>*</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>/v1/menu/</strong>*</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
       </div>
     </div>
