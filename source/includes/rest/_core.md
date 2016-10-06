@@ -1978,6 +1978,7 @@ This endpoint begins the OAuth flow. It relies on a browser session for authenti
 | **client_id**<br/><span class='req'>required</span> | Your integration's unique identifier |
 | **response_type**<br/><span class='req'>required</span>  | For now the only acceptable value is `code` |
 | **state**<br/><span class='opt'>optional</span>  | You may pass in any arbitrary string value here which will be returned to you along with the code via browser redirect |
+| **redirect_uri**<br/><span class='opt'>optional</span>  | You may pass in a redirect_uri to determine which URI the response is redirected to. This URI must be contained in the list configured by your integration. If this option is not passed, the first URI present in the list will be used |
 
 ### Success Response
 
