@@ -2349,6 +2349,10 @@ More info http://example.org
 <td><strong>state</strong><br/><span class='opt'>optional</span></td>
 <td>You may pass in any arbitrary string value here which will be returned to you along with the code via browser redirect</td>
 </tr>
+<tr>
+<td><strong>redirect_uri</strong><br/><span class='opt'>optional</span></td>
+<td>You may pass in a redirect_uri to determine which URI the response is redirected to. This URI must be contained in the list configured by your integration. If this option is not passed, the first URI present in the list will be used</td>
+</tr>
 </tbody></table>
 <h3 id='success-response'>Success Response</h3>
 <p>A successful response is delivered via a 302 redirect to the redirect URI configured by your integration.</p>
