@@ -420,9 +420,10 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 | trigger          |   |
 |------------------|---|
 | **message**<br/>*default* | all messages            |
-| **message:appUser**       | only app user messages  |
-| **message:appMaker**      | only app maker messages |
+| **message:appUser**       | only messages with role `appUser`  |
+| **message:appMaker**      | only messages with role `appMaker` or `whisper` |
 | **postback**              | when a user clicks on a postback action |
+| **merge:appUser**         | when two or more users are merged into one |
 
 ## Webhooks payload
 
@@ -554,6 +555,26 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
           }
         ]
     }
+}
+```
+
+> Webhook example payload for the `merge:appUser` trigger:
+
+```json
+{
+    "trigger": "merge:appUser",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
+    "surviving": {
+        "_id": "a79a0ecfba3260bf145be257",
+        "userId": "123",
+        "conversationStarted": true
+    },
+    "discarded": [{
+        "_id": "1ac30dad829178f6378f61f4",
+        "conversationStarted": false
+    }]
 }
 ```
 
