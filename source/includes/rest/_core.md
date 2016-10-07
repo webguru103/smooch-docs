@@ -424,6 +424,7 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 | **message:appMaker**      | only messages with role `appMaker` or `whisper` |
 | **postback**              | when a user clicks on a postback action |
 | **merge:appUser**         | when two or more users are merged into one |
+| <strong>*</strong>        | when any of the above triggers occurs |
 
 ## Webhooks payload
 
