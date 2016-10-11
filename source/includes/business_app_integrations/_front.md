@@ -4,5 +4,5 @@
 
 ### Configuring Front to work with Smooch
 
-The Front integration is built entirely on top of Smooch's public [REST API](/rest), which makes the integration steps different from other integrations like [Slack](#slack) or [Zendesk](#zendesk). You can find the full installation instructions [here](https://faq.frontapp.com/11682-adding-a-new-inbox-in-front/how-to-set-up-a-smooch-inbox-integration).
+The Front integration is built entirely on top of Smooch's public [REST API](/rest), which makes the integration steps different from other integrations like [Slack](#slack) or [Zendesk](#zendesk). You can find the full installation instructions [here](https://community.frontapp.com/t/q56nk7/how-to-enable-and-use-the-smooch-integration).
 
