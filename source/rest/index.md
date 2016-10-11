@@ -15,7 +15,10 @@ toc_footers:
   - <a href='/rest'>REST API Reference</a>
 
 includes:
+    - --Core
     - rest/core
+    - --Smooch Connect
+    - rest/connect
 
 search: true
 ---
