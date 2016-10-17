@@ -704,8 +704,10 @@ You can say: STAR TREK, STAR WARS
 <p>Our LINE integration allows your users to send messages to your LINE bot which you receive in channels like Slack, HipChat or Help Scout. Your replies are sent back as coming from your LINE bot.</p>
 
 <p>You can also receive the user messages through a <a href="/rest#webhooks">webhook</a>.</p>
-<h3 id='creating-a-line-bot'>Creating a LINE bot</h3>
-<p>To create a bot you first need to create a LINE account through a <a href="http://line.me/en-US/download">mobile app</a>.</p>
+<h3 id='creating-a-line-business-account'>Creating a LINE Business Account</h3>
+<p>To create a business account you first need to create a LINE account through a <a href="http://line.me/en-US/download">mobile app</a>.</p>
+
+<p>If you already have a LINE business account, login to <a href="https://business.line.me">LINE business section</a> then skip to <a href="#creating-a-line-messaging-api-channel">Creating a LINE Messaging API Channel</a>.</p>
 
 <p>After having signed up with your phone number, you will need to activate email registration and create a LINE business account.</p>
 
@@ -714,22 +716,29 @@ You can say: STAR TREK, STAR WARS
 <li><p>Login to the <a href="https://business.line.me">LINE business section</a> with the credentials entered previously. You&rsquo;ll need your phone to login.</p></li>
 <li><p>Enter your account details, and confirm the registration by email.</p></li>
 <li><p>Enter information about your business to complete the LINE business account registration.</p></li>
-<li><p>Click &ldquo;Create a Business Account&rdquo;, and enter your account name.</p></li>
-<li><p>On the next screen, click the &ldquo;Start&rdquo; button to the right of &ldquo;BOT API Trial Account&rdquo;. Scroll down and click the blue &ldquo;Start&rdquo; button.</p></li>
-<li><p>Agree to the terms and click &ldquo;create&rdquo; to create your bot.</p></li>
 </ol>
-
-<p>You can now edit information about your bot such as the name and avatar by clicking &ldquo;EDIT&rdquo;. You&rsquo;re also ready to configure your LINE bot with Smooch.</p>
-<h3 id='configuring-line'>Configuring LINE</h3>
-<p>Once you&rsquo;ve configured your bot, login to the Smooch dashboard and select LINE in the list of integrations and follow these steps.</p>
+<h3 id='creating-a-line-messaging-api-channel'>Creating a LINE Messaging API Channel</h3>
+<p>To create a messaging channel, login to the <a href="https://business.line.me">LINE business section</a> and follow these steps:</p>
 
 <ol>
-<li><p>Enter your Channel ID, Channel Secret and MID on the integration page.</p></li>
-<li><p>Copy the callback url displayed on the page. In the bot settings click on &ldquo;EDIT&rdquo; at the bottom of your bot settings in LINE, paste the provided Callback URL and click &ldquo;SAVE&rdquo;.</p></li>
-<li><p>In the Smooch dashboard, click &ldquo;Connect your LINE bot&rdquo; to complete the integration.</p></li>
+<li><p>Click &ldquo;Account List&rdquo;, and select &ldquo;Messaging API&rdquo; to create a Messaging API account.</p></li>
+<li><p>Click &ldquo;Start using Messaging API&rdquo; and enter your Account Name and other required information. Upload an icon if you desire.</p></li>
+<li><p>Click &ldquo;Apply&rdquo;</p></li>
+<li><p>In the bot settings, click &ldquo;Enable API&rdquo; and confirm.</p></li>
+<li><p>In Bot Settings, &ldquo;Don&rsquo;t Allow&rdquo; Group Chats, &ldquo;Allow&rdquo; Use webhooks, &ldquo;Don&rsquo;t Allow&rdquo; Auto Reply Message and &ldquo;Don&rsquo;t Allow&rdquo; Greeting Message. <span class="half-width-img"><img alt="line_bot_settings" src="../images/line_bot_settings.png" /></span></p></li>
 </ol>
 
-<p>You can now add your bot to your list of friends by scanning the QR code displayed in the LINE bot settings, and talk directly to it. All messages should be sent to any backend channel you&rsquo;ve configured.</p>
+<p>You&rsquo;re now ready to configure your LINE messaging account with Smooch.</p>
+<h3 id='configuring-line'>Configuring LINE</h3>
+<p>Browse to the <a href="https://developers.line.me/ba">LINE developers page</a>. In a separate browser tab, login to the Smooch dashboard and select LINE in the list of integrations and follow these steps.</p>
+
+<ol>
+<li><p>In the LINE developers page, click the Channel Access Token &ldquo;Issue&rdquo; button and paste this, as well as the Channel Secret into the respective fields in the Smooch integration page.</p></li>
+<li><p>Copy the webhook url displayed on the page. In the account settings click on &ldquo;EDIT&rdquo; at the bottom of your bot settings in LINE, paste the provided Webhook URL and click &ldquo;SAVE&rdquo;.</p></li>
+<li><p>In the Smooch dashboard, click &ldquo;Connect your LINE channel&rdquo; to complete the integration.</p></li>
+</ol>
+
+<p>You can now add your channel to your list of friends by scanning the QR code displayed in the LINE bot settings, and talk directly to it. All messages should be sent to any backend channel you&rsquo;ve configured.</p>
 
           <h3 id='action-buttons'>Action Buttons</h3>
 <p>Action buttons with the type of <code class="prettyprint">link</code> will be translated into text. For example, if you link to <code class="prettyprint">https://google.ca</code> with the text of the button as <code class="prettyprint">Click Here</code>, and the text of the message as <code class="prettyprint">This is a very special link</code>, the text message will look like:</p>
