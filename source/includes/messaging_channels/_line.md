@@ -10,7 +10,7 @@ You can also receive the user messages through a [webhook](/rest#webhooks).
 
 To create a business account you first need to create a LINE account through a [mobile app](http://line.me/en-US/download).
 
-If you already have a LINE business account, login to [LINE business section](https://business.line.me) then skip to "Creating a LINE Messaging API Channel".
+If you already have a LINE business account, login to [LINE business section](https://business.line.me) then skip to [Creating a LINE Messaging API Channel](#creating-a-line-messaging-api-channel).
 
 After having signed up with your phone number, you will need to activate email registration and create a LINE business account.
 
