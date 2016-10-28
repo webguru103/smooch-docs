@@ -141,22 +141,15 @@
 <tr>
 <td><strong>app</strong></td>
 <td>JWT</td>
-<td><a href="#webhooks">Webhooks</a>, <a href="#init">Init</a>, <a href="#app-user">App User</a>, <a href="#conversations">Conversations</a> <a href="#persistent-menus">Persistent Menus</a></td>
-</tr>
-<tr>
-<td><strong>appMaker</strong></td>
-<td>JWT</td>
-<td>All APIs</td>
+<td><a href="#init">Init</a>, <a href="#app-user">App User</a>, <a href="#conversations">Conversations</a> <a href="#webhooks">Webhooks</a>, <a href="#persistent-menus">Persistent Menus</a></td>
 </tr>
 </tbody></table>
 
-<p><strong>App user scoped JWTs</strong> are user specific, and once specified, secure a user so that only a JWT scoped specifically for that user (or an app or app maker JWT) can be used to call the API on behalf of that user.</p>
-
 <p>The <strong>appToken</strong> authentication method only allows you to call the API on behalf of users who have not yet been secured by an app user scoped JWT.</p>
 
-<p><strong>App scoped JWTs</strong> can be used to access any of the Smooch Core APIs on behalf of the app, or any app user.</p>
+<p>JWTs issued with <strong>appUser</strong> scope grant the caller permission to access that specific user&rsquo;s data only. Once an app user JWT is used for the first time, the user and their conversation history will transition into secure mode, and from that point onward a JWT will be <em>required</em> for any subsequent API calls pertaining to that user. An <strong>appToken</strong> will no longer be accepted to access that specific user&rsquo;s data.</p>
 
-<p>For more information on <strong>app maker scope</strong>, please <a href="#inside">see the Inside API</a>.</p>
+<p>JWTs issued with <strong>app</strong> scope can be used to access any of the Smooch Core APIs on behalf of the app, or any app user.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>Smooch APIs offer two methods of authentication:</p>
 
