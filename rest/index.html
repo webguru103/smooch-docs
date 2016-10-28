@@ -1439,6 +1439,55 @@ The timestamp format should be in seconds using <a href="https://en.wikipedia.or
 <p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/conversation/read</code></api></p>
 
 <p>Reset the unread count of the conversation to 0. If the conversation has not yet been created for the specified app user 404 will be returned.</p>
+<h2 id='typing-activity'>Typing Activity</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/activity <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -d <span class="s1">'{"role":"appMaker", "type": "typing:start"}'</span> <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="c1">// This endpoint is not currently wrapped in a JavaScript lib</span>
+</code></pre>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"conversation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"df0ebe56cbeab98589b8bfa7"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unreadCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">POST /v1/appusers/{appUserId|userId}/conversation/activity</code></api></p>
+
+<p>Notify Smooch when an app maker starts or stops typing a response.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>role</strong><br/><span class='req'>required</span></td>
+<td>The role of the actor. Must be <code class="prettyprint">appMaker</code>.</td>
+</tr>
+<tr>
+<td><strong>type</strong><br/><span class='req'>required</span></td>
+<td>The type of activity to trigger. Must be either <code class="prettyprint">typing:start</code> or <code class="prettyprint">typing:stop</code></td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">
+Typing activity is only supported on Messenger and Telegram
+</aside></p>
 <h2 id='post-message'>Post Message</h2>
 <blockquote>
 <p>Post as app user:</p>
