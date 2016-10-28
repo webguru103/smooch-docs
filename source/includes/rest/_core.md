@@ -1202,6 +1202,47 @@ smooch.conversations.resetUnreadCount('c7f6e6d6c3a637261bd9656f').then(() => {
 
 Reset the unread count of the conversation to 0. If the conversation has not yet been created for the specified app user 404 will be returned.
 
+## Typing Activity
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/activity \
+     -X POST \
+     -d '{"role":"appMaker", "type": "typing:start"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+// This endpoint is not currently wrapped in a JavaScript lib
+```
+
+> Response
+
+```
+200 OK
+```
+```json
+{
+  "conversation": {
+    "_id": "df0ebe56cbeab98589b8bfa7",
+    "unreadCount": 0
+  }
+}
+```
+
+<api>`POST /v1/appusers/{appUserId|userId}/conversation/activity`</api>
+
+Notify Smooch when an app maker starts or stops typing a response.
+
+| **Arguments**                |                       |
+|------------------------------|-----------------------|
+| **role**<br/><span class='req'>required</span>       | The role of the actor. Must be `appMaker`. |
+| **type**<br/><span class='req'>required</span>       | The type of activity to trigger. Must be either `typing:start` or `typing:stop` |
+
+<aside class="notice">
+Typing activity is only supported on Messenger and Telegram
+</aside>
+
 ## Post Message
 
 > Post as app user:
