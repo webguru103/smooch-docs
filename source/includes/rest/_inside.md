@@ -475,7 +475,7 @@ To configure a Telegram integration, acquire the required information from the u
 ```shell
 curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
-     -d '{"type": "line", "channelId": "1462776483", "channelSecret": "04ee6a24c099d8e4e35f7f4d20", "mid": "uf0c0bc1813d372ac5af4c5b5faee9923"}' \
+     -d '{"type": "line", "channelAccessToken": "jZak8gGEYxfy1gIxk869osf2SuT6o11rtLqZQnAx9TiKE7eFXwgnnL58dtwOd1ON9e11GPTDfq+b4hson3dvvYAnAaAnbXYjj1rCUIzgxAa4xVZwGqyS+2rzpswZnGhAuMBWQxCMsF9dwztolUr01wdB04t89/1O/w1cDnyilFU=", "channelSecret": "b85cff984b26eac4297917abd365c4d6"' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-appmaker-token'
 ```
@@ -492,8 +492,6 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 ```json
 {
     "integration": {
-      "mid": "uf0c0bc1813d372ac5af4c5b5faee9923",
-      "channelId": "1462776483",
       "_id": "5735ddfd48011972d621dc0a",
       "botName": "Mike Bot",
       "type": "line"
@@ -512,9 +510,8 @@ Once you've acquired all the required information and the callback url has been 
 | **Arguments**             |   |
 |---------------------------|---|
 | **type**<br/><span class='req'>required</span> | The integration type: _line_. |
-| **channelId**<br/><span class='req'>required</span> | LINE Channel ID. |
+| **channelAccessToken**<br/><span class='req'>required</span> | LINE Channel Access Token. |
 | **channelSecret**<br/><span class='req'>required</span> | LINE Channel Secret. |
-| **mid**<br/><span class='req'>required</span> | Authorized user ID |
 
 ## Viber
 
