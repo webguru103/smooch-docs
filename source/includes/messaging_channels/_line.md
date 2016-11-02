@@ -6,6 +6,8 @@ Our LINE integration allows your users to send messages to your LINE bot which y
 
 You can also receive the user messages through a [webhook](/rest#webhooks).
 
+Before you can configure LINE to work with Smooch, you'll have to [create a business account](#creating-a-line-business-account) and a [messaging API channel](#creating-a-line-messaging-api-channel).
+
 ### Creating a LINE Business Account
 
 To create a business account you first need to create a LINE account through a [mobile app](http://line.me/en-US/download).
