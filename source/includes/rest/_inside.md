@@ -516,6 +516,44 @@ Once you've acquired all the required information and the callback url has been 
 | **channelSecret**<br/><span class='req'>required</span> | LINE Channel Secret. |
 | **mid**<br/><span class='req'>required</span> | Authorized user ID |
 
+## Viber
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
+     -X POST \
+     -d '{"type": "viber", "token": "df5f8c5233399561-92636b0c5ba30da9-16d4928fc004a72d"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+    "integration": {
+        "type": "viber",
+        "_id": "5818fa177682fcb51368635d",
+        "uri": "MikesBusiness"
+    }
+}
+
+```
+To configure a Viber integration, acquire the Viber Public Account token from the user and call the Create Integration endpoint.
+
+| **Arguments**             |   |
+|---------------------------|---|
+| **type**<br/><span class='req'>required</span> | The integration type: _viber_. |
+| **token**<br/><span class='req'>required</span> | Viber Public Account token. |
+
 ## WeChat
 
 > Request:
