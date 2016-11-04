@@ -159,6 +159,33 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6 \
 
 Fetches an individual app.
 
+## Delete App
+
+> Request:
+
+```shell
+  curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6 \
+       -X DELETE \
+       -H 'authorization: Bearer your-appmaker-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+200 OK
+```
+```json
+{}
+```
+
+<api>`DELETE /v1/apps/{appId}`</api>
+
+Removes the specified app, including all its enabled integrations.
+
 # App Keys
 
 This set of endpoints is used to provision and revoke secret keys for a Smooch app. A JWT with scope 'appMaker' is required to access the secret keys API.
