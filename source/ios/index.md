@@ -57,6 +57,7 @@ includes:
   - actions/action_buttons_text
   - messaging_channels/shopify
   - messaging_channels/elevio
+  - messaging_channels/viber
 
   - addons/addons
   - addons/stripe_intro
