@@ -1754,6 +1754,10 @@ Full support.
 Full support, with cards arranged vertically.
 ![telegram carousel](/images/carousel_telegram.png)
 
+#### LINE
+Full support.
+<span class="third-width-img">![line carousel](/images/carousel_line.png)</span>
+
 > Sample Raw Text Format:
 
 ```
