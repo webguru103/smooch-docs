@@ -1369,6 +1369,9 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 | **uri**<br/><span class='req'>required</span>      | The action URI. This is the link that will be used in the clients when clicking the button. |
 | **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
 
+<aside class="notice">
+    Action buttons sent to LINE must have `http` or `https` protocol or the message will not be delivered.
+</aside>
 
 > Send buy action:
 
