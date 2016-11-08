@@ -1759,7 +1759,7 @@ Full support, with cards arranged vertically.
 
 #### LINE
 Full support.
-<span class="third-width-img">![line carousel](/images/carousel_line.png)</span>
+<span class="half-width-img">![line carousel](/images/carousel_line.png)</span>
 
 > Sample Raw Text Format:
 
