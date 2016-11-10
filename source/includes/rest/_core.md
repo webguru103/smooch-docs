@@ -1493,14 +1493,14 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 | **text**<br/><span class='req'>required</span>      | The button text. |
 | **type**<br/><span class='req'>required</span>      | `reply` |
 | **payload**<br/><span class='req'>required</span>    | A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs. |
-| **iconUrl**<br/><span class='opt'>optional</span>  | An icon to render next to the reply option (Facebook Messenger only) |
+| **iconUrl**<br/><span class='opt'>optional</span>  | An icon to render next to the reply option (Facebook Messenger and Web Messenger only) |
 | **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
 
 <aside class="notice">
 `reply` type actions are mutually exclusive with other action types. When specifying a `reply` action, all other actions on the same message must also be of type `reply`, otherwise the message will be considered invalid.
 </aside>
 
-### Facebook Messenger Reply Actions
+### Reply Actions with icon
 
 > Send reply actions with icon URLs:
 
@@ -1548,9 +1548,17 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-For `reply` actions sent to Facebook Messenger you may optionally specify an `iconUrl` which will render as an icon for each option.
+For `reply` actions you may optionally specify an `iconUrl` which will render as an icon for each option.
 
+<aside class="notice">
+Icons are currrently only supported on Facebook Messenger and Web Messenger.
+</aside>
+
+**Facebook Messenger**
 ![Facebook Messenger reply icons](/images/fb_reply_icon.png)
+
+**Web Messenger**
+![Web Messenger reply icons](/images/web_reply_icon.png)
 
 ## Carousel Messages
 

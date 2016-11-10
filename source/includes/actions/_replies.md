@@ -13,5 +13,5 @@ You can send a reply button with the following syntax:
 Reply buttons are mutually exclusive with other action types. When specifying a reply button, all other actions on the same message must also be replies, otherwise the message will be considered invalid.
 </aside>
 <aside class="notice">
-Reply buttons are currently supported on Facebook Messenger, LINE, WeChat, Telegram, SMS, and Email Messaging.
+Reply buttons are currently supported on Web Messenger, Facebook Messenger, LINE, WeChat, Telegram, SMS, and Email Messaging.
 </aside>
