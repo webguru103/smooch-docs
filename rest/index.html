@@ -1836,7 +1836,7 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 </tr>
 <tr>
 <td><strong>iconUrl</strong><br/><span class='opt'>optional</span></td>
-<td>An icon to render next to the reply option (Facebook Messenger only)</td>
+<td>An icon to render next to the reply option (Facebook Messenger and Web Messenger only)</td>
 </tr>
 <tr>
 <td><strong>metadata</strong><br/><span class='opt'>optional</span></td>
@@ -1847,7 +1847,7 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 <p><aside class="notice">
 <code class="prettyprint">reply</code> type actions are mutually exclusive with other action types. When specifying a <code class="prettyprint">reply</code> action, all other actions on the same message must also be of type <code class="prettyprint">reply</code>, otherwise the message will be considered invalid.
 </aside></p>
-<h3 id='facebook-messenger-reply-actions'>Facebook Messenger Reply Actions</h3>
+<h3 id='reply-actions-with-icon'>Reply Actions with icon</h3>
 <blockquote>
 <p>Send reply actions with icon URLs:</p>
 </blockquote>
@@ -1893,9 +1893,17 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 <span class="p">});</span>
 </code></pre>
 
-<p>For <code class="prettyprint">reply</code> actions sent to Facebook Messenger you may optionally specify an <code class="prettyprint">iconUrl</code> which will render as an icon for each option.</p>
+<p>For <code class="prettyprint">reply</code> actions you may optionally specify an <code class="prettyprint">iconUrl</code> which will render as an icon for each option.</p>
 
-<p><img alt="Facebook Messenger reply icons" src="../images/fb_reply_icon.png" /></p>
+<p><aside class="notice">
+Icons are currrently only supported on Facebook Messenger and Web Messenger.
+</aside></p>
+
+<p><strong>Facebook Messenger</strong>
+<img alt="Facebook Messenger reply icons" src="../images/fb_reply_icon.png" /></p>
+
+<p><strong>Web Messenger</strong>
+<img alt="Web Messenger reply icons" src="../images/web_reply_icon.png" /></p>
 <h2 id='carousel-messages'>Carousel Messages</h2>
 <blockquote>
 <p>Request:</p>
