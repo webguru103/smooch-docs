@@ -1,46 +1,17 @@
 
 # Introduction
 
-The Messaging Inside API allows software vendors to offer rich, engaging multi-channel communications as a feature inside their software without the technical overhead of maintaining multiple APIs.
-
-Apps that are created this way will be available via the API only, they won't be available in the Smooch dashboard.
+If you're looking to enable messaging inside your product for your customers, with as much control over the experience as you’d like, you can create and control Smooch apps programmatically using Managed Accounts.
 
 # Authentication
 
-Software vendors will be issued a special JWT access token with appMaker scope. The Inside API endpoints defined in this section can only be accessed with appMaker scope.
+Managed Accounts require a `account` scoped JWT. To sign those JWTs, you will need to use an Account level secret key. You can create one by going into your [account page](https://app.smooch.io/account). For more details about signing JWTs, see [this](#jwt) section.
 
-### Acquiring your App Maker Scoped Token
+### Using the Account Scoped Token
 
-To acquire the app maker scoped token, visit our [partner page](https://smooch.io/partners/).
+Use the `account` scoped JWT in the same way that you would use an `app` or `appUser` scoped JWT, by passing it as an Authorization header, with the token prefaced by the _Bearer_ keyword. See [Authentication](#authentication) for more details.
 
-### Using the App Maker Scoped Token
-
-Use the appMaker scoped Token in the same way that you would use an app or appUser scoped JSON Web Token, by passing it as an Authorization header, with the token prefaced by the _Bearer_ keyword.
-
-All of the existing app management APIs such as /v1/appusers and /v1/webhooks will be accessible using an appMaker JWT, provided the app id is included in the front of the path.
-
-> Create a webhook:
-
-```shell
-curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/webhooks \
-    -d '{"target": "http://example.com/callback"}' \
-    -H 'authorization: Bearer your-appmaker-token'
-```
-
-```javascript
-// These endpoints are not currently wrapped in a JavaScript lib
-```
-
-> Fetch a conversation:
-
-```shell
-curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/appusers/c7f6e6d6c3a637261bd9656f/conversation \
-    -H 'authorization: Bearer your-appmaker-token'
-```
-
-```javascript
-// These endpoints are not currently wrapped in a JavaScript lib
-```
+All of the existing core APIs such as `/v1/appusers` and `/v1/webhooks` are accessible using an `account` JWT, provided the `appId` is included in the the path (e.g. `/v1/appusers` becomes `/v1/apps/{appId}/appusers`)
 
 # Apps
 
@@ -55,7 +26,7 @@ curl https://api.smooch.io/v1/apps \
      -X POST \
      -d '{"name": "My App"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -91,7 +62,7 @@ Creates a new app. The response body will include the appToken, which can be use
 
 ```shell
   curl https://api.smooch.io/v1/apps \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -133,7 +104,7 @@ Lists all apps configured. This API is paginated. It returns a max of 25 apps by
 
 ```shell
 curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6 \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -166,7 +137,7 @@ Fetches an individual app.
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6 \
        -X DELETE \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -188,7 +159,7 @@ Removes the specified app, including all its enabled integrations.
 
 # App Keys
 
-This set of endpoints is used to provision and revoke secret keys for a Smooch app. A JWT with scope 'appMaker' is required to access the secret keys API.
+This set of endpoints is used to provision and revoke secret keys for a Smooch app. A JWT with scope 'account' is required to access the secret keys API.
 
 ## Create Key
 
@@ -199,7 +170,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys \
      -X POST \
      -d '{"name": "key1"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -235,7 +206,7 @@ Creates a secret key for the specified app. The response body will include a sec
 
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -274,7 +245,7 @@ Lists all secret keys for a given app.
 
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys/app_5723a347f82ba0516cb4ea34 \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -307,7 +278,7 @@ Returns a secret key.
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys/app_5723a347f82ba0516cb4ea34 \
        -X DELETE \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -333,7 +304,7 @@ Removes a secret key.
 
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/keys/app_5723a347f82ba0516cb4ea34/jwt \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -357,9 +328,9 @@ Returns an app-scoped JWT signed using the requested keyId/secret pair.
 
 # Integrations
 
-This set of endpoints is used to configure and manage various front-end messaging channels. A JWT is required with `appMaker` scope. The paths below assume that the call will be made using an 'appMaker' scoped JWT.
+This set of endpoints is used to configure and manage various front-end messaging channels. A JWT is required with `account` scope. The paths below assume that the call will be made using an 'account' scoped JWT.
 
-The currently supported integration types are: Facebook Messenger, LINE, Telegram, Twilio SMS, WeChat, and Email.
+The currently supported integration types are: Facebook Messenger, LINE, Telegram, Twilio SMS, WeChat, Viber and Email.
 
 ## Create Integration
 
@@ -377,7 +348,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -d '{ "type": "messenger", "pageAccessToken": "your_access_token", "appId": "your_fb_app_id", "appSecret": "your_fb_app_secret"
 }' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -423,7 +394,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
      -d '{"type": "twilio", "accountSid": "ACa1b4c65ee0722712fab89867cb14eac7", "authToken": "160c024303f53049e1e060fd67ca6aefc", "phoneNumberSid": "PN0674df0ecee0c9819bca0ff0bc0a159e"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -466,7 +437,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
      -d '{"type": "telegram", "token": "192033615:AAEuee2FS2JYKWfDlTulfygjaIGJi4s"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -504,7 +475,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
      -d '{"type": "line", "channelAccessToken": "jZak8gGEYxfy1gIxk869osf2SuT6o11rtLqZQnAx9TiKE7eFXwgnnL58dtwOd1ON9e11GPTDfq+b4hson3dvvYAnAaAnbXYjj1rCUIzgxAa4xVZwGqyS+2rzpswZnGhAuMBWQxCMsF9dwztolUr01wdB04t89/1O/w1cDnyilFU=", "channelSecret": "b85cff984b26eac4297917abd365c4d6"' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -549,7 +520,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
      -d '{"type": "viber", "token": "df5f8c5233399561-92636b0c5ba30da9-16d4928fc004a72d"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -587,7 +558,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
      -d '{"type": "wechat", "appId": "ACa1b4c65ee0722712fab89867cb14eac7", "appSecret": "160c024303f53049e1e060fd67ca6aefc"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -630,7 +601,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
      -X POST \
      -d '{"type": "frontendEmail"}' \
      -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-appmaker-token'
+     -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -666,7 +637,7 @@ To configure an Email integration, simply call the Create Integration endpoint w
 
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -727,7 +698,7 @@ Lists all integrations for a given app.
 
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations/5735dded48011972d621dc02 \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript
@@ -763,7 +734,7 @@ Return the specified integration.
 ```shell
   curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations/5735dded48011972d621dc02 \
        -X DELETE \
-       -H 'authorization: Bearer your-appmaker-token'
+       -H 'authorization: Bearer your-account-token'
 ```
 
 ```javascript

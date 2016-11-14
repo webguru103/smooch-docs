@@ -17,6 +17,8 @@ toc_footers:
 includes:
     - --Core
     - rest/core
+    - --Managed accounts
+    - rest/managed
     - --Smooch Connect
     - rest/connect
 
