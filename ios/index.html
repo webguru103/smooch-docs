@@ -876,7 +876,7 @@ Bots cannot retrieve files bigger than 20MB. If a user attempts to send a file b
 <p>Email attachments sent by the user will either be rendered in your business system, if they are images, or posted as hyperlinks, for other types of files.</p>
 
 <p>Images sent to the user will be embedded in the email as html images.</p>
-<h3 id='whispers'>Whispers</h3>
+<h3 id='receiving-whispers'>Receiving whispers</h3>
 <p>Whispers sent to email will contain a footer with an unsubscribe link. Like so:</p>
 
 <p><img src="/images/email_unsubscribe.png" alt="unsubscribe" style="max-width:520px;"></p>
@@ -1075,7 +1075,11 @@ If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#
 
 <p>The Office Hours add-on can also be set to reply to specific messaging channels if needed. If you select <code class="prettyprint">iOS</code> and not <code class="prettyprint">Web</code> for example, a user sending a message from an iOS device will prompt the away message, but a user on Web will not.</p>
 
-<p><aside class="notice">There are a few exceptions that will prevent the message from being dispatched: if it&rsquo;s already been dispatched on that day, within the last 12 hours, or if you&rsquo;ve messaged the user in the last 15 minutes.</aside></p>
+<p><aside class="notice">There are a few exceptions that will prevent the message from being dispatched: if it&rsquo;s already been dispatched on that day, within the last 12 hours, or if you&rsquo;ve messaged the user in the last 15 minutes.
+  <br/>
+  <br/>
+  To prevent conflicts, when an office hours message is sent the <a href="#whispers">Auto-response whisper</a> will not trigger.
+</aside></p>
 
           <h1 id='whispers'>Whispers</h1>
 <p>Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren&rsquo;t in need of service or support. We call this feature &ldquo;Whispers&rdquo; and it allows you to automatically send a message to a targeted group of users at exactly the right time.</p>
@@ -1091,6 +1095,8 @@ If your users are messaging you via our <a href="#twilio">Twilio</a>, <a href="#
 </ul>
 
 <p>You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.</p>
+
+<p><aside class="notice">To prevent conflicts, when an <a href="#office-hours">Office Hours</a> message is sent the <code class="prettyprint">Auto-response</code> whisper will not trigger.</aside></p>
 <h2 id='how-whispers-work'>How Whispers work</h2>
 <p>You create Whispers from within the <a href="https://app.smooch.io">Smooch dashboard</a> by specifying which users should receive your message, the message you&rsquo;d like to send to your users and the event that should trigger delivery of this message. For example, to create a Whisper that would check in to see how users are doing 2 days after installing an app, you&rsquo;d create a custom Whisper with these settings:</p>
 
