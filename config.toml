@@ -1,0 +1,23 @@
+siteTitle="Smooch Docs"
+linkPrefix = "/"
+
+[docs.docs]
+  name = "Docs"
+  pages = [
+    "/",
+    "/docs/programmable-messaging/",
+    "/docs/users/",
+    "/docs/managed-accounts/",
+    "/docs/smooch-connect/",
+    "/docs/channels/",
+    "/docs/built-in-integrations/",
+    "/docs/references/"
+  ]
+
+[docs.api]
+  name = "API Reference"
+  pages = [
+    "/api/",
+    "/api/connect/",
+    "/api/inside/"
+  ]

@@ -1,0 +1,1 @@
+You can grab the current user with `User.getCurrentUser` then set basic information with `setFirstName`, `setLastName`, `setEmail` and `setSignedUpAt`. You can also set your own custom properties by sending a map into `addProperties`.

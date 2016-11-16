@@ -1,0 +1,1 @@
+The `addProperties:` method accepts an `NSDictionary` containing the properties to add. This dictionary must have keys that are `NSString` and values that are either `NSString`, `NSNumber` or `NSDate`. If your dictionary contains any other data type as a value, then `description` will be called on the object and the resulting NSString will be added as a property.
