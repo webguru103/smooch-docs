@@ -10,4 +10,8 @@ The away message will only be dispatched when the user messages you outside of y
 
 The Office Hours add-on can also be set to reply to specific messaging channels if needed. If you select `iOS` and not `Web` for example, a user sending a message from an iOS device will prompt the away message, but a user on Web will not.
 
-<aside class="notice">There are a few exceptions that will prevent the message from being dispatched: if it's already been dispatched on that day, within the last 12 hours, or if you've messaged the user in the last 15 minutes.</aside>
+<aside class="notice">There are a few exceptions that will prevent the message from being dispatched: if it's already been dispatched on that day, within the last 12 hours, or if you've messaged the user in the last 15 minutes.
+  <br/>
+  <br/>
+  To prevent conflicts, when an office hours message is sent the [Auto-response whisper](#whispers) will not trigger.
+</aside>

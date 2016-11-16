@@ -10,7 +10,11 @@ To help get you started, we've built in 3 basic templates and also allow you to 
 
  * _Announcement_ : Send a message to all users when they launch the app.
 
+ * _Auto-response_ : Inform users of when to expect an answer, when they send their first message.
+
  You can start from any of these templates and customize it to meet your needs. You can also create a custom Whisper from scratch and go beyond these templates. You can use Whispers to ask for reviews from your most engaged users at the right time, you can notify users of older versions of your app about new versions, and more.
+
+<aside class="notice">To prevent conflicts, when an [Office Hours](#office-hours) message is sent the `Auto-response` whisper will not trigger.</aside>
 
 ## How do Whispers work
 
