@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Container } from 'react-responsive-grid';
 import { Link } from 'react-router';
 import { prefixLink } from 'gatsby-helpers';
 
-import { rhythm } from '../utils/typography';
 import { generateNavStructure } from '../utils/navigation';
 
 
@@ -11,9 +9,9 @@ export default class extends Component {
     render() {
         const {section} = this.props;
         const navStructure = generateNavStructure(section);
-        return <Container style={ { maxWidth: 960, paddingTop: 0, padding: `${rhythm(1)} ${rhythm(3/4)}`, background: 'lightgray' } }>
+        return <div className='sidebar'>
                    { navStructure.map((section) => {
-                         return <ul>
+                         return <ul className='list-unstyled'>
                                     <li>
                                         <Link to={ prefixLink(section.path) }>
                                         { section.title }
@@ -33,6 +31,6 @@ export default class extends Component {
                                           </li> : null }
                                 </ul>;
                      }) }
-               </Container>;
+               </div>;
     }
 }

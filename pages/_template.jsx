@@ -3,7 +3,8 @@ import { Container } from 'react-responsive-grid';
 import 'styles/markdown-styles';
 import 'styles/main';
 
-import Header from '../components/Header';
+import SiteNav from '../components/SiteNav';
+import DocsNav from '../components/DocsNav';
 
 export default class extends Component {
     static propTypes = {
@@ -12,7 +13,8 @@ export default class extends Component {
 
     render() {
         return <div>
-                   <Header />
+                   <SiteNav />
+                   <DocsNav />
                    <Container style={ { maxWidth: 960 } }>
                        { this.props.children }
                    </Container>
