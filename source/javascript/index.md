@@ -80,7 +80,6 @@ includes:
   - customization/embedded_js
   - customization/string_customization_js
   - customization/sound_notification_js
-  - customization/email_capture_js
   - customization/styling_conversations_js
 
 search: true
