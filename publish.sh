@@ -3,7 +3,7 @@ CLOUDFRONT_DISTRIBUTION=E2X6XVNS18EPPG
 OUTPUT=/tmp/sync-output
 aws configure set preview.cloudfront true
 npm run build
-aws s3 sync public/ s3://docs.smooch.io/ --delete --profile smooch > $OUTPUT
+aws s3 sync public/ s3://docs.smooch.io/ --delete > $OUTPUT
 PATTERN="s3://docs.smooch.io"
 cloudfrond_items=''
 cloudfrond_count=0

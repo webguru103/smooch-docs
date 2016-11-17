@@ -12,6 +12,7 @@ TODO : Improve this README.
 ## Structure
 
 Content should go in the `pages/` folder and the structure inside it will match the URL.
+Images should go in the `pages/images` folder and the structure inside it will match the URL. They'll also be copied at deploy time.
 
 If you want your page to show up in the table of content (sidebar), don't forget to add the URL to a section in `config.toml`.
 
