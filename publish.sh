@@ -9,6 +9,15 @@ cloudfrond_items=''
 cloudfrond_count=0
 
 while read -r line; do
+    cloudfrond_items+=",'"$line"'"
+    ((cloudfrond_count++))
+
+    base_path=$(echo $line | sed 's/\(.*\)\/.*/\1/')
+    if [[ -z "$base_path" && "$line" = "/index.html" ]]
+    then
+        base_path='/'
+    fi
+    
     if [[ ! -z "$base_path" ]]
     then
         cloudfrond_items+=",'"$base_path"'"
