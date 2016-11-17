@@ -15,7 +15,8 @@ export default class extends Component {
                        <Col xs={ 12 }
                             sm={ 8 }
                             smOffset={ 1 }
-                            mdOffset={ 1 }>
+                            mdOffset={ 1 }
+                            className='content'>
                        { this.props.children }
                        </Col>
                    </Row>

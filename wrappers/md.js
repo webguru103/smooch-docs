@@ -3,7 +3,6 @@ import 'highlight.js/styles/default.css';
 import Helmet from 'react-helmet';
 import { config } from 'config';
 import hljs from 'highlight.js';
-
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ThreeColumnLayout from '../components/ThreeColumnLayout';
 
