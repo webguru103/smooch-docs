@@ -1483,10 +1483,18 @@ The timestamp format should be in seconds using <a href="https://en.wikipedia.or
 <td><strong>type</strong><br/><span class='req'>required</span></td>
 <td>The type of activity to trigger. Must be either <code class="prettyprint">typing:start</code> or <code class="prettyprint">typing:stop</code></td>
 </tr>
+<tr>
+<td><strong>name</strong><br/><span class='opt'>optional</span></td>
+<td>The name of the app maker that starts or stops typing a response</td>
+</tr>
+<tr>
+<td><strong>avatarUrl</strong><br/><span class='opt'>optional</span></td>
+<td>The avatar URL of the app maker that starts typing a response</td>
+</tr>
 </tbody></table>
 
 <p><aside class="notice">
-Typing activity is only supported on Messenger and Telegram
+Typing activity is only supported on our Web Messenger, Facebook Messenger and Telegram
 </aside></p>
 <h2 id='post-message'>Post Message</h2>
 <blockquote>
