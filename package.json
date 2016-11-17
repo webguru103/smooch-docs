@@ -41,7 +41,7 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "deploy": "gatsby build --prefix-links && gh-pages -d public",
+    "deploy": "gatsby build --prefix-links && aws s3 sync public s3://docs.smooch.io",
     "develop": "gatsby develop",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
