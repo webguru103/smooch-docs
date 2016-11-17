@@ -1,6 +1,6 @@
 ---
 title: Home
-layout: documentation
+layout: two-column
 section: docs
 ---
 

@@ -1,16 +1,31 @@
 .sidebar {
+    li {
+        line-height: 1;
+    }
     a {
         color: @text-color;
         &:hover {
-            cursor: 'pointer';
+            cursor: pointer;
         }
     }
 
     .sidebar-page-title {
-        font-weight: 600;
+        margin-bottom: 24px;
+        font-size: 16px;
+
+
+        a {
+            font-weight: 600;
+            color: @gray-darker;
+        }
     }
 
     .sidebar-section-title {
-        font-weight: 300;
+        margin-bottom: 20px;
+        font-size: 14px;
+
+        &:last-child {
+            margin-bottom: 38px;
+        }
     }
 }

@@ -4,7 +4,7 @@ linkPrefix = "/"
 [docs.docs]
   name = "Docs"
   pages = [
-    "/",
+    "/docs/",
     "/docs/programmable-messaging/",
     "/docs/users/",
     "/docs/managed-accounts/",

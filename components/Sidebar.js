@@ -13,9 +13,8 @@ export default class extends Component {
                    { navStructure.map((section) => {
                          return <ul className='list-unstyled'
                                     key={ section.path }>
-                                    <li>
-                                        <Link to={ prefixLink(section.path) }
-                                              className='sidebar-page-title'>
+                                    <li className='sidebar-page-title'>
+                                        <Link to={ prefixLink(section.path) }>
                                         { section.title }
                                         </Link>
                                     </li>
@@ -23,9 +22,9 @@ export default class extends Component {
                                           <li>
                                               <ul className='list-unstyled'>
                                                   { section.anchors.map(({id, title}) => {
-                                                        return <li key={ id }>
-                                                                   <Link to={ prefixLink(`${section.path}#${id}`) }
-                                                                         className='sidebar-section-title'>
+                                                        return <li key={ id }
+                                                                   className='sidebar-section-title'>
+                                                                   <Link to={ prefixLink(`${section.path}#${id}`) }>
                                                                    { title }
                                                                    </Link>
                                                                </li>;
