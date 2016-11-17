@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 
 import { prefixLink } from 'gatsby-helpers';
 
-const BUILD_TIME = new Date().getTime()
+const BUILD_TIME = new Date().getTime();
 
 export default class extends Component {
     static propTypes = {
@@ -11,11 +11,11 @@ export default class extends Component {
     };
 
     render() {
-        const head = Helmet.rewind()
+        const head = Helmet.rewind();
 
-        let css
+        let css;
         if (process.env.NODE_ENV === 'production') {
-            css = <style dangerouslySetInnerHTML={ {    __html: require('./public/styles/main.less')} } />;
+            css = <style dangerouslySetInnerHTML={ { __html: require('!raw!./public/styles.css') } } />;
         }
 
         return <html lang='en'>
@@ -31,7 +31,7 @@ export default class extends Component {
                </head>
                <body>
                    <div id='react-mount'
-                        dangerouslySetInnerHTML={ {    __html: this.props.body} } />
+                        dangerouslySetInnerHTML={ { __html: this.props.body } } />
                    <script src={ prefixLink(`/bundle.js?t=${BUILD_TIME}`) } />
                </body>
                </html>;
