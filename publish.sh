@@ -9,7 +9,7 @@ cloudfrond_items=''
 cloudfrond_count=0
 
 while read -r line; do
-    if [[ $line =~ $regex ]]
+    if [[ ! -z "$base_path" ]]
     then
         cloudfrond_items+=",'"$base_path"'"
         ((cloudfrond_count++))
