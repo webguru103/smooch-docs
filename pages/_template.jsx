@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Container } from 'react-responsive-grid';
+import React, { Component, PropTypes } from 'react';
 import 'styles/markdown-styles';
 import 'styles/main';
 
@@ -8,16 +7,36 @@ import DocsNav from '../components/DocsNav';
 
 export default class extends Component {
     static propTypes = {
-        children: React.PropTypes.any
+        children: PropTypes.any
     };
+
+    scrollToHash = () => {
+        const {location} = this.props;
+        const {hash} = location;
+
+        if (hash) {
+            const hashNode = document.querySelector(hash);
+            if (hashNode) {
+                setTimeout(() => {
+                    hashNode.scrollIntoView();
+                });
+            }
+        }
+    };
+
+    componentDidMount() {
+        this.scrollToHash();
+    }
+
+    componentDidUpdate() {
+        this.scrollToHash();
+    }
 
     render() {
         return <div>
                    <SiteNav />
                    <DocsNav />
-                   <Container style={ { maxWidth: 960 } }>
-                       { this.props.children }
-                   </Container>
+                   { this.props.children }
                </div>;
     }
 }

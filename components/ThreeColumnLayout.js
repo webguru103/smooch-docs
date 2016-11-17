@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import { Container } from 'react-responsive-grid';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import Sidebar from './Sidebar';
-
 
 export default class extends Component {
     render() {
         const {section} = this.props;
-        return <Container style={ {    maxWidth: 960,    paddingTop: 0} }>
-                   <Sidebar section={ section } />
-                   { this.props.children }
-               </Container>;
+        return <Grid>
+                   <Row>
+                       <Col sm={ 3 }
+                            xsHidden>
+                       <Sidebar section={ section } />
+                       </Col>
+                       <Col xs={ 12 }
+                            sm={ 8 }
+                            smOffset={ 1 }
+                            mdOffset={ 1 }>
+                       { this.props.children }
+                       </Col>
+                   </Row>
+               </Grid>;
     }
 }

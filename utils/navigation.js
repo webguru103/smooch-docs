@@ -1,6 +1,6 @@
 import { config, pages as sitePages } from 'config';
 
-export const extractAnchors = (content) => {
+export const extractAnchors = (content = '') => {
     const matches = [];
 
     content.replace(/[^<]*(<h1 id="([^"]+)">([^<]+)<\/h1>)/g, (...args) => {
@@ -30,7 +30,7 @@ export const generateNavStructure = (section) => {
         return {
             title,
             path,
-            anchors: extractAnchors(body).filter(({title: anchorTitle}) => title !== anchorTitle)
+            anchors: extractAnchors(body)
         };
     });
 };
