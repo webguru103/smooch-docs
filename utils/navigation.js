@@ -13,24 +13,27 @@ export const extractAnchors = (content = '') => {
     return matches;
 };
 
-export const generateNavStructure = (section) => {
-    if (!config.docs[section]) {
-        console.error(`No section named ${section} found in config.`);
-        return [];
-    }
+export const generateNavStructure = () => {
 
-    return config.docs[section].pages.map((path) => {
-        const page = sitePages.find(({path: _path}) => path === _path);
+    return Object.keys(config.docs)
+        .map((key) => {
+            const {name, pages} = config.docs[key];
 
-        if (!page) {
-            console.error(`No page found for path ${path}.`);
-        }
 
-        const {data: {title, body}} = page;
-        return {
-            title,
-            path,
-            anchors: extractAnchors(body)
-        };
-    });
+            return {
+                title: name,
+                pages: pages.map((path) => {
+                    const page = sitePages.find(({path: _path}) => path === _path);
+
+                    if (!page) {
+                        console.error(`No page found for path ${path}.`);
+                    }
+
+                    return {
+                        path: page.path,
+                        title: page.data.title
+                    };
+                })
+            };
+        });
 };

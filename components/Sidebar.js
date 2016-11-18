@@ -7,24 +7,21 @@ import { generateNavStructure } from '../utils/navigation';
 
 export default class extends Component {
     render() {
-        const {section} = this.props;
-        const navStructure = generateNavStructure(section);
+        const navStructure = generateNavStructure();
         return <div className='sidebar'>
                    { navStructure.map((section) => {
                          return <ul className='list-unstyled'
-                                    key={ section.path }>
+                                    key={ section.title }>
                                     <li className='sidebar-page-title'>
-                                        <Link to={ prefixLink(section.path) }>
                                         { section.title }
-                                        </Link>
                                     </li>
-                                    { section.anchors.length > 0 ?
+                                    { section.pages.length > 0 ?
                                           <li>
                                               <ul className='list-unstyled'>
-                                                  { section.anchors.map(({id, title}) => {
-                                                        return <li key={ id }
+                                                  { section.pages.map(({path, title}) => {
+                                                        return <li key={ path }
                                                                    className='sidebar-section-title'>
-                                                                   <Link to={ prefixLink(`${section.path}#${id}`) }>
+                                                                   <Link to={ prefixLink(path) }>
                                                                    { title }
                                                                    </Link>
                                                                </li>;
