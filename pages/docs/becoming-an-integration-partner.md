@@ -1,9 +1,7 @@
 ---
-title: Smooch Connect
+title: Becoming an Integration partner
 section: docs
 layout: two-column
 ---
 
-# Smooch Connect
-# OAuth
 # Becoming an Integration partner

@@ -5,9 +5,13 @@ linkPrefix = "/"
 subsections = [
     'home',
     'programmable-messaging',
-    'users'
+    'users',
+    'managed-accounts',
+    'smooch-connect',
+    'channels',
+    'built-in-integrations',
+    'references'
 ]
-
 
 [subsections.home]
 name = "Home"
@@ -17,14 +21,12 @@ pages = [
     "/docs/business-quickstart/"
 ]
 
-
 [subsections.programmable-messaging]
 name = "Programmable Messaging"
 pages = [
     "/docs/authenticating-to-smooch-api/",
     "/docs/sending-and-receiving-messages/"
 ]
-
 
 [subsections.users]
 name = "Users"
@@ -33,6 +35,51 @@ pages = [
     "/docs/authenticating-users/",
     "/docs/managing-user-information/",
     "/docs/linking-users-to-sms/"
+]
+
+[subsections.managed-accounts]
+name = "Managed Accounts"
+pages = [
+    "/docs/creating-and-managing-apps/",
+    "/docs/configuring-messaging-channels/",
+]
+
+[subsections.smooch-connect]
+name = "Smooch Connect"
+pages = [
+    "/docs/oauth/",
+    "/docs/becoming-an-integration-partner/",
+]
+
+[subsections.channels]
+name = "Channels"
+pages = [
+    "/docs/native-sdks/",
+    "/docs/ott-messenger/",
+    "/docs/email/",
+    "/docs/channel-capabilities/"
+]
+
+[subsections.built-in-integrations]
+name = "Built-in Integrations"
+pages = [
+    "/docs/configuring-business-systems/",
+    "/docs/stripe-payments/",
+    "/docs/automated-messages/",
+    "/docs/office-hours/"
+]
+
+[subsections.references]
+name = "References"
+pages = [
+    "/docs/api-reference/",
+    "/docs/error-messages/",
+    "/docs/changelog/",
+    "/docs/webhooks-specs/",
+    "/docs/security/",
+    "/docs/technical-info/",
+    "/docs/faq/",
+    "/docs/sending-images-and-buttons-shorthand/",
 ]
 
 [subsections.api]

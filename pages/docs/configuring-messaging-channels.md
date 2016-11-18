@@ -1,9 +1,7 @@
 ---
-title: Managed Accounts
+title: Configuring Messaging Channels
 section: docs
 layout: two-column
 ---
 
-# Managed Accounts
-# Creating and Managing Apps
 # Configuring Messaging Channels
