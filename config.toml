@@ -13,6 +13,11 @@ subsections = [
     'references'
 ]
 
+[sections.api]
+subsections = [
+    'rest'
+]
+
 [subsections.home]
 name = "Home"
 pages = [
@@ -82,8 +87,8 @@ pages = [
     "/docs/sending-images-and-buttons-shorthand/",
 ]
 
-[subsections.api]
-name = "API Reference"
+[subsections.rest]
+name = "REST"
 pages = [
     "/api/",
     "/api/connect/",
