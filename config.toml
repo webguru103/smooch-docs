@@ -1,23 +1,44 @@
 siteTitle="Smooch Docs"
 linkPrefix = "/"
 
-[docs.docs]
-  name = "Docs"
-  pages = [
-    "/docs/",
-    "/docs/programmable-messaging/",
-    "/docs/users/",
-    "/docs/managed-accounts/",
-    "/docs/smooch-connect/",
-    "/docs/channels/",
-    "/docs/built-in-integrations/",
-    "/docs/references/"
-  ]
+[sections.docs]
+subsections = [
+    'home',
+    'programmable-messaging',
+    'users'
+]
 
-[docs.api]
-  name = "API Reference"
-  pages = [
+
+[subsections.home]
+name = "Home"
+pages = [
+    "/docs/",
+    "/docs/api-quickstart/",
+    "/docs/business-quickstart/"
+]
+
+
+[subsections.programmable-messaging]
+name = "Programmable Messaging"
+pages = [
+    "/docs/authenticating-to-smooch-api/",
+    "/docs/sending-and-receiving-messages/"
+]
+
+
+[subsections.users]
+name = "Users"
+pages = [
+    "/docs/creating-users/",
+    "/docs/authenticating-users/",
+    "/docs/managing-user-information/",
+    "/docs/linking-users-to-sms/"
+]
+
+[subsections.api]
+name = "API Reference"
+pages = [
     "/api/",
     "/api/connect/",
     "/api/inside/"
-  ]
+]

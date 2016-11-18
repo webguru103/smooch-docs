@@ -1,11 +1,7 @@
 ---
-title: Home
-layout: two-column
+title: Overview of Smooch
 section: docs
+layout: two-column
 ---
 
 # Overview of Smooch
-asdasda
-# API Quick Start
-
-# Business Quick Start

@@ -7,7 +7,7 @@ import { generateNavStructure } from '../utils/navigation';
 
 export default class extends Component {
     render() {
-        const navStructure = generateNavStructure();
+        const navStructure = generateNavStructure(this.props.section);
         return <div className='sidebar'>
                    { navStructure.map((section) => {
                          return <ul className='list-unstyled'
