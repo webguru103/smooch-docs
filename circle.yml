@@ -1,0 +1,23 @@
+machine:
+  python:
+    version: 2.7.6
+  node:
+    version: 6.2.0
+
+dependencies:
+  override:
+    - npm install
+    - sudo pip install awscli
+
+general:
+    artifacts:
+        - "public/"
+
+test:
+  override:
+    - exit 0
+deployment:
+  production:
+    branch: f_tng
+    commands:
+      - npm run deploy
