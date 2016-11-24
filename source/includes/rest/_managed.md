@@ -362,12 +362,14 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 ```
 ```json
 {
-    "integration": {
-        "type": "messenger",
-        "pageAccessToken": "your_access_token",
-        "appId": "your_fb_app_id",
-        "appSecret": "your_fb_app_secret"
-    }
+  "integration": {
+    "_id": "582dedf230e788746891281a",
+    "type": "messenger",
+    "pageId": "841556169307254",
+    "username": "Mike Spensieri",
+    "userId": "140537932990274",
+    "appId": "1674554616147204"
+  }
 }
 ```
 
@@ -409,12 +411,12 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 ```json
 {
     "integration": {
+      "_id": "5735ddf948011972d621dc08",
+      "type": "twilio",
       "phoneNumberSid": "PN0674df0ecee0c9819bca0ff0bc0a159e",
       "phoneNumber": "+15146125236",
       "name": "Mike's Account",
-      "accountSid": "ACa1b4c65ee0722712fab89867cb14eac7",
-      "_id": "5735ddf948011972d621dc08",
-      "type": "twilio"
+      "accountSid": "ACa1b4c65ee0722712fab89867cb14eac7"
     }
 }
 ```
@@ -453,8 +455,8 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 {
     "integration": {
       "_id": "5735ddfb48011972d621dc09",
-      "username": "mikes_smooch_bot",
-      "type": "telegram"
+      "type": "telegram",
+      "username": "mikes_smooch_bot"
     }
 }
 ```
@@ -491,8 +493,8 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 {
     "integration": {
       "_id": "5735ddfd48011972d621dc0a",
-      "botName": "Mike Bot",
-      "type": "line"
+      "type": "line",
+      "botName": "Mike Bot"
     }
 }
 ```
@@ -535,8 +537,8 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 ```json
 {
     "integration": {
-        "type": "viber",
         "_id": "5818fa177682fcb51368635d",
+        "type": "viber",
         "uri": "MikesBusiness"
     }
 }
@@ -653,11 +655,12 @@ To configure an Email integration, simply call the Create Integration endpoint w
 {
   "integrations": [
     {
-      "_id": "5735dded48011972d621dc02",
+      "_id": "582dedf230e788746891281a",
       "type": "messenger",
-      "userId": "140537932994988",
+      "pageId": "841556169307254",
       "username": "Mike Spensieri",
-      "pageId": "841556169307233"
+      "userId": "140537932990274",
+      "appId": "1674554616147204"
     },
     {
       "_id": "5735ddf948011972d621dc08",
@@ -713,11 +716,12 @@ Lists all integrations for a given app.
 ```json
 {
   "integration": {
-    "_id": "5735dded48011972d621dc02",
-    "userId": "140537932994989",
+    "_id": "582dedf230e788746891281a",
+    "type": "messenger",
+    "pageId": "841556169307254",
     "username": "Mike Spensieri",
-    "pageId": "841556169307232",
-    "type": "messenger"
+    "userId": "140537932990274",
+    "appId": "1674554616147204"
   }
 }
 
