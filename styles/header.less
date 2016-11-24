@@ -31,9 +31,18 @@
     margin-bottom: 0px;
     border-bottom: none;
 
+    @media (max-width: @screen-xs-max) {
+      margin-bottom: 40px;
+    }
+
     .navbar-brand {
         img {
             width: 100px;
+
+            &.logo-only {
+                width: 40px;
+                margin-top: -10px;
+            }
         }
     }
 

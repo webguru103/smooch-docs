@@ -5,8 +5,6 @@ import 'styles/main';
 
 import { config } from 'config';
 import { SITE_ROOT } from '../utils/navigation';
-import SiteNav from '../components/SiteNav';
-import DocsNav from '../components/DocsNav';
 
 export default class extends Component {
     static propTypes = {
@@ -141,8 +139,6 @@ export default class extends Component {
                            link={ link }
                            script={ script }
                            meta={ meta } />
-                   <SiteNav />
-                   <DocsNav />
                    { this.props.children }
                </div>;
     }
