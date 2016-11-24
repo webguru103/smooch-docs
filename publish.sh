@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-CLOUDFRONT_DISTRIBUTION=E2X6XVNS18EPPG
 OUTPUT=/tmp/sync-output
 aws configure set preview.cloudfront true
 rm -rf public
