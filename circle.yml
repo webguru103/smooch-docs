@@ -3,11 +3,16 @@ machine:
     version: 2.7.6
   node:
     version: 6.2.0
+  ruby:
+    version: 2.3.0
 
 dependencies:
   override:
     - npm install
     - sudo pip install awscli
+    - cd slate; gem install bundler
+    - cd slate; gem install middleman
+    - cd slate; npm install
 
 general:
     artifacts:
@@ -18,6 +23,6 @@ test:
     - exit 0
 deployment:
   production:
-    branch: f_tng
+    branch: f/new-docs
     commands:
       - npm run deploy
