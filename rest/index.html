@@ -317,7 +317,7 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 
 <p><api><code class="prettyprint">POST /v1/webhooks</code></api></p>
 
-<p>Create a webhook for the specified app. The response body will include a list of triggers that will trigger the webhook (currently only message triggers are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.</p>
+<p>Create a webhook for the specified app. The response body will include a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.</p>
 
 <p>Alternatively, you can use the Webhooks integration in the Smooch dashboard to easily create a webhook.</p>
 
@@ -2710,12 +2710,14 @@ More info http://example.org
 <pre class="highlight plaintext"><code>201 CREATED
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"pageAccessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_access_token"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_fb_app_id"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"appSecret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your_fb_app_secret"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"582dedf230e788746891281a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"841556169307254"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Spensieri"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"140537932990274"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1674554616147204"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
@@ -2771,12 +2773,12 @@ More info http://example.org
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735ddf948011972d621dc08"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twilio"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phoneNumberSid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PN0674df0ecee0c9819bca0ff0bc0a159e"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15146125236"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike's Account"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"accountSid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACa1b4c65ee0722712fab89867cb14eac7"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735ddf948011972d621dc08"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twilio"</span><span class="w">
+      </span><span class="s2">"accountSid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACa1b4c65ee0722712fab89867cb14eac7"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2827,8 +2829,8 @@ More info http://example.org
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735ddfb48011972d621dc09"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mikes_smooch_bot"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"telegram"</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"telegram"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mikes_smooch_bot"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2871,8 +2873,8 @@ More info http://example.org
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735ddfd48011972d621dc0a"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"botName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Bot"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"botName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Bot"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2924,8 +2926,8 @@ More info http://example.org
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"viber"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5818fa177682fcb51368635d"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"viber"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MikesBusiness"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -3067,11 +3069,12 @@ More info http://example.org
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"integrations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735dded48011972d621dc02"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"582dedf230e788746891281a"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"140537932994988"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"841556169307254"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Spensieri"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"pageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"841556169307233"</span><span class="w">
+      </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"140537932990274"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1674554616147204"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735ddf948011972d621dc08"</span><span class="p">,</span><span class="w">
@@ -3130,11 +3133,12 @@ More info http://example.org
 </code></pre>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"integration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5735dded48011972d621dc02"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"140537932994989"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"582dedf230e788746891281a"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"841556169307254"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mike Spensieri"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"841556169307232"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"140537932990274"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"appId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1674554616147204"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
