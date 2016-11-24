@@ -1,1 +1,1 @@
-require('autotrack/lib/plugins/url-change-tracker');
+import 'autotrack/lib/plugins/url-change-tracker';

@@ -42,7 +42,8 @@ export default class extends Component {
         };
 
         const base = {
-            href: `${SITE_ROOT}/`
+            href: `${SITE_ROOT}/`,
+            target: '_blank'
         };
 
         const meta = [{

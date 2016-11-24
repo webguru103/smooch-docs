@@ -1,15 +1,38 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { findDOMNode } from 'react-dom';
 import 'highlight.js/styles/default.css';
 import Helmet from 'react-helmet';
-import hljs from 'highlight.js';
+import catchLinks from 'catch-links';
 
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ThreeColumnLayout from '../components/ThreeColumnLayout';
 import { SITE_ROOT } from '../utils/navigation';
 
 export default class extends Component {
+    static contextTypes = {
+        router: PropTypes.object.isRequired
+    };
+
+    static propTypes = {
+        route: PropTypes.object.isRequired
+    }
+
+    catchContentLinks = () => {
+        const {router} = this.context;
+        const node = this._contentNode;
+        catchLinks(node, (href) => {
+            router.push({
+                pathname: href
+            });
+        });
+    };
+
     componentDidMount() {
-        hljs.initHighlightingOnLoad();
+        this.catchContentLinks();
+    }
+
+    componentDidUpdate() {
+        this.catchContentLinks();
     }
 
     render() {
@@ -47,7 +70,8 @@ export default class extends Component {
                            meta={ meta }
                            link={ link } />
                    <Layout {...data}>
-                       <div dangerouslySetInnerHTML={ { __html: body } } />
+                       <div ref={ (c) => this._contentNode = findDOMNode(c) }
+                            dangerouslySetInnerHTML={ { __html: body } } />
                    </Layout>
                </div>;
     }
