@@ -230,7 +230,7 @@ smooch.webhooks.create({
 
 <api>`POST /v1/webhooks`</api>
 
-Create a webhook for the specified app. The response body will include a list of triggers that will trigger the webhook (currently only message triggers are supported) as well as a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
+Create a webhook for the specified app. The response body will include a secret which will be transmitted with each webhook invocation and can be used to verify the authenticity of the caller.
 
 Alternatively, you can use the Webhooks integration in the Smooch dashboard to easily create a webhook.
 
