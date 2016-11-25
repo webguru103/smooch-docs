@@ -76,7 +76,7 @@ pages = [
 [subsections.references]
 name = "References"
 pages = [
-    "/docs/api-reference/",
+    "API Reference__https://docs.smooch.io/rest/",
     "/docs/error-messages/",
     "/docs/changelog/",
     "/docs/webhooks-specs/",

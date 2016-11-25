@@ -1,44 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Navbar, Nav, NavItem, } from 'react-bootstrap';
 
 
 export default class extends Component {
+    static propTypes = {
+        route: PropTypes.object.isRequired
+    };
+
     render() {
+        const {route: {path: currentPath}} = this.props;
+
+        const links = [
+            ['Docs', '/docs/', true],
+            ['API Reference', '/rest/', false],
+            ['Channels', '/docs/native-sdks/', true],
+            ['Changelog', '/docs/changelog/', true],
+            ['FAQs', '/docs/faq/', true]
+        ];
+
+        const hasActiveLink = links.some(([_, href]) => currentPath === href); // eslint-disable-line no-unused-vars
+
+        const navItems = links.map(([label, href, isInternal] , index) => {
+            if (isInternal) {
+                const isActive = href === '/docs/' ?
+                    !hasActiveLink || currentPath === href :
+                    currentPath === href;
+
+                return <LinkContainer to={ href }
+                                      active={ isActive }
+                                      key={ index }>
+                           <NavItem eventKey={ index }>
+                               { label }
+                           </NavItem>
+                       </LinkContainer>;
+            }
+
+            return <NavItem eventKey={ index }
+                            key={ index }
+                            href={ href }>
+                       { label }
+                   </NavItem>;
+        });
+
         return <Navbar inverse
                        className='hidden-xs navbar-docs'>
                    <Nav>
-                       <LinkContainer to={ '/docs/' }
-                                      active={ true }>
-                           <NavItem eventKey={ 0 }
-                                    href='#'>
-                               Docs
-                           </NavItem>
-                       </LinkContainer>
-                       <LinkContainer to={ '/docs/api-reference/' }
-                                active={ false }>
-                           <NavItem eventKey={ 1 }>
-                               API Reference
-                           </NavItem>
-                       </LinkContainer>
-                       <LinkContainer to={ '/docs/native-sdks/' }
-                                active={ false }>
-                           <NavItem eventKey={ 2 }>
-                               Channels
-                           </NavItem>
-                       </LinkContainer>
-                       <LinkContainer to={ '/docs/changelog/' }
-                                      active={ false }>
-                           <NavItem eventKey={ 3 }>
-                               Changelog
-                           </NavItem>
-                       </LinkContainer>
-                       <LinkContainer to={ '/docs/faq/' }
-                                      active={ false }>
-                           <NavItem eventKey={ 4 }>
-                               FAQs
-                           </NavItem>
-                       </LinkContainer>
+                       { navItems }
                    </Nav>
                </Navbar>;
     }

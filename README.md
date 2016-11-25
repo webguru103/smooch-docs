@@ -32,5 +32,8 @@ Note that in `config.toml`, `[section.SECTION_ID]` will match `SECTION_ID` of yo
 ## Navigation
 As mentionned above, sidebar is generated from the sections in `config.toml`. Each `[section.SECTION_ID]` object in the config contains a list of subsection for it. In turn, each subsection (`[subsection.SUBSECTION_ID]`) contains a list of pages and a name (which will appear in the sidebar). When adding a new page or section, make sure to update the config to make it browsable via the sidebar. Otherwise, your page will only be accessible via its url.
 
+### External links
+If you need to have an external link in the sidebar, you just need to use this syntax : `Label__URL`. (ex: `API Reference__https://docs.smooch.io/rest/`). This will open the link in a new tab.
+
 ### Links
 When writing local links in your content, make sure you have a trailing slash. Otherwise, Gatsby won't be able to match it to the actual route.

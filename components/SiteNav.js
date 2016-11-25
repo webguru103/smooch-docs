@@ -42,18 +42,27 @@ export default class extends Component {
         ];
 
         docsNavStructure.forEach((section, i) => {
+
+            const subitems = section.pages.map(({path, title, internal} , j) => {
+                return internal ?
+                    <LinkContainer to={ path }
+                                   key={ path }>
+                        <MenuItem eventKey={ 7.1 + i + 0.1 * j }>
+                        { title }
+                        </MenuItem>
+                    </LinkContainer> :
+                    <MenuItem eventKey={ 7.1 + i + 0.1 * j }
+                              href={ path }>
+                    { title }
+                    </MenuItem>;
+            });
+
             const item = <NavDropdown eventKey={ 7 + i }
                                       title={ section.title }
                                       ref={ section.title }
                                       className='visible-xs'
                                       id='doc-nav'>
-                             { section.pages.map(({path, title} , j) => {
-                                   return <LinkContainer to={ path }>
-                                              <MenuItem eventKey={ 7.1 + i + 0.1 * j }>
-                                              { title }
-                                              </MenuItem>
-                                          </LinkContainer>;
-                               }) }
+                             { subitems }
                          </NavDropdown>;
 
             navItems.push(item);

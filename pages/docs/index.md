@@ -47,25 +47,12 @@ We're constantly adding and improving our messaging channel support. While we ca
 
 We've built a few quickstart guides to help you get started with Smooch. Whether you're building messaging into your product or simply want to start engaging with your customers on a new channel, Smooch has got you covered.
 
-**TODO** Make this a 1 row, 2 column table
 
----
+| **Developer?** | **Business?** |
+| ---------| ----------|
+| The [API Quickstart](/docs/api-quickstart/) shows you how to add conversations to your app in minutes. | The [Business Quickstart](/docs/business-quickstart/) walks you through adding conversations to your favourite business system, using our quick and easy integrations. |
 
-*Cell 1*
 
-**Developer?**
-
-The [API Quickstart](/docs/api-quickstart/) shows you how to add conversations to your app in minutes.
-
----
-
-*Cell 2*
-
-**Business?**
-
-The [Business Quickstart](/docs/business-quickstart/) walks you through adding conversations to your favourite business system, using our quick and easy integrations.
-
----
 
 ## We're here to help!
 

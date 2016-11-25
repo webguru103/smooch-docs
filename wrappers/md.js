@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import 'highlight.js/styles/default.css';
 import Helmet from 'react-helmet';
 import catchLinks from 'catch-links';
 
@@ -72,7 +71,7 @@ export default class extends Component {
                            meta={ meta }
                            link={ link } />
                    <SiteNav section={ data.section } />
-                   <DocsNav />
+                   <DocsNav route={ route } />
                    <Layout {...data}>
                        <div ref={ (c) => this._contentNode = findDOMNode(c) }
                             className='markdown'
