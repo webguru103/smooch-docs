@@ -50,3 +50,7 @@ Using the [pyjwt](https://github.com/jpadilla/pyjwt/) module:
 import jwt
 token = jwt.encode({'scope': 'app'}, SECRET, algorithm='HS256', headers={'kid': KEY_ID})
 ```
+
+#### **Step 3** Start using the Smooch API
+
+The next section in this guide explains how to use the JWT to [authenticate to the Smooch API](/docs/authenticating-to-smooch-api/) and start performing operations using the platform.
