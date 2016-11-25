@@ -64,9 +64,9 @@ Here's the [documentation on using and creating the JWT](http://docs.smooch.io/r
 
 Each time a Webhook payload is received by your server on the `/messages` route, you can use the REST API to send a message back to the Facebook user who triggered that Webhook.
 
-To send a message via the REST API, you're going to call the [Post Message endpoint](http://docs.smooch.io/rest/#post-message). We just need to indentify the user we want to send the message to. So let's take a look at [the Webhook payload you'll be receiving](http://docs.smooch.io/rest/#webhooks-payload).
+To send a message via the REST API, you're going to call the [Post Message endpoint](http://docs.smooch.io/rest/#post-message). We need to indentify the user we want to send the message to. So let's take a look at [the Webhook payload you'll be receiving](http://docs.smooch.io/rest/#webhooks-payload).
 
-What you want to do is take the `appUser`'s `_id` property from the Webhook Payload, and POST a message to `https://app.smooch.io/v1/appusers/{appUser._id}/messages`. Here's an example of calling the [Post Message endpoint](https://gist.github.com/spasiu/8ae55ea452378c2b87566ef48a58f095), and here's [my complete code for this quickstart](https://gist.github.com/spasiu/fb53541053564ca4cf2052e6e1996ee3).
+To send a message to the user, take the `appUser`'s `_id` property from the Webhook payload, and POST a message to `https://app.smooch.io/v1/appusers/{appUser._id}/messages`. Here's an example of calling the [Post Message endpoint](https://gist.github.com/spasiu/8ae55ea452378c2b87566ef48a58f095), and here's [my complete code for this quickstart](https://gist.github.com/spasiu/fb53541053564ca4cf2052e6e1996ee3).
 
 Great! Now, whenever we send a message to our Facebook page from a Facebook user account, you should receive your auto response back 🎉.
 
