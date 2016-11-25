@@ -1242,7 +1242,7 @@ Notify Smooch when an app maker starts or stops typing a response.
 | **avatarUrl**<br/><span class='opt'>optional</span>      | The avatar URL of the app maker that starts typing a response |
 
 <aside class="notice">
-Typing activity is only supported on our Web Messenger, Facebook Messenger and Telegram
+Typing activity is only supported on our Web Messenger, iOS SDK, Facebook Messenger and Telegram
 </aside>
 
 ## Post Message
