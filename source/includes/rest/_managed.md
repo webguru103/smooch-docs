@@ -366,8 +366,6 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
     "_id": "582dedf230e788746891281a",
     "type": "messenger",
     "pageId": "841556169307254",
-    "username": "Mike Spensieri",
-    "userId": "140537932990274",
     "appId": "1674554616147204"
   }
 }
@@ -658,8 +656,6 @@ To configure an Email integration, simply call the Create Integration endpoint w
       "_id": "582dedf230e788746891281a",
       "type": "messenger",
       "pageId": "841556169307254",
-      "username": "Mike Spensieri",
-      "userId": "140537932990274",
       "appId": "1674554616147204"
     },
     {
@@ -719,8 +715,6 @@ Lists all integrations for a given app.
     "_id": "582dedf230e788746891281a",
     "type": "messenger",
     "pageId": "841556169307254",
-    "username": "Mike Spensieri",
-    "userId": "140537932990274",
     "appId": "1674554616147204"
   }
 }
