@@ -414,16 +414,17 @@ A webhook will make a request to the target each time a trigger associated with 
 
 A webhook with a `postback` trigger will be fired every time a user clicks on [an action button with type `postback`](#action-buttons).
 
-| trigger          |   |
-|------------------|---|
-| **message**<br/>*default* | all messages            |
-| **message:appUser**       | only messages with role `appUser`  |
-| **message:appMaker**      | only messages with role `appMaker` or `whisper` |
-| **postback**              | when a user clicks on a postback action |
-| **merge:appUser**         | when two or more users are merged into one |
+| trigger                   |                                                                |
+|---------------------------|----------------------------------------------------------------|
+| **message**<br/>*default* | all messages                                                   |
+| **message:appUser**       | only messages with role `appUser`                              |
+| **message:appMaker**      | only messages with role `appMaker` or `whisper`                |
+| **conversation:read**     | when a user reads a conversation                               |
+| **postback**              | when a user clicks on a postback action                        |
+| **merge:appUser**         | when two or more users are merged into one                     |
 | **delivery:success**      | when a message is successfully delivered to a customer channel |
-| **delivery:failure**      | when a message fails to be delivered to a customer channel |
-| <strong>*</strong>        | when any of the above triggers occurs |
+| **delivery:failure**      | when a message fails to be delivered to a customer channel     |
+| <strong>*</strong>        | when any of the above triggers occurs                          |
 
 ## Webhooks payload
 
@@ -563,6 +564,22 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
     }
 }
 ```
+> Webhook example payload for the `conversation:read` trigger:
+
+```json
+{
+    "trigger": "conversation:read",
+    "app": {
+        "_id": "57ec2881c47d2d24b0c16427"
+    },
+    "channel": "messenger",
+    "appUser": {
+        "_id": "7685787bf0e9e8cf56182288"
+    },
+    "timestamp": 1480349392.103
+}
+```
+
 
 > Webhook example payload for the `merge:appUser` trigger:
 
