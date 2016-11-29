@@ -7,10 +7,10 @@ layout: two-column
 # Changelog
 
 ## November 24th, 2016
-Added typing indicator support in iOS SDK [5.2.0](https://github.com/smooch/smooch-ios/releases/tag/5.2.0)
+- Added typing indicator support in iOS SDK [5.2.0](https://github.com/smooch/smooch-ios/releases/tag/5.2.0)
 
 ## November 16th, 2016
-Added typing indicator support in Web messenger [3.8.0](https://github.com/smooch/smooch-js/releases/tag/3.8.0)
+- Added typing indicator support in Web messenger [3.8.0](https://github.com/smooch/smooch-js/releases/tag/3.8.0)
 
 ## November 15th, 2016
 
@@ -19,7 +19,7 @@ Added typing indicator support in Web messenger [3.8.0](https://github.com/smooc
 
 ## November 10th, 2016
 
-Added [suggested replies](http://docs.smooch.io/rest/#action-buttons) support in Web Messenger [3.7.0](https://github.com/smooch/smooch-js/releases/tag/3.7.0)
+- Added [suggested replies](http://docs.smooch.io/rest/#action-buttons) support in Web Messenger [3.7.0](https://github.com/smooch/smooch-js/releases/tag/3.7.0)
 
 ## November 7th, 2016
 
@@ -30,7 +30,7 @@ Added [suggested replies](http://docs.smooch.io/rest/#action-buttons) support in
 
 ## October 28th, 2016
 
-Added [Typing activity API](http://docs.smooch.io/rest/#typing-activity)
+- Added [Typing activity API](http://docs.smooch.io/rest/#typing-activity)
 
 ## October 26th, 2016
 
@@ -39,11 +39,11 @@ Added [Typing activity API](http://docs.smooch.io/rest/#typing-activity)
 
 ## October 17th, 2016
 
-Upgraded [LINE](https://app.smooch.io/integrations/line) to support the new messaging API. LINE BOT API support is now deprecated.
+- Upgraded [LINE](https://app.smooch.io/integrations/line) to support the new messaging API. LINE BOT API support is now deprecated.
 
 ## October 14th, 2016
 
-Added pagination support in iOS SDK [5.1.0](https://github.com/smooch/smooch-ios/releases/tag/5.1.0)
+- Added pagination support in iOS SDK [5.1.0](https://github.com/smooch/smooch-ios/releases/tag/5.1.0)
 
 ## September 21th, 2016
 
@@ -51,7 +51,7 @@ Added pagination support in iOS SDK [5.1.0](https://github.com/smooch/smooch-ios
 
 ## September 7th, 2016
 
-iOS SDK [5.0](https://github.com/smooch/smooch-ios/releases/tag/5.0.0) adds support for iOS 10, replyable notifications, and rich notifications. [Learn more](http://blog.smooch.io/release-notes-frictionless-notifications-for-ios-10/)
+- iOS SDK [5.0](https://github.com/smooch/smooch-ios/releases/tag/5.0.0) adds support for iOS 10, replyable notifications, and rich notifications. [Learn more](http://blog.smooch.io/release-notes-frictionless-notifications-for-ios-10/)
 
 ## September 2nd, 2016
 
@@ -71,7 +71,7 @@ iOS SDK [5.0](https://github.com/smooch/smooch-ios/releases/tag/5.0.0) adds supp
 
 ## August 10th, 2016
 
-Android SDK [3.2.2](https://github.com/smooch/smooch-android/releases/tag/3.2.2) now includes turkish translations
+- Android SDK [3.2.2](https://github.com/smooch/smooch-android/releases/tag/3.2.2) now includes turkish translations
 
 ## July 29th, 2016
 
@@ -82,21 +82,17 @@ Web Messenger [3.2.0](https://github.com/smooch/smooch-js/releases/tag/3.2.0) no
 
 ## July 26th, 2016
 
-Added [carousel API](http://docs.smooch.io/rest/#carousel-messages) with full support for Facebook Messenger and Telegram. Text only fallback for all other channels.
+- Added [carousel API](http://docs.smooch.io/rest/#carousel-messages) with full support for Facebook Messenger and Telegram. Text only fallback for all other channels.
 
 ## July 13th, 2016
 
-Added Suggested replies support via the [API](http://docs.smooch.io/rest/#action-buttons) and via the [message syntax](/guide/sending-images-and-buttons-shorthand/)
+- Added Suggested replies support via the [API](http://docs.smooch.io/rest/#action-buttons) and via the [message syntax](/guide/sending-images-and-buttons-shorthand/)
 
 ## June 29th, 2016
 
 Web Messenger [3.1.0](https://github.com/smooch/smooch-js/releases/tag/3.1.0) adds:
 - An error banner when sending a message fails
 - Auto resize based on window height
-
-## June 23rd, 2016
-
-SmoochBot is born and welcomes you when you sign up to Smooch. [Learn more](http://blog.smooch.io/our-newest-hire-is-a-bot/)
 
 ## June 22nd, 2016
 
@@ -105,8 +101,8 @@ SmoochBot is born and welcomes you when you sign up to Smooch. [Learn more](http
 
 ## May 25th, 2016
 
-Android SDK [3.2.0](https://github.com/smooch/smooch-android/releases/tag/3.2.0) allows to manually trigger Smooch push notifications via multiple `GCMListener`
+- Android SDK [3.2.0](https://github.com/smooch/smooch-android/releases/tag/3.2.0) allows to manually trigger Smooch push notifications via multiple `GCMListener`
 
 ## May 24th, 2016
 
-Added [Email](https://app.smooch.io/integrations/frontendEmail) as a customer channel. [Learn more](http://blog.smooch.io/integration-spotlight-add-email-to-your-messaging-mix/)
+- Added [Email](https://app.smooch.io/integrations/frontendEmail) as a customer channel. [Learn more](http://blog.smooch.io/integration-spotlight-add-email-to-your-messaging-mix/)
