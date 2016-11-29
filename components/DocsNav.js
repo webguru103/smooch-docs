@@ -15,7 +15,7 @@ export default class extends Component {
             ['Docs', '/docs/', true],
             ['API Reference', '/rest/', false],
             ['Channels', '/docs/native-sdks/', true],
-            ['Changelog', '/docs/changelog/', true],
+            ['Changelog', '/changelog/', true],
             ['FAQs', '/docs/faq/', true]
         ];
 
