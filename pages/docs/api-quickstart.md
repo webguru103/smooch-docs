@@ -101,7 +101,7 @@ superagent
 
  We also include the complete code below.
 
-Great! Now, whenever soemone sends a message to your Facebook page from a Facebook user account, you should receive your auto response back.
+Great! Now, whenever someone sends a message to your Facebook page from a Facebook user account, you should receive your auto response back.
 
 ![Facebook Messenger 🎉](/images/facebook_conversation.png)
 
