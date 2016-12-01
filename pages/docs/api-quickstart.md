@@ -12,9 +12,9 @@ This quickstart guide will walk you through getting started with Smooch's REST A
 
 ## Create a new Facebook page
 
-This guide uses the Smooch Dashboard to configure Facebook messenger. I is also possible to configure thus via the [integration API](http://docs.smooch.io/rest/#managed-accounts).
+This guide uses the Smooch Dashboard to configure Facebook Messenger. It is also possible to configure this via the [integration API](https://docs.smooch.io/rest/#managed-accounts).
 
-First, sign in to a Facebook account and [create a new page](https://www.facebook.com/pages/create/).
+First, [create a new page](https://www.facebook.com/pages/create/).
 
 ![Create a new Facebook page for a fictional character](/images/create_facebook_page.png)
 
@@ -30,23 +30,23 @@ Now, whenever someone sends a message to your Facebook page, it will also be sen
 
 ## Deploy a server
 
-Now you need to deploy a server and expose a POST `/messages` endpoint to receive user messages. All you want to do for now is log those messages.
+Next, you need to deploy a server and expose a POST `/messages` endpoint to receive user messages. All you want to do for now is log those messages.
 
-We wrote our server in Node.js and used a service called [ngrok](https://ngrok.com/) to create a secure tunnel to localhost. If you need inspiration, check out the complete code at the end of this quickstart.
+We wrote our server in Node.js and used a service called [ngrok](https://ngrok.com/) to create a secure tunnel to localhost. If you need inspiration, check out the complete [code](#code) at the end of this quickstart.
 
-## Create a Webhook
+## Create a webhook
 
-Once your server is listening for requests, you can create a Smooch Webhook [on this page](https://app.smooch.io/integrations/webhook). In the Webhook URL field, enter the URL for your service and the POST `/messages` route. Pick "App User Messages" as a trigger.
+Once your server is listening for requests, create a webhook from the [dashboard](https://app.smooch.io/integrations/webhook). In the webhook URL field, enter the full URL for your /messages endpoint (e.g. https://https://MY-NGROK-DOMAIN.ngrok.io/messages ). Pick "App User Messages" as the trigger.
 
-![Create a Webhook](/images/create_webhook.png)
+![Create a webhook](/images/create_webhook.png)
 
 As soon as you "Confirm and Save", you'll be able to inspect the messages you're receiving from Facebook users. Try sending a message to your Facebook page as a Facebook user. Once you check your server logs, you'll see the payload in all of its JSON glory.
 
-**[JSON like this](http://docs.smooch.io/rest/#webhooks-payload)**.
+**[JSON like this](https://docs.smooch.io/rest/#webhooks-payload)**.
 
 ## Authorization
 
-Now it's time to call the Smooch REST API. First thing you'll need is a secret key. Go to your settings page from the Smooch dashboard, and create a new secret key.
+To send an answer back, we'll need to call the Smooch REST API. First thing you'll need is a secret key. Go to your settings page from the Smooch dashboard, and create a new secret key.
 
 ![Create a new secret key](/images/create_secret_key.png)
 
@@ -68,17 +68,18 @@ const config = {
 };
 
 const token = jwt.sign(body, SECRET, config);
+console.log(token);
 ```
 
-For additional information, see the [documentation](http://docs.smooch.io/rest/#jwt) on using and creating the JWT to auth, and you can take a look at the code at the end of this quickstart.
+For additional information, see the [documentation](https://docs.smooch.io/rest/#jwt) on using and creating the JWT to authenticate, or you can take a look at the [code](#code) at the end of this quickstart.
 
 ## Send a message to a user with the REST API
 
-Each time a Webhook payload is received by your server on the `/messages` route, you can use the REST API to send a message back to the Facebook user who triggered that Webhook.
+Each time a webhook payload is received by your server on the `/messages` route, you can use the REST API to send a message back to the Facebook user who triggered that webhook.
 
-To send a message via the REST API, you're going to call the [Post Message endpoint](http://docs.smooch.io/rest/#post-message). We need to identify the user we want to send the message to. So let's take a look at the [Webhook payload](http://docs.smooch.io/rest/#webhooks-payload) you'll be receiving.
+To send a message via the REST API, you're going to call the [POST Message endpoint](https://docs.smooch.io/rest/#post-message). We need to identify the user we want to send the message to. Take a look at the [webhook payload](https://docs.smooch.io/rest/#webhooks-payload) you'll be receiving.
 
-To send a message to the user, take the `appUser`'s `_id` property from the Webhook payload, and POST a message to `https://app.smooch.io/v1/appusers/{appUser._id}/messages`. Here's an example of calling the Post Message endpoint:
+To send a message to the user, take the `appUser`'s `_id` property from the webhook payload, and POST a message to `https://app.smooch.io/v1/appusers/{appUser._id}/messages`. Here's an example of calling the POST Message endpoint:
 
 ```javascript
 const superagent = require('superagent');
@@ -92,14 +93,14 @@ superagent
         text: 'Live long and prosper',
         role: 'appMaker'
     })
-    .set('authorization', 'Bearer ' + JWT)
+    .set('authorization', `Bearer ${authToken}`)
     .set('Accept', 'application/json')
     .end(function(err, response) {
         console.log('API RESPONSE:\n', err, response.body, response.statusCode);
     });
 ```
 
- We also include the complete code below.
+We have also included the complete code[code](#code) below.
 
 Great! Now, whenever someone sends a message to your Facebook page from a Facebook user account, you should receive your auto response back.
 
@@ -117,11 +118,11 @@ const jwt = require('jsonwebtoken');
 const superagent = require('superagent');
 
 // Config
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 const KEY_ID = 'your_key_id';
-const SECRET = 'your_Secret_key';
+const SECRET = 'your_secret_key';
 
-// JWT http://docs.smooch.io/rest/#jwt
+// JWT https://docs.smooch.io/rest/#jwt
 const authToken = jwt.sign({ scope: 'app' }, SECRET, {
     header: {
         typ: 'JWT',
@@ -130,17 +131,17 @@ const authToken = jwt.sign({ scope: 'app' }, SECRET, {
     }
 });
 
-// Server http://expressjs.com/en/guide/routing.html
+// Server https://expressjs.com/en/guide/routing.html
 const app = express();
 
 app.use(bodyParser.json());
 
-// Expose /messages endpoint to capture Webhooks http://docs.smooch.io/rest/#webhooks-payload
+// Expose /messages endpoint to capture webhooks https://docs.smooch.io/rest/#webhooks-payload
 app.post('/message', function(req, res) {
-  console.log('WEBHOOK PAYLOAD:\n', JSON.stringify(req.body, null, 4));
+  console.log('webhook PAYLOAD:\n', JSON.stringify(req.body, null, 4));
 
   const appUserId = req.body.appUser._id;
-  // Call REST API to send message http://docs.smooch.io/rest/#post-message
+  // Call REST API to send message https://docs.smooch.io/rest/#post-message
   if (req.body.trigger === 'message:appUser') {
     superagent
     .post(`https://app.smooch.io/v1/appusers/${appUserId}/conversation/messages`)
@@ -148,7 +149,7 @@ app.post('/message', function(req, res) {
         text: 'Live long and prosper',
         role: 'appMaker'
     })
-    .set('authorization', 'Bearer ' + authToken)
+    .set('authorization', `Bearer ${authToken}`)
     .set('Accept', 'application/json')
     .end(function(err, response) {
         console.log('API RESPONSE:\n', err, response.body, response.statusCode);
@@ -165,15 +166,16 @@ app.listen(PORT, () => {
 
 ## Next steps
 
-- If you're using JavaScript you can wrap our Core APIs with [smooch-core, a helpful little npm package](https://www.npmjs.com/package/smooch-core).
+- If you're using JavaScript use [smooch-core](https://www.npmjs.com/package/smooch-core), a helpful little npm package that wraps calls to Smooch APIs.
 
-- Now that you've had a taste of Smooch, it's time to deep dive into our documentation to explore the possibilities. [You can find them here](http://docs.smooch.io/rest/).
+- Now that you've had a taste of Smooch, it's time to deep dive into our documentation to explore the possibilities. [You can find it here](https://docs.smooch.io/rest/).
 
-- Take a look at [the other channels we support](https://app.smooch.io/integrations). We're constantly adding new channels and keeping up with the latest features.
+- Take a look at [the other channels we support](https://app.smooch.io/integrations/categories/customer-channels). We're constantly adding new channels and keeping up with the latest rich messaging features.
 
-- If you're building an integration between Smooch and your product, checkout the Programmable Messaging [guide](/sending-and-receiving-messages), and you will probably want to [configure Webhooks](http://docs.smooch.io/rest/#create-webhook) via the REST API.
+- If you're building an integration between Smooch and your product, checkout the [Programmable Messaging guide](/docs/sending-and-receiving-messages/), and you will probably want to [configure webhooks](https://docs.smooch.io/rest/#create-webhook) via the REST API.
 
-- If you want to make Smooch's messaging capabilities an integral part of your product, take a look at our guides for [Creating and Managing apps](/creating-and-managing-apps) and
-[Configuring Messaging Channels](/configuring-messaging-channels).
+- If you want to make Smooch's messaging capabilities an integral part of your product, take a look at our guides for [Creating and Managing apps](/docs/creating-and-managing-apps/) and
+[Configuring Messaging Channels](/docs/configuring-messaging-channels/).
 
-- If you're building a bot, Smooch's REST API is a great place to start, but you don't have to go it alone! Check out some of the [Bot Platforms that plug into Smooch](https://app.smooch.io/integrations/categories/bot-platform).
+- If you're building a bot, Smooch's REST API is a great place to start, but you don't have to develop it alone! Check out some of the [Bot Platforms that plug into Smooch](https://app.smooch.io/integrations/categories/bot-platform).
+- If you're building a bot, Smooch's REST API is a great place to start, but you don't have to develop it alone! Check out some of the [Bot Platforms that plug into Smooch](https://app.smooch.io/integrations/categories/bot-platform).
