@@ -110,7 +110,7 @@ Great! Now, whenever someone sends a message to your Facebook page from a Facebo
 
 ## Next steps
 
-- If you're using JavaScript use [smooch-core](https://www.npmjs.com/package/smooch-core), a helpful little npm package that wraps calls to Smooch APIs.
+- If you're writing JavaScript, use [smooch-core](https://www.npmjs.com/package/smooch-core), a helpful little npm package that wraps calls to Smooch APIs.
 
 - Now that you've had a taste of Smooch, it's time to deep dive into our documentation to explore the possibilities. [You can find it here](https://docs.smooch.io/rest/).
 
