@@ -42,9 +42,7 @@ Once your server is listening for requests, create a webhook from the [dashboard
 
 ![Create a webhook](/images/create_webhook.png)
 
-As soon as you "Confirm and Save", you'll be able to inspect the messages you're receiving from Facebook users. Try sending a message to your Facebook page as a Facebook user. Once you check your server logs, you'll see the payload in all of its JSON glory.
-
-**[JSON like this](https://docs.smooch.io/rest/#webhooks-payload)**.
+As soon as you "Confirm and Save", you'll be able to inspect the messages you're receiving from Facebook users. Try sending a message to your Facebook page as a Facebook user. Once you check your server logs, you'll see the [payload](https://docs.smooch.io/rest/#webhooks-payload) in all of its JSON glory.
 
 ## Authorization
 
