@@ -420,7 +420,7 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </code></pre>
 
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>200 OK
 </code></pre>
@@ -549,7 +549,10 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Steve"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1444348338.704</span><span class="p">,</span><span class="w">
         </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">}],</span><span class="w">
     </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c7f6e6d6c3a637261bd9656f"</span><span class="p">,</span><span class="w">
@@ -593,6 +596,9 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LunchBot"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1444348338.704</span><span class="p">,</span><span class="w">
             </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slack"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
             </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
                 </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"571530ee4fae94c32b78b170"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
@@ -1431,7 +1437,7 @@ The timestamp format should be in seconds using <a href="https://en.wikipedia.or
 </code></pre>
 
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>200 OK
 </code></pre>
@@ -1453,7 +1459,7 @@ The timestamp format should be in seconds using <a href="https://en.wikipedia.or
 </code></pre>
 
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>200 OK
 </code></pre>
@@ -1498,32 +1504,34 @@ Typing activity is only supported on our Web Messenger, iOS SDK, Facebook Messen
 </aside></p>
 <h2 id='post-message'>Post Message</h2>
 <blockquote>
-<p>Post as app user:</p>
+<p>Request (App User):</p>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appUser"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appUser", "type": "text"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'app-token: cr2g6jgxrahuh68n1o3e2fcnt'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
-    <span class="na">role</span><span class="p">:</span> <span class="s1">'appUser'</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appUser'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="c1">// async code</span>
 <span class="p">});</span>
 </code></pre>
 
 <blockquote>
-<p>Post as app maker:</p>
+<p>Request (App Maker):</p>
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker"}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text"}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
     <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span>
 <span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -1555,9 +1563,13 @@ Typing activity is only supported on our Web Messenger, iOS SDK, Facebook Messen
 
 <p><api><code class="prettyprint">POST /v1/appusers/{smoochId|userId}/messages</code></api></p>
 
-<p>Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. Messages must have a <code class="prettyprint">role</code> of either <code class="prettyprint">appuser</code> or <code class="prettyprint">appMaker</code>. Furthermore, a message must have a <code class="prettyprint">text</code>, <code class="prettyprint">actions</code>, <code class="prettyprint">items</code>, or <code class="prettyprint">mediaUrl</code> specified. Some parameters are mutually exclusive, indicated in the table blow.</p>
+<p>Post a message to or from the app user. If the app user does not yet have a conversation, one will be created automatically. Messages must have a <code class="prettyprint">role</code> of either <code class="prettyprint">appUser</code> or <code class="prettyprint">appMaker</code>.</p>
 
-<p>Images can be posted by reference using this API by specifying the <code class="prettyprint">mediaUrl</code> parameter. Alternatively, you may also upload images to the conversation directly using the <a href="#upload-image"><code class="prettyprint">/images</code></a> endpoint.</p>
+<p>A message must also have a <code class="prettyprint">type</code> specifying the type of message you&rsquo;re trying to send.
+Depending on the type, the message object will have additional <code class="prettyprint">Required</code> and <code class="prettyprint">Optional</code> arguments.
+See <a href="#text-message"><code class="prettyprint">text</code></a>, <a href="#image-message"><code class="prettyprint">image</code></a>, <a href="#carousel-message"><code class="prettyprint">carousel</code></a>, <a href="#list-message"><code class="prettyprint">list</code></a>.</p>
+
+<p>Images can be posted by URL using this API via the <code class="prettyprint">image</code> type. Alternatively, you may also upload images to the conversation directly using the <a href="#upload-image"><code class="prettyprint">/images</code></a> endpoint.</p>
 
 <p><aside class="notice">
 For messages originating from an app maker, a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope must be used.
@@ -1574,24 +1586,8 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 <td>The role of the individual posting the message. Can be either <code class="prettyprint">appUser</code> or <code class="prettyprint">appMaker</code>.</td>
 </tr>
 <tr>
-<td><strong>text</strong><br/><span class='mut'>optional*</span></td>
-<td>The text content of the message. <code class="prettyprint">text</code> becomes optional if either <code class="prettyprint">mediaUrl</code> or <code class="prettyprint">actions</code> are provided. Mutually exclusive with <code class="prettyprint">items</code>.</td>
-</tr>
-<tr>
-<td><strong>actions</strong><br/><span class='mut'>optional*</span></td>
-<td>Array of <a href="#action-buttons">action buttons</a>. Mutually exclusive with <code class="prettyprint">items</code>.</td>
-</tr>
-<tr>
-<td><strong>items</strong><br/><span class='mut'>optional*</span></td>
-<td>Array of <a href="#carousel-messages">carousel items</a>. The array is limited to 10 items. Mutually exclusive with <code class="prettyprint">text</code>, <code class="prettyprint">actions</code> and <code class="prettyprint">mediaUrl</code>.</td>
-</tr>
-<tr>
-<td><strong>mediaUrl</strong><br/><span class='mut'>optional*</span></td>
-<td>The image URL used in an image message. Mutually exclusive with <code class="prettyprint">items</code>.</td>
-</tr>
-<tr>
-<td><strong>mediaType</strong><br/><span class='opt'>optional</span></td>
-<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpeg</code>. If <code class="prettyprint">mediaType</code> is not specified, the media type will be resolved with the <code class="prettyprint">mediaUrl</code>.</td>
+<td><strong>type</strong><br/><span class='req'>required</span></td>
+<td>The type of the message being posted. Can be <a href="#text-message"><code class="prettyprint">text</code></a>, <a href="#image-message"><code class="prettyprint">image</code></a>, <a href="#carousel-message"><code class="prettyprint">carousel</code></a> or <a href="#list-message"><code class="prettyprint">list</code></a>.</td>
 </tr>
 <tr>
 <td><strong>name</strong><br/><span class='opt'>optional</span></td>
@@ -1614,8 +1610,575 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 <td>The payload of a <code class="prettyprint">reply</code> action, if applicable</td>
 </tr>
 </tbody></table>
-<h2 id='action-buttons'>Action buttons</h2>
-<p>Actions buttons can be sent through the <a href="#post-message">post message</a> by including them in the message payload.</p>
+
+<p><aside class="notice">
+Additional arguments are necessary based on message type (<a href="#text-message"><code class="prettyprint">text</code></a>, <a href="#image-message"><code class="prettyprint">image</code></a>, <a href="#carousel-message"><code class="prettyprint">carousel</code></a>, <a href="#list-message"><code class="prettyprint">list</code></a>)
+</aside></p>
+<h2 id='text-message'>Text Message</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span> <span class="se">\</span>
+     -d <span class="s1">'
+{
+    "role": "appMaker",
+    "type": "text",
+    "text": "Hello!",
+    "actions": [{
+        "text": "More info",
+        "type": "link",
+        "uri": "http://example.org"
+    }]
+}'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Hello!'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'More info'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
+        <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.org'</span>
+    <span class="p">}]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d21c19c9da00839a5e9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5ec"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="mi">201</span> <span class="nx">CREATED</span>
+</code></pre>
+
+<p>A <code class="prettyprint">text</code> type message is a message that is sent with text and/or actions.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><span class='req'>required*</span></td>
+<td>The text content of the message. Optional only if <code class="prettyprint">actions</code> are provided.</td>
+</tr>
+<tr>
+<td><strong>actions</strong><br/><span class='opt'>optional*</span></td>
+<td>Array of <a href="#action-buttons">action buttons</a>.</td>
+</tr>
+</tbody></table>
+<h2 id='image-message'>Image Message</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span> <span class="se">\</span>
+     -d <span class="s1">'
+{
+    "role": "appMaker",
+    "type": "text",
+    "text": "Hello!",
+    "mediaUrl": "http://example.org/image.jpg",
+    "actions": [{
+        "text": "More info",
+        "type": "link",
+        "uri": "http://example.org"
+    }]
+}'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">'Hello!'</span><span class="p">,</span>
+    <span class="na">mediaUrl</span><span class="p">:</span> <span class="s1">'http://example.org/image.jpg'</span><span class="p">,</span>
+    <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">text</span><span class="p">:</span> <span class="s1">'More info'</span><span class="p">,</span>
+        <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
+        <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.org'</span>
+    <span class="p">}]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d21c19c9da00839a5e9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/image.jpg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"mediaType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5ec"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="mi">201</span> <span class="nx">CREATED</span>
+</code></pre>
+
+<p>An <code class="prettyprint">image</code> type message is a message that is sent with an image, and, optionally, text and/or actions.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>text</strong><br/><span class='opt'>optional*</span></td>
+<td>The text content of the message.</td>
+</tr>
+<tr>
+<td><strong>actions</strong><br/><span class='opt'>optional*</span></td>
+<td>Array of <a href="#action-buttons">action buttons</a>.</td>
+</tr>
+<tr>
+<td><strong>mediaUrl</strong><br/><span class='req'>required*</span></td>
+<td>The image URL used for the image message.</td>
+</tr>
+<tr>
+<td><strong>mediaType</strong><br/><span class='opt'>optional</span></td>
+<td>The media type is defined here, for example <code class="prettyprint">image/jpeg</code>. If <code class="prettyprint">mediaType</code> is not specified, the media type will be resolved with the <code class="prettyprint">mediaUrl</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='carousel-message'>Carousel Message</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span> <span class="se">\</span>
+     -d <span class="s1">'
+{
+    "role": "appMaker",
+    "type": "carousel",
+    "items": [{
+        "title": "Tacos",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "actions": [{
+            "text": "Select",
+            "type": "postback",
+            "payload": "TACOS"
+        }, {
+            "text": "More info",
+            "type": "link",
+            "uri": "http://example.org"
+        }]
+    }, {
+        "title": "Ramen",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "actions": [{
+            "text": "Select",
+            "type": "postback",
+            "payload": "RAMEN"
+        }, {
+            "text": "More info",
+            "type": "link",
+            "uri": "http://example.org"
+        }]
+    }]
+}'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'carousel'</span><span class="p">,</span>
+    <span class="na">items</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Tacos'</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description'</span><span class="p">,</span>
+        <span class="na">mediaUrl</span><span class="p">:</span> <span class="s1">'http://example.org/image.jpg'</span><span class="p">,</span>
+        <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="na">text</span><span class="p">:</span> <span class="s1">'Select'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'postback'</span><span class="p">,</span>
+            <span class="na">payload</span><span class="p">:</span> <span class="s1">'TACOS'</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="na">text</span><span class="p">:</span> <span class="s1">'More info'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
+            <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.org'</span>
+        <span class="p">}]</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="na">title</span><span class="p">:</span> <span class="s1">'Ramen'</span><span class="p">,</span>
+        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description'</span><span class="p">,</span>
+        <span class="na">mediaUrl</span><span class="p">:</span> <span class="s1">'http://example.org/image.jpg'</span><span class="p">,</span>
+        <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
+            <span class="na">text</span><span class="p">:</span> <span class="s1">'Select'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'postback'</span><span class="p">,</span>
+            <span class="na">payload</span><span class="p">:</span> <span class="s1">'RAMEN'</span>
+        <span class="p">},</span> <span class="p">{</span>
+            <span class="na">text</span><span class="p">:</span> <span class="s1">'More info'</span><span class="p">,</span>
+            <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
+            <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.org'</span>
+        <span class="p">}]</span>
+    <span class="p">}]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d21c19c9da00839a5e9"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"carousel"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d21c19c9da00839a5ea"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tacos"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/image.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5eb"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Select"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TACOS"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5ec"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5ed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ramen"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/image.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d31c19c9da00839a5ee"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Select"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RAMEN"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d31c19c9da00839a5ef"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org"</span><span class="w">
+        </span><span class="p">}]</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="mi">201</span> <span class="nx">CREATED</span>
+</code></pre>
+
+<p>Carousel messages are a horizontally scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support carousel messages; currently only Facebook Messenger, LINE and Telegram cover the full functionality. For all other platforms a carousel message is rendered as raw text. The raw text fallback does not include any images or postback action buttons.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>items</strong><br/><span class='req'>required*</span></td>
+<td>Array of <a href="#message-items">message items</a>. The array is limited to 10 items.</td>
+</tr>
+</tbody></table>
+<h4 id='channel-support'>Channel Support</h4>
+<p>Smooch will deliver carousel messages to users across all messaging channels regardless of whether or not a given channel can natively render a carousel message UI. For channels that don&rsquo;t render carousels, a raw text representation is sent. In the future, the Smooch API will expand to support new messaging app carousel experiences as they become available. For current messaging channels, carousel messages will render in the following ways:</p>
+<h5 id='facebook-messenger'>Facebook Messenger</h5>
+<p>Full support.
+<img alt="messenger carousel" src="../images/carousel_messenger.png" /></p>
+<h5 id='telegram'>Telegram</h5>
+<p>Full support, with cards arranged vertically.
+<img alt="telegram carousel" src="../images/carousel_telegram.png" /></p>
+<h5 id='line'>LINE</h5>
+<p>Full support.
+<span class="half-width-img"><img alt="line carousel" src="../images/carousel_line.png" /></span></p>
+<h5 id='all-other-channels'>All Other Channels</h5>
+<blockquote>
+<p>Sample Raw Text Format:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>1. Tacos
+Description
+More info http://example.org
+
+2. Ramen
+Description
+More info http://example.org
+</code></pre>
+
+<p>Text fallback.
+<img alt="text fallback" src="../images/carousel_ios.png" /></p>
+<h2 id='list-message'>List Message</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
+     -X POST <span class="se">\</span>
+     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+     -H <span class="s1">'authorization: Bearer your-jwt'</span> <span class="se">\</span>
+     -d <span class="s1">'
+     {
+        "role":"appMaker",
+        "type":"list",
+        "items":[
+           {
+              "title":"Tacos",
+              "description":"Beef and cheese... Mhm...",
+              "size": "large",
+              "mediaUrl":"https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg",
+              "actions":[
+                 {
+                    "text":"Oh yeah!",
+                    "type":"postback",
+                    "payload":"TACOS"
+                 }
+              ]
+           },
+           {
+              "title":"Burritos",
+              "description":"Beefier and cheesier... Mhm...",
+              "mediaUrl":"http://www.tacobueno.com/media/1381/beefbob.png?quality=65",
+              "actions":[
+                 {
+                    "text":"Burritooo!",
+                    "type":"postback",
+                    "payload":"BURRITOS"
+                 },
+                 {
+                    "text":"Burritooo!",
+                    "type":"link",
+                    "uri":"http://burritos.com",
+                    "default": true
+                 }
+              ]
+           }
+        ],
+        "actions":[
+           {
+              "text":"More Choices!",
+              "type":"postback",
+              "payload":"MORE"
+           }
+        ]
+     }'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
+   <span class="na">role</span><span class="p">:</span><span class="s2">"appMaker"</span><span class="p">,</span>
+   <span class="na">type</span><span class="p">:</span><span class="s2">"list"</span><span class="p">,</span>
+   <span class="na">items</span><span class="p">:[</span>
+      <span class="p">{</span>
+         <span class="na">title</span><span class="p">:</span><span class="s2">"Tacos"</span><span class="p">,</span>
+         <span class="na">description</span><span class="p">:</span><span class="s2">"Beef and cheese... Mhm..."</span><span class="p">,</span>
+         <span class="na">size</span><span class="p">:</span> <span class="s2">"large"</span><span class="p">,</span>
+         <span class="na">mediaUrl</span><span class="p">:</span><span class="s2">"https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg"</span><span class="p">,</span>
+         <span class="na">actions</span><span class="p">:[</span>
+            <span class="p">{</span>
+               <span class="na">text</span><span class="p">:</span><span class="s2">"Oh yeah!"</span><span class="p">,</span>
+               <span class="na">type</span><span class="p">:</span><span class="s2">"postback"</span><span class="p">,</span>
+               <span class="na">payload</span><span class="p">:</span><span class="s2">"TACOS"</span>
+            <span class="p">}</span>
+         <span class="p">]</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+         <span class="na">title</span><span class="p">:</span><span class="s2">"Burritos"</span><span class="p">,</span>
+         <span class="na">description</span><span class="p">:</span><span class="s2">"Beefier and cheesier... Mhm..."</span><span class="p">,</span>
+         <span class="na">mediaUrl</span><span class="p">:</span><span class="s2">"http://www.tacobueno.com/media/1381/beefbob.png?quality=65"</span><span class="p">,</span>
+         <span class="na">actions</span><span class="p">:[</span>
+            <span class="p">{</span>
+               <span class="na">text</span><span class="p">:</span><span class="s2">"Burritooo!"</span><span class="p">,</span>
+               <span class="na">type</span><span class="p">:</span><span class="s2">"postback"</span><span class="p">,</span>
+               <span class="na">payload</span><span class="p">:</span><span class="s2">"BURRITOS"</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+               <span class="na">text</span><span class="p">:</span><span class="s2">"Burritooo!"</span><span class="p">,</span>
+               <span class="na">type</span><span class="p">:</span><span class="s2">"link"</span><span class="p">,</span>
+               <span class="na">uri</span><span class="p">:</span><span class="s2">"http://burritos.com"</span><span class="p">,</span>
+               <span class="na">default</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">],</span>
+   <span class="na">actions</span><span class="p">:[</span>
+      <span class="p">{</span>
+         <span class="na">text</span><span class="p">:</span><span class="s2">"More Choices!"</span><span class="p">,</span>
+         <span class="na">type</span><span class="p">:</span><span class="s2">"postback"</span><span class="p">,</span>
+         <span class="na">payload</span><span class="p">:</span><span class="s2">"MORE"</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// async code</span>
+<span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>201 CREATED
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1480021430.242</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1. Tacos\nBeef and cheese... Mhm...\n\n\n2. Burritos\nBeefier and cheesier... Mhm...\nBurritooo!: http://burritos.com"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7AJ4zpAVxEwKkjCZD2EYKk"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.gravatar.com/avatar/5e543256c480ac577d30f76f9120eb74.png?s=200&amp;d=mm"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d148602b"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tacos"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beef and cheese... Mhm..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"large"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/jpeg"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d1486033"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oh yeah!"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TACOS"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d1486034"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Burritos"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beefier and cheesier... Mhm..."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.tacobueno.com/media/1381/beefbob.png?quality=65"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mediaType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image/png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d1486030"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Burritooo!"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BURRITOS"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d1486032"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Burritooo!"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d1486031"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://burritos.com"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More Choices!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MORE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583755b6be483684d1486035"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"conversation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"unreadCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94eb1cd68c3e072a5ea0e242"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre class="highlight javascript"><code><span class="mi">201</span> <span class="nx">CREATED</span>
+</code></pre>
+
+<p>List messages are a vertically scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support list messages; currently only Facebook Messenger has support. LINE and Telegram have a carousel fallback, and for all other platforms a list message is rendered as raw text. The raw text fallback does not include any images or postback action buttons.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>items</strong><br/><span class='req'>required*</span></td>
+<td>Array of <a href="#message-items">message items</a>. The array is limited to 10 items.</td>
+</tr>
+<tr>
+<td><strong>actions</strong><br/><span class='opt'>optional*</span></td>
+<td>Array of <a href="#action-buttons">action buttons</a>.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">
+    In Messenger, list messages sent with multiple <code class="prettyprint">actions</code> either in a <code class="prettyprint">message item</code> or the <code class="prettyprint">message</code> itself will be truncated, as only 1 action is supported.
+</aside></p>
+
+<p><span class="half-width-img"><img alt="messenger list" src="../images/list_messenger.png" /></span></p>
+<h2 id='message-items'>Message Items</h2>
+<p>Message items can be sent through the <a href="#post-message">post message API</a> by including them in the message payload.</p>
+
+<p>Only <a href="#carousel-message">carousel</a> and <a href="#list-message">list</a> messages currently support message items.</p>
+
+<table><thead>
+<tr>
+<th><strong>Arguments</strong></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>title</strong><br/><span class='req'>required</span></td>
+<td>The title of the carousel item.</td>
+</tr>
+<tr>
+<td><strong>actions</strong><br/><span class='req'>required</span></td>
+<td>Array of <a href="#action-buttons">action buttons</a>. At least 1 is required, a maximum of 3 are allowed. <code class="prettyprint">link</code> and <code class="prettyprint">postback</code> and <code class="prettyprint">share</code> actions are supported.</td>
+</tr>
+<tr>
+<td><strong>description</strong><br/><span class='opt'>optional</span></td>
+<td>The text description, or subtitle.</td>
+</tr>
+<tr>
+<td><strong>mediaUrl</strong><br/><span class='opt'>optional</span></td>
+<td>The image URL to be shown in the carousel/list item.</td>
+</tr>
+<tr>
+<td><strong>size</strong><br/><span class='opt'>optional</span></td>
+<td>The size of the image to be shown in the carousel/list item (Only top item of Facebook Messenger carousel supportted). Choose from <code class="prettyprint">compact</code> and <code class="prettyprint">large</code></td>
+</tr>
+<tr>
+<td><strong>mediaType</strong><br/><span class='opt'>optional</span></td>
+<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpeg</code>. If <code class="prettyprint">mediaType</code> is not specified, the media type will be resolved with the <code class="prettyprint">mediaUrl</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='action-buttons'>Action Buttons</h2>
+<p>Actions buttons can be sent through the <a href="#post-message">post message API</a> by including them in the message payload.</p>
 
 <p>There are 4 types of supported actions : <strong>link</strong>, <strong>buy</strong>, <strong>postback</strong>, and <strong>reply</strong>. Type must be specified by providing a <code class="prettyprint">type</code> argument in the action object.</p>
 
@@ -1628,13 +2191,14 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text", "actions": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
     <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
     <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
@@ -1666,6 +2230,10 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 <td>The action URI. This is the link that will be used in the clients when clicking the button.</td>
 </tr>
 <tr>
+<td><strong>default</strong><br/><span class='opt'>optional</span></td>
+<td>Flag indicating the message action is the default for a <a href="#message-items">message item</a> in Facebook Messenger.</td>
+</tr>
+<tr>
 <td><strong>metadata</strong><br/><span class='opt'>optional</span></td>
 <td>Flat JSON object containing any custom properties associated with the action.</td>
 </tr>
@@ -1680,13 +2248,14 @@ For messages originating from an app maker, a <code class="prettyprint">jwt</cod
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text", "actions": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
     <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
     <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="s1">'buy'</span><span class="p">,</span>
@@ -1736,13 +2305,14 @@ The <a href="/javascript/#stripe">Stripe integration</a> must be configured and 
 </blockquote>
 <pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
      -X POST <span class="se">\</span>
-     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "postback", "text": "Send vinegar", "payload": "buy_vinegar" }]}'</span> <span class="se">\</span>
+     -d <span class="s1">'{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text", "actions": [{"type": "postback", "text": "Send vinegar", "payload": "buy_vinegar" }]}'</span> <span class="se">\</span>
      -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
      -H <span class="s1">'authorization: Bearer your-jwt'</span>
 </code></pre>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Just put some vinegar on it'</span><span class="p">,</span>
     <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
     <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="s1">'postback'</span><span class="p">,</span>
@@ -1794,6 +2364,7 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 {
     "text":"Which do you prefer?",
     "role": "appMaker",
+    "type": "text",
     "actions": [{
         "type": "reply",
         "text": "Tacos",
@@ -1808,6 +2379,7 @@ See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Which do you prefer?'</span><span class="p">,</span>
     <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'text'</span><span class="p">,</span>
     <span class="na">actions</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
         <span class="na">type</span><span class="p">:</span> <span class="s1">'reply'</span><span class="p">,</span>
@@ -1912,164 +2484,7 @@ Icons are currrently only supported on Facebook Messenger and Web Messenger.
 
 <p><strong>Web Messenger</strong>
 <img alt="Web Messenger reply icons" src="../images/web_reply_icon.png" /></p>
-<h2 id='carousel-messages'>Carousel Messages</h2>
-<blockquote>
-<p>Request:</p>
-</blockquote>
-<pre class="highlight shell"><code>curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages <span class="se">\</span>
-     -X POST <span class="se">\</span>
-     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
-     -H <span class="s1">'authorization: Bearer your-jwt'</span> <span class="se">\</span>
-     -d <span class="s1">'
-{
-    "role": "appMaker",
-    "items": [{
-        "title": "Tacos",
-        "description": "Description",
-        "mediaUrl": "http://example.org/image.jpg",
-        "actions": [{
-            "text": "Select",
-            "type": "postback",
-            "payload": "TACOS"
-        }, {
-            "text": "More info",
-            "type": "link",
-            "uri": "http://example.org"
-        }]
-    }, {
-        "title": "Ramen",
-        "description": "Description",
-        "mediaUrl": "http://example.org/image.jpg",
-        "actions": [{
-            "text": "Select",
-            "type": "postback",
-            "payload": "RAMEN"
-        }, {
-            "text": "More info",
-            "type": "link",
-            "uri": "http://example.org"
-        }]
-    }]
-}'</span>
-</code></pre>
-<pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
-    <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
-    <span class="na">items</span><span class="p">:</span> <span class="p">[{</span>
-        <span class="na">title</span><span class="p">:</span> <span class="s1">'Tacos'</span><span class="p">,</span>
-        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description'</span><span class="p">,</span>
-        <span class="na">mediaUrl</span><span class="p">:</span> <span class="s1">'http://example.org/image.jpg'</span><span class="p">,</span>
-        <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
-            <span class="na">text</span><span class="p">:</span> <span class="s1">'Select'</span><span class="p">,</span>
-            <span class="na">type</span><span class="p">:</span> <span class="s1">'postback'</span><span class="p">,</span>
-            <span class="na">payload</span><span class="p">:</span> <span class="s1">'TACOS'</span>
-        <span class="p">},</span> <span class="p">{</span>
-            <span class="na">text</span><span class="p">:</span> <span class="s1">'More info'</span><span class="p">,</span>
-            <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
-            <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.org'</span>
-        <span class="p">}]</span>
-    <span class="p">},</span> <span class="p">{</span>
-        <span class="na">title</span><span class="p">:</span> <span class="s1">'Ramen'</span><span class="p">,</span>
-        <span class="na">description</span><span class="p">:</span> <span class="s1">'Description'</span><span class="p">,</span>
-        <span class="na">mediaUrl</span><span class="p">:</span> <span class="s1">'http://example.org/image.jpg'</span><span class="p">,</span>
-        <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
-            <span class="na">text</span><span class="p">:</span> <span class="s1">'Select'</span><span class="p">,</span>
-            <span class="na">type</span><span class="p">:</span> <span class="s1">'postback'</span><span class="p">,</span>
-            <span class="na">payload</span><span class="p">:</span> <span class="s1">'RAMEN'</span>
-        <span class="p">},</span> <span class="p">{</span>
-            <span class="na">text</span><span class="p">:</span> <span class="s1">'More info'</span><span class="p">,</span>
-            <span class="na">type</span><span class="p">:</span> <span class="s1">'link'</span><span class="p">,</span>
-            <span class="na">uri</span><span class="p">:</span> <span class="s1">'http://example.org'</span>
-        <span class="p">}]</span>
-    <span class="p">}]</span>
-<span class="p">}).</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="c1">// async code</span>
-<span class="p">});</span>
-</code></pre>
-
-<blockquote>
-<p>Response:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>201 CREATED
-</code></pre>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d21c19c9da00839a5e9"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d21c19c9da00839a5ea"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tacos"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/image.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5eb"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Select"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TACOS"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5ec"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org"</span><span class="w">
-        </span><span class="p">}]</span><span class="w">
-    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d22c19c9da00839a5ed"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ramen"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Description"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mediaUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org/image.jpg"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d31c19c9da00839a5ee"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Select"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"postback"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"payload"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RAMEN"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57966d31c19c9da00839a5ef"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"More info"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"link"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://example.org"</span><span class="w">
-        </span><span class="p">}]</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<pre class="highlight javascript"><code><span class="mi">201</span> <span class="nx">CREATED</span>
-</code></pre>
-
-<p>Carousel messages are a horizontally scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support carousel messages; currently only Facebook Messenger and Telegram cover the full functionality. For all other platforms a carousel message is rendered as raw text. The raw text fallback does not include any images or postback action buttons.</p>
-
-<p><aside class="notice">
-Only the <code class="prettyprint">appMaker</code> role can used to send a carousel message.
-</aside></p>
-<h3 id='carousel-item'>Carousel Item</h3>
-<table><thead>
-<tr>
-<th><strong>Arguments</strong></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td><strong>title</strong><br/><span class='req'>required</span></td>
-<td>The title of the carousel item.</td>
-</tr>
-<tr>
-<td><strong>actions</strong><br/><span class='req'>required</span></td>
-<td>Array of carousel actions. At least 1 is required, a maximum of 3 are allowed. Only <code class="prettyprint">link</code> and <code class="prettyprint">postback</code> actions are supported.</td>
-</tr>
-<tr>
-<td><strong>description</strong><br/><span class='opt'>optional</span></td>
-<td>The text description, or subtitle.</td>
-</tr>
-<tr>
-<td><strong>mediaUrl</strong><br/><span class='opt'>optional</span></td>
-<td>The image URL to be shown in the carousel item.</td>
-</tr>
-<tr>
-<td><strong>mediaType</strong><br/><span class='opt'>optional</span></td>
-<td>If a <code class="prettyprint">mediaUrl</code> was specified, the media type is defined here, for example <code class="prettyprint">image/jpeg</code>. If <code class="prettyprint">mediaType</code> is not specified, the media type will be resolved with the <code class="prettyprint">mediaUrl</code>.</td>
-</tr>
-</tbody></table>
-<h3 id='carousel-actions'>Carousel Actions</h3>
-<p>Carousel actions have the same structure as <a href="#action-buttons">action buttons</a>, however only <code class="prettyprint">link</code>, <code class="prettyprint">postback</code> and <code class="prettyprint">share</code> action types are permitted.</p>
-<h3 id='carousel-share-button'>Carousel Share Button</h3>
+<h3 id='share-actions'>Share Actions</h3>
 <blockquote>
 <p>Send share action:</p>
 </blockquote>
@@ -2080,6 +2495,7 @@ Only the <code class="prettyprint">appMaker</code> role can used to send a carou
      -d <span class="s1">'
 {
     "role": "appMaker",
+    "type": "carousel",
     "items": [{
         "title": "Title",
         "description": "Description",
@@ -2094,6 +2510,7 @@ Only the <code class="prettyprint">appMaker</code> role can used to send a carou
 <pre class="highlight javascript"><code><span class="nx">smooch</span><span class="p">.</span><span class="nx">appUsers</span><span class="p">.</span><span class="nx">sendMessage</span><span class="p">(</span><span class="s1">'c7f6e6d6c3a637261bd9656f'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">text</span><span class="p">:</span> <span class="s1">'Title'</span><span class="p">,</span>
     <span class="na">role</span><span class="p">:</span> <span class="s1">'appMaker'</span><span class="p">,</span>
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'carousel'</span><span class="p">,</span>
     <span class="na">items</span><span class="p">:</span> <span class="p">[{</span>
       <span class="na">title</span><span class="p">:</span> <span class="s1">'Title'</span><span class="p">,</span>
       <span class="na">actions</span><span class="p">:</span> <span class="p">[{</span>
@@ -2105,7 +2522,8 @@ Only the <code class="prettyprint">appMaker</code> role can used to send a carou
 <span class="p">});</span>
 </code></pre>
 
-<p>Carousel actions may also include a share button. Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform <a href="https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button">documentation</a>.</p>
+<p>Actions in a <a href="#message-items">message item</a> may also include a share button.
+Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform <a href="https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button">documentation</a>.</p>
 
 <p><img alt="messenger carousel" src="../images/facebook_share_button.png" /></p>
 
@@ -2124,32 +2542,10 @@ Only the <code class="prettyprint">appMaker</code> role can used to send a carou
 <td>Flat JSON object containing any custom properties associated with the action.</td>
 </tr>
 </tbody></table>
-<h3 id='channel-support-for-carousel-messages'>Channel Support for Carousel Messages</h3>
-<p>Smooch will deliver carousel messages to users across all messaging channels regardless of whether or not a given channel can natively render a carousel message UI. For channels that don&rsquo;t render carousels, a raw text representation is sent. In the future, the Smooch API will expand to support new messaging app carousel experiences as they become available. For current messaging channels, carousel messages will render in the following ways:</p>
-<h4 id='facebook-messenger'>Facebook Messenger</h4>
-<p>Full support.
-<img alt="messenger carousel" src="../images/carousel_messenger.png" /></p>
-<h4 id='telegram'>Telegram</h4>
-<p>Full support, with cards arranged vertically.
-<img alt="telegram carousel" src="../images/carousel_telegram.png" /></p>
-<h4 id='line'>LINE</h4>
-<p>Full support.
-<span class="half-width-img"><img alt="line carousel" src="../images/carousel_line.png" /></span></p>
 
-<blockquote>
-<p>Sample Raw Text Format:</p>
-</blockquote>
-<pre class="highlight plaintext"><code>1. Tacos
-Description
-More info http://example.org
-
-2. Ramen
-Description
-More info http://example.org
-</code></pre>
-<h4 id='all-other-channels'>All Other Channels</h4>
-<p>Text fallback.
-<img alt="text fallback" src="../images/carousel_ios.png" /></p>
+<p><aside class="notice">
+Share Buttons are currently only supported in Facebook Messenger carousels.
+</aside></p>
 <h2 id='upload-image'>Upload Image</h2>
 <blockquote>
 <p>Request:</p>
@@ -2236,7 +2632,7 @@ More info http://example.org
 </code></pre>
 
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>200 OK
 </code></pre>
@@ -2288,7 +2684,7 @@ More info http://example.org
 </code></pre>
 
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>200 OK
 </code></pre>
@@ -2366,7 +2762,7 @@ More info http://example.org
 </code></pre>
 
 <blockquote>
-<p>Response</p>
+<p>Response:</p>
 </blockquote>
 <pre class="highlight plaintext"><code>200 OK
 </code></pre>
