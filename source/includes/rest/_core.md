@@ -335,7 +335,7 @@ smooch.webhooks.update('55c8d9758590aa1900b9b9f6', {
 });
 ```
 
-> Response
+> Response:
 
 ```
 200 OK
@@ -1192,7 +1192,7 @@ smooch.conversations.resetUnreadCount('c7f6e6d6c3a637261bd9656f').then(() => {
 });
 ```
 
-> Response
+> Response:
 
 ```
 200 OK
@@ -1216,7 +1216,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/conversation/act
 // This endpoint is not currently wrapped in a JavaScript lib
 ```
 
-> Response
+> Response:
 
 ```
 200 OK
@@ -1247,35 +1247,37 @@ Typing activity is only supported on our Web Messenger, iOS SDK, Facebook Messen
 
 ## Post Message
 
-> Post as app user:
+> Request (App User):
 
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appUser"}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appUser", "type": "text"}' \
      -H 'content-type: application/json' \
      -H 'app-token: cr2g6jgxrahuh68n1o3e2fcnt'
 ```
 ```js
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Just put some vinegar on it',
-    role: 'appUser'
+    role: 'appUser',
+    type: 'text'
 }).then(() => {
     // async code
 });
 ```
 
-> Post as app maker:
+> Request (App Maker):
 
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker"}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text"}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
 ```js
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    type: 'text',
     text: 'Just put some vinegar on it',
     role: 'appMaker'
 }).then(() => {
@@ -1308,9 +1310,13 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 
 <api>`POST /v1/appusers/{smoochId|userId}/messages`</api>
 
-Post a message to the app user. If the app user does not yet have a conversation, one will be created automatically. Messages must have a `role` of either `appuser` or `appMaker`. Furthermore, a message must have a `text`, `actions`, `items`, or `mediaUrl` specified. Some parameters are mutually exclusive, indicated in the table blow.
+Post a message to or from the app user. If the app user does not yet have a conversation, one will be created automatically. Messages must have a `role` of either `appUser` or `appMaker`.
 
-Images can be posted by reference using this API by specifying the `mediaUrl` parameter. Alternatively, you may also upload images to the conversation directly using the [`/images`](#upload-image) endpoint.
+A message must also have a `type` specifying the type of message you're trying to send.
+Depending on the type, the message object will have additional `Required` and `Optional` arguments.
+See [`text`](#text-message), [`image`](#image-message), [`carousel`](#carousel-message), [`list`](#list-message).
+
+Images can be posted by URL using this API via the `image` type. Alternatively, you may also upload images to the conversation directly using the [`/images`](#upload-image) endpoint.
 
 <aside class="notice">
 For messages originating from an app maker, a `jwt` credential with `app` level scope must be used.
@@ -1319,19 +1325,543 @@ For messages originating from an app maker, a `jwt` credential with `app` level 
 | **Arguments**                |                       |
 |------------------------------|-----------------------|
 | **role**<br/><span class='req'>required</span>       | The role of the individual posting the message. Can be either `appUser` or `appMaker`. |
-| **text**<br/><span class='mut'>optional*</span>      | The text content of the message. `text` becomes optional if either `mediaUrl` or `actions` are provided. Mutually exclusive with `items`. |
-| **actions**<br/><span class='mut'>optional*</span>   | Array of [action buttons](#action-buttons). Mutually exclusive with `items`. |
-| **items**<br/><span class='mut'>optional*</span>     | Array of [carousel items](#carousel-messages). The array is limited to 10 items. Mutually exclusive with `text`, `actions` and `mediaUrl`. |
-| **mediaUrl**<br/><span class='mut'>optional*</span>  | The image URL used in an image message. Mutually exclusive with `items`. |
-| **mediaType**<br/><span class='opt'>optional</span>  | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpeg`. If `mediaType` is not specified, the media type will be resolved with the `mediaUrl`. |
+| **type**<br/><span class='req'>required</span>       | The type of the message being posted. Can be [`text`](#text-message), [`image`](#image-message), [`carousel`](#carousel-message) or [`list`](#list-message).    |
 | **name**<br/><span class='opt'>optional</span>       | The display name of the message author. Messages with role `appUser` will default to a friendly name based on the user's `givenName` and `surname`. Messages with role `appMaker` have no default name. |
 | **email**<br/><span class='opt'>optional</span>      | The email address of the message author. This field is typically used to identify an app maker in order to render the avatar in the app user client. If the email of the Smooch account is used, the configured profile avatar will be used. Otherwise, any [gravatar](http://gravatar.com) matching the specified email will be used as the message avatar. |
 | **avatarUrl**<br/><span class='opt'>optional</span>  | The URL of the desired message avatar image. This field will override any avatar chosen via the `email` parameter. |
 | **metadata**<br/><span class='opt'>optional</span>   | Flat JSON object containing any custom properties associated with the message. If you are developing your own messaging client you can use this field to render custom message types. |
 | **payload**<br/><span class='opt'>optional</span>    | The payload of a `reply` action, if applicable |
 
-## Action buttons
-Actions buttons can be sent through the [post message](#post-message) by including them in the message payload.
+<aside class="notice">
+Additional arguments are necessary based on message type ([`text`](#text-message), [`image`](#image-message), [`carousel`](#carousel-message), [`list`](#list-message))
+</aside>
+
+## Text Message
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt' \
+     -d '
+{
+    "role": "appMaker",
+    "type": "text",
+    "text": "Hello!",
+    "actions": [{
+        "text": "More info",
+        "type": "link",
+        "uri": "http://example.org"
+    }]
+}'
+```
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    role: 'appMaker',
+    type: 'text',
+    text: 'Hello!',
+    actions: [{
+        text: 'More info',
+        type: 'link',
+        uri: 'http://example.org'
+    }]
+}).then(() => {
+    // async code
+});
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "message": {
+    "_id": "57966d21c19c9da00839a5e9",
+    "role": "appMaker",
+    "type": "text",
+    "actions": [{
+        "_id": "57966d22c19c9da00839a5ec",
+        "text": "More info",
+        "type": "link",
+        "uri": "http://example.org"
+    }]
+  }
+}
+```
+```js
+201 CREATED
+```
+
+A `text` type message is a message that is sent with text and/or actions.
+
+| **Arguments**                |                       |
+|------------------------------|-----------------------|
+| **text**<br/><span class='req'>required*</span>      | The text content of the message. Optional only if `actions` are provided. |
+| **actions**<br/><span class='opt'>optional*</span>   | Array of [action buttons](#action-buttons).  |
+
+## Image Message
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt' \
+     -d '
+{
+    "role": "appMaker",
+    "type": "text",
+    "text": "Hello!",
+    "mediaUrl": "http://example.org/image.jpg",
+    "actions": [{
+        "text": "More info",
+        "type": "link",
+        "uri": "http://example.org"
+    }]
+}'
+```
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    role: 'appMaker',
+    type: 'text',
+    text: 'Hello!',
+    mediaUrl: 'http://example.org/image.jpg',
+    actions: [{
+        text: 'More info',
+        type: 'link',
+        uri: 'http://example.org'
+    }]
+}).then(() => {
+    // async code
+});
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "message": {
+    "_id": "57966d21c19c9da00839a5e9",
+    "role": "appMaker",
+    "type": "text",
+    "mediaUrl": "http://example.org/image.jpg",
+    "mediaType": "image/jpeg",
+    "actions": [{
+        "_id": "57966d22c19c9da00839a5ec",
+        "text": "More info",
+        "type": "link",
+        "uri": "http://example.org"
+    }]
+  }
+}
+```
+```js
+201 CREATED
+```
+
+An `image` type message is a message that is sent with an image, and, optionally, text and/or actions.
+
+| **Arguments**                |                       |
+|------------------------------|-----------------------|
+| **text**<br/><span class='opt'>optional*</span>      | The text content of the message. |
+| **actions**<br/><span class='opt'>optional*</span>   | Array of [action buttons](#action-buttons). |
+| **mediaUrl**<br/><span class='req'>required*</span>  | The image URL used for the image message. |
+| **mediaType**<br/><span class='opt'>optional</span>  | The media type is defined here, for example `image/jpeg`. If `mediaType` is not specified, the media type will be resolved with the `mediaUrl`. |
+
+## Carousel Message
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt' \
+     -d '
+{
+    "role": "appMaker",
+    "type": "carousel",
+    "items": [{
+        "title": "Tacos",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "actions": [{
+            "text": "Select",
+            "type": "postback",
+            "payload": "TACOS"
+        }, {
+            "text": "More info",
+            "type": "link",
+            "uri": "http://example.org"
+        }]
+    }, {
+        "title": "Ramen",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "actions": [{
+            "text": "Select",
+            "type": "postback",
+            "payload": "RAMEN"
+        }, {
+            "text": "More info",
+            "type": "link",
+            "uri": "http://example.org"
+        }]
+    }]
+}'
+```
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    role: 'appMaker',
+    type: 'carousel',
+    items: [{
+        title: 'Tacos',
+        description: 'Description',
+        mediaUrl: 'http://example.org/image.jpg',
+        actions: [{
+            text: 'Select',
+            type: 'postback',
+            payload: 'TACOS'
+        }, {
+            text: 'More info',
+            type: 'link',
+            uri: 'http://example.org'
+        }]
+    }, {
+        title: 'Ramen',
+        description: 'Description',
+        mediaUrl: 'http://example.org/image.jpg',
+        actions: [{
+            text: 'Select',
+            type: 'postback',
+            payload: 'RAMEN'
+        }, {
+            text: 'More info',
+            type: 'link',
+            uri: 'http://example.org'
+        }]
+    }]
+}).then(() => {
+    // async code
+});
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "message": {
+    "_id": "57966d21c19c9da00839a5e9",
+    "role": "appMaker",
+    "type": "carousel",
+    "items": [{
+        "_id": "57966d21c19c9da00839a5ea",
+        "title": "Tacos",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "mediaType": "image/jpeg",
+        "actions": [{
+            "_id": "57966d22c19c9da00839a5eb",
+            "text": "Select",
+            "type": "postback",
+            "payload": "TACOS"
+        }, {
+            "_id": "57966d22c19c9da00839a5ec",
+            "text": "More info",
+            "type": "link",
+            "uri": "http://example.org"
+        }]
+    }, {
+        "_id": "57966d22c19c9da00839a5ed",
+        "title": "Ramen",
+        "description": "Description",
+        "mediaUrl": "http://example.org/image.jpg",
+        "mediaType": "image/jpeg",
+        "actions": [{
+            "_id": "57966d31c19c9da00839a5ee",
+            "text": "Select",
+            "type": "postback",
+            "payload": "RAMEN"
+        }, {
+            "_id": "57966d31c19c9da00839a5ef",
+            "text": "More info",
+            "type": "link",
+            "uri": "http://example.org"
+        }]
+    }]
+  }
+}
+```
+```js
+201 CREATED
+```
+
+Carousel messages are a horizontally scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support carousel messages; currently only Facebook Messenger, LINE and Telegram cover the full functionality. For all other platforms a carousel message is rendered as raw text. The raw text fallback does not include any images or postback action buttons.
+
+| **Arguments**                |                       |
+|------------------------------|-----------------------|
+| **items**<br/><span class='req'>required*</span>     | Array of [message items](#message-items). The array is limited to 10 items. |
+
+#### Channel Support
+
+Smooch will deliver carousel messages to users across all messaging channels regardless of whether or not a given channel can natively render a carousel message UI. For channels that don't render carousels, a raw text representation is sent. In the future, the Smooch API will expand to support new messaging app carousel experiences as they become available. For current messaging channels, carousel messages will render in the following ways:
+
+##### Facebook Messenger
+Full support.
+![messenger carousel](/images/carousel_messenger.png)
+
+##### Telegram
+Full support, with cards arranged vertically.
+![telegram carousel](/images/carousel_telegram.png)
+
+##### LINE
+Full support.
+<span class="half-width-img">![line carousel](/images/carousel_line.png)</span>
+
+##### All Other Channels
+
+> Sample Raw Text Format:
+
+```
+1. Tacos
+Description
+More info http://example.org
+
+2. Ramen
+Description
+More info http://example.org
+```
+
+Text fallback.
+![text fallback](/images/carousel_ios.png)
+
+## List Message
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt' \
+     -d '
+     {
+        "role":"appMaker",
+        "type":"list",
+        "items":[
+           {
+              "title":"Tacos",
+              "description":"Beef and cheese... Mhm...",
+              "size": "large",
+              "mediaUrl":"https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg",
+              "actions":[
+                 {
+                    "text":"Oh yeah!",
+                    "type":"postback",
+                    "payload":"TACOS"
+                 }
+              ]
+           },
+           {
+              "title":"Burritos",
+              "description":"Beefier and cheesier... Mhm...",
+              "mediaUrl":"http://www.tacobueno.com/media/1381/beefbob.png?quality=65",
+              "actions":[
+                 {
+                    "text":"Burritooo!",
+                    "type":"postback",
+                    "payload":"BURRITOS"
+                 },
+                 {
+                    "text":"Burritooo!",
+                    "type":"link",
+                    "uri":"http://burritos.com",
+                    "default": true
+                 }
+              ]
+           }
+        ],
+        "actions":[
+           {
+              "text":"More Choices!",
+              "type":"postback",
+              "payload":"MORE"
+           }
+        ]
+     }'
+```
+
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+   role:"appMaker",
+   type:"list",
+   items:[
+      {
+         title:"Tacos",
+         description:"Beef and cheese... Mhm...",
+         size: "large",
+         mediaUrl:"https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg",
+         actions:[
+            {
+               text:"Oh yeah!",
+               type:"postback",
+               payload:"TACOS"
+            }
+         ]
+      },
+      {
+         title:"Burritos",
+         description:"Beefier and cheesier... Mhm...",
+         mediaUrl:"http://www.tacobueno.com/media/1381/beefbob.png?quality=65",
+         actions:[
+            {
+               text:"Burritooo!",
+               type:"postback",
+               payload:"BURRITOS"
+            },
+            {
+               text:"Burritooo!",
+               type:"link",
+               uri:"http://burritos.com",
+               default: true
+            }
+         ]
+      }
+   ],
+   actions:[
+      {
+         text:"More Choices!",
+         type:"postback",
+         payload:"MORE"
+      }
+   ]
+}).then(() => {
+    // async code
+});
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "message": {
+    "type": "list",
+    "role": "appMaker",
+    "received": 1480021430.242,
+    "text": "1. Tacos\nBeef and cheese... Mhm...\n\n\n2. Burritos\nBeefier and cheesier... Mhm...\nBurritooo!: http://burritos.com",
+    "authorId": "7AJ4zpAVxEwKkjCZD2EYKk",
+    "avatarUrl": "https://www.gravatar.com/avatar/5e543256c480ac577d30f76f9120eb74.png?s=200&d=mm",
+    "_id": "583755b6be483684d148602b",
+    "source": {
+      "type": "api"
+    },
+    "items": [
+      {
+        "title": "Tacos",
+        "description": "Beef and cheese... Mhm...",
+        "size": "large",
+        "mediaUrl": "https://www.tacojohns.com/globalassets/2016-tacos-menu/taco-bravo---436x420.jpg",
+        "mediaType": "image/jpeg",
+        "_id": "583755b6be483684d1486033",
+        "actions": [
+          {
+            "text": "Oh yeah!",
+            "payload": "TACOS",
+            "_id": "583755b6be483684d1486034",
+            "uri": "",
+            "type": "postback"
+          }
+        ]
+      },
+      {
+        "title": "Burritos",
+        "description": "Beefier and cheesier... Mhm...",
+        "mediaUrl": "http://www.tacobueno.com/media/1381/beefbob.png?quality=65",
+        "mediaType": "image/png",
+        "_id": "583755b6be483684d1486030",
+        "actions": [
+          {
+            "text": "Burritooo!",
+            "payload": "BURRITOS",
+            "_id": "583755b6be483684d1486032",
+            "uri": "",
+            "type": "postback"
+          },
+          {
+            "text": "Burritooo!",
+            "default": true,
+            "_id": "583755b6be483684d1486031",
+            "uri": "http://burritos.com",
+            "type": "link"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "text": "More Choices!",
+        "payload": "MORE",
+        "_id": "583755b6be483684d1486035",
+        "uri": "",
+        "type": "postback"
+      }
+    ]
+  },
+  "conversation": {
+    "unreadCount": 1,
+    "_id": "94eb1cd68c3e072a5ea0e242"
+  }
+}
+```
+
+```js
+201 CREATED
+```
+
+List messages are a vertically scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support list messages; currently only Facebook Messenger has support. LINE and Telegram have a carousel fallback, and for all other platforms a list message is rendered as raw text. The raw text fallback does not include any images or postback action buttons.
+
+| **Arguments**                |                       |
+|------------------------------|-----------------------|
+| **items**<br/><span class='req'>required*</span>     | Array of [message items](#message-items). The array is limited to 10 items. |
+| **actions**<br/><span class='opt'>optional*</span>   | Array of [action buttons](#action-buttons).  |
+
+<aside class="notice">
+    In Messenger, list messages sent with multiple `actions` either in a `message item` or the `message` itself will be truncated, as only 1 action is supported.
+</aside>
+
+<span class="half-width-img">![messenger list](/images/list_messenger.png)</span>
+
+## Message Items
+
+Message items can be sent through the [post message API](#post-message) by including them in the message payload.
+
+Only [carousel](#carousel-message) and [list](#list-message) messages currently support message items.
+
+| **Arguments**                |                        |
+|------------------------------|------------------------|
+| **title**<br/><span class='req'>required</span>       | The title of the carousel item. |
+| **actions**<br/><span class='req'>required</span>     | Array of [action buttons](#action-buttons). At least 1 is required, a maximum of 3 are allowed. `link` and `postback` and `share` actions are supported. |
+| **description**<br/><span class='opt'>optional</span> | The text description, or subtitle. |
+| **mediaUrl**<br/><span class='opt'>optional</span>    | The image URL to be shown in the carousel/list item. |
+| **size**<br/><span class='opt'>optional</span>        | The size of the image to be shown in the carousel/list item (Only top item of Facebook Messenger carousel supportted). Choose from `compact` and `large` |
+| **mediaType**<br/><span class='opt'>optional</span>   | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpeg`. If `mediaType` is not specified, the media type will be resolved with the `mediaUrl`. |
+
+## Action Buttons
+Actions buttons can be sent through the [post message API](#post-message) by including them in the message payload.
 
 There are 4 types of supported actions : **link**, **buy**, **postback**, and **reply**. Type must be specified by providing a `type` argument in the action object.
 
@@ -1344,7 +1874,7 @@ There are 4 types of supported actions : **link**, **buy**, **postback**, and **
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text", "actions": [{"type": "link", "text": "Put vinegar", "uri": "http://example.com" }]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -1352,6 +1882,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Just put some vinegar on it',
     role: 'appMaker',
+    type: 'text',
     actions: [
       {
         type: 'link',
@@ -1366,10 +1897,11 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 
 | **Link**                |                            |
 |------------------------------|----------------------------|
-| **text**<br/><span class='req'>required</span>      | The button text. |
-| **type**<br/><span class='req'>required</span>      | `link` |
+| **text**<br/><span class='req'>required</span>     | The button text. |
+| **type**<br/><span class='req'>required</span>     | `link` |
 | **uri**<br/><span class='req'>required</span>      | The action URI. This is the link that will be used in the clients when clicking the button. |
-| **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
+| **default**<br/><span class='opt'>optional</span>  | Flag indicating the message action is the default for a [message item](#message-items) in Facebook Messenger. |
+| **metadata**<br/><span class='opt'>optional</span> | Flat JSON object containing any custom properties associated with the action. |
 
 <aside class="notice">
     Action buttons sent to LINE must have `http` or `https` protocol or the message will not be delivered.
@@ -1380,7 +1912,7 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text", "actions": [{"type": "buy", "text": "Buy vinegar", "amount": 1000 }]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -1388,6 +1920,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Just put some vinegar on it',
     role: 'appMaker',
+    type: 'text',
     actions: [
       {
         type: 'buy',
@@ -1417,7 +1950,7 @@ The <a href="/javascript/#stripe">Stripe integration</a> must be configured and 
 ```shell
 curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -X POST \
-     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "actions": [{"type": "postback", "text": "Send vinegar", "payload": "buy_vinegar" }]}' \
+     -d '{"text":"Just put some vinegar on it", "role": "appMaker", "type": "text", "actions": [{"type": "postback", "text": "Send vinegar", "payload": "buy_vinegar" }]}' \
      -H 'content-type: application/json' \
      -H 'authorization: Bearer your-jwt'
 ```
@@ -1425,6 +1958,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Just put some vinegar on it',
     role: 'appMaker',
+    type: 'text',
     actions: [
       {
         type: 'postback',
@@ -1459,6 +1993,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 {
     "text":"Which do you prefer?",
     "role": "appMaker",
+    "type": "text",
     "actions": [{
         "type": "reply",
         "text": "Tacos",
@@ -1474,6 +2009,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Which do you prefer?',
     role: 'appMaker',
+    type: 'text',
     actions: [
       {
         type: 'reply',
@@ -1562,153 +2098,7 @@ Icons are currrently only supported on Facebook Messenger and Web Messenger.
 **Web Messenger**
 ![Web Messenger reply icons](/images/web_reply_icon.png)
 
-## Carousel Messages
-
-> Request:
-
-```shell
-curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
-     -X POST \
-     -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-jwt' \
-     -d '
-{
-    "role": "appMaker",
-    "items": [{
-        "title": "Tacos",
-        "description": "Description",
-        "mediaUrl": "http://example.org/image.jpg",
-        "actions": [{
-            "text": "Select",
-            "type": "postback",
-            "payload": "TACOS"
-        }, {
-            "text": "More info",
-            "type": "link",
-            "uri": "http://example.org"
-        }]
-    }, {
-        "title": "Ramen",
-        "description": "Description",
-        "mediaUrl": "http://example.org/image.jpg",
-        "actions": [{
-            "text": "Select",
-            "type": "postback",
-            "payload": "RAMEN"
-        }, {
-            "text": "More info",
-            "type": "link",
-            "uri": "http://example.org"
-        }]
-    }]
-}'
-```
-```js
-smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
-    role: 'appMaker',
-    items: [{
-        title: 'Tacos',
-        description: 'Description',
-        mediaUrl: 'http://example.org/image.jpg',
-        actions: [{
-            text: 'Select',
-            type: 'postback',
-            payload: 'TACOS'
-        }, {
-            text: 'More info',
-            type: 'link',
-            uri: 'http://example.org'
-        }]
-    }, {
-        title: 'Ramen',
-        description: 'Description',
-        mediaUrl: 'http://example.org/image.jpg',
-        actions: [{
-            text: 'Select',
-            type: 'postback',
-            payload: 'RAMEN'
-        }, {
-            text: 'More info',
-            type: 'link',
-            uri: 'http://example.org'
-        }]
-    }]
-}).then(() => {
-    // async code
-});
-```
-
-> Response:
-
-```
-201 CREATED
-```
-```json
-{
-  "message": {
-    "_id": "57966d21c19c9da00839a5e9",
-    "role": "appMaker",
-    "items": [{
-        "_id": "57966d21c19c9da00839a5ea",
-        "title": "Tacos",
-        "description": "Description",
-        "mediaUrl": "http://example.org/image.jpg",
-        "actions": [{
-            "_id": "57966d22c19c9da00839a5eb",
-            "text": "Select",
-            "type": "postback",
-            "payload": "TACOS"
-        }, {
-            "_id": "57966d22c19c9da00839a5ec",
-            "text": "More info",
-            "type": "link",
-            "uri": "http://example.org"
-        }]
-    }, {
-        "_id": "57966d22c19c9da00839a5ed",
-        "title": "Ramen",
-        "description": "Description",
-        "mediaUrl": "http://example.org/image.jpg",
-        "actions": [{
-            "_id": "57966d31c19c9da00839a5ee",
-            "text": "Select",
-            "type": "postback",
-            "payload": "RAMEN"
-        }, {
-            "_id": "57966d31c19c9da00839a5ef",
-            "text": "More info",
-            "type": "link",
-            "uri": "http://example.org"
-        }]
-    }]
-  }
-}
-```
-```js
-201 CREATED
-```
-
-Carousel messages are a horizontally scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support carousel messages; currently only Facebook Messenger and Telegram cover the full functionality. For all other platforms a carousel message is rendered as raw text. The raw text fallback does not include any images or postback action buttons.
-
-<aside class="notice">
-Only the `appMaker` role can used to send a carousel message.
-</aside>
-
-### Carousel Item
-
-| **Arguments**                |                        |
-|------------------------------|------------------------|
-| **title**<br/><span class='req'>required</span>       | The title of the carousel item. |
-| **actions**<br/><span class='req'>required</span>     | Array of carousel actions. At least 1 is required, a maximum of 3 are allowed. Only `link` and `postback` actions are supported. |
-| **description**<br/><span class='opt'>optional</span> | The text description, or subtitle. |
-| **mediaUrl**<br/><span class='opt'>optional</span>   | The image URL to be shown in the carousel item. |
-| **mediaType**<br/><span class='opt'>optional</span>   | If a `mediaUrl` was specified, the media type is defined here, for example `image/jpeg`. If `mediaType` is not specified, the media type will be resolved with the `mediaUrl`. |
-
-### Carousel Actions
-
-Carousel actions have the same structure as [action buttons](#action-buttons), however only `link`, `postback` and `share` action types are permitted.
-
-### Carousel Share Button
+### Share Actions
 
 > Send share action:
 
@@ -1720,6 +2110,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -d '
 {
     "role": "appMaker",
+    "type": "carousel",
     "items": [{
         "title": "Title",
         "description": "Description",
@@ -1735,6 +2126,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Title',
     role: 'appMaker',
+    type: 'carousel',
     items: [{
       title: 'Title',
       actions: [{
@@ -1746,7 +2138,8 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-Carousel actions may also include a share button. Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform [documentation](https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button).
+Actions in a [message item](#message-items) may also include a share button.
+Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform [documentation](https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button).
 
 ![messenger carousel](/images/facebook_share_button.png)
 
@@ -1755,37 +2148,9 @@ Carousel actions may also include a share button. Currently, this feature is onl
 | **type**<br/><span class='req'>required</span>      | `share` |
 | **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
 
-### Channel Support for Carousel Messages
-
-Smooch will deliver carousel messages to users across all messaging channels regardless of whether or not a given channel can natively render a carousel message UI. For channels that don't render carousels, a raw text representation is sent. In the future, the Smooch API will expand to support new messaging app carousel experiences as they become available. For current messaging channels, carousel messages will render in the following ways:
-
-#### Facebook Messenger
-Full support.
-![messenger carousel](/images/carousel_messenger.png)
-
-#### Telegram
-Full support, with cards arranged vertically.
-![telegram carousel](/images/carousel_telegram.png)
-
-#### LINE
-Full support.
-<span class="half-width-img">![line carousel](/images/carousel_line.png)</span>
-
-> Sample Raw Text Format:
-
-```
-1. Tacos
-Description
-More info http://example.org
-
-2. Ramen
-Description
-More info http://example.org
-```
-
-#### All Other Channels
-Text fallback.
-![text fallback](/images/carousel_ios.png)
+<aside class="notice">
+Share Buttons are currently only supported in Facebook Messenger carousels.
+</aside>
 
 ## Upload Image
 
@@ -1869,7 +2234,7 @@ smooch.menu.get()
 });
 ```
 
-> Response
+> Response:
 
 ```
 200 OK
@@ -1925,7 +2290,7 @@ smooch.menu.configure({
 });
 ```
 
-> Response
+> Response:
 
 ```
 200 OK
@@ -1981,7 +2346,7 @@ smooch.menu.remove()
 });
 ```
 
-> Response
+> Response:
 
 ```
 200 OK

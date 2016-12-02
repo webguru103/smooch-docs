@@ -229,7 +229,12 @@ body {
   text-shadow: none;
   padding-top: 1em;
   padding-bottom: 1em;
-  background: none;
+  background: none;  
+  clear: both;
+}
+
+.content h3 {
+  clear: both;
 }
 
 .content h3,
@@ -604,4 +609,3 @@ span.opt {
     font-weight: lighter;
     margin-bottom: -1em;
 }
-
