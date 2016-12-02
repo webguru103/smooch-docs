@@ -441,7 +441,10 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "name": "Steve",
         "received": 1444348338.704,
         "metadata": {},
-        "actions": []
+        "actions": [],
+        "source": {
+            "type": "messenger"
+        }
     }],
     "appUser": {
         "_id": "c7f6e6d6c3a637261bd9656f",
@@ -486,6 +489,9 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
             "name": "LunchBot",
             "received": 1444348338.704,
             "metadata": {},
+            "source": {
+                "type": "slack"
+            },
             "actions": [{
                 "_id": "571530ee4fae94c32b78b170",
                 "type": "postback",
