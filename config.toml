@@ -45,9 +45,9 @@ pages = [
 [subsections.users]
 name = "Users"
 pages = [
-    "/docs/creating-users/",
-    "/docs/authenticating-users/",
     "/docs/managing-user-information/",
+    "/docs/authenticating-users/",
+    "/docs/creating-users/",
     "/docs/linking-users-to-sms/"
 ]
 

@@ -6,8 +6,8 @@ layout: two-column
 
 # Authenticating to Smooch API
 
-#### Using a HTTP Request Header
+#### Using the Smooch Core JavaScript Library
 
-#### Using the Smooch Core JS Wrapper
+#### Using a HTTP Request Header
 
 #### Next Steps
