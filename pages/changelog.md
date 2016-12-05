@@ -6,10 +6,18 @@ layout: two-column
 
 # Changelog
 
+## December 2nd, 2016
+
+- Added support for Facebook Messenger [list messages](http://docs.smooch.io/rest/#list-message)
+- Added new field `type` to the [create message API](http://docs.smooch.io/rest/#post-message)
+- Reply actions are now transformed into keyboard buttons on Viber
+
 ## November 24th, 2016
+
 - Added typing indicator support in iOS SDK [5.2.0](https://github.com/smooch/smooch-ios/releases/tag/5.2.0)
 
 ## November 16th, 2016
+
 - Added typing indicator support in Web messenger [3.8.0](https://github.com/smooch/smooch-js/releases/tag/3.8.0)
 
 ## November 15th, 2016
