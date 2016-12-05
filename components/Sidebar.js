@@ -10,12 +10,19 @@ export default class extends Component {
     };
 
     generateSectionItems(pages) {
-        return pages.map(({path, title}) => {
+        return pages.map(({path, title, internal}) => {
+            const link = internal ?
+                <Link to={ path }>
+                { title }
+                </Link> :
+                <a href={ path }>
+                    { title }
+                </a>;
+
+
             return <li key={ path }
                        className='sidebar-section-title'>
-                       <Link to={ path }>
-                       { title }
-                       </Link>
+                       { link }
                    </li>;
         });
     }

@@ -1,12 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import 'styles/markdown-styles';
 import 'styles/main';
 
 import { config } from 'config';
 import { SITE_ROOT } from '../utils/navigation';
-import SiteNav from '../components/SiteNav';
-import DocsNav from '../components/DocsNav';
 
 export default class extends Component {
     static propTypes = {
@@ -118,6 +115,9 @@ export default class extends Component {
             rel: 'icon',
             sizes: '192x192',
             href: require('../images/android-icon-192x192.png')
+        }, {
+            href: 'https://fonts.googleapis.com/css?family=Roboto+Mono',
+            rel: 'stylesheet'
         }];
 
         const script = [{
@@ -141,8 +141,6 @@ export default class extends Component {
                            link={ link }
                            script={ script }
                            meta={ meta } />
-                   <SiteNav />
-                   <DocsNav />
                    { this.props.children }
                </div>;
     }

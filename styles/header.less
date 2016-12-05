@@ -31,9 +31,18 @@
     margin-bottom: 0px;
     border-bottom: none;
 
+    @media (max-width: @screen-xs-max) {
+      margin-bottom: 40px;
+    }
+
     .navbar-brand {
         img {
             width: 100px;
+
+            &.logo-only {
+                width: 40px;
+                margin-top: -10px;
+            }
         }
     }
 
@@ -60,7 +69,7 @@
     .navbar-nav {
         & > li {
             & > a {
-                color: @gray-lighter;
+                color: #d4cae8;
                 padding: 15px 0px;
                 margin-right: 42px;
                 font-size: 16px;

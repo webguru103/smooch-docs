@@ -1,11 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import 'highlight.js/styles/default.css';
 import Helmet from 'react-helmet';
 import catchLinks from 'catch-links';
 
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ThreeColumnLayout from '../components/ThreeColumnLayout';
+import SiteNav from '../components/SiteNav';
+import DocsNav from '../components/DocsNav';
 import { SITE_ROOT } from '../utils/navigation';
 
 export default class extends Component {
@@ -15,7 +16,7 @@ export default class extends Component {
 
     static propTypes = {
         route: PropTypes.object.isRequired
-    }
+    };
 
     catchContentLinks = () => {
         const {router} = this.context;
@@ -65,12 +66,15 @@ export default class extends Component {
             href: path
         }];
 
-        return <div className='markdown'>
+        return <div>
                    <Helmet title={ data.title }
                            meta={ meta }
                            link={ link } />
+                   <SiteNav section={ data.section } />
+                   <DocsNav route={ route } />
                    <Layout {...data}>
                        <div ref={ (c) => this._contentNode = findDOMNode(c) }
+                            className='markdown'
                             dangerouslySetInnerHTML={ { __html: body } } />
                    </Layout>
                </div>;

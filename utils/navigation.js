@@ -8,17 +8,30 @@ export const generateNavStructure = (section = 'docs') => {
         return {
             title: name,
             pages: pages.map((path) => {
-                const page = sitePages.find(({path: _path}) => path === _path);
+                if (path.startsWith('/')) {
+                    const page = sitePages.find(({path: _path}) => path === _path);
 
-                if (!page) {
-                    console.error(`No page found for path ${path}.`);
+                    if (!page) {
+                        console.error(`No page found for path ${path}.`);
+                    }
+
+                    return {
+                        path: page.path,
+                        title: page.data.title,
+                        internal: true
+                    };
                 }
 
+                const [title, ...rest] = path.split('__');
+
                 return {
-                    path: page.path,
-                    title: page.data.title
+                    path: rest.join(''),
+                    title,
+                    internal: false
                 };
             })
+
+
         };
     });
 };

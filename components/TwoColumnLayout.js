@@ -10,12 +10,13 @@ export default class extends Component {
                    <Row>
                        <Col xsHidden
                             sm={ 4 }
-                            lg={ 3 }>
+                            md={3}>
                        <Sidebar section={ section } />
                        </Col>
                        <Col xs={ 12 }
                             sm={ 8 }
-                            lg={ 9 }
+                            mdOffset={ 1 }
+                            md={ 7 }
                             className='content'>
                        { this.props.children }
                        </Col>

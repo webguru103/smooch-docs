@@ -12,7 +12,7 @@
 @gray-dark: #424242;
 @gray: #787f8c;
 @gray-light:             lighten(@gray-base, 46.7%); // #777
-@gray-lighter:           #d4cae8; // #eee
+@gray-lighter:           #eee; // #eee
 
 @brand-primary:         darken(#428bca, 6.5%); // #337ab7
 @brand-success:         #5cb85c;
@@ -21,7 +21,7 @@
 @brand-danger:          #d9534f;
 
 @sk-purple: #912d8d;
-@sk-pink: #f183ce;
+@sk-pink: #df3ada;
 
 
 //== Scaffolding
@@ -48,7 +48,7 @@
 @font-family-sans-serif:  "proxima-nova", "Helvetica Neue", Helvetica,Arial,sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
-@font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
+@font-family-monospace:   'Roboto Mono', Menlo, Monaco, Consolas, "Courier New", monospace;
 @font-family-base:        @font-family-sans-serif;
 
 @font-size-base:          16px;
@@ -63,13 +63,13 @@
 @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
 
 //** Unit-less `line-height` for use in components like buttons.
-@line-height-base:        24/16; // 20/14
+@line-height-base:        24/16;
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
 
 //** By default, this inherits from the `<body>`.
 @headings-font-family:    inherit;
-@headings-line-height:    1.1;
+@headings-line-height:    1.2;
 @headings-color:          @gray-darker;
 
 
@@ -832,14 +832,14 @@
 //##
 
 @code-color:                  #c7254e;
-@code-bg:                     #f9f2f4;
+@code-bg:                     #f8f9fa;
 
 @kbd-color:                   #fff;
 @kbd-bg:                      #333;
 
 @pre-bg:                      #f5f5f5;
 @pre-color:                   @gray-dark;
-@pre-border-color:            #ccc;
+@pre-border-color:            transparent;
 @pre-scrollable-max-height:   340px;
 
 
