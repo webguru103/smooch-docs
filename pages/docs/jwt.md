@@ -24,7 +24,7 @@ We've included code samples for a few popular programming languages below. You c
 
 Using the [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) NPM module:
 
-```
+```javascript
 var jwt = require('jsonwebtoken');
 var token = jwt.sign({scope: 'app'}, SECRET, {header: {kid: KEY_ID}});
 ```
@@ -33,7 +33,7 @@ var token = jwt.sign({scope: 'app'}, SECRET, {header: {kid: KEY_ID}});
 
 Using the [ruby-jwt](https://github.com/jwt/ruby-jwt) gem:
 
-```
+```ruby
 require 'jwt'
 
 payload = {:scope => 'app'}
@@ -46,7 +46,7 @@ token = JWT.encode payload, SECRET, 'HS256', jwtHeader
 
 Using the [pyjwt](https://github.com/jpadilla/pyjwt/) module:
 
-```
+```python
 import jwt
 token = jwt.encode({'scope': 'app'}, SECRET, algorithm='HS256', headers={'kid': KEY_ID})
 ```

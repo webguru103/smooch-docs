@@ -6,6 +6,8 @@ layout: two-column
 
 # Sending Messages
 
-### Sending Typing Activity
+Smooch allows you to send many types of messages to your users through the conversation API. 
 
-### Sending Text Messages
+## Sending Text Messages
+
+## Sending Typing Activity

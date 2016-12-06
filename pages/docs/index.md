@@ -51,7 +51,6 @@ We've built a few quickstart guides to help you get started with Smooch. Whether
 |:-:|:-:|
 |The [API Quickstart](/docs/api-quickstart/) shows you how to add conversations to your app in minutes.|The [Business Quickstart](/docs/business-quickstart/) walks you through adding conversations to your favourite business system, using our quick and easy integrations.|
 
-
 ## We're here to help!
 
 Need help? If you can't find the answer you're looking for in this documentation, get in touch with us by [email](mailto:help@smooch.io).
