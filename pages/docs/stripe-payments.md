@@ -39,13 +39,13 @@ This works from any channel you configured to use with Smooch.
 
 The amount you specify can be just a dollars amount or dollars and cents as in the example. Note that all amounts are in USD.
 
-Once the user completes a payment you'll get a confirmation along with a link to the payment page on Stripe.
-
-<div class="third-width-img">
-	<img alt="in conversation money request" src="/images/in_conversation_money_request.png" />
-	<img alt="card capture ui" src="/images/card_capture_ui.png" />
-	<img alt="payment completed ui" src="/images/payment_completed_ui.png" />
+<div class="image-row">
+    <img alt="money request" src="/images/in_conversation_money_request.png">
+    <img alt="capture card" src="/images/card_capture_ui.png">
+    <img alt="payment completed" src="/images/payment_completed_ui.png">
 </div>
+
+Once the user completes a payment you'll get a confirmation along with a link to the payment page on Stripe.
 
 <aside class="notice">
     If your users are messaging you via our <a href="https://app.smooch.io/integrations/twilio">Twilio</a>, <a href="https://app.smooch.io/integrations/messenger">Messenger</a>, <a href="https://app.smooch.io/integrations/frontendEmail">Email</a>, or <a href="https://app.smooch.io/integrations/telegram">Telegram</a> integrations, they'll get a web link instead of a buy button. It will take them to a payment web page where we use <a href="https://stripe.com/docs/checkout">Checkout.js</a> from Stripe to secure the payment. This mechanism is also used for:
@@ -56,8 +56,9 @@ Once the user completes a payment you'll get a confirmation along with a link to
     </ul>
 </aside>
 
-<span class="third-width-img">![Stripe hosted checkout](/images/stripe_hosted_checkout.png)</span>
-
+<div class="image-row">
+    <img alt="stripe hosted checkout" src="/images/stripe_hosted_checkout.png">
+</div>
 
 ## Saved Credit Cards
 
@@ -65,7 +66,7 @@ We will automatically save credit cards for users who are JWT protected.
 
 On subsequent purchases, they will be presented a dialog allowing them to buy without having to re-enter their card.
 
-<div class="third-width-img" style="text-align:center;">
-	<img alt="in conversation saved card money request" src="../images/stripe_saved_ios_request.png" />
-	<img alt="saved card ui" src="../images/stripe_saved_ios_card.png" />
+<div class="image-row">
+    <img alt="saved card money request" src="/images/stripe_saved_ios_request.png">
+    <img alt="saved card ui" src="/images/stripe_saved_ios_card.png">
 </div>
