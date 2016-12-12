@@ -3,6 +3,7 @@ siteTitle="Smooch Docs"
 [sections.docs]
 subsections = [
     'home',
+    'authentication',
     'programmable-messaging',
     'users',
     'managed-accounts',
@@ -25,20 +26,28 @@ pages = [
     "/docs/business-quickstart/"
 ]
 
-[subsections.programmable-messaging]
-name = "Programmable Messaging"
+[subsections.authentication]
+name = "Accessing the Smooch API"
 pages = [
-    "/docs/authenticating-to-smooch-api/",
-    "/docs/sending-and-receiving-messages/"
+    "/docs/authorization/",
+    "/docs/jwt/",
+    "/docs/authenticating-to-smooch-api/"
+]
+
+[subsections.programmable-messaging]
+name = "Programmable Conversations"
+pages = [
+    "/docs/receiving-messages/",
+    "/docs/sending-messages/",
+    "/docs/structured-messages/"
 ]
 
 [subsections.users]
 name = "Users"
 pages = [
-    "/docs/what-is-a-user/",
-    "/docs/creating-users/",
-    "/docs/authenticating-users/",
     "/docs/managing-user-information/",
+    "/docs/authenticating-users/",
+    "/docs/creating-users/",
     "/docs/linking-users-to-sms/"
 ]
 
