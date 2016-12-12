@@ -54,6 +54,7 @@ pages = [
 [subsections.managed-accounts]
 name = "Managed Accounts"
 pages = [
+    "/docs/intro-to-managed-accounts/",
     "/docs/creating-and-managing-apps/",
     "/docs/configuring-messaging-channels/",
 ]
@@ -61,6 +62,7 @@ pages = [
 [subsections.smooch-connect]
 name = "Smooch Connect"
 pages = [
+    "/docs/intro-to-smooch-connect/",
     "/docs/oauth/",
     "/docs/becoming-an-integration-partner/",
 ]

@@ -21,4 +21,6 @@ The scopes available in the Smooch API provide progressively greater access to d
 
 The examples illustrated in most sections of this guide, and most of the work you perform using the Smooch API, will be performed with API tokens you create at **app** scope.
 
-Read on to learn how to create your own API access token using [JSON Web Tokens](/docs/jwt/) and the information provided in the Smooch dashboard.
+Smooch recommends that you make use of the convenient [API wrappers](https://github.com/smooch/smooch-core-js) when using the API. These libraries greatly simplify authentication and usage of the Smooch API by letting you focus on application logic instead of the details around authentication.
+
+If you'd like to use the API directly, or want to learn how Smooch manages authentication at the API level, read the documentation on crafting [JSON Web Tokens](/docs/jwt/).
