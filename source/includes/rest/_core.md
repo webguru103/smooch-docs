@@ -1421,7 +1421,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
      -d '
 {
     "role": "appMaker",
-    "type": "text",
+    "type": "image",
     "text": "Hello!",
     "mediaUrl": "http://example.org/image.jpg",
     "actions": [{
@@ -1434,7 +1434,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 ```js
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     role: 'appMaker',
-    type: 'text',
+    type: 'image',
     text: 'Hello!',
     mediaUrl: 'http://example.org/image.jpg',
     actions: [{
@@ -1457,7 +1457,7 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
   "message": {
     "_id": "57966d21c19c9da00839a5e9",
     "role": "appMaker",
-    "type": "text",
+    "type": "image",
     "mediaUrl": "http://example.org/image.jpg",
     "mediaType": "image/jpeg",
     "actions": [{
