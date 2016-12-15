@@ -572,7 +572,9 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
     "app": {
         "_id": "57ec2881c47d2d24b0c16427"
     },
-    "channel": "messenger",
+    "source": {
+        "type": "messenger"
+    },
     "appUser": {
         "_id": "7685787bf0e9e8cf56182288"
     },
