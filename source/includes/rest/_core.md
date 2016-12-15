@@ -1119,6 +1119,39 @@ Suppose for example you begin a conversation with an end user `bob@example.com` 
 Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
 </aside>
 
+## Get App User Channel Entities
+
+> Request:
+
+```shell
+curl https https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels \
+    -H 'authorization: Bearer your-jwt'
+```
+
+> Response:
+
+```
+200 OK
+```
+```json
+[
+    {
+        "type": "twilio",
+        "phoneNumber": "+15145555555"
+    },
+    {
+        "type": "messenger",
+        "userId": "198273192387"
+    }
+]
+```
+
+<api>`GET /v1/appusers/{smoochId|userId}/channels`</api>
+
+Retrieves all of the app user's channel entity IDs. Will return a `404` if a conversation or channel cannot be found for this user.
+
+
+
 ## Link App User To Channel
 
 > Request:
