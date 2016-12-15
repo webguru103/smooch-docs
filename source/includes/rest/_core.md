@@ -590,7 +590,9 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "_id": "de13bee15b51033b34162411",
         "userId": "123"
     },
-    "channel": "line",
+    "destination": {
+        "type": "line"
+    },
     "messages": [
         {
             "text": "Hi! Do you have time to chat?",
@@ -623,7 +625,9 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "_id": "de13bee15b51033b34162411",
         "userId": "123"
     },
-    "channel": "line",
+    "destination": {
+        "type": "line"
+    },
     "error": {
         "code": "unauthorized",
         "underlyingError": {
