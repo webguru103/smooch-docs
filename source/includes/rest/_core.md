@@ -421,6 +421,8 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 | **message:appMaker**      | only messages with role `appMaker` or `whisper` |
 | **postback**              | when a user clicks on a postback action |
 | **merge:appUser**         | when two or more users are merged into one |
+| **delivery:success**      | when a message is successfully delivered to a customer channel |
+| **delivery:failure**      | when a message fails to be delivered to a customer channel |
 | <strong>*</strong>        | when any of the above triggers occurs |
 
 ## Webhooks payload
@@ -582,6 +584,81 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 }
 ```
 
+> Webhook example payload for the `delivery:success` trigger:
+
+```json
+{
+    "trigger": "delivery:success",
+    "app": {
+        "_id": "575040549a38df8fb4eb1e51"
+    },
+    "appUser": {
+        "_id": "de13bee15b51033b34162411",
+        "userId": "123"
+    },
+    "destination": {
+        "type": "line"
+    },
+    "messages": [
+        {
+            "text": "Hi! Do you have time to chat?",
+            "received": 1480001439.637,
+            "name": "Danny",
+            "role": "appMaker",
+            "authorId": "5X8AJwvpy0taCkPDniC5la",
+            "avatarUrl": "https://www.gravatar.com/image.jpg",
+            "_id": "5837079fd84370ef2c0dcabb",
+            "source": {
+                "type": "slack"
+            },
+            "items": [],
+            "actions": []
+        }
+    ],
+    "timestamp": 1480001440.731
+}
+```
+
+> Webhook example payload for the `delivery:failure` trigger:
+
+```json
+{
+    "trigger": "delivery:failure",
+    "app": {
+        "_id": "575040549a38df8fb4eb1e51"
+    },
+    "appUser": {
+        "_id": "de13bee15b51033b34162411",
+        "userId": "123"
+    },
+    "destination": {
+        "type": "line"
+    },
+    "error": {
+        "code": "unauthorized",
+        "underlyingError": {
+            "message": "Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."
+        }
+    },
+    "messages": [
+        {
+            "text": "Hi! Do you have time to chat?",
+            "received": 1480001711.288,
+            "name": "Danny",
+            "role": "appMaker",
+            "authorId": "5X8AJwvpy0taCkPDniC5la",
+            "avatarUrl": "https://www.gravatar.com/image.jpg",
+            "_id": "583708af8d449209ba217871",
+            "source": {
+                "type": "slack"
+            },
+            "items": [],
+            "actions": []
+        }
+    ],
+    "timestamp": 1480001711.941
+}
+```
 
 When a webhook trigger is triggered, a `POST` request will be made to the URL configured in your webhook object along with a JSON payload.
 
