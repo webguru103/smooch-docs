@@ -520,12 +520,24 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 <td>only messages with role <code class="prettyprint">appMaker</code> or <code class="prettyprint">whisper</code></td>
 </tr>
 <tr>
+<td><strong>conversation:read</strong></td>
+<td>when a user reads a conversation</td>
+</tr>
+<tr>
 <td><strong>postback</strong></td>
 <td>when a user clicks on a postback action</td>
 </tr>
 <tr>
 <td><strong>merge:appUser</strong></td>
 <td>when two or more users are merged into one</td>
+</tr>
+<tr>
+<td><strong>delivery:success</strong></td>
+<td>when a message is successfully delivered to a customer channel</td>
+</tr>
+<tr>
+<td><strong>delivery:failure</strong></td>
+<td>when a message fails to be delivered to a customer channel</td>
 </tr>
 <tr>
 <td><strong>*</strong></td>
@@ -669,6 +681,24 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
 </span></code></pre>
 
 <blockquote>
+<p>Webhook example payload for the <code class="prettyprint">conversation:read</code> trigger:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"conversation:read"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"57ec2881c47d2d24b0c16427"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7685787bf0e9e8cf56182288"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1480349392.103</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
 <p>Webhook example payload for the <code class="prettyprint">merge:appUser</code> trigger:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -685,6 +715,82 @@ After using a <code class="prettyprint">jwt</code> with <code class="prettyprint
         </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1ac30dad829178f6378f61f4"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"conversationStarted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
     </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Webhook example payload for the <code class="prettyprint">delivery:success</code> trigger:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery:success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"575040549a38df8fb4eb1e51"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de13bee15b51033b34162411"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1480001439.637</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danny"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5X8AJwvpy0taCkPDniC5la"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.gravatar.com/image.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5837079fd84370ef2c0dcabb"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slack"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1480001440.731</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Webhook example payload for the <code class="prettyprint">delivery:failure</code> trigger:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery:failure"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"575040549a38df8fb4eb1e51"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"appUser"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de13bee15b51033b34162411"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"destination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unauthorized"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"underlyingError"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Authentication failed due to the following reason: invalid token. Confirm that the access token in the authorization header is valid."</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi! Do you have time to chat?"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"received"</span><span class="p">:</span><span class="w"> </span><span class="mf">1480001711.288</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Danny"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"appMaker"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"authorId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5X8AJwvpy0taCkPDniC5la"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"avatarUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.gravatar.com/image.jpg"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"583708af8d449209ba217871"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"slack"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1480001711.941</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
