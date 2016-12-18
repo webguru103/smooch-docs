@@ -6,6 +6,12 @@ layout: two-column
 
 # Changelog
 
+## December 16th, 2016
+
+- Added text and image type message support in Android SDK [4.1.0](https://github.com/smooch/smooch-android/releases/tag/4.1.0)
+- Added text and image type message support in iOS SDK [5.3.0](https://github.com/smooch/smooch-ios/releases/tag/5.3.0)
+- Added new webhook triggers for `delivery:success`, `delivery:failure` and `conversation:read`. [Learn more](http://docs.smooch.io/rest/#webhook-triggers)
+
 ## December 2nd, 2016
 
 - Added support for Facebook Messenger [list messages](http://docs.smooch.io/rest/#list-message)
