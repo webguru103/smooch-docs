@@ -16,7 +16,7 @@ The rest of this page will lead you through the process of integrating channels 
 
 ## Smooch SDKs
 
-In contrast with integratable channels like Facebook Messenger and Twilio SMS, the Web and Mobile SDKs only need to be passed an `appToken` from a Smooch app in order to be initialized. So no integration step is required.
+In contrast with third-party channels like Facebook Messenger and Twilio SMS, the Web and Mobile SDKs only need to be passed an `appToken` from a Smooch app in order to be initialized. So no integration step is required.
 
 ## Integrations
 
