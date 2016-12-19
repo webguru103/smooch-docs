@@ -1128,6 +1128,10 @@ curl https https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels \
     -H 'authorization: Bearer your-jwt'
 ```
 
+```js
+// This endpoint is not currently wrapped in a JavaScript lib
+```
+
 > Response:
 
 ```
