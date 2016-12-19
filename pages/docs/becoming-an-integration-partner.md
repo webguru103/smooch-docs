@@ -7,6 +7,7 @@ layout: two-column
 # Becoming an Integration partner
 
 Become an integration partner to:
+
 - easily acquire API credentials from Smooch app owners [OAuth](oauth/) for your integration
 
 - place your integration in the [Smooch marketplace](https://app.smooch.io/integrations)
@@ -22,5 +23,3 @@ Become an integration partner to:
 3. When you've built your integration, checkout the [OAuth documentation](oauth/), then reach out to the partnership team and provide them with a redirect URL to complete the OAuth process, as well as a URL from which users can initiate the Oauth process.
 
 4. The partner team will provide you with a client ID and secret that you can use to complete the [OAuth flow](oauth/).
-
-Follow [this link](https://smooch.io/partners/) to become a partner.
