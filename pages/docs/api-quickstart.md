@@ -114,7 +114,7 @@ Great! Now, whenever someone sends a message to your Facebook page from a Facebo
 
 - Take a look at [the other channels we support](https://app.smooch.io/integrations/categories/customer-channels). We're constantly adding new channels and keeping up with the latest rich messaging features.
 
-- If you're building an integration between Smooch and your product, checkout the [Programmable Messaging guide](/docs/sending-and-receiving-messages/), and you will probably want to [configure webhooks](https://docs.smooch.io/rest/#create-webhook) via the REST API.
+- If you're building an integration between Smooch and your product, checkout the guides on [sending](/docs/sending-messages/) and [receiving](/docs/receiving-messages/) messages, and you will probably want to [configure webhooks](https://docs.smooch.io/rest/#create-webhook) via the REST API.
 
 - If you want to make Smooch's messaging capabilities an integral part of your product, take a look at our guides for [Creating and Managing apps](/docs/creating-and-managing-apps/) and
 [Configuring Messaging Channels](/docs/configuring-messaging-channels/).

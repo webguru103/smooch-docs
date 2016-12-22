@@ -52,4 +52,4 @@ That's it, you've just set up Smooch for business.
 
 - Take a look at [other business systems](https://app.smooch.io/integrations/categories/customer-channels).
 
-- If you want to create your own custom integration, checkout the [API quickstart](/api-quickstart).
+- If you want to create your own custom integration, checkout the [API quickstart](/docs/api-quickstart/).

@@ -8,7 +8,7 @@ layout: two-column
 
 User's are created in two different ways.
 
-1. Automatically whenever a user sends their first message to a [Smooch app](#).
+1. Automatically whenever a user sends their first message to a [Smooch app](/docs/creating-and-managing-apps/).
 2. Via the [REST API](http://docs.smooch.io/rest/#pre-create-app-user).
 
 ## Automatically creating users

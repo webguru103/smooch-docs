@@ -4,11 +4,11 @@ section: docs
 layout: two-column
 ---
 
-# Introduction
+# Smooch Connect
 
 Smooch has a rapidly growing [partner ecosystem](https://app.smooch.io/integrations) which helps businesses connect a variety of different business apps to messaging. You can join this ecosystem by implementing Smooch Connect into your product. When you do, your customers will be able to click a button that like this:
 
-<a href="#"><img alt="Add to Smooch" height="40" width="165" src="https://cdn.smooch.io/images/add_to_smooch.png" srcset="https://cdn.smooch.io/images/add_to_smooch.png 1x, https://cdn.smooch.io/images/add_to_smooch@2x.png 2x"/></a>
+<a href="https://app.smooch.io/oauth/authorize?client_id=shoplifter&response_type=code"><img alt="Add to Smooch" height="40" width="165" src="https://cdn.smooch.io/images/add_to_smooch.png" srcset="https://cdn.smooch.io/images/add_to_smooch.png 1x, https://cdn.smooch.io/images/add_to_smooch@2x.png 2x"/></a>
 
 Clicking this button allows your customers to connect your app to their configured messaging channels and is a great way to grow your user base and provide additional messaging capabilities to your customers. You can learn more about becoming a Smooch partner [here](/docs/becoming-an-integration-partner/).
 
@@ -20,5 +20,5 @@ Once you've run through the demo, take a look at the [Shoplifter source code](ht
 
 ## Next Steps
 
- * Learn how to [become an integration partner](/docs/becoming-an-integration-partner).
- * Understand our [OAuth implemenation](/docs/oauth), the technical side of Smooch Connect
+ * Learn how to [become an integration partner](/docs/becoming-an-integration-partner/).
+ * Understand our [OAuth implemenation](/docs/oauth/), the technical side of Smooch Connect
