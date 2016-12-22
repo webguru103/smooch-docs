@@ -70,9 +70,12 @@ pages = [
 [subsections.channels]
 name = "Channels"
 pages = [
-    "/docs/native-sdks/",
-    "/docs/ott-messenger/",
+    "/docs/ott-messengers/",
+    "/docs/sms/",
     "/docs/email/",
+    "/docs/web-messenger/",
+    "/docs/native-ios-sdk/",
+    "/docs/native-android-sdk/",
     "/docs/channel-capabilities/"
 ]
 
