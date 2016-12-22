@@ -48,7 +48,8 @@ pages = [
     "/docs/managing-user-information/",
     "/docs/authenticating-users/",
     "/docs/creating-users/",
-    "/docs/linking-users-to-sms/"
+    "/docs/linking-users-to-sms/",
+    "/docs/multi-device-users/"
 ]
 
 [subsections.managed-accounts]
