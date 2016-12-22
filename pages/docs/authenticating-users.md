@@ -19,7 +19,7 @@ To issue JWTs:
 
     A node.js sample is provided below:
 
-    ```
+    ```javascript
     var jwt = require('jsonwebtoken');
     var KEY_ID = '55e9f9bf7a0ce5ca2d429c17';
     var SECRET = 'BFJJ88naxc5PZNAMU9KpBNTR';
@@ -45,15 +45,22 @@ To issue JWTs:
 1. Specify the JWT when calling `login` on the client:
 
 
+    Objective-C:
     ```objective_c
     [Smooch login:yourUserId jwt:yourJwt];
     ```
+
+    Swift:
     ```swift
     Smooch.login(yourUserId, jwt:yourJwt)
     ```
+
+    JavaScript:
     ```javascript
     Smooch.login(yourUserId, yourJwt);
     ```
+
+    Java:
     ```java
     Smooch.login(yourUserId, yourJwt);
     ```
@@ -62,18 +69,23 @@ Securing a `userId` happens automatically by using a JWT for the first time. Onc
 
 Once you've issued a `userId` and `JWT` to a user for the first time you can save them to the device locally. Having done this, instead of making a separate call to `login` you can provide Smooch with the `userId` and `JWT` parameters during app initialization:
 
+Objective-C:
 ```objective_c
 SKTSettings* settings = [SKTSettings settingsWithAppToken:@"YOUR_APP_TOKEN"];
 settings.userId = yourUserId;
 settings.jwt = yourJwt;
 [Smooch initWithSettings:settings];
 ```
+
+Swift:
 ```swift
 var settings = SKTSettings(appToken: "YOUR_APP_TOKEN")
 settings.userId = yourUserId
 settings.jwt = yourJwt
 Smooch.initWithSettings(settings)
 ```
+
+JavaScript:
 ```javascript
 Smooch.init({
     appToken: 'YOUR_APP_TOKEN',
@@ -81,6 +93,8 @@ Smooch.init({
     jwt: yourJwt
 });
 ```
+
+Java:
 ```java
 Settings settings = new Settings("YOUR_APP_TOKEN");
 settings.setUserId(yourUserId);
