@@ -44,7 +44,7 @@ Note: If your app has its own token registration, you need to trigger Smooch pus
 ### Step 4. Test it out!
 
 <aside class="warning">
-You can't receive push notifications in the Android simulator, you must use a physical device.
+To test push notifications in the Android emulator, you must use a system image with Google APIs.
 </aside>
 
 1. Kill and restart your app.
