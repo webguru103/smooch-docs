@@ -689,7 +689,7 @@ Lists all integrations for a given app.
 
 | Parameter                | Description              |
 |--------------------------|--------------------------|
-| `type`                  | String, the list can be filtered to return only integrations of a specific type. Possible values are _messenger_, _line_, _telegram_, and _twilio_. More than one value can be specified through comma separation e.g. `?types=twilio,line` |
+| `types`                  | String, the list can be filtered to return only integrations of a specific type. Possible values are _messenger_, _line_, _telegram_, and _twilio_. More than one value can be specified through comma separation e.g. `?types=twilio,line` |
 
 ## Get Integration
 
