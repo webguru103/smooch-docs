@@ -18,6 +18,15 @@ subsections = [
     'rest'
 ]
 
+[sections.faq]
+subsections = [
+    'faq',
+    'customer-channels',
+    'business-systems',
+    'pricing-and-legal',
+    'dashboard'
+]
+
 [subsections.home]
 name = "Home"
 pages = [
@@ -89,12 +98,12 @@ pages = [
 name = "References"
 pages = [
     "API Reference__https://docs.smooch.io/rest/",
+    "Frequently Asked Questions (FAQ)__/faq/",
     "/docs/error-messages/",
     "/changelog/",
     "/docs/webhooks-specs/",
     "/docs/security/",
     "/docs/technical-info/",
-    "/docs/faq/",
     "/docs/sending-images-and-buttons-shorthand/",
 ]
 
@@ -104,4 +113,43 @@ pages = [
     "/api/",
     "/api/connect/",
     "/api/inside/"
+]
+
+[subsections.faq]
+name = "Frequently Asked Questions (FAQ)"
+pages = [
+    "/faq/"
+]
+
+[subsections.customer-channels]
+name = "Channels"
+pages = [
+    "/faq/android/",
+    "/faq/ios/",
+    "/faq/web-messenger/",
+    "/faq/facebook-messenger/",
+    "/faq/twilio/",
+    "/faq/other-channels/"
+]
+
+[subsections.business-systems]
+name = "Business Systems"
+pages = [
+    "/faq/slack/",
+    "/faq/front/",
+    "/faq/other-systems/"
+]
+
+[subsections.pricing-and-legal]
+name = "Pricing & Legal"
+pages = [
+    "/faq/pricing/",
+    "/faq/legal/"
+]
+
+[subsections.dashboard]
+name = "Dashboard"
+pages = [
+  "/faq/dashboard/",
+  "/faq/whispers/"
 ]

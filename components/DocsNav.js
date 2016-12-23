@@ -16,7 +16,7 @@ export default class extends Component {
             ['API Reference', '/rest/', false],
             ['Channels', '/docs/native-sdks/', true],
             ['Changelog', '/changelog/', true],
-            ['FAQs', '/docs/faq/', true]
+            ['FAQs', '/faq/', true]
         ];
 
         const hasActiveLink = links.some(([_, href]) => currentPath === href); // eslint-disable-line no-unused-vars
