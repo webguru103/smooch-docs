@@ -93,7 +93,6 @@ pages = [
 name = "References"
 pages = [
     "API Reference__https://docs.smooch.io/rest/",
-    "/docs/error-messages/",
     "/changelog/",
     "/docs/webhooks-specs/",
     "/docs/security/",
