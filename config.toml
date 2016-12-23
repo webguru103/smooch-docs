@@ -107,8 +107,7 @@ pages = [
     "/changelog/",
     "Webhook Payload Spec__http://docs.smooch.io/rest/#webhooks-payload",
     "/docs/security/",
-    "/docs/faq/",
-    "/docs/sending-images-and-buttons-shorthand/",
+    "/docs/sending-images-and-buttons-shorthand/"
 ]
 
 [subsections.rest]

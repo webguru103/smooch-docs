@@ -1,5 +1,5 @@
 ---
-title: Messenger FAQ
+title: Messenger
 section: faq
 layout: two-column
 ---

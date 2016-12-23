@@ -6,7 +6,7 @@ layout: two-column
 
 # iOS FAQ
 
-## How Smooch handle push notifications?
+## How does Smooch handle push notifications?
 
 We can handle push notifications in 2 ways:
 
