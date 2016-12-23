@@ -1,5 +1,5 @@
 ---
-title: OTT Messenger
+title: OTT Messengers
 section: docs
 layout: two-column
 ---
