@@ -10,7 +10,7 @@ Smooch allows you to integrate many popular business systems in a single click, 
 
 Smooch has developed a number of tightly coupled integrations with business systems. These integrations are covered here, in these docs, but there are also an ever growing number of business systems, add-ons and bot platforms available in our [marketplace](https://app.smooch.io/integrations).
 
-## [Email](https://app.smooch.io/integrations/email)
+## Email
 
 The [Email integration](https://app.smooch.io/integrations/email) allows you to receive Smooch messages in your inbox.
 
@@ -35,9 +35,9 @@ To connect Smooch to your CRM via Email:
 3. Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.
 
 
-## [Help Scout](https://app.smooch.io/integrations/helpscout)
+## HelpScout
 
-[Help Scout](http://www.helpscout.net/) is a scalable, elegant and intuitive help desk solution. By connecting Smooch to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team's e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by Smooch app users won't be sent by email, instead they will appear directly in the app.
+[Help Scout](https://app.smooch.io/integrations/helpscout) is a scalable, elegant and intuitive help desk solution. By connecting Smooch to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team's e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by Smooch app users won't be sent by email, instead they will appear directly in the app.
 
 ### Configuring Help Scout to work with Smooch
 
@@ -55,9 +55,9 @@ Configuring Help Scout is super easy. All you have to do is copy/paste a Help Sc
 
 You can change or delete the Help Scout mailbox that Smooch sends messages to, but you should note that conversations will not automatically migrate to the new mailbox. You must move the conversations you wish to have in the new mailbox via the Help Scout UI. Otherwise they will continue in the previously configured mailbox. Update your settings before deleting a Help Scout mailbox. If the mailbox configured on Smooch no longer exists, messages will be lost.
 
-## [HipChat](https://app.smooch.io/integrations/hipchat)
+## HipChat
 
-HipChat is a team-based chat tool that helps to group all of your team's conversations and workflow into one beautiful, searchable place.
+[HipChat](https://app.smooch.io/integrations/hipchat) is a team-based chat tool that helps to group all of your team's conversations and workflow into one beautiful, searchable place.
 
 Smooch has a HipChat integration that allows your team to communicate with your app's users, without leaving HipChat.
 
@@ -90,9 +90,9 @@ And you can send your users action buttons through an interface we baked special
 
 ![add action to hipchat](/images/hipchat_add_action.png)
 
-## [Slack](https://app.smooch.io/integrations/slack)
+## Slack
 
-Slack is a communication tool that combines the best things about chat, email and the web to group all of your team's conversations and workflow into one beautiful, searchable place.
+[Slack](https://app.smooch.io/integrations/slack) is a communication tool that combines the best things about chat, email and the web to group all of your team's conversations and workflow into one beautiful, searchable place.
 
 Smooch has a Slack integration that allows your team to effortlessly speak to your app's users, without leaving Slack.
 
@@ -128,9 +128,9 @@ If you want to consult any [user data](managing-user-information/) that you've a
 /sk !profile
 ```
 
-## [Zendesk](https://app.smooch.io/integrations/zendesk)
+## Zendesk
 
-Zendesk is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.
+[Zendesk](https://app.smooch.io/integrations/zendesk) is a CRM platform specialized in managing support tickets. Our Zendesk integration combines all the advantages of in-app messaging with a powerful CRM back-end.
 
 ### Configuring Zendesk ticketing
 

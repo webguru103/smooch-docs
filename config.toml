@@ -57,7 +57,8 @@ pages = [
     "/docs/managing-user-information/",
     "/docs/authenticating-users/",
     "/docs/creating-users/",
-    "/docs/linking-users-to-sms/"
+    "/docs/linking-users-to-sms/",
+    "/docs/multi-device-users/"
 ]
 
 [subsections.managed-accounts]
@@ -79,9 +80,12 @@ pages = [
 [subsections.channels]
 name = "Channels"
 pages = [
-    "/docs/native-sdks/",
-    "/docs/ott-messenger/",
+    "/docs/ott-messengers/",
+    "/docs/sms/",
     "/docs/email/",
+    "/docs/web-messenger/",
+    "/docs/native-ios-sdk/",
+    "/docs/native-android-sdk/",
     "/docs/channel-capabilities/"
 ]
 
@@ -101,9 +105,9 @@ pages = [
     "Frequently Asked Questions (FAQ)__/faq/",
     "/docs/error-messages/",
     "/changelog/",
-    "/docs/webhooks-specs/",
+    "Webhook Payload Spec__http://docs.smooch.io/rest/#webhooks-payload",
     "/docs/security/",
-    "/docs/technical-info/",
+    "/docs/faq/",
     "/docs/sending-images-and-buttons-shorthand/",
 ]
 

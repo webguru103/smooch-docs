@@ -39,8 +39,6 @@ To learn more about the various parameters of this API, read its [reference docu
 In some cases, user experience in a conversation can be improved by letting the user know that "typing" is in progress and that a message will soon be on its way. Smooch provides a convenient API that you can use to signal these events to messaging channels that support this feature.
 
 ```javascript
-//TODO: fix with newly wrapped API functions
-
 smooch.appUsers.typingActivity('APP_USER_ID', {
   type: 'typing:start'
 }).then(() => {

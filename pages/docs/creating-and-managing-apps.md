@@ -14,9 +14,9 @@ The rest of this page will lead you through the process of setting up an app usi
 
 ## Authentication
 
-To get started with the account management API you'll need to generate a Managed Account Secret Key and use it authenticate your calls to the API.
+To get started with the account management API you'll need to generate a Managed Account Secret Key and use it authorize your calls to the API.
 - Generate the secret key from your Smooch [account page](https://app.smooch.io/account).
-- See the [authentication docs](authentication/).
+- See the [authorization docs](/docs/authorization/).
 - See the [API reference](https://docs.smooch.io/rest/#managed-accounts) for managed accounts.
 
 ## Creating an app
@@ -45,4 +45,4 @@ The JWT returned from this request can now be used to [send messages to users](h
 
 ## Integrating messaging channels
 
-Now that you have prepared your app, the next step is to add messaging channels. See the [Configuring Messaging Channels guide](configuring-messaging-channels/).
+Now that you have prepared your app, the next step is to add messaging channels. See the [Configuring Messaging Channels guide](/docs/configuring-messaging-channels/).
