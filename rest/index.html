@@ -1354,6 +1354,38 @@ If a <code class="prettyprint">userId</code> has been specified for a given app 
 <p><aside class="notice">
 Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a <code class="prettyprint">jwt</code> credential with <code class="prettyprint">app</code> level scope.
 </aside></p>
+<h2 id='get-app-user-channel-entities'>Get App User Channel Entities</h2>
+<blockquote>
+<p>Request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl https https://api.smooch.io/v1/appusers/deb920657bbc3adc3fec7963/channels <span class="se">\</span>
+    -H <span class="s1">'authorization: Bearer your-jwt'</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="c1">// This endpoint is not currently wrapped in a JavaScript lib</span>
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"channels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twilio"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"phoneNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15145555555"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"messenger"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"198273192387"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p><api><code class="prettyprint">GET /v1/appusers/{smoochId|userId}/channels</code></api></p>
+
+<p>Retrieves all of the app user&rsquo;s channel entity IDs.</p>
 <h2 id='link-app-user-to-channel'>Link App User To Channel</h2>
 <blockquote>
 <p>Request:</p>
@@ -3610,7 +3642,7 @@ Share Buttons are currently only supported in Facebook Messenger carousels.
 </tr>
 </thead><tbody>
 <tr>
-<td><code class="prettyprint">type</code></td>
+<td><code class="prettyprint">types</code></td>
 <td>String, the list can be filtered to return only integrations of a specific type. Possible values are <em>messenger</em>, <em>line</em>, <em>telegram</em>, and <em>twilio</em>. More than one value can be specified through comma separation e.g. <code class="prettyprint">?types=twilio,line</code></td>
 </tr>
 </tbody></table>
