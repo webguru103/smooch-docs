@@ -71,7 +71,6 @@ const smooch = new Smooch({
     secret: SECRET,
     scope: 'app'
 });
-const USER_ID = 'some_users_id';
 
 // POST Message
 smooch.appUsers.sendMessage(appUserId, {
