@@ -1,0 +1,691 @@
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "text": "hello from the Web",
+            "role": "appUser",
+            "received": 1483463666.711,
+            "authorId": "e341b0e17ea10fc139cfa277",
+            "name": "Monumental Snake",
+            "type": "text",
+            "_id": "586bdbf27edaaf64001347c8",
+            "source": {
+                "type": "web",
+                "id": "e88d779010644c5da8b06e82e6f56265"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "e341b0e17ea10fc139cfa277",
+        "userId": "myuser",
+        "signedUpAt": "2017-01-03T14:54:01.355Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:14:26.712Z",
+                "info": {
+                    "currentTitle": "Document",
+                    "currentUrl": "file:///var/folders/cy/6cj5x_cx1qx4bntzny4dl1fr0000gn/T/enumerable.html.html",
+                    "browserLanguage": "en-US",
+                    "referrer": "",
+                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Atom/1.12.7 Chrome/52.0.2743.82 Electron/1.3.13 Safari/537.36",
+                    "URL": "",
+                    "sdkVersion": "3.9.2"
+                },
+                "platform": "web",
+                "id": "e88d779010644c5da8b06e82e6f56265",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:14:26.712Z",
+                "info": {
+                    "currentTitle": "Document",
+                    "currentUrl": "file:///var/folders/cy/6cj5x_cx1qx4bntzny4dl1fr0000gn/T/enumerable.html.html",
+                    "browserLanguage": "en-US",
+                    "referrer": "",
+                    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Atom/1.12.7 Chrome/52.0.2743.82 Electron/1.3.13 Safari/537.36",
+                    "URL": "",
+                    "sdkVersion": "3.9.2"
+                },
+                "platform": "web",
+                "id": "e88d779010644c5da8b06e82e6f56265",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "821087c9032a3260abb3d79d",
+            "received": 1483463725.333,
+            "type": "text",
+            "text": "Hello from Messenger",
+            "role": "appUser",
+            "_id": "586bdc2d75126b0f00e80176",
+            "source": {
+                "type": "messenger"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "821087c9032a3260abb3d79d",
+        "surname": "Theodore",
+        "givenName": "Anastasi",
+        "signedUpAt": "2017-01-03T17:15:25.582Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:15:25.728Z",
+                "info": {
+                    "avatarUrl": "https://scontent.xx.fbcdn.net/v/t1.0-1/13423930_10208360774091042_9221613174833629877_n.jpg?oh=524012b28abb5ce4c1b517f4fdc87793&oe=591AA357"
+                },
+                "displayName": "Anastasi Theodore",
+                "id": "4a40b884-213d-4177-967a-6bfcae790ea2",
+                "platform": "messenger",
+                "linkedAt": "2017-01-03T17:15:25.584Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:15:25.728Z",
+                "info": {
+                    "avatarUrl": "https://scontent.xx.fbcdn.net/v/t1.0-1/13423930_10208360774091042_9221613174833629877_n.jpg?oh=524012b28abb5ce4c1b517f4fdc87793&oe=591AA357"
+                },
+                "displayName": "Anastasi Theodore",
+                "id": "4a40b884-213d-4177-967a-6bfcae790ea2",
+                "platform": "messenger",
+                "linkedAt": "2017-01-03T17:15:25.584Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "text": "Hello from iOS",
+            "role": "appUser",
+            "received": 1483463757.301,
+            "authorId": "5a0a638e15a1c1593cbdddeb",
+            "name": "Sheldon App",
+            "type": "text",
+            "_id": "586bdc4d123e573900897b5f",
+            "source": {
+                "type": "ios",
+                "id": "03DDDDD6-CB08-48FC-8459-13B75A95FABD"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "5a0a638e15a1c1593cbdddeb",
+        "surname": "App",
+        "givenName": "Sheldon",
+        "signedUpAt": "2017-01-03T14:57:22.109Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:15:57.301Z",
+                "info": {
+                    "wifi": "YES",
+                    "os": "iOS",
+                    "appName": "ShellApp",
+                    "osVersion": "10.2",
+                    "sdkVersion": "<%= version %>",
+                    "installer": "Simulator",
+                    "devicePlatform": "x86_64",
+                    "buildNumber": "1.0",
+                    "carrier": "nil",
+                    "appId": "com.rp.ShellApp",
+                    "radioAccessTechnology": "nil"
+                },
+                "platform": "ios",
+                "appVersion": "1.0",
+                "id": "03DDDDD6-CB08-48FC-8459-13B75A95FABD",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:15:57.301Z",
+                "info": {
+                    "wifi": "YES",
+                    "os": "iOS",
+                    "appName": "ShellApp",
+                    "osVersion": "10.2",
+                    "sdkVersion": "<%= version %>",
+                    "installer": "Simulator",
+                    "devicePlatform": "x86_64",
+                    "buildNumber": "1.0",
+                    "carrier": "nil",
+                    "appId": "com.rp.ShellApp",
+                    "radioAccessTechnology": "nil"
+                },
+                "platform": "ios",
+                "appVersion": "1.0",
+                "id": "03DDDDD6-CB08-48FC-8459-13B75A95FABD",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {
+            "ShellApp": true,
+            "CompileErrors": 623
+        }
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "c0a58f942c10a9afe164d4d3",
+            "received": 1483463817.468,
+            "type": "text",
+            "text": "Hello from Viber",
+            "role": "appUser",
+            "_id": "586bdc8975126b0f00e801a1",
+            "source": {
+                "type": "viber",
+                "id": "ZxY+goFrigEM2Yy7y1yITw=="
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "c0a58f942c10a9afe164d4d3",
+        "signedUpAt": "2017-01-03T17:16:57.463Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:16:57.468Z",
+                "displayName": "Anastasi Theodore",
+                "id": "8e630a91-7dc6-476c-99e5-e8b316b15c07",
+                "platform": "viber",
+                "linkedAt": "2017-01-03T17:16:57.465Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:16:57.468Z",
+                "displayName": "Anastasi Theodore",
+                "id": "8e630a91-7dc6-476c-99e5-e8b316b15c07",
+                "platform": "viber",
+                "linkedAt": "2017-01-03T17:16:57.465Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "4d1d3d8756577740c0325223",
+            "received": 1483463846.009,
+            "text": "/start",
+            "type": "text",
+            "role": "appUser",
+            "_id": "586bdca65fc04d64007709b4",
+            "source": {
+                "type": "telegram"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "4d1d3d8756577740c0325223",
+        "surname": "Bakolias",
+        "givenName": "Anastasi",
+        "signedUpAt": "2017-01-03T17:17:25.999Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:17:26.011Z",
+                "displayName": "Anastasi Bakolias",
+                "id": "bbf55445-b0fd-4690-aecc-fdc183a8555f",
+                "platform": "telegram",
+                "linkedAt": "2017-01-03T17:17:26.003Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:17:26.011Z",
+                "displayName": "Anastasi Bakolias",
+                "id": "bbf55445-b0fd-4690-aecc-fdc183a8555f",
+                "platform": "telegram",
+                "linkedAt": "2017-01-03T17:17:26.003Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "4d1d3d8756577740c0325223",
+            "received": 1483463860.71,
+            "text": "Hello from Telegram",
+            "type": "text",
+            "role": "appUser",
+            "_id": "586bdcb41c8b733300970a1f",
+            "source": {
+                "type": "telegram"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "4d1d3d8756577740c0325223",
+        "surname": "Bakolias",
+        "givenName": "Anastasi",
+        "signedUpAt": "2017-01-03T17:17:25.999Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:17:40.711Z",
+                "displayName": "Anastasi Bakolias",
+                "id": "bbf55445-b0fd-4690-aecc-fdc183a8555f",
+                "platform": "telegram",
+                "linkedAt": "2017-01-03T17:17:26.003Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:17:40.711Z",
+                "displayName": "Anastasi Bakolias",
+                "id": "bbf55445-b0fd-4690-aecc-fdc183a8555f",
+                "platform": "telegram",
+                "linkedAt": "2017-01-03T17:17:26.003Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "5a7352fce9b8c488ac7f3fd7",
+            "received": 1483463951.897,
+            "text": "Hello",
+            "role": "appUser",
+            "type": "text",
+            "_id": "586bdd0fbd615e03006e2ce3",
+            "source": {
+                "type": "wechat",
+                "id": "6371429146171906769"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "5a7352fce9b8c488ac7f3fd7",
+        "surname": "Bakolias",
+        "givenName": "Anastasi",
+        "signedUpAt": "2017-01-03T17:19:10.532Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:19:11.898Z",
+                "info": {
+                    "openid": "oSEgPxN66h3_5BXceRGnWNBxC8lQ",
+                    "sex": 1,
+                    "language": "en",
+                    "city": "",
+                    "province": "蒙特利尔",
+                    "country": "加拿大",
+                    "headimgurl": "http://wx.qlogo.cn/mmopen/9nLx0bsMShicmZ4Zj1x8mYeKgCuoLcswE1jVEsxicL4OibAZ5WecvmLUPictmUn84x8P2kDwePCibWI8ef7cic5TbD3Ev3ss1eevibc/0",
+                    "subscribe_time": 1471437378
+                },
+                "displayName": "Anastasi Bakolias",
+                "id": "eb53472d-8a28-4048-b593-31554164790a",
+                "platform": "wechat",
+                "linkedAt": "2017-01-03T17:19:10.535Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:19:11.898Z",
+                "info": {
+                    "openid": "oSEgPxN66h3_5BXceRGnWNBxC8lQ",
+                    "sex": 1,
+                    "language": "en",
+                    "city": "",
+                    "province": "蒙特利尔",
+                    "country": "加拿大",
+                    "headimgurl": "http://wx.qlogo.cn/mmopen/9nLx0bsMShicmZ4Zj1x8mYeKgCuoLcswE1jVEsxicL4OibAZ5WecvmLUPictmUn84x8P2kDwePCibWI8ef7cic5TbD3Ev3ss1eevibc/0",
+                    "subscribe_time": 1471437378
+                },
+                "displayName": "Anastasi Bakolias",
+                "id": "eb53472d-8a28-4048-b593-31554164790a",
+                "platform": "wechat",
+                "linkedAt": "2017-01-03T17:19:10.535Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "8d2ae2b8920de0c52135ed07",
+            "received": 1483463980.118,
+            "text": "Hello",
+            "type": "text",
+            "role": "appUser",
+            "_id": "586bdd2c75126b0f00e801c1",
+            "source": {
+                "type": "line",
+                "id": "5449224277862"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "8d2ae2b8920de0c52135ed07",
+        "givenName": "spasiu",
+        "signedUpAt": "2017-01-03T17:19:39.832Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:19:40.118Z",
+                "displayName": "spasiu",
+                "id": "7e386a9b-93ae-49ab-97bb-043013d77ae7",
+                "platform": "line",
+                "linkedAt": "2017-01-03T17:19:39.834Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:19:40.118Z",
+                "displayName": "spasiu",
+                "id": "7e386a9b-93ae-49ab-97bb-043013d77ae7",
+                "platform": "line",
+                "linkedAt": "2017-01-03T17:19:39.834Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "3aa103ffd6fdfe2c4b97be03",
+            "received": 1483464100.721,
+            "text": "Hello",
+            "type": "text",
+            "role": "appUser",
+            "_id": "586bdda477eeab5100a926a7",
+            "source": {
+                "type": "twilio"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "3aa103ffd6fdfe2c4b97be03",
+        "signedUpAt": "2017-01-03T17:21:40.713Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:21:40.722Z",
+                "info": {
+                    "phoneNumber": "+14388828761",
+                    "country": "CA",
+                    "city": "MONTREAL",
+                    "state": "QC"
+                },
+                "id": "542b18f8-183c-436d-97a3-dc805ea346c3",
+                "platform": "twilio",
+                "linkedAt": "2017-01-03T17:21:40.716Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:21:40.722Z",
+                "info": {
+                    "phoneNumber": "+14388828761",
+                    "country": "CA",
+                    "city": "MONTREAL",
+                    "state": "QC"
+                },
+                "id": "542b18f8-183c-436d-97a3-dc805ea346c3",
+                "platform": "twilio",
+                "linkedAt": "2017-01-03T17:21:40.716Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "authorId": "9db77d27a3af6e5cb30823f4",
+            "received": 1483464189.474,
+            "text": "subject: Hello\n\nHello",
+            "type": "text",
+            "role": "appUser",
+            "_id": "586bddfdf1db037000cdfa5b",
+            "source": {
+                "type": "frontendEmail"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "9db77d27a3af6e5cb30823f4",
+        "surname": "Bakolias",
+        "givenName": "Anastasi",
+        "email": "stasi@supportkit.io",
+        "signedUpAt": "2017-01-03T17:23:09.442Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:23:09.475Z",
+                "id": "94325388-897a-4c57-b12a-bb72441b6d1d",
+                "platform": "frontendEmail",
+                "linkedAt": "2017-01-03T17:23:09.452Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:23:09.475Z",
+                "id": "94325388-897a-4c57-b12a-bb72441b6d1d",
+                "platform": "frontendEmail",
+                "linkedAt": "2017-01-03T17:23:09.452Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "text": "hello",
+            "type": "text",
+            "role": "appUser",
+            "received": 1483464788.239,
+            "authorId": "9db77d27a3af6e5cb30823f4",
+            "name": "Anastasi Bakolias",
+            "_id": "586be054f1db037000cdfce7",
+            "source": {
+                "type": "api"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "9db77d27a3af6e5cb30823f4",
+        "surname": "Bakolias",
+        "givenName": "Anastasi",
+        "email": "stasi@supportkit.io",
+        "signedUpAt": "2017-01-03T17:23:09.442Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:23:09.475Z",
+                "id": "94325388-897a-4c57-b12a-bb72441b6d1d",
+                "platform": "frontendEmail",
+                "linkedAt": "2017-01-03T17:23:09.452Z",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:23:09.475Z",
+                "id": "94325388-897a-4c57-b12a-bb72441b6d1d",
+                "platform": "frontendEmail",
+                "linkedAt": "2017-01-03T17:23:09.452Z",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {}
+    }
+}
+Hello from Android{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "586bb9fa6be96f330056e84a"
+    },
+    "messages": [
+        {
+            "text": "Hello from Android",
+            "role": "appUser",
+            "received": 1483466086.941,
+            "authorId": "8305a4a623dca0fa11881783",
+            "name": "Shell App",
+            "type": "text",
+            "_id": "586be5661c8b7333009713d7",
+            "source": {
+                "type": "android"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "8305a4a623dca0fa11881783",
+        "surname": "App",
+        "givenName": "Shell",
+        "email": "ShellAppUser@AwesomeApp.com",
+        "signedUpAt": "2015-01-01T00:00:00.000Z",
+        "conversationStarted": true,
+        "credentialRequired": false,
+        "devices": [
+            {
+                "lastSeen": "2017-01-03T17:54:09.396Z",
+                "info": {
+                    "os": "Android",
+                    "osVersion": "7.1",
+                    "devicePlatform": "unknown Android SDK built for x86",
+                    "appName": "Awesome App",
+                    "carrier": "Android",
+                    "radioAccessTechnology": "LTE",
+                    "wifi": "NO",
+                    "appId": "io.smooch.shellapp",
+                    "sdkVersion": "4.1.1",
+                    "installer": ""
+                },
+                "appVersion": "1.0",
+                "platform": "android",
+                "id": "d3886162a97fd5d95e1516a489dc3f7dab76b209",
+                "active": true
+            }
+        ],
+        "clients": [
+            {
+                "lastSeen": "2017-01-03T17:54:09.396Z",
+                "info": {
+                    "os": "Android",
+                    "osVersion": "7.1",
+                    "devicePlatform": "unknown Android SDK built for x86",
+                    "appName": "Awesome App",
+                    "carrier": "Android",
+                    "radioAccessTechnology": "LTE",
+                    "wifi": "NO",
+                    "appId": "io.smooch.shellapp",
+                    "sdkVersion": "4.1.1",
+                    "installer": ""
+                },
+                "appVersion": "1.0",
+                "platform": "android",
+                "id": "d3886162a97fd5d95e1516a489dc3f7dab76b209",
+                "active": true
+            }
+        ],
+        "pendingClients": [],
+        "properties": {
+            "Now": "2017-01-03T17:54:07.910Z"
+        }
+    }
+}
