@@ -81,7 +81,7 @@ There’s a couple of quick checks that you can do if our script doesn’t load:
 
 If that doesn’t do the trick, note that there are a couple of libraries we conflict with currently: mootools, requirejs & Prototype js. Make sure that you’re not using one of them.
 
-## How do I customize your web widget and remove the branding?
+## How do I customize your web messenger and remove the branding?
 
 We'd really love if you could keep the branding around (especially if you're a free user), however if you really want to remove the branding you can do so through a CSS override.
 
@@ -105,6 +105,6 @@ You can follow these [instructions](/docs/web-messenger/#sound-notification) to 
 
 Our [office hours](/docs/office-hours/) feature makes this a breeze.
 
-## Can I put the web widget on two different websites, and also change the header?
+## Can I put the web messenger on two different websites, and also change the header?
 
 Yes, you can place the web chat on as many sites as you like. To change the header, just set a different `introductionText` property in your init call on each site.

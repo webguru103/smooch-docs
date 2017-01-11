@@ -23,7 +23,6 @@ subsections = [
     'faq',
     'customer-channels',
     'business-systems',
-    'pricing-and-legal',
     'dashboard'
 ]
 
@@ -141,13 +140,6 @@ pages = [
     "/faq/slack/",
     "/faq/front/",
     "/faq/other-systems/"
-]
-
-[subsections.pricing-and-legal]
-name = "Pricing & Legal"
-pages = [
-    "/faq/pricing/",
-    "/faq/legal/"
 ]
 
 [subsections.dashboard]
