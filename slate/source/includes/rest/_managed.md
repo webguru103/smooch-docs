@@ -631,6 +631,47 @@ To configure an Email integration, simply call the Create Integration endpoint w
 | **type**<br/><span class='req'>required</span> | The integration type: _frontendEmail_. |
 | **fromAddress**<br/><span class='opt'>optional</span> | Email will display as coming from this address. |
 
+## Firebase Cloud Messaging
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
+     -X POST \
+     -d '{"type": "fcm", "serverKey": "AAAA_hSf4g2J2Q3zDh2DbvSh27dhKlm2", "senderId": "1429457686312"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-account-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "integration": {
+    "_id": "5876a3d4abf286d0c0af1467",
+    "type": "fcm",
+    "senderId": 1429457686312
+  }
+}
+```
+
+To configure a Firebase Cloud Messaging integration, first visit the [Firebase Console](https://console.firebase.google.com/).
+Copy the `serverKey` and `senderId` from the `Cloud Messaging` tab in the settings of your project and call the create
+integrations endpoint with this data.
+
+| **Arguments**                                      |                                       |
+|----------------------------------------------------|---------------------------------------|
+| **type**<br/><span class='req'>required</span>     | The integration type: _fcm_.          |
+| **severKey**<br/><span class='req'>required</span> | Your server key from the fcm console. |
+| **senderId**<br/><span class='req'>required</span> | Your sender id form the fcm console.  |
+
 ## List Integrations
 
 > Request:
