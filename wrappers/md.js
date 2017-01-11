@@ -22,9 +22,7 @@ export default class extends Component {
         const {router} = this.context;
         const node = this._contentNode;
         catchLinks(node, (href) => {
-            router.push({
-                pathname: href
-            });
+            router.push(href);
         });
     };
 

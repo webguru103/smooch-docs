@@ -101,10 +101,10 @@ pages = [
 name = "References"
 pages = [
     "API Reference__https://docs.smooch.io/rest/",
-    "Frequently Asked Questions (FAQ)__/faq/",
+    "/faq/",
     "/docs/error-messages/",
     "/changelog/",
-    "Webhook Payload Spec__http://docs.smooch.io/rest/#webhooks-payload",
+    "Webhook Payload Spec__https://docs.smooch.io/rest/#webhooks-payload",
     "/docs/security/",
     "/docs/sending-images-and-buttons-shorthand/"
 ]
@@ -120,7 +120,7 @@ pages = [
 [subsections.faq]
 name = "Frequently Asked Questions (FAQ)"
 pages = [
-    "/faq/"
+    "Welcome__/faq/"
 ]
 
 [subsections.customer-channels]

@@ -43,7 +43,7 @@ export default class extends Component {
 
         docsNavStructure.forEach((section, i) => {
 
-            const subitems = section.pages.map(({path, title, internal} , j) => {
+            const subitems = section.pages.map(({path, title, internal}, j) => {
                 return internal ?
                     <LinkContainer to={ path }
                                    key={ path }>
@@ -52,6 +52,7 @@ export default class extends Component {
                         </MenuItem>
                     </LinkContainer> :
                     <MenuItem eventKey={ 7.1 + i + 0.1 * j }
+                              key={ path }
                               href={ path }>
                     { title }
                     </MenuItem>;
@@ -82,7 +83,9 @@ export default class extends Component {
                    </Navbar.Header>
                    <Navbar.Collapse>
                        <Nav>
-                           { navItems }
+                           { navItems.map((c, i) => React.cloneElement(c, {
+                                 key: i
+                             })) }
                        </Nav>
                        <Nav pullRight>
                            <NavItem eventKey={ 7 + docsNavStructure.length + 1 }

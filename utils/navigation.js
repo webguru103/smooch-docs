@@ -27,7 +27,7 @@ export const generateNavStructure = (section = 'docs') => {
                 return {
                     path: rest.join(''),
                     title,
-                    internal: false
+                    internal: rest.join('').startsWith('/')
                 };
             })
 

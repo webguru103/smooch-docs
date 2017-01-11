@@ -1,5 +1,5 @@
 ---
-title: Welcome
+title: Frequently Asked Questions (FAQ)
 section: faq
 layout: two-column
 ---
