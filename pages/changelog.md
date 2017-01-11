@@ -6,11 +6,19 @@ layout: two-column
 
 # Changelog
 
+## January 2nd, 2017
+
+- Added `GET` method to channels API. [Learn More](http://docs.smooch.io/rest/#get-app-user-channel-entities)
+
 ## December 16th, 2016
 
 - Added text and image type message support in Android SDK [4.1.0](https://github.com/smooch/smooch-android/releases/tag/4.1.0)
 - Added text and image type message support in iOS SDK [5.3.0](https://github.com/smooch/smooch-ios/releases/tag/5.3.0)
 - Added new webhook triggers for `delivery:success`, `delivery:failure` and `conversation:read`. [Learn more](http://docs.smooch.io/rest/#webhook-triggers)
+
+## December 8th, 2016
+
+- Improved API performance for very long conversations
 
 ## December 2nd, 2016
 
@@ -89,9 +97,9 @@ layout: two-column
 
 ## July 29th, 2016
 
-Web Messenger [3.2.0](https://github.com/smooch/smooch-js/releases/tag/3.2.0) now supports: 
-- Being displayed as a button or a tab when closed. 
-- Color customization from the dashboard. 
+Web Messenger [3.2.0](https://github.com/smooch/smooch-js/releases/tag/3.2.0) now supports:
+- Being displayed as a button or a tab when closed.
+- Color customization from the dashboard.
 - Automatic contrast detection for text displayed on top of configured colors.
 
 ## July 26th, 2016
