@@ -45,7 +45,7 @@ The [SKTConversaton](http://docs.smooch.io/api/ios/Classes/SKTConversation.html)
 
 ## How can I customize the iOS SDK's appearance?
 
-Read more about this in our [documentation](/docs/native-ios-sdk/#styling-the-conversation-interface)
+Read more about this in our [documentation](/guide/native-ios-sdk/#styling-the-conversation-interface)
 
 ## Is it possible to switch between app tokens during a session?
 

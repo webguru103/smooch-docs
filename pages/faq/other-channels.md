@@ -8,7 +8,7 @@ layout: two-column
 
 ## How do I connect LINE with Smooch?
 
-We've put togehter a [guide on connecting LINE with Smooch](/docs/ott-messengers/#line) in our docs.
+We've put togehter a [guide on connecting LINE with Smooch](/guide/ott-messengers/#line) in our docs.
 
 ## What does Smooch call a messaging channel?
 
@@ -22,4 +22,4 @@ You can also connect a known Smooch users to a messaging channel by using our AP
 
 ## Why can't I finish the WeChat integration?
 
-The WeChat API for business only works with certified Subscription or Service accountsw. We provide more information on our [docs](/docs/ott-messengers/#wechat).
+The WeChat API for business only works with certified Subscription or Service accountsw. We provide more information on our [docs](/guide/ott-messengers/#wechat).

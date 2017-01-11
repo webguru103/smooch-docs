@@ -1,6 +1,6 @@
 ---
 title: Changelog
-section: docs
+section: guide
 layout: two-column
 ---
 

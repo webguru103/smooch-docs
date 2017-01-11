@@ -12,7 +12,7 @@ You can use the function `open()` function of the Smooch Web Messenger. Simply c
 
 ## How can I customize the texts that are displayed on the web messenger?
 
-Customizing labels is easy, our [web messenger documentation](/docs/web-messenger/#strings-customization). You can find the list of all customizable strings on the [web messenger GitHub page](https://github.com/smooch/smooch-js#options)
+Customizing labels is easy, our [web messenger documentation](/guide/web-messenger/#strings-customization). You can find the list of all customizable strings on the [web messenger GitHub page](https://github.com/smooch/smooch-js#options)
 
 ## How can I customize the web messenger?
 
@@ -34,7 +34,7 @@ On the dev console, navigate to `Application tab > Local storage > your website`
 
 ## How can I embed the web messenger in a container of my website
 
-You can embed the web messenger by using this [function](/docs/web-messenger/#embedded-mode)
+You can embed the web messenger by using this [function](/guide/web-messenger/#embedded-mode)
 
 ## The web messenger doesn't display well on mobile. How can I fix that?
 
@@ -99,11 +99,11 @@ No, you don't necessarily need an app to use Smooch. You can use our web messeng
 
 ## How do I disable the sound notifications?
 
-You can follow these [instructions](/docs/web-messenger/#sound-notification) to disable the sound notifications.
+You can follow these [instructions](/guide/web-messenger/#sound-notification) to disable the sound notifications.
 
 ## How can I notify my customers that the office is closed and nobody is around to answer?
 
-Our [office hours](/docs/office-hours/) feature makes this a breeze.
+Our [office hours](/guide/office-hours/) feature makes this a breeze.
 
 ## Can I put the web messenger on two different websites, and also change the header?
 

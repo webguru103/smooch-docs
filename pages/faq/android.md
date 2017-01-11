@@ -22,4 +22,4 @@ You'll want to look at Conversation.java & Conversation delegate detailed in the
 
 To do so, you’ll need to create your own activity that extends [onversationActivity](http://docs.smooch.io/api/android/).
 
-Once you've created your own activity, ensure that it's [launched when a push notification is received](/docs/native-android-sdk/#notification-action-intent-override).
+Once you've created your own activity, ensure that it's [launched when a push notification is received](/guide/native-android-sdk/#notification-action-intent-override).

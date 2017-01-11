@@ -7,7 +7,7 @@ export default class extends Component {
 
     componentDidMount() {
         this.context.router.push({
-            pathname: '/docs/'
+            pathname: '/guide/'
         });
     }
 

@@ -12,9 +12,9 @@ export default class extends Component {
         const {route: {path: currentPath}} = this.props;
 
         const links = [
-            ['Docs', '/docs/', true],
+            ['Docs', '/guide/', true],
             ['API Reference', '/rest/', false],
-            ['Channels', '/docs/native-sdks/', true],
+            ['Channels', '/guide/native-sdks/', true],
             ['Changelog', '/changelog/', true],
             ['FAQs', '/faq/', true]
         ];
@@ -23,7 +23,7 @@ export default class extends Component {
 
         const navItems = links.map(([label, href, isInternal] , index) => {
             if (isInternal) {
-                const isActive = href === '/docs/' ?
+                const isActive = href === '/guide/' ?
                     !hasActiveLink || currentPath === href :
                     currentPath === href;
 

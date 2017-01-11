@@ -1,6 +1,6 @@
 siteTitle="Smooch Docs"
 
-[sections.docs]
+[sections.guide]
 subsections = [
     'home',
     'authentication',
@@ -29,72 +29,72 @@ subsections = [
 [subsections.home]
 name = "Home"
 pages = [
-    "/docs/",
-    "/docs/api-quickstart/",
-    "/docs/business-quickstart/"
+    "/guide/",
+    "/guide/api-quickstart/",
+    "/guide/business-quickstart/"
 ]
 
 [subsections.authentication]
 name = "Accessing the Smooch API"
 pages = [
-    "/docs/authorization/",
-    "/docs/jwt/",
-    "/docs/authenticating-to-smooch-api/"
+    "/guide/authorization/",
+    "/guide/jwt/",
+    "/guide/authenticating-to-smooch-api/"
 ]
 
 [subsections.programmable-messaging]
 name = "Programmable Conversations"
 pages = [
-    "/docs/receiving-messages/",
-    "/docs/sending-messages/",
-    "/docs/structured-messages/"
+    "/guide/receiving-messages/",
+    "/guide/sending-messages/",
+    "/guide/structured-messages/"
 ]
 
 [subsections.users]
 name = "Users"
 pages = [
-    "/docs/managing-user-information/",
-    "/docs/authenticating-users/",
-    "/docs/creating-users/",
-    "/docs/linking-users-to-sms/",
-    "/docs/multi-device-users/"
+    "/guide/managing-user-information/",
+    "/guide/authenticating-users/",
+    "/guide/creating-users/",
+    "/guide/linking-users-to-sms/",
+    "/guide/multi-device-users/"
 ]
 
 [subsections.managed-accounts]
 name = "Managed Accounts"
 pages = [
-    "/docs/intro-to-managed-accounts/",
-    "/docs/creating-and-managing-apps/",
-    "/docs/configuring-messaging-channels/",
+    "/guide/intro-to-managed-accounts/",
+    "/guide/creating-and-managing-apps/",
+    "/guide/configuring-messaging-channels/",
 ]
 
 [subsections.smooch-connect]
 name = "Smooch Connect"
 pages = [
-    "/docs/intro-to-smooch-connect/",
-    "/docs/oauth/",
-    "/docs/becoming-an-integration-partner/",
+    "/guide/intro-to-smooch-connect/",
+    "/guide/oauth/",
+    "/guide/becoming-an-integration-partner/",
 ]
 
 [subsections.channels]
 name = "Channels"
 pages = [
-    "/docs/ott-messengers/",
-    "/docs/sms/",
-    "/docs/email/",
-    "/docs/web-messenger/",
-    "/docs/native-ios-sdk/",
-    "/docs/native-android-sdk/",
-    "/docs/channel-capabilities/"
+    "/guide/ott-messengers/",
+    "/guide/sms/",
+    "/guide/email/",
+    "/guide/web-messenger/",
+    "/guide/native-ios-sdk/",
+    "/guide/native-android-sdk/",
+    "/guide/channel-capabilities/"
 ]
 
 [subsections.built-in-integrations]
 name = "Built-in Integrations"
 pages = [
-    "/docs/configuring-business-systems/",
-    "/docs/stripe-payments/",
-    "/docs/automated-messages/",
-    "/docs/office-hours/"
+    "/guide/configuring-business-systems/",
+    "/guide/stripe-payments/",
+    "/guide/automated-messages/",
+    "/guide/office-hours/"
 ]
 
 [subsections.references]
@@ -102,11 +102,11 @@ name = "References"
 pages = [
     "API Reference__https://docs.smooch.io/rest/",
     "/faq/",
-    "/docs/error-messages/",
+    "/guide/error-messages/",
     "/changelog/",
-    "Webhook Payload Spec__https://docs.smooch.io/rest/#webhooks-payload",
-    "/docs/security/",
-    "/docs/sending-images-and-buttons-shorthand/"
+    "Webhook Payload Spec__http://docs.smooch.io/rest/#webhooks-payload",
+    "/guide/security/",
+    "/guide/sending-images-and-buttons-shorthand/"
 ]
 
 [subsections.rest]

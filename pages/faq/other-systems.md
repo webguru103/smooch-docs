@@ -16,7 +16,7 @@ When you integrate Smooch with Shopify, we'll create a file called `snippets/smo
 
 ## How can I test Stripe?
 
-Stripe provides two modes, one live mode and one test mode. The test mode allows you to use fake credit card and to simulate transactions. You will find more information on their [website](https://stripe.com/docs/dashboard#livemode-and-testing).
+Stripe provides two modes, one live mode and one test mode. The test mode allows you to use fake credit card and to simulate transactions. You will find more information on their [website](https://stripe.com/guide/dashboard#livemode-and-testing).
 
 ## Can I use your web messenger on my WordPress website?
 
