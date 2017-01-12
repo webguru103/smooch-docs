@@ -1,4 +1,29 @@
 import { config, pages as sitePages } from 'config';
+import loadContext from '.gatsby-context';
+
+const paths = {};
+
+function preloadPaths(pageReq) {
+    sitePages
+        .filter((p) => !!p.path)
+        .forEach((page) => {
+            let title = page.data.title;
+            if (['jsx'].includes(page.file.ext)) {
+                const p = pageReq(`./${page.requirePath}`);
+                title = p.title;
+            }
+
+            paths[page.path] = {
+                path: page.path,
+                title,
+                internal: true
+            };
+        });
+}
+
+loadContext((pageReq) => {
+    preloadPaths(pageReq);
+});
 
 export const generateNavStructure = (section = 'guide') => {
     const {subsections} = config.sections[section];
@@ -9,29 +34,16 @@ export const generateNavStructure = (section = 'guide') => {
             title: name,
             pages: pages.map((path) => {
                 if (path.startsWith('/')) {
-                    const page = sitePages.find(({path: _path}) => path === _path);
-
-                    if (!page) {
-                        console.error(`No page found for path ${path}.`);
-                    }
-
-                    return {
-                        path: page.path,
-                        title: page.data.title,
-                        internal: true
-                    };
+                    return paths[path];
                 }
 
                 const [title, ...rest] = path.split('__');
-
                 return {
                     path: rest.join(''),
                     title,
                     internal: rest.join('').startsWith('/')
                 };
             })
-
-
         };
     });
 };

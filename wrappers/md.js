@@ -1,13 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import Helmet from 'react-helmet';
 import catchLinks from 'catch-links';
 
+import Page from '../components/Page';
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ThreeColumnLayout from '../components/ThreeColumnLayout';
-import SiteNav from '../components/SiteNav';
-import DocsNav from '../components/DocsNav';
-import { SITE_ROOT } from '../utils/navigation';
 
 export default class extends Component {
     static contextTypes = {
@@ -49,32 +46,12 @@ export default class extends Component {
                 break;
         }
 
-        const path = `${SITE_ROOT}${route.path}`;
-
-        const meta = [{
-            property: 'og:title',
-            content: data.title
-        }, {
-            property: 'og:url',
-            content: path
-        }];
-
-        const link = [{
-            rel: 'canonical',
-            href: path
-        }];
-
-        return <div>
-                   <Helmet title={ data.title }
-                           meta={ meta }
-                           link={ link } />
-                   <SiteNav section={ data.section } />
-                   <DocsNav route={ route } />
+        return <Page {...this.props}>
                    <Layout {...data}>
                        <div ref={ (c) => this._contentNode = findDOMNode(c) }
                             className='markdown'
                             dangerouslySetInnerHTML={ { __html: body } } />
                    </Layout>
-               </div>;
+               </Page>;
     }
 }
