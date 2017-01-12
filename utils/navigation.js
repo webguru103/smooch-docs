@@ -1,6 +1,6 @@
 import { config, pages as sitePages } from 'config';
 
-export const generateNavStructure = (section = 'docs') => {
+export const generateNavStructure = (section = 'guide') => {
     const {subsections} = config.sections[section];
     return subsections.map((subsection) => {
         const {name, pages} = config.subsections[subsection];

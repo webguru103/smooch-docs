@@ -35,9 +35,48 @@ If you're a business, you can use Smooch to quickly add messaging to the tools y
 
 Smooch is committed to supporting the most messaging channels on the market with the richest set of functionality. Today, you can use Smooch to converse on:
 
-#### **TODO** Row of logos here
-
-Web Chat, iOS SDK, Android SDK, Messenger, WeChat, Telegram, LINE, Viber, Twilio, E-Mail
+<div class='logo-row'>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-web.png' srcset='/images/channel-icons/icon-web.png 1x, /images/channel-icons/icon-web@2x.png 2x' />
+        <span class='channel-name'>Web Messenger</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-ios.png' srcset='/images/channel-icons/icon-ios.png 1x, /images/channel-icons/icon-ios@2x.png 2x' />
+        <span class='channel-name'>iOS Messenger</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-android.png' srcset='/images/channel-icons/icon-android.png 1x, /images/channel-icons/icon-android@2x.png 2x' />
+        <span class='channel-name'>Android Messenger</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-messenger.png' srcset='/images/channel-icons/icon-messenger.png 1x, /images/channel-icons/icon-messenger@2x.png 2x' />
+        <span class='channel-name'>Facebook Messenger</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-wechat.png' srcset='/images/channel-icons/icon-wechat.png 1x, /images/channel-icons/icon-wechat@2x.png 2x' />
+        <span class='channel-name'>WeChat</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-telegram.png' srcset='/images/channel-icons/icon-telegram.png 1x, /images/channel-icons/icon-telegram@2x.png 2x' />
+        <span class='channel-name'>Telegram</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-line.png' srcset='/images/channel-icons/icon-line.png 1x, /images/channel-icons/icon-line@2x.png 2x' />
+        <span class='channel-name'>LINE</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-viber.png' srcset='/images/channel-icons/icon-viber.png 1x, /images/channel-icons/icon-viber@2x.png 2x' />
+        <span class='channel-name'>Viber</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-twilio.png' srcset='/images/channel-icons/icon-twilio.png 1x, /images/channel-icons/icon-twilio@2x.png 2x' />
+        <span class='channel-name'>Twilio</span>
+    </div>
+    <div class='logo-container'>
+        <img src='/images/channel-icons/icon-email.png' srcset='/images/channel-icons/icon-email.png 1x, /images/channel-icons/icon-email@2x.png 2x' />
+        <span class='channel-name'>Email</span>
+    </div>
+</div>
 
 The Smooch Conversation Cloud allows you to take full advantage of the range of structured and rich message types these channels have to offer, all through one consistent and easy-to-use API. When new features are released by the channels, Smooch stays up to date and helps you take advantage of the new functionality with little or no changes to your existing code.
 

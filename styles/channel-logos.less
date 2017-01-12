@@ -1,0 +1,39 @@
+.logo-row {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .logo-container {
+        flex-basis: 33%;
+        display: flex;
+        flex-direction: column;
+        text-align:center;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        img {
+            border-radius: 50%;
+            transition: transform 150ms ease-out;
+            margin-bottom: 15px;
+
+            max-width: 100%;
+            height: auto;
+            flex-shrink: 0;
+
+            &:hover {
+                transform: translateY(-2px);
+                opacity: .9;
+                -webkit-filter: saturate(125%);
+            }
+        }
+
+        .channel-name {
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 21.25px;
+            letter-spacing: -0.34px;
+            color: #767e8c;
+        }
+    }
+}
