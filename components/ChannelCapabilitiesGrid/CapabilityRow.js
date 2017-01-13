@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import Row from './Row';
 import Cell from './Cell';
+import Arrow from './Arrow';
 
 import { getSupportIndicator } from './utils';
 import { CHANNELS, CAPABILITIES } from '../../data/channelCapabilities';
@@ -21,19 +22,19 @@ export default class CapabilityRow extends Component {
             directionCell = <Cell className='direction-cell'
                                   divided>
                                 <div className='top-part'>
-                                    ⟶
+                                    <Arrow direction='right' />
                                 </div>
                                 <div className='bottom-part'>
-                                    ⟵
+                                    <Arrow direction='left' />
                                 </div>
                             </Cell>;
         } else if (capabilityDetails.send) {
             directionCell = <Cell className='direction-cell'>
-                                ⟶
+                                <Arrow direction='right' />
                             </Cell>;
         } else if (capabilityDetails.receive) {
             directionCell = <Cell className='direction-cell'>
-                                ⟵
+                                <Arrow direction='left' />
                             </Cell>;
         } else {
             directionCell = <Cell className='direction-cell'
