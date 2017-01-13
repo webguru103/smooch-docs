@@ -6,6 +6,14 @@ layout: two-column
 
 # Changelog
 
+## January 12th, 2017
+
+- Added the "Logs" tab to the web app, which allows you to see delivery events for messages and webhooks.
+
+## January 3rd, 2017
+
+- Added quick replies support in iOS SDK [5.4.0](https://github.com/smooch/smooch-ios/releases/tag/5.4.0) 
+
 ## January 2nd, 2017
 
 - Added `GET` method to channels API. [Learn More](http://docs.smooch.io/rest/#get-app-user-channel-entities)
