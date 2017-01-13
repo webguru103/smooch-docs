@@ -225,39 +225,11 @@ For example, if a user visits your site and would like to close the tab, they ca
 
 <span class="half-width-img">![Send to Messenger](/images/send_to_messenger.png)</span>
 
-## Localization
-
-Every string you see in Smooch can be [customized](#strings-customization) and localized. Smooch provides a few languages out of the box, but [adding new languages](#adding-more-languages) is easy to do. When localizing strings, Smooch looks for SmoochLocalizable.strings in your app bundle first then in the Smooch bundle, enabling you to customize any strings and add support for other languages.
-
-### Enabling Localization in your app
-
-For Smooch to display a language other than English, your app needs to first enable support for that language. You can enable a second language in your Xcode project settings:
-
-![Enable Localization](/images/add_language.png)
-
-Once you have this, Smooch will display itself in the device language for the supported language.
-
-These languages are included with the iOS SDK: Arabic, English, Finnish, French, German, Italian, Japanese, Korean, Mandarin Chinese (traditional and simplified), Persian, Portuguese (Brazil and Portugal), Russian, Slovenian, Spanish, and Swedish.
-
-See how to support more languages in [Adding more languages](#adding-more-languages)
-
-<aside class="warning">
-Localization is subject to caching. If you can't see your changes, cleaning your project, resetting the simulator, deleting your app from your test devices are good measures.
-</aside>
-
-### Adding more languages
-
-To enable other languages beside the provided ones, first copy the english SmoochLocalizable.strings file from the Smooch bundle to the corresponding .lproj folder for that language. Then, translate the values to match that language.
-
-If you translate Smooch's strings to a language not currently supported, we encourage you to share it with us so that every Smooch user can benefit from it. You can do so by [forking](https://github.com/smooch/smooch-ios/fork) our GitHub repo and creating a pull request, or just send us your string file at <a href="mailto:help@smooch.io">help@smooch.io</a>
-
 ## Customization
 
 ### Embedded mode
 
 To embed the widget in your existing markup, you need to pass `embedded: true` when calling `Smooch.init`. By doing so, you are disabling the auto-rendering mechanism and you will need to call `Smooch.render` manually. This method accepts a DOM element which will be used as the container where the widget will be rendered.
-
-
 
 <aside>
 The embedded widget will take full width and height of the container.  
