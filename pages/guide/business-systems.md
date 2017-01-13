@@ -1,14 +1,22 @@
 ---
-title: Configuring Business Systems
+title: Business Systems
 section: guide
 layout: two-column
 ---
 
-# Configuring Business Systems
+# Business Systems
 
 Smooch allows you to integrate many popular business systems in a single click, so that you're able to manage conversations with your users over any channel inside of your help desk or team collaboration software.
 
-Smooch has developed a number of tightly coupled integrations with business systems. These integrations are covered here, in these docs, but there are also an ever growing number of business systems, add-ons and bot platforms available in our [marketplace](https://app.smooch.io/integrations).
+Smooch has developed a number of tightly coupled integrations with business systems. These integrations are covered below, but there are also an ever growing number of business systems, add-ons and bot platforms available in our [marketplace](https://app.smooch.io/integrations).
+
+Built-in integrations:
+
+- [Email](/guide/business-systems/#email)
+- [Help Scout](/guide/business-systems/#help-scout)
+- [HipChat](/guide/business-systems/#hipchat)
+- [Slack](/guide/business-systems/#slack)
+- [Zendesk](/guide/business-systems/#zendesk)
 
 ## Email
 
@@ -35,7 +43,7 @@ To connect Smooch to your CRM via Email:
 3. Turn off any kind of signatures or annotations in your CRM to ensure that users receive a concise chat bubble when you reply.
 
 
-## HelpScout
+## Help Scout
 
 [Help Scout](https://app.smooch.io/integrations/helpscout) is a scalable, elegant and intuitive help desk solution. By connecting Smooch to Help Scout, you can manage in-app conversations you have with your users directly from Help Scout. This way, you can use the same system to handle your team's e-mail and in-app support channels. Unlike other Help Scout conversations, agent replies in conversations initiated by Smooch app users won't be sent by email, instead they will appear directly in the app.
 

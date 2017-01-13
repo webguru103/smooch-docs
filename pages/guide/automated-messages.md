@@ -8,7 +8,7 @@ layout: two-column
 
 Smooch allows you to reach out to your users at scale so that you can start conversations with them about anything that matters to your app, even if they aren't in need of service or support. We call this feature "Whispers" and it allows you to automatically send a message to a targeted group of users at exactly the right time.
 
-To help get you started, we've built in 5 basic templates and also allow you to create your own using any custom metadata that you're capturing with the `Smooch User` API.
+To help get you started, we've built in 5 basic templates and also allow you to create your own using any [custom metadata](/guide/managing-user-information/) that you're capturing from users.
 
  * _Welcome Whisper_ : Welcome new users to your app by starting a conversation where you can answer pressing questions and get initial feedback.
 

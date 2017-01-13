@@ -15,7 +15,7 @@ Smooch takes a 0.5% + 20¢ fee on every payment we facilitate. This is separate 
 
 ## Configuring Stripe
 
-From the Stripe integration page, select which Stripe mode you want Smooch to be using.
+From the Stripe [integration page](https://app.smooch.io/integrations/stripeConnect), select which Stripe mode you want Smooch to be using.
 
 ![Stripe integration page ui](/images/stripe_integration_page_ui.png)
 

@@ -91,7 +91,7 @@ pages = [
 [subsections.built-in-integrations]
 name = "Built-in Integrations"
 pages = [
-    "/guide/configuring-business-systems/",
+    "/guide/business-systems/",
     "/guide/stripe-payments/",
     "/guide/automated-messages/",
     "/guide/office-hours/"
