@@ -24,6 +24,6 @@ test:
     - exit 0
 deployment:
   production:
-    branch: f/new-docs
+    branch: master
     commands:
       - npm run deploy
