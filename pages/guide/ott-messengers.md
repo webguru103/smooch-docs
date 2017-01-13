@@ -8,9 +8,20 @@ layout: two-column
 
 Over the top (OTT) messaging channels like Viber, Telegram, LINE, WeChat and Facebook Messenger are where the highest growth in messaging use is. Smooch makes it feasible to connect to any number of these OTT channels by abstracting the particularities of their feature sets and APIs, while still making it possible to use rich features available on each platform.
 
+## This guide
+
+The below guides briefly introduce you to each channel, and show you how to integrate each of these channels to smooch through the dashboard UI. **It's also possible to configure these integrations [via the REST API](/guide/configuring-messaging-channels/).**
+
+OTT Channels:
+- [Facebook Messenger](/guide/ott-messengers/#facebook-messanger)
+- [LINE](/guide/ott-messengers/#line)
+- [Telegram](/guide/ott-messengers/#telegram)
+- [Viber](/guide/ott-messengers/#viber)
+- [WeChat](/guide/ott-messengers/#wechat)
+
 ## Facebook Messenger
 
-Our Facebook Messenger integration allows your users to send you Facebook messages through your Facebook Page which you receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as a Facebook message to the user.
+Our Facebook Messenger integration allows your users to send you Facebook messages through your Facebook Page which you receive in a business system or with Webhooks. Your replies are sent back as a Facebook message to the user.
 
 ### Configuring Facebook Messenger
 
@@ -37,7 +48,7 @@ It's possible to configure a menu of 1-5 buttons on the Messenger UI by calling 
 
 LINE is a Japan based rapidly growing mobile messaging app that offers free voice and video calls, messages, and a limitless variety of stickers. With over 600 million users worldwide, LINE's expanding platform is a great way to stay in touch with your customers.
 
-Our LINE integration allows your users to send messages to your LINE bot which you receive in channels like Slack, HipChat or Help Scout. Your replies are sent back as coming from your LINE bot.
+Our LINE integration allows your users to send messages to your LINE bot which you receive in a business system or with Webhooks. Your replies are sent back as coming from your LINE bot.
 
 You can also receive the user messages through a [webhook](https://docs.smooch.io/rest#webhooks).
 
@@ -89,7 +100,7 @@ You can now add your channel to your list of friends by scanning the QR code dis
 
 ## Telegram
 
-Our Telegram integration allows your users to send you messages through a [Telegram bot](https://core.telegram.org/bots). You can receive the messages in any of our channels like Slack, HipChat or Help Scout, and your replies are sent back as Telegram messages from the bot to the user.
+Our Telegram integration allows your users to send you messages through a [Telegram bot](https://core.telegram.org/bots). You can receive the messages in a business system or with Webhooks, and your replies are sent back as Telegram messages from the bot to the user.
 
 <aside class="notice">
 Make sure to <a href="https://web.telegram.org/#/login">log in to Telegram</a> before continuing the steps below.
@@ -129,7 +140,7 @@ intransitive To occupy a place.
 
 ## Viber
 
-Our [Viber integration](https://app.smooch.io/integrations/viber) allows users to send you messages through a Viber Public Account. You will receive these messages in one of our other channels like Slack, HipChat or Help Scout.
+Our [Viber integration](https://app.smooch.io/integrations/viber) allows users to send you messages through a Viber Public Account. You will receive these messages in a business system or with Webhooks.
 Your replies will be sent back to users through the Viber Public Account.
 
 ### Create a Public Account

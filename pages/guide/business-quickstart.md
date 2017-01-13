@@ -50,6 +50,6 @@ That's it, you've just set up Smooch for business.
 
 - Add [more channels](https://app.smooch.io/integrations/categories/customer-channels). We're constantly adding new channels and keeping up with the latest rich messaging features.
 
-- Take a look at [other business systems](https://app.smooch.io/integrations/categories/customer-channels).
+- Take a look at [other business systems](https://app.smooch.io/integrations/categories/business-systems).
 
 - If you want to create your own custom integration, checkout the [API quickstart](/guide/api-quickstart/).

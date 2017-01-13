@@ -6,7 +6,7 @@ layout: two-column
 
 # Smooch Connect
 
-Smooch has a rapidly growing [partner ecosystem](https://app.smooch.io/integrations) which helps businesses connect a variety of different business apps to messaging. You can join this ecosystem by implementing Smooch Connect into your product. When you do, your customers will be able to click a button that like this:
+Smooch has a rapidly growing [partner ecosystem](https://app.smooch.io/integrations) that helps businesses connect a variety of different business apps to messaging. You can join this ecosystem by implementing Smooch Connect into your product. When you do, your customers will be able to click a button that like this:
 
 <a href="https://app.smooch.io/oauth/authorize?client_id=shoplifter&response_type=code"><img alt="Add to Smooch" height="40" width="165" src="https://cdn.smooch.io/images/add_to_smooch.png" srcset="https://cdn.smooch.io/images/add_to_smooch.png 1x, https://cdn.smooch.io/images/add_to_smooch@2x.png 2x"/></a>
 

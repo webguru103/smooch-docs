@@ -14,7 +14,8 @@ Alternatively, you can use the Smooch API to send messages from within your own 
 
 ## Sending Text Messages with the API
 
-In order to send a message to a user, you'll need the user's ID. Typically, you'll obtain this from the [webhook that delivers a user's message to your software](/guide/receiving-messages), in some cases you can obtain this ID by [manually creating](/guide/creating-users) users.
+In order to send a message to a user, you'll need the user's ID. Typically, you'll obtain this from the [webhook that delivers a user's message to your software](/guide/receiving-messages/), in some cases you can obtain this ID by [manually creating](/guide/creating-users/) users.
+
 
 With the user ID in hand, you can easily send a simple text message:
 
@@ -53,4 +54,4 @@ When you call this function with 'typing:start', a typing activity indicator wil
 Once you're able to send text messages to users with Smooch, move on to sending structured messages that can significantly enrich the conversation experience.
 
  * [Send structured messages](/guide/structured-messages/) using the Smooch API to any messaging channel
- * Take advantage of convenient [shorthand](/guide/sending-images-and-buttons-shorthand) for sending images and buttons from any bussiness system.
+ * Take advantage of convenient [shorthand](/guide/sending-images-and-buttons-shorthand/) for sending images and buttons from any business system.

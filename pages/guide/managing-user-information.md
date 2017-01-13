@@ -75,7 +75,6 @@ You can grab the current user with `User.getCurrentUser` then set basic informat
 
 Once you set the user's name it will be persisted by Smooch so any future message from this user contain the value you provided. If the user's information changes, simply call the method a second time and the new information will overwrite it.
 
-
 Objective-C:
 ```objective_c
 #import <Smooch/Smooch.h>
@@ -91,6 +90,8 @@ Swift:
 SKTUser.currentUser().firstName = "Doctor"
 SKTUser.currentUser().lastName = "Who"
 ```
+
+Java:
 ```java
 import io.smooch.core.User;
 
@@ -159,6 +160,8 @@ Swift:
 
 SKTUser.currentUser().signedUpAt = NSDate()
 ```
+
+Java:
 ```java
 import io.smooch.core.User;
 
@@ -190,6 +193,8 @@ Swift:
 
 SKTUser.currentUser().addProperties([ "nickname" : "Lil Big Daddy Slim", "weight" : 650, "premiumUser" : true ])
 ```
+
+Java:
 ```java
 import io.smooch.core.User;
 
@@ -225,7 +230,6 @@ Smooch.init({
 Or you can update the information by binding your event before calling Smooch.init() with the method Smooch.on('ready') like below:
 
 
-Web SDK:
 ```javascript
 Smooch.on('ready', function(){
   Smooch.updateUser({

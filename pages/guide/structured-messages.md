@@ -49,7 +49,7 @@ You can extend this message type even further by adding a variety of different b
 
 ## Action Buttons
 
-You can use buttons to guide the user to acting on the information in your conversation. Buttons can trigger replies, web links, purchases and more. When you send buttons or other structured messages with Smooch, you generally don't have to worry about whether or not a specific messaging channel [supports the button type](/guide/channel-capabilities) as the Smooch API understands your intent and attempts to deliver the best message type to your user.
+You can use buttons to guide the user to acting on the information in your conversation. Buttons can trigger replies, web links, purchases and more. When you send buttons or other structured messages with Smooch, you generally don't have to worry about whether or not a specific messaging channel [supports the button type](/guide/channel-capabilities/) as the Smooch API understands your intent and attempts to deliver the best message type to your user.
 
 Most action button types are available in [messaging shorthand](/guide/sending-images-and-buttons-shorthand/).
 
@@ -182,7 +182,9 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 ## Carousels and Lists
 
 #### Carousel Messages
-Carousel messages are a horizontally scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support carousel messages; to check the level of support across Smooch messaging channels see [channel feature grid](/guide/channel-capabilities).
+
+Carousel messages are a horizontally scrollable set of items that may each contain text, an image, and action buttons. Not all messaging channels fully support carousel messages; to check the level of support across Smooch messaging channels see [channel feature grid](/guide/channel-capabilities/).
+
 
 ```javascript
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
@@ -275,5 +277,5 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 
 ## Next Steps
 
- * Consult the [channel capabilities grid](/guide/channel-capabilities) to understand how your structured message will be displayed across different platforms.
- * Send your first structured message by using [messaging shorthand](/guide/sending-images-and-buttons-shorthand).
+ * Consult the [channel capabilities grid](/guide/channel-capabilities/) to understand how your structured message will be displayed across different platforms.
+ * Send your first structured message by using [messaging shorthand](/guide/sending-images-and-buttons-shorthand/).

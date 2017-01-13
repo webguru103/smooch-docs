@@ -6,23 +6,27 @@ layout: two-column
 
 # Web Messenger
 
+The Web messenger is a highly customizable messaging widget that can be added to any Web page. smooch offers a [hosted version](https://app.smooch.io/integrations/web) of the widget. It's also possible to self-host the widget and fork it to change the appearance, branding, and/or functionality of the widget to suit your needs.
+
+The Smooch Web messenger is unique in that it allows you to seamlessly move the conversation beyond the browser session to a persistent channel like SMS, Facebook Messenger, or any of our other [OTT channels](/guide/ott-messengers/).
+
 ## References
 
-- [Web SDK reference](https://github.com/smooch/smooch-js/)
+- [Web SDK repository and reference](https://github.com/smooch/smooch-js/)
 - [SupportKit to Smooch upgrade guide](https://github.com/smooch/smooch-js/releases/tag/2.0.0)
 
 ## Adding Smooch to your site
 
 ![Web SDK's UI](/images/web_widget.png)
 
-There are a few ways you can include the Smooch plugin on your web page.
+There are a few ways you can include the Smooch Web messenger on your web page.
 
 The easiest way to get started is using the Script Tag method, but you can also include it using bower or npm.
 
 
 ### Script Tag Method
 
-####Step 1: Include the Smooch plugin on your web page
+#### Step 1: Include the Smooch plugin on your web page
 
 Add the following code towards the end of the `body` section on your page. Placing it at the end allows the rest of the page to load first.
 
@@ -30,7 +34,7 @@ Add the following code towards the end of the `body` section on your page. Placi
 <script src="https://cdn.smooch.io/smooch.min.js"></script>
 ```
 
-####Step 2: Initialize Smooch with your new app token
+#### Step 2: Initialize Smooch with your new app token
 
 Once Smooch has been included on your web page, you're almost done. Simply initialize the plugin using this code snippet
 

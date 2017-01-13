@@ -98,7 +98,7 @@ Great! Now, whenever someone sends a message to your Facebook page from a Facebo
 
 - If you're writing JavaScript, use [smooch-core](https://www.npmjs.com/package/smooch-core), a helpful little npm package that wraps calls to Smooch APIs.
 
-- Now that you've had a taste of Smooch, it's time to deep dive into our documentation to explore the possibilities. [You can find it here](https://docs.smooch.io/rest/).
+- Now that you've had a taste of Smooch, it's time to deep dive into our reference documentation to explore the possibilities. [You can find it here](https://docs.smooch.io/rest/).
 
 - Take a look at [the other channels we support](https://app.smooch.io/integrations/categories/customer-channels). We're constantly adding new channels and keeping up with the latest rich messaging features.
 

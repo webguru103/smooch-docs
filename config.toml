@@ -53,6 +53,7 @@ pages = [
 [subsections.users]
 name = "Users"
 pages = [
+    "/guide/intro-to-users/",
     "/guide/managing-user-information/",
     "/guide/authenticating-users/",
     "/guide/creating-users/",
@@ -79,6 +80,7 @@ pages = [
 [subsections.channels]
 name = "Channels"
 pages = [
+    "/guide/intro-to-channels/",
     "/guide/ott-messengers/",
     "/guide/sms/",
     "/guide/email/",

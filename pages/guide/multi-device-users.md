@@ -4,7 +4,7 @@ section: guide
 layout: two-column
 ---
 
-Smooch allows you to identify new users on the fly, engage with them in a single conversation thread across multiple devices, and associate user and device profile information so that you can better understand the context of a user's message.
+Smooch allows you to identify new users on the fly, engage with them in a single conversation thread across multiple devices, and associate user and device profile information so that you can better understand the context of a user's message. **This applies to the native mobile and Web SDKs.**
 
 # Users on multiple devices
 

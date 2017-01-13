@@ -10,7 +10,7 @@ Smooch's architecture is centered on the concept of a *conversation*. A conversa
 
 This design makes it really easy for you to take advantage of all of the context present in communication with your appUser. When the appUser sends you a message, the message and its associated metadata is written to the conversation and sent to your business systems.
 
-In addition to receiving these messages from within [Smooch Integrations](/guide/configuring-business-systems/), your software can receive the messages via a webhook.
+In addition to receiving these messages from within [Smooch's business integrations](/guide/configuring-business-systems/), your software can receive the messages via a webhook.
 
 ## Message Webhooks
 
@@ -73,9 +73,11 @@ The payload contains information on the message, the user who sent it and all as
 |merge:appUse|when two or more users are merged into one|
 |*|when any of the above triggers occurs|
 
+See the [webhook payload reference](http://docs.smooch.io/rest/#webhooks-payload) for more details.
+
 #### Configuring Via the Integrations Directory
 
-If you won't be managing many Smooch *apps*, it's probably easiest for you to configure webhooks using our integrations directory.
+If you won't be managing many Smooch *apps*, it's probably easiest for you to configure webhooks via the UI using our integrations directory.
 
 Visit the [Webhook](https://app.smmoch.io/integrations/webhook) page allows you to quickly enable support for an app. Once you add turn on the feature, you'll be able to specify a target URL endpoint as well as what events you want to be notified on.
 

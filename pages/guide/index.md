@@ -6,7 +6,7 @@ layout: two-column
 
 # Smooch Docs
 
-Smooch makes it a cinch to add conversational capabilities to your product or business. In these docs you'll find everything you need to use our platform, the Smooch Conversation Cloud.
+Smooch makes it easy to add conversational capabilities to your product or business. In these docs you'll find everything you need to use our platform, the Smooch Conversation Cloud.
 
 ## What is the Smooch Conversation Cloud?
 
@@ -80,7 +80,7 @@ Smooch is committed to supporting the most messaging channels on the market with
 
 The Smooch Conversation Cloud allows you to take full advantage of the range of structured and rich message types these channels have to offer, all through one consistent and easy-to-use API. When new features are released by the channels, Smooch stays up to date and helps you take advantage of the new functionality with little or no changes to your existing code.
 
-We're constantly adding and improving our messaging channel support. While we can't talk about everything we're up to because some of our partners bind us to NDAs, you can take a look at our [public messaging channel roadmap](#channel-roadmap) to get a sense of what's coming down the pipe.
+We're constantly adding and improving our messaging channel support. You can take a look at our [public messaging channel roadmap](/guide/#channel-roadmap) to get a sense of what's coming down the pipe.
 
 ## Getting Started with Smooch
 

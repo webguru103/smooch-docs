@@ -9,11 +9,11 @@ Smooch offers SMS through integration with Twilio.
 
 ## Twilio
 
-[Twilio](https://www.twilio.com/) is an SMS messaging service. Our Twilio integration allows your users to send you text messages at your Twilio number for your to receive in any of our channels like Slack, HipChat or Help Scout. Your replies are sent back as an SMS to the user.
+[Twilio](https://www.twilio.com/) is an SMS messaging service. Our Twilio integration allows your users to send you text messages at your Twilio number for your to receive in a business system or with Webhooks. Your replies are sent back as an SMS to the user.
 
 ### Configuring Twilio
 
-You'll need a Twilio account with a phone number configured on it. A trial account is ok to test but is only good to send SMS to the phone you used while signing up. Once you've set up your Twilio account, obtain your API credentials from the Twilio account settings page and enter them into the corresponding Smooch page.
+You'll need a Twilio account with a phone number configured on it. A trial account is ok to test but is only good to send SMS to the phone you used while signing up. Once you've set up your Twilio account, obtain your API credentials from the Twilio account settings page and enter them into the [corresponding Smooch page](). **It's also possible to integrate [via the REST API](/guide/configuring-messaging-channels/#twilio-sms).**
 
 ![Enter API credentials](/images/twilio.png)
 

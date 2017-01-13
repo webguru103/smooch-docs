@@ -6,7 +6,7 @@ layout: two-column
 
 # Smooch FAQ
 
-Smooch makes it a cinch to add conversational capabilities to your product or business. In these docs you'll find everything you need to use our platform, the Smooch Conversation Cloud.
+Smooch makes it easy to add conversational capabilities to your product or business. In these docs you'll find everything you need to use our platform, the Smooch Conversation Cloud.
 
 ## Getting Started with Smooch
 

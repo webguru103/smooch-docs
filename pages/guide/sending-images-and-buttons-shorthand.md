@@ -41,6 +41,6 @@ Sending a series of quick reply messages together:
 %[dog](reply:dog)
 ```
 
-Will be displayed in Web Messenger as:
+Will be displayed in the Web Messenger as:
 
 ![quick replies](/images/reply-options.png)

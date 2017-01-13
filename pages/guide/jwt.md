@@ -6,11 +6,11 @@ layout: two-column
 
 # JSON Web Tokens (JWTs)
 
-JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A great introduction to the technology is available [here](https://jwt.io/introduction/), and a broad set of supported JWT libraries for a variety of languages and platforms is available.
+JSON Web Tokens (JWTs) are an industry standard authentication mechanism. A great introduction to the technology is available [here](https://jwt.io/introduction/), and a broad set of supported JWT libraries for a variety of languages and platforms are available.
 
 A JWT is composed of a header, a payload, and a signature. The payload contains information called claims which describe the subject to whom the token was issued.
 
-Before you can make calls to the Smooch API, you'll need to create a JWT that proves you have the authority to use the API.
+Before you can make calls to the Smooch API, you'll need to create a JWT that proves you are authorized to use the API.
 
  #### **Step 1** Generate a KEY ID and SECRET on the settings tab in the Smooch Dashboard.
 
