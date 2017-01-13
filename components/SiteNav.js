@@ -6,46 +6,47 @@ import { generateNavStructure } from '../utils/navigation';
 
 export default class extends Component {
     static propTypes = {
+        route: PropTypes.object.isRequired,
         section: PropTypes.string.isRequired
     };
 
     render() {
-        const docsNavStructure = generateNavStructure(this.props.section);
+        const {route: {path: currentPath}} = this.props;
 
-        const navItems = [
-            <NavItem eventKey={ 1 }
-                     key={ 1 }
-                     href='https://smooch.io/is/'>
-                Product
-            </NavItem>,
-            <NavItem eventKey={ 2 }
-                     key={ 2 }
-                     href='https://smooch.io/is/'>
-                Features
-            </NavItem>,
-            <NavItem eventKey={ 3 }
-                     key={ 3 }
-                     href='https://app.smooch.io/integrations'>
-                Integrations
-            </NavItem>,
-            <LinkContainer to='/'
-                           className='hidden-xs'
-                           key={ 4 }>
-                <NavItem eventKey={ 4 }>
-                    Docs
-                </NavItem>
-            </LinkContainer>,
-            <NavItem eventKey={ 5 }
-                     key={ 5 }
-                     href='https://smooch.io/customers/'>
-                Customers
-            </NavItem>,
-            <NavItem eventKey={ 6 }
-                     key={ 6 }
-                     href='http://blog.smooch.io'>
-                Blog
-            </NavItem>
+        const links = [
+            ['Guide', '/guide/', true],
+            ['API Reference', '/rest/', false],
+            ['Channels', '/guide/channel-capabilities/', true],
+            ['Changelog', '/changelog/', true, ['hidden-sm']],
+            ['FAQs', '/faq/', true]
         ];
+
+        const hasActiveLink = links.some(([_, href]) => currentPath === href); // eslint-disable-line no-unused-vars
+
+        const navItems = links.map(([label, href, isInternal, classNames=[]], index) => {
+            if (isInternal) {
+                const isActive = href === '/guide/' ?
+                    !hasActiveLink || currentPath === href :
+                    currentPath === href;
+
+                return <LinkContainer to={ href }
+                                      active={ isActive }
+                                      key={ index }
+                                      className={ classNames.join(' ') }>
+                           <NavItem eventKey={ index }>
+                               { label }
+                           </NavItem>
+                       </LinkContainer>;
+            }
+
+            return <NavItem eventKey={ index }
+                            key={ index }
+                            href={ href }>
+                       { label }
+                   </NavItem>;
+        });
+
+        const docsNavStructure = generateNavStructure(this.props.section);
 
         docsNavStructure.forEach((section, i) => {
             const subitems = section.pages.map(({path, title, internal}, j) => {
@@ -82,7 +83,7 @@ export default class extends Component {
                            <a href='https://smooch.io'><img src={ require('images/smooch_logo.svg') }
                                                             className='full-logo hidden-sm'
                                                             alt='Smooch logo' /><img src={ require('images/smooch_icon_logo.png') }
-                                                                                                                                              className='logo-only visible-sm'
+                                                                                                                                              className='logo-only visible-sm-inline'
                                                                                                                                               alt='Smooch logo' /></a>
                        </Navbar.Brand>
                        <Navbar.Toggle />
@@ -95,12 +96,13 @@ export default class extends Component {
                        </Nav>
                        <Nav pullRight>
                            <NavItem eventKey={ 7 + docsNavStructure.length + 1 }
-                                    href='https://app.smooch.io/login'>
-                               Login
+                                    href='https://smooch.io/help'>
+                               Help
                            </NavItem>
                            <NavItem eventKey={ 7 + docsNavStructure.length + 2 }
-                                    href='https://app.smooch.io/signup'>
-                               Sign up
+                                    href='https://app.smooch.io/login'
+                                    className='sign-in'>
+                               Sign in
                            </NavItem>
                        </Nav>
                    </Navbar.Collapse>

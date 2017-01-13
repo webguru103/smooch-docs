@@ -15,8 +15,6 @@ export default class ChannelCapabilitiesGrid extends Component {
     }
 
     render() {
-        // reorder this array to change the order in the grid
-
         return <div className='channel-capabilities-grid'>
                    <h1>Channel Capabilities</h1>
                    <p className='intro'>
