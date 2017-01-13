@@ -18,7 +18,7 @@ If you set that property to `NO`, then you will have to call `[Smooch handlePush
 BOOL isSmoochNotification = userInfo[SKTPushNotificationIdentifier] != nil
 ```
 
-You can find official documentation about this in the smooch header files, or in our api docs:
+You can find official documentation about this in the Smooch header files, or in our api docs:
 
 http://docs.smooch.io/api/ios/Classes/SKTSettings.html#//api/name/enableAppDelegateSwizzling, http://docs.smooch.io/api/ios/Classes/Smooch.html#//api/name/setPushToken, http://docs.smooch.io/api/ios/Classes/Smooch.html#//api/name/handlePushNotification:
 

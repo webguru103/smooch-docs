@@ -22,7 +22,7 @@ Our whispers are supported on iOS, Android, Web, SMS, Telegram, Line and e-mail.
 When choosing your audience on our whisper page, you can select ‘Current URL’ is … This will trigger the whisper when the user loads this specific URL.  
 
 ## How to send whispers to a user with a custom property like ‘VIP’?
-Smooch lets you set custom properties to your users through our web messenger or the API. You can then use those properties as a targeting option when you create your whisper.
+Smooch lets you set custom properties to your users through our Web Messenger or the API. You can then use those properties as a targeting option when you create your whisper.
 
 ## I can't seem to use 'As soon as user fits audience' rule when also using the 'platform' rule. Is this possible?
 Whispers for a specific audience can only be triggered by an event.

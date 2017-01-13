@@ -8,7 +8,7 @@ layout: two-column
 
 ## I’m trying to write a message to my users but I’m having this error: "This channel isn't linked to a Smooch user, your command has no power here!"
 
-Only channels created by smooch and having the prefix #sk- can accept the command “/sk”.  The dispatch channel that you choose on our dashboard can’t be used to answer a customer directly.
+Only channels created by Smooch and having the prefix #sk- can accept the command “/sk”.  The dispatch channel that you choose on our dashboard can’t be used to answer a customer directly.
 
 ## How does your Slack integration work?
 When you integrate Slack with Smooch, we let you designate a channel to be the "dispatch" channel.

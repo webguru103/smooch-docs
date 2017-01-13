@@ -16,7 +16,7 @@ At Smooch, we make the distinction between a messaging channel used by the end-u
 
 ## Is it possible for my end user to use many channels?
 
-Yes, Smooch offers a cross channel messaging platform and your end users or customers can reach out to you across any of the channels you have enabled and connected to Smooch. Your users can even link their identity across various messaging accounts from our web messenger. When they do this, they'll be able to keep all of their messaging apps in sync with the conversation they're having with your business.
+Yes, Smooch offers a cross channel messaging platform and your end users or customers can reach out to you across any of the channels you have enabled and connected to Smooch. Your users can even link their identity across various messaging accounts from our Web Messenger. When they do this, they'll be able to keep all of their messaging apps in sync with the conversation they're having with your business.
 
 You can also connect a known Smooch users to a messaging channel by using our API method “[Link App Users to channel](http://docs.smooch.io/rest/#link-app-user-to-channel)” http://docs.smooch.io/rest/#link-app-user-to-channel
 

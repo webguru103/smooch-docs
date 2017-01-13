@@ -6,11 +6,11 @@ layout: two-column
 
 # Facebook Messenger FAQ
 
-## A user linked a web conversation on Facebook but why doesn't Facebook display the messages he sent from the web messenger?
+## A user linked a web conversation on Facebook but why doesn't Facebook display the messages he sent from the Web Messenger?
 
 We can’t post messages to Facebook as a user (it’s a limitation of Facebook API, a Facebook user message can only be posted on Facebook). Thus, if a user posts a message on the web, even if the Facebook account is linked, the user won’t see the messages on Facebook.   
 
-However, if a user posts a message on Facebook, we synchronize the web messenger as well.  
+However, if a user posts a message on Facebook, we synchronize the Web Messenger as well.  
 
 Messages coming from your business are posted (with a notification) to the last active messaging channel and synchronized to the other messaging channels where possible.
 

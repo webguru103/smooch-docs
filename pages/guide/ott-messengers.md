@@ -10,7 +10,7 @@ Over the top (OTT) messaging channels like Viber, Telegram, LINE, WeChat and Fac
 
 ## This guide
 
-The below guides briefly introduce you to each channel, and show you how to integrate each of these channels to smooch through the dashboard UI. **It's also possible to configure these integrations [via the REST API](/guide/configuring-messaging-channels/).**
+The below guides briefly introduce you to each channel, and show you how to integrate each of these channels to Smooch through the dashboard UI. **It's also possible to configure these integrations [via the REST API](/guide/configuring-messaging-channels/).**
 
 OTT Channels:
 - [Facebook Messenger](/guide/ott-messengers/#facebook-messanger)

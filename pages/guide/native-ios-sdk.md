@@ -6,10 +6,9 @@ layout: two-column
 
 # iOS SDK
 
-## References
+## Reference
 
 - [iOS API reference](http://docs.smooch.io/api/ios/)
-- [SupportKit to Smooch upgrade guide](https://github.com/smooch/smooch-ios/releases/tag/v3.0.0)
 
 ## Adding Smooch to your app
 

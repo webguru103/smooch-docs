@@ -6,10 +6,9 @@ layout: two-column
 
 # Native Android SDK
 
-## References
+## Reference
 
 - [Android SDK reference](http://docs.smooch.io/api/android/)
-- [SupportKit to Smooch upgrade guide](https://github.com/smooch/smooch-android/releases/tag/2.0.0)
 
 ## Adding Smooch to your app
 

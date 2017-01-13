@@ -6,21 +6,21 @@ layout: two-column
 
 # Web Messenger FAQ
 
-## How can I automatically open the web messenger on my website?
+## How can I automatically open the Web Messenger on my website?
 
 You can use the function `open()` function of the Smooch Web Messenger. Simply call this function after you initialize Smooch on your web page.
 
-## How can I customize the texts that are displayed on the web messenger?
+## How can I customize the texts that are displayed on the Web Messenger?
 
-Customizing labels is easy, our [web messenger documentation](/guide/web-messenger/#strings-customization). You can find the list of all customizable strings on the [web messenger GitHub page](https://github.com/smooch/smooch-js#options)
+Customizing labels is easy, our [Web Messenger documentation](/guide/web-messenger/#strings-customization). You can find the list of all customizable strings on the [Web Messenger GitHub page](https://github.com/smooch/smooch-js#options)
 
-## How can I customize the web messenger?
+## How can I customize the Web Messenger?
 
 You have three tools for changing the appearance of the widget:
 
 1. Apply CSS styles to it directly
 2. Use our built in style selector
-3. Fork the web messenger and change whatever aspects you like.
+3. Fork the Web Messenger and change whatever aspects you like.
 
 Note that if you use CSS to change the appearance of the messenger, we can’t guarantee that a major improvement of our codebase won’t break your custom styles.
 
@@ -32,11 +32,11 @@ You can create a form on your website and pass us the info in `Smooch.init()`.
 
 On the dev console, navigate to `Application tab > Local storage > your website` and delete the line `sk_devideid`
 
-## How can I embed the web messenger in a container of my website
+## How can I embed the Web Messenger in a container of my website
 
-You can embed the web messenger by using this [function](/guide/web-messenger/#embedded-mode)
+You can embed the Web Messenger by using this [function](/guide/web-messenger/#embedded-mode)
 
-## The web messenger doesn't display well on mobile. How can I fix that?
+## The Web Messenger doesn't display well on mobile. How can I fix that?
 
 Make sure you have this code in your HTML file:
 
@@ -70,7 +70,7 @@ If you did, the image may be persisted in your cache. Refresh it and try again.
 
 ## How can I add a feature to your web messenger?
 
-Our web messenger is open-source, you can contribute on [github](https://github.com/smooch/smooch-js).
+Our Web Messenger is open-source, you can contribute on [github](https://github.com/smooch/smooch-js).
 
 ## Nothing shows up when I add Smooch script?
 
@@ -95,7 +95,7 @@ You can natively ask the customer for his email after his first message. We desi
 
 ## Do I need a mobile app to use Smooch?
 
-No, you don't necessarily need an app to use Smooch. You can use our web messenger on your website or integrate with any popular messaging app(Facebook Messenger, WeChat…).  Your team can answer your customers through different business tools like Slack, HipChat, HelpScout or Zendesk.
+No, you don't necessarily need an app to use Smooch. You can use our Web Messenger on your website or integrate with any popular messaging app(Facebook Messenger, WeChat…).  Your team can answer your customers through different business tools like Slack, HipChat, HelpScout or Zendesk.
 
 ## How do I disable the sound notifications?
 
@@ -105,6 +105,6 @@ You can follow these [instructions](/guide/web-messenger/#sound-notification) to
 
 Our [office hours](/guide/office-hours/) feature makes this a breeze.
 
-## Can I put the web messenger on two different websites, and also change the header?
+## Can I put the Web Messenger on two different websites, and also change the header?
 
 Yes, you can place the web chat on as many sites as you like. To change the header, just set a different `introductionText` property in your init call on each site.

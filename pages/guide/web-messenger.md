@@ -6,20 +6,19 @@ layout: two-column
 
 # Web Messenger
 
-The Web messenger is a highly customizable messaging widget that can be added to any Web page. smooch offers a [hosted version](https://app.smooch.io/integrations/web) of the widget. It's also possible to self-host the widget and fork it to change the appearance, branding, and/or functionality of the widget to suit your needs.
+The Web Messenger is a highly customizable messaging widget that can be added to any Web page. Smooch offers a [hosted version](https://app.smooch.io/integrations/web) of the widget. It's also possible to self-host the widget and fork it to change the appearance, branding, and/or functionality of the widget to suit your needs.
 
-The Smooch Web messenger is unique in that it allows you to seamlessly move the conversation beyond the browser session to a persistent channel like SMS, Facebook Messenger, or any of our other [OTT channels](/guide/ott-messengers/).
+The Smooch Web Messenger is unique in that it allows you to seamlessly move the conversation beyond the browser session to a persistent channel like SMS, Facebook Messenger, or any of our other [OTT channels](/guide/ott-messengers/).
 
-## References
+## Reference
 
 - [Web SDK repository and reference](https://github.com/smooch/smooch-js/)
-- [SupportKit to Smooch upgrade guide](https://github.com/smooch/smooch-js/releases/tag/2.0.0)
 
 ## Adding Smooch to your site
 
 ![Web SDK's UI](/images/web_widget.png)
 
-There are a few ways you can include the Smooch Web messenger on your web page.
+There are a few ways you can include the Smooch Web Messenger on your web page.
 
 The easiest way to get started is using the Script Tag method, but you can also include it using bower or npm.
 
@@ -295,15 +294,15 @@ Smooch.init({
 
 ### Styling the Conversation Interface
 
-The web messenger settings page allows for customization of various fields.
+The Web Messenger settings page allows for customization of various fields.
 
 <img alt="Web Messenger Settings" src="/images/web_messenger_settings.png" />
 
 #### Display Style
 
-The web messenger can be displayed as a button or as a tab. You can select the style in the web settings of the Smooch dashboard. The default style is the button mode.
+The Web Messenger can be displayed as a button or as a tab. You can select the style in the web settings of the Smooch dashboard. The default style is the button mode.
 
-With the button style web messenger, you have the option of selecting your own button icon. The image must be at least 200 x 200 pixels and must be in either JPG, PNG, or GIF format.
+With the button style Web Messenger, you have the option of selecting your own button icon. The image must be at least 200 x 200 pixels and must be in either JPG, PNG, or GIF format.
 
 #### Basic Color Customization
 

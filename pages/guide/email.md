@@ -36,7 +36,7 @@ Below are links to tutorials detailing how to set up automatic email forwarding 
 - Google Groups
 
     * 1. [Create a group](https://support.google.com/a/answer/33343)
-    * 2. [Add your smooch email address as a member of the group](https://support.google.com/groups/answer/2465464)
+    * 2. [Add your Smooch email address as a member of the group](https://support.google.com/groups/answer/2465464)
 
 - [Microsoft Exchange](https://technet.microsoft.com/en-us/library/dd351134.aspx)
 
