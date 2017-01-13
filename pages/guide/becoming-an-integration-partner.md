@@ -8,7 +8,7 @@ layout: two-column
 
 Become an integration partner to:
 
-- easily acquire API credentials from Smooch app owners [OAuth](/guide/oauth/) for your integration
+- easily acquire API credentials from Smooch app owners via [OAuth](/guide/oauth/) for your integration
 
 - place your integration in the [Smooch marketplace](https://app.smooch.io/integrations)
 
