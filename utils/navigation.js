@@ -48,5 +48,4 @@ export const generateNavStructure = (section = 'guide') => {
     });
 };
 
-// TODO : change this once going to production
-export const SITE_ROOT = process.env.NODE_ENV === 'production' ? 'http://docs.smooch.io.s3-website-us-east-1.amazonaws.com' : '';
+export const SITE_ROOT = process.env.NODE_ENV === 'production' ? 'https://docs.smooch.io' : '';
