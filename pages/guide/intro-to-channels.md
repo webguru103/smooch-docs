@@ -30,4 +30,3 @@ By unifying the APIs and feature sets of all the channels we offer, we make it p
 * For details on each of the individual channels, see the channels section of the documentation in the sidebar.
 * To integrate a channel into your app as a business visit the [marketplace](https://app.smooch.io/integrations/categories/customer-channels).
 * To integrate a channel via the REST API, see the [guide](/guide/configuring-messaging-channels/) for configuring messaging channels using the managed accounts API.
-* To see a list of upcoming channels and features, checkout the [channel roadmap](/guide/#channel-roadmap)

@@ -80,8 +80,6 @@ Smooch is committed to supporting the most messaging channels on the market with
 
 The Smooch Conversation Cloud allows you to take full advantage of the range of structured and rich message types these channels have to offer, all through one consistent and easy-to-use API. When new features are released by the channels, Smooch stays up to date and helps you take advantage of the new functionality with little or no changes to your existing code.
 
-We're constantly adding and improving our messaging channel support. You can take a look at our [public messaging channel roadmap](/guide/#channel-roadmap) to get a sense of what's coming down the pipe.
-
 ## Getting Started with Smooch
 
 We've built a few quickstart guides to help you get started with Smooch. Whether you're building messaging into your product or simply want to start engaging with your customers on a new channel, Smooch has got you covered.
@@ -93,7 +91,3 @@ We've built a few quickstart guides to help you get started with Smooch. Whether
 ## We're here to help!
 
 Need help? If you can't find the answer you're looking for in this documentation, get in touch with us by [email](mailto:help@smooch.io).
-
-<iframe id="channel-roadmap" name="channel-roadmap" src="https://ext.prodpad.com/ext/roadmap/be53ccea4c85f1c4bb13df6c18ac3736c575d704">
-  <p>Your browser does not support iframes.</p>
-</iframe>
