@@ -1,5 +1,5 @@
 ---
-title: Front FAQ
+title: Front
 section: faq
 layout: two-column
 ---

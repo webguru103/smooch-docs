@@ -1,5 +1,5 @@
 ---
-title: Other Integrations FAQ
+title: Other Integrations
 section: faq
 layout: two-column
 ---

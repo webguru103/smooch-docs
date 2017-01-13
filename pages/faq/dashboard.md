@@ -1,5 +1,5 @@
 ---
-title: Dashboard FAQ
+title: Dashboard
 section: faq
 layout: two-column
 ---

@@ -1,5 +1,5 @@
 ---
-title: Whispers FAQ
+title: Whispers
 section: faq
 layout: two-column
 ---

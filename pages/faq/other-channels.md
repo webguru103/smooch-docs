@@ -1,5 +1,5 @@
 ---
-title: Other Channels FAQ
+title: Other Channels
 section: faq
 layout: two-column
 ---

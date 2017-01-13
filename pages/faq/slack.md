@@ -1,5 +1,5 @@
 ---
-title: Slack FAQ
+title: Slack
 section: faq
 layout: two-column
 ---
