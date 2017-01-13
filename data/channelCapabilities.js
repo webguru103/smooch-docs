@@ -122,7 +122,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             carousel: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.PARTIAL
             },
             typingIndicator: {
                 send: SUPPORT_LEVEL.FULL,
@@ -171,7 +171,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             carousel: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.PARTIAL
             },
             typingIndicator: {
                 send: SUPPORT_LEVEL.NONE,
@@ -220,7 +220,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             carousel: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.PARTIAL
             },
             typingIndicator: {
                 send: SUPPORT_LEVEL.FULL,
@@ -465,7 +465,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             carousel: {
-                send: SUPPORT_LEVEL.FULL
+                send: SUPPORT_LEVEL.PARTIAL
             },
             typingIndicator: {
                 send: SUPPORT_LEVEL.NA,
@@ -563,7 +563,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             carousel: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.PARTIAL
             },
             typingIndicator: {
                 send: SUPPORT_LEVEL.NA,
