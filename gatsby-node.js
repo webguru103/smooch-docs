@@ -23,7 +23,7 @@ function generateSiteMap(pages) {
     const sitemap = sm.createSitemap({
         hostname: 'https://docs.smooch.io',
         cacheTime: '60000',
-        urls: pagesToSitemap(pages),
+        urls: pagesToSitemap(pages)
     });
 
     console.log('Generating /public/sitemap.xml');
