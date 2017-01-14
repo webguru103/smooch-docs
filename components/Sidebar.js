@@ -10,7 +10,7 @@ export default class extends Component {
     };
 
     generateSectionItems(pages) {
-        return pages.map(({path, title, internal}) => {
+        return pages.filter((p) => p).map(({path, title, internal}) => {
             const link = internal ?
                 <Link to={ path }>
                 { title }
