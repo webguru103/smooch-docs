@@ -11,6 +11,9 @@ grunt exec:buildSlateDocs > /dev/null
 mv build ../public/rest > /dev/null
 cd ..
 
+echo 'Copy iOS and Android class references'
+cp -r class-references/* public/api/ > /dev/null
+
 echo 'Publishing to S3'
 aws s3 sync public/ s3://docs.smooch.io/ --delete > $OUTPUT
 PATTERN="s3://docs.smooch.io"
