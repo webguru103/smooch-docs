@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
-import catchLinks from 'catch-links';
 
 import Page from '../components/Page';
 import TwoColumnLayout from '../components/TwoColumnLayout';
 import ThreeColumnLayout from '../components/ThreeColumnLayout';
+import catchLinks from '../lib/catch-links';
 
 export default class extends Component {
     static contextTypes = {
