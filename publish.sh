@@ -17,7 +17,7 @@ cp -r class-references/* public/api/ > /dev/null
 echo 'Publishing to S3'
 aws s3 sync public/ s3://docs.smooch.io/ --delete > $OUTPUT
 PATTERN="s3://docs.smooch.io"
-INVALIDATION_BATCH="Paths={Quantity=1,Items=[/**]},CallerReference=\"build${CIRCLE_BUILD_NUM}\""
+INVALIDATION_BATCH="Paths={Quantity=1,Items=[/*]},CallerReference=\"build${CIRCLE_BUILD_NUM}\""
 
 echo 'Invalidating Cloudfront'
 aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --invalidation-batch "${INVALIDATION_BATCH}" > /dev/null
