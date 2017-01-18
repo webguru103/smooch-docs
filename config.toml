@@ -82,6 +82,11 @@ name = "Channels"
 pages = [
     "/guide/intro-to-channels/",
     "/guide/ott-messengers/",
+    "/guide/facebook-messenger/",
+    "/guide/line/",
+    "/guide/telegram/",
+    "/guide/viber/",
+    "/guide/wechat/",
     "/guide/sms/",
     "/guide/email/",
     "/guide/web-messenger/",
