@@ -165,7 +165,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             replies: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.FULL
             },
             compoundMessages: {
                 send: SUPPORT_LEVEL.FULL
