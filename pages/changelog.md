@@ -6,6 +6,10 @@ layout: two-column
 
 # Changelog
 
+## January 19th, 2017
+
+- Added quick replies support in Android SDK [4.2.0](https://github.com/smooch/smooch-android/releases/tag/4.2.0)
+
 ## January 12th, 2017
 
 - Added the "Logs" tab to the web app, which allows you to see delivery events for messages and webhooks.
