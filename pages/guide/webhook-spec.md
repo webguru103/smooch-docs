@@ -101,7 +101,7 @@ This guide contains a description of the payloads you can expect to be sent to y
 |-------------------|-------------|-----------------------------------------------|
 | `code`            | String      | The error code associated with the error.     |
 | `underlyingError` <span class="opt">optional</span> | JSON Object | A JSON object with the error data returned by the channel a message was meant to be delivered too. |
-| `message` <span class="opt">optional</span> | JSON Object | A nested JSON object representing the message associated with the delivery failure. See the [message spec](/guide/webhook-spec/#message-spec) below for details. |
+| `message` <span class="opt">optional</span> | String | The description associated with the error. |
 
 ## source spec
 
