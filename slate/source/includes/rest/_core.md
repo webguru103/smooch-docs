@@ -412,8 +412,6 @@ smooch.webhooks.create({
 
 A webhook will make a request to the target each time a trigger associated with the webhook occurs. Triggers are specified in an optional `triggers` array in the request body. If `triggers` is not specified the webhook will be configured with the `message` trigger by default.
 
-A webhook with a `postback` trigger will be fired every time a user clicks on [an action button with type `postback`](#action-buttons).
-
 | trigger                   |                                                                |
 |---------------------------|----------------------------------------------------------------|
 | **message**<br/>*default* | all messages                                                   |
@@ -428,7 +426,13 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 
 ## Webhooks payload
 
-> Webhook example payload for `message`, `message:appMaker` and `message:appUser` triggers:
+When a webhook trigger is triggered, a `POST` request will be made to the URL configured in your webhook object along with a JSON payload.
+
+The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.
+
+### Trigger - `message:appUser` (text)
+
+> Payload:
 
 ```json
 {
@@ -438,13 +442,12 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
     },
     "messages":[{
         "_id": "55c8c1498590aa1900b9b9b1",
+        "type": "text",
         "text": "Hi! Do you have time to chat?",
         "role": "appUser",
         "authorId": "c7f6e6d6c3a637261bd9656f",
         "name": "Steve",
         "received": 1444348338.704,
-        "metadata": {},
-        "actions": [],
         "source": {
             "type": "messenger"
         }
@@ -457,25 +460,232 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "clients": [
           {
             "active": true,
-            "appVersion": "1.0",
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
             "lastSeen": "2016-03-09T19:09:01.431Z",
-            "platform": "ios",
-            "pushNotificationToken": "<...>",
-            "info": {
-              "appName": "ShellApp",
-              "devicePlatform": "x86_64",
-              "os": "iPhone OS",
-              "osVersion": "9.2"
-            }
+            "platform": "messenger"
           }
         ]
     }
 }
 ```
 
+The payload for a [text message](#text-message).
 
-> Webhook example payload for the `postback` trigger:
+### Trigger - `message:appUser` (image)
+
+> Payload:
+
+```json
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
+    "messages":[{
+        "_id": "55c8c1498590aa1900b9b9b1",
+        "type": "image",
+        "mediaUrl": "http://www.tacobueno.com/media/1338/partytacolarge.png?quality=65",
+        "role": "appUser",
+        "authorId": "c7f6e6d6c3a637261bd9656f",
+        "name": "Steve",
+        "received": 1444348338.704,
+        "source": {
+            "type": "messenger"
+        }
+    }],
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "clients": [
+          {
+            "active": true,
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "messenger"
+          }
+        ]
+    }
+}
+```
+
+The payload for an [image message](#image-message).
+
+### Trigger - `message:appMaker` (carousel)
+
+> Payload:
+
+```json
+{
+    "trigger": "message:appMaker",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
+    "messages":[{
+        "items": [
+            {
+                "title": "Tacos",
+                "description": "Beef and cheese... Mhm...",
+                "size": "large",
+                "mediaUrl": "http://www.tacobueno.com/media/1338/partytacolarge.png?quality=65",
+                "mediaType": "image/png",
+                "_id": "5887c9117e4de029005f1fc7",
+                "actions": [
+                    {
+                      "text": "Oh yeah!",
+                      "payload": "TACOS",
+                      "_id": "5887c9117e4de029005f1fc8",
+                      "type": "postback"
+                    }
+                ]
+            }
+        ],
+        "type": "carousel",
+        "role": "appMaker",
+        "received": 1485293841.303,
+        "authorId": "2cKU9zRO2DpBWgk764Tfro",
+        "avatarUrl": "https://www.gravatar.com/avatar/5e543256c480ac577d30f76f9120eb74.png?s=200&d=mm",
+        "_id": "5887c9117e4de029005f1fc6",
+        "source": {
+          "type": "api"
+        }
+  }],
+  "appUser": {
+      "_id": "c7f6e6d6c3a637261bd9656f",
+      "userId": "bob@example.com",
+      "properties": {},
+      "signedUpAt": "2015-10-06T03:38:02.346Z",
+      "clients": [
+        {
+          "active": true,
+          "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+          "lastSeen": "2016-03-09T19:09:01.431Z",
+          "platform": "messenger"
+        }
+      ]
+  }
+}
+```
+
+The payload for a [carousel message](#carousel-message).
+
+### Trigger - `message:appMaker` (list)
+
+> Payload:
+
+```json
+{
+    "trigger": "message:appMaker",
+    "app": {
+        "_id": "5698edbf2a43bd081be982f1"
+    },
+    "messages":[{
+        "items": [
+            {
+                "title": "Tacos",
+                "description": "Beef and cheese... Mhm...",
+                "size": "large",
+                "mediaUrl": "http://www.tacobueno.com/media/1338/partytacolarge.png?quality=65",
+                "mediaType": "image/png",
+                "_id": "5887c9117e4de029005f1fc7",
+                "actions": [
+                    {
+                      "text": "Oh yeah!",
+                      "payload": "TACOS",
+                      "_id": "5887c9117e4de029005f1fc8",
+                      "type": "postback"
+                    }
+                ]
+            }
+        ],
+        "actions": [
+            {
+              "text": "More Choices!",
+              "payload": "MORE",
+              "_id": "5887c9a37e4de029005f1fce",
+              "type": "postback"
+            }
+        ],
+        "type": "list",
+        "role": "appMaker",
+        "received": 1485293841.303,
+        "authorId": "2cKU9zRO2DpBWgk764Tfro",
+        "avatarUrl": "https://www.gravatar.com/avatar/5e543256c480ac577d30f76f9120eb74.png?s=200&d=mm",
+        "_id": "5887c9117e4de029005f1fc6",
+        "source": {
+          "type": "api"
+        }
+  }],
+  "appUser": {
+      "_id": "c7f6e6d6c3a637261bd9656f",
+      "userId": "bob@example.com",
+      "properties": {},
+      "signedUpAt": "2015-10-06T03:38:02.346Z",
+      "clients": [
+        {
+          "active": true,
+          "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+          "lastSeen": "2016-03-09T19:09:01.431Z",
+          "platform": "messenger"
+        }
+      ]
+  }
+}
+```
+
+The payload for a [list message](#list-message).
+
+### Trigger - `message:appUser` (location)
+
+> Payload:
+
+```json
+{
+    "trigger": "message:appUser",
+    "app": {
+        "_id": "55fafea8bf8fd41a00357805"
+    },
+    "messages": [
+        {
+            "text": "Location shared:\nhttps://maps.google.com/maps?q=45.5261583,-73.595346",
+            "authorId": "76293a38b24c5cca43e79415",
+            "received": 1485292067.601,
+            "type": "location",
+            "coordinates": {
+                "lat": 45.5261583,
+                "long": -73.595346,
+                "_id": "5887c22356c66904009ad603"
+            },
+            "role": "appUser",
+            "_id": "5887c22356c66904009ad602",
+            "source": {
+                "type": "messenger"
+            }
+        }
+    ],
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "clients": [
+          {
+            "active": true,
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "messenger"
+          }
+        ]
+    }
+}
+```
+
+The payload for when a user sends their location.
+
+### Trigger - `postback`
+
+> Payload:
 
 ```json
 {
@@ -487,11 +697,11 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
         "message": {
             "_id": "55c8c1498590aa1900b9b9b1",
             "text": "Do you want to see more options?",
+            "type": "text",
             "role": "appMaker",
             "authorId": "c7f6e6d6c3a637261bd9656f",
             "name": "LunchBot",
             "received": 1444348338.704,
-            "metadata": {},
             "source": {
                 "type": "slack"
             },
@@ -500,11 +710,6 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
                 "type": "postback",
                 "text": "Yes",
                 "payload": "YES"
-            }, {
-                "_id": "571530ee4fae94c32b78b171",
-                "type": "postback",
-                "text": "No",
-                "payload": "NO"
             }]
         },
         "action": {
@@ -524,47 +729,19 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
             "active": true,
             "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
             "lastSeen": "2016-03-09T19:09:01.431Z",
-            "platform": "telegram"
+            "platform": "messenger"
           }
         ]
     }
 }
 ```
 
+The payload for when a user taps a [postback button](#postback).<br/>
+Postbacks originating from a [persistent menu](#persistent-menus) do not have messages associated with them, and so omit the `message` property.
 
-> Webhook example payload for the `postback` trigger originating from a menu:
+### Trigger - `conversation:read`
 
-```json
-{
-    "trigger": "postback",
-    "app": {
-        "_id": "5698edbf2a43bd081be982f1"
-    },
-    "postbacks":[{
-        "action": {
-            "_id": "571530ee4fae94c32b78b170",
-            "type": "postback",
-            "text": "Read more",
-            "payload": "YES"
-        }
-    }],
-    "appUser": {
-        "_id": "c7f6e6d6c3a637261bd9656f",
-        "userId": "bob@example.com",
-        "properties": {},
-        "signedUpAt": "2015-10-06T03:38:02.346Z",
-        "clients": [
-          {
-            "active": true,
-            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
-            "lastSeen": "2016-03-09T19:09:01.431Z",
-            "platform": "telegram"
-          }
-        ]
-    }
-}
-```
-> Webhook example payload for the `conversation:read` trigger:
+> Payload:
 
 ```json
 {
@@ -582,8 +759,11 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 }
 ```
 
+The payload for when a user reads a conversation.
 
-> Webhook example payload for the `merge:appUser` trigger:
+### Trigger - `merge:appUser`
+
+> Payload:
 
 ```json
 {
@@ -603,7 +783,11 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
 }
 ```
 
-> Webhook example payload for the `delivery:success` trigger:
+The payload for when two users are merged into one.
+
+### Trigger - `delivery:success`
+
+> Payload:
 
 ```json
 {
@@ -624,21 +808,24 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
             "received": 1480001439.637,
             "name": "Danny",
             "role": "appMaker",
+            "type": "text",            
             "authorId": "5X8AJwvpy0taCkPDniC5la",
             "avatarUrl": "https://www.gravatar.com/image.jpg",
             "_id": "5837079fd84370ef2c0dcabb",
             "source": {
                 "type": "slack"
-            },
-            "items": [],
-            "actions": []
+            }
         }
     ],
     "timestamp": 1480001440.731
 }
 ```
 
-> Webhook example payload for the `delivery:failure` trigger:
+The payload for when the delivery of a message was successful.
+
+### Trigger - `delivery:failure`
+
+> Payload:
 
 ```json
 {
@@ -665,23 +852,20 @@ A webhook with a `postback` trigger will be fired every time a user clicks on [a
             "received": 1480001711.288,
             "name": "Danny",
             "role": "appMaker",
+            "type": "text",
             "authorId": "5X8AJwvpy0taCkPDniC5la",
             "avatarUrl": "https://www.gravatar.com/image.jpg",
             "_id": "583708af8d449209ba217871",
             "source": {
                 "type": "slack"
-            },
-            "items": [],
-            "actions": []
+            }
         }
     ],
     "timestamp": 1480001711.941
 }
 ```
 
-When a webhook trigger is triggered, a `POST` request will be made to the URL configured in your webhook object along with a JSON payload.
-
-The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers. Postbacks originating from a [persistent menu](#persistent-menus) do not have messages associated with them, and so omit the message property.
+The payload for when the delivery of a message fails.
 
 ## Securing a webhook
 
@@ -1437,6 +1621,7 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     "_id": "55c8c1498590aa1900b9b9b1",
     "authorId": "c7f6e6d6c3a637261bd9656f",
     "role": "appMaker",
+    "type": "text",
     "name": "Steve",
     "text": "Just put some vinegar on it",
     "avatarUrl": "https://www.gravatar.com/image.jpg",
@@ -2010,6 +2195,9 @@ There are 4 types of supported actions : **link**, **buy**, **postback**, and **
     Action buttons can only be sent with an `appMaker` role.
 </aside>
 
+### Link
+A link action will open the provided URI when tapped.
+
 > Send link action:
 
 ```shell
@@ -2036,7 +2224,7 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-| **Link**                |                            |
+|        **Arguments**         |                            |
 |------------------------------|----------------------------|
 | **text**<br/><span class='req'>required</span>     | The button text. |
 | **type**<br/><span class='req'>required</span>     | `link` |
@@ -2047,6 +2235,9 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 <aside class="notice">
     Action buttons sent to LINE must have `http` or `https` protocol or the message will not be delivered.
 </aside>
+
+### Buy
+A buy action will prompt the user to purchase an item.
 
 > Send buy action:
 
@@ -2074,7 +2265,7 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-| **Buy**                |                  |
+|  **Arguments**                |                  |
 |------------------------------|----------------------------|
 | **text**<br/><span class='req'>required</span>      | The button text. |
 | **type**<br/><span class='req'>required</span>      | `buy` |
@@ -2085,6 +2276,9 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 <aside class="notice">
 The <a href="/javascript/#stripe">Stripe integration</a> must be configured and active in order to accept buy buttons.
 </aside>
+
+### Postback
+A postback action will post the action payload to the server.
 
 > Send postback action:
 
@@ -2112,7 +2306,7 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-| **Postback**                |                  |
+|  **Arguments**                |                  |
 |------------------------------|----------------------------|
 | **text**<br/><span class='req'>required</span>      | The button text. |
 | **type**<br/><span class='req'>required</span>      | `postback` |
@@ -2122,6 +2316,10 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 <aside class="notice">
 See how to handle postback with <a href="#webhook-triggers">webhook triggers</a>.
 </aside>
+
+### Reply
+A reply action will echo the user's choice as a message.<br/>
+You may optionally specify an `iconUrl` which will render as an icon for each option.
 
 > Send reply action:
 
@@ -2138,63 +2336,6 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
     "actions": [{
         "type": "reply",
         "text": "Tacos",
-        "payload": "TACOS"
-    }, {
-        "type": "reply",
-        "text": "Burritos",
-        "payload": "BURRITOS"
-    }]
-}'
-```
-```js
-smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
-    text: 'Which do you prefer?',
-    role: 'appMaker',
-    type: 'text',
-    actions: [
-      {
-        type: 'reply',
-        text: 'Tacos',
-        payload: 'TACOS'
-      }, {
-        type: 'reply',
-        text: 'Burritos',
-        payload: 'BURRITOS'
-      }
-    ]
-}).then(() => {
-    // async code
-});
-```
-
-| **Reply**                |                  |
-|------------------------------|----------------------------|
-| **text**<br/><span class='req'>required</span>      | The button text. |
-| **type**<br/><span class='req'>required</span>      | `reply` |
-| **payload**<br/><span class='req'>required</span>    | A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs. |
-| **iconUrl**<br/><span class='opt'>optional</span>  | An icon to render next to the reply option (Facebook Messenger and Web Messenger only) |
-| **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
-
-<aside class="notice">
-`reply` type actions are mutually exclusive with other action types. When specifying a `reply` action, all other actions on the same message must also be of type `reply`, otherwise the message will be considered invalid.
-</aside>
-
-### Reply Actions with icon
-
-> Send reply actions with icon URLs:
-
-```shell
-curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
-     -X POST \
-     -H 'content-type: application/json' \
-     -H 'authorization: Bearer your-jwt'
-     -d '
-{
-    "text":"Which do you prefer?",
-    "role": "appMaker",
-    "actions": [{
-        "type": "reply",
-        "text": "Tacos",
         "iconUrl": "http://example.org/taco.png"
         "payload": "TACOS"
     }, {
@@ -2208,6 +2349,7 @@ curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
 ```js
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
     text: 'Which do you prefer?',
+    type: 'text',
     role: 'appMaker',
     actions: [
       {
@@ -2227,10 +2369,20 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-For `reply` actions you may optionally specify an `iconUrl` which will render as an icon for each option.
+|  **Arguments**                |                  |
+|------------------------------|----------------------------|
+| **text**<br/><span class='req'>required</span>      | The button text. |
+| **type**<br/><span class='req'>required</span>      | `reply` |
+| **payload**<br/><span class='req'>required</span>   | A string payload to help you identify the action context. Used when posting the reply. You can also use metadata for more complex needs. |
+| **iconUrl**<br/><span class='opt'>optional</span>   | An icon to render next to the reply option (Facebook Messenger and Web Messenger only) |
+| **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
 
 <aside class="notice">
-Icons are currrently only supported on Facebook Messenger and Web Messenger.
+`reply` type actions can be sent either alone or with [location request](#location-request) actions. If an action of a different type is included in the message, it will be rejected.
+</aside>
+
+<aside class="notice">
+Icons are currently only supported on Facebook Messenger and Web Messenger.
 </aside>
 
 **Facebook Messenger**
@@ -2239,7 +2391,50 @@ Icons are currrently only supported on Facebook Messenger and Web Messenger.
 **Web Messenger**
 ![Web Messenger reply icons](/images/web_reply_icon.png)
 
-### Share Actions
+### Location Request
+A location request action will prompt the user to share their location.
+
+> Send locationRequest action:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/messages \
+     -X POST \
+     -d '{"text":"Where are you?", "role": "appMaker", "type": "text", "actions": [{"type": "locationRequest", "text": "Send Location"}]}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'Where are you?',
+    role: 'appMaker',
+    type: 'text',
+    actions: [
+      {
+        type: 'locationRequest',
+        text: 'Send Location'
+      }
+    ]
+}).then(() => {
+    // async code
+});
+```
+
+|  **Arguments**         |                            |
+|------------------------------|----------------------------|
+| **text**<br/><span class='req'>required</span>      | The button text. |
+| **type**<br/><span class='req'>required</span>      | `locationRequest`|
+| **metadata**<br/><span class='opt'>optional</span> | Flat JSON object containing any custom properties associated with the action. |
+
+<aside class="notice">
+`locationRequest` type actions can be sent either alone or with [reply](#reply) actions. If an action of a different type is included in the message, it will be rejected.
+</aside>
+
+<aside class="notice">
+Location request actions are currently only supported on Messenger and Telegram. Other clients will receive text fallback: "YourApp has requested a location".
+</aside>
+
+### Share
+Actions in a [message item](#message-items) may also include a share button.
 
 > Send share action:
 
@@ -2279,12 +2474,9 @@ smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
 });
 ```
 
-Actions in a [message item](#message-items) may also include a share button.
-Currently, this feature is only supported in Facebook Messenger. For more information, see the Facebook Messenger platform [documentation](https://developers.facebook.com/docs/messenger-platform/send-api-reference/share-button).
-
 ![messenger carousel](/images/facebook_share_button.png)
 
-| **Share**                |                  |
+|  **Arguments**                |                  |
 |------------------------------|----------------------------|
 | **type**<br/><span class='req'>required</span>      | `share` |
 | **metadata**<br/><span class='opt'>optional</span>  | Flat JSON object containing any custom properties associated with the action. |
