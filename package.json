@@ -34,6 +34,7 @@
     "babel-preset-react": "6.16.0",
     "babel-preset-stage-1": "6.16.0",
     "bootstrap": "3.3.7",
+    "concurrently": "3.1.0",
     "eslint": "3.10.0",
     "eslint-plugin-react": "6.7.0",
     "gh-pages": "0.11.0"
@@ -46,7 +47,7 @@
   "scripts": {
     "build": "gatsby build",
     "deploy": "./publish.sh",
-    "develop": "gatsby develop",
+    "dev": "concurrently --kill-others \"gatsby develop\" \"cd slate && bundle exec middleman server --port=4567\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

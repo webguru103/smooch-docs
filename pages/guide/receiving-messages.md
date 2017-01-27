@@ -79,7 +79,7 @@ See the [webhook payload reference](http://docs.smooch.io/rest/#webhooks-payload
 
 If you won't be managing many Smooch *apps*, it's probably easiest for you to configure webhooks via the UI using our integrations directory.
 
-Visit the [Webhook](https://app.smmoch.io/integrations/webhook) page allows you to quickly enable support for an app. Once you add turn on the feature, you'll be able to specify a target URL endpoint as well as what events you want to be notified on.
+Visit the [Webhook](https://app.smooch.io/integrations/webhook) page allows you to quickly enable support for an app. Once you add turn on the feature, you'll be able to specify a target URL endpoint as well as what events you want to be notified on.
 
 ![Create a webhook](/images/create_webhook.png)
 

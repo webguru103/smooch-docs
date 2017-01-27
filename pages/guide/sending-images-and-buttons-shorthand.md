@@ -13,6 +13,7 @@ Element  | Syntax | Example
  Link button | **%\[]()** | `%[Button label](http://anyurl.com)`
  Reply button | **%\[](reply:)** |  `%[Button label](reply:PAYLOAD)`
  Postback button | **%\[](postback:)**  |  `%[Button label ](postback:PAYLOAD)`
+ Location request button | **%\[](location)** | `%[Button label](location)`
  Payment button | **$\[]()** | `$[Button label here](25.00)`
  Image | **!\[]()** | `![](http://url-of.the/image.jpg)`
 
