@@ -658,13 +658,18 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
     "type": "apn",
     "_id": "58878a8842fadcdb7b70b74c",
     "production": false,
-	"autoUpdateBadge": false
+    "autoUpdateBadge": false
   }
 }
 ```
 
 To configure an Apple Push Notification integration, call the create integration endpoint with a **base64** encoded Apple Push Notification certificate
 from the [Apple Developer Portal](https://developer.apple.com/).
+
+On MacOS or Linux you can run the following command in your terminal to base64 encode your certificate.
+
+`openssl base64 -in YOUR_CERTIFICATE.p12 | tr -d '\n'`
+
 
 | **Arguments**                                             |                                                                                |
 |-----------------------------------------------------------|--------------------------------------------------------------------------------|
@@ -699,7 +704,7 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
   "integration": {
     "_id": "5876a3d4abf286d0c0af1467",
     "type": "fcm",
-    "senderId": 1429457686312
+    "senderId": "1429457686312"
   }
 }
 ```
@@ -708,11 +713,13 @@ To configure a Firebase Cloud Messaging integration, first visit the [Firebase C
 Copy the `serverKey` and `senderId` from the `Cloud Messaging` tab in the settings of your project and call the create
 integrations endpoint with this data.
 
-| **Arguments**                                      |                                       |
-|----------------------------------------------------|---------------------------------------|
-| **type**<br/><span class='req'>required</span>     | The integration type: _fcm_.          |
-| **severKey**<br/><span class='req'>required</span> | Your server key from the fcm console. |
-| **senderId**<br/><span class='req'>required</span> | Your sender id form the fcm console.  |
+If you would like to continue using your legacy GCM `serverKey` you can also obtain it from the [Google Developer Console](https://console.developers.google.com).
+
+| **Arguments**                                       |                                        |
+|-----------------------------------------------------|----------------------------------------|
+| **type**<br/><span class='req'>required</span>      | The integration type: _fcm_.           |
+| **serverKey**<br/><span class='req'>required</span> | Your server key from the fcm console.  |
+| **senderId**<br/><span class='req'>required</span>  | Your sender id from the fcm console.   |
 
 ## List Integrations
 
