@@ -58,7 +58,7 @@ pages = [
     "/guide/authenticating-users/",
     "/guide/creating-users/",
     "/guide/linking-users-to-sms/",
-    "/guide/multi-device-users/"
+    "/guide/multi-client-users/"
 ]
 
 [subsections.managed-accounts]
