@@ -422,6 +422,7 @@ A webhook will make a request to the target each time a trigger associated with 
 | **merge:appUser**         | when two or more users are merged into one                     |
 | **delivery:success**      | when a message is successfully delivered to a customer channel |
 | **delivery:failure**      | when a message fails to be delivered to a customer channel     |
+| **payment:success**       | when a payment is successfully received from a channel         |
 | <strong>*</strong>        | when any of the above triggers occurs                          |
 
 ## Webhooks payload
@@ -808,7 +809,7 @@ The payload for when two users are merged into one.
             "received": 1480001439.637,
             "name": "Danny",
             "role": "appMaker",
-            "type": "text",            
+            "type": "text",
             "authorId": "5X8AJwvpy0taCkPDniC5la",
             "avatarUrl": "https://www.gravatar.com/image.jpg",
             "_id": "5837079fd84370ef2c0dcabb",
@@ -866,6 +867,67 @@ The payload for when the delivery of a message was successful.
 ```
 
 The payload for when the delivery of a message fails.
+
+### Trigger - `payment:success`
+
+> Payload:
+
+```json
+{
+    "trigger": "payment:success",
+    "app": {
+        "_id": "571e3496cb98b3962ce740d7"
+    },
+    "appUser": {
+        "_id": "2b15a54fde9dc2f33f88bc25"
+    },
+    "payments": [
+        {
+            "source": {
+                "type": "messenger"
+            },
+            "message": {
+                "text": "Just put some vinegar on it",
+                "actions": [
+                    {
+                        "text": "Buy vinegar",
+                        "amount": 1000,
+                        "currency": "usd",
+                        "state": "paid",
+                        "_id": "5877fd5624fe8fd934d7c2f3",
+                        "uri": "https://app.smooch.io/checkout/5877fd5624fe8fd934d7c2f3",
+                        "type": "buy"
+                    }
+                ],
+                "type": "text",
+                "role": "appMaker",
+                "received": 1484258646.823,
+                "authorId": "5X8AJwvpy0taCkPDniC5la",
+                "avatarUrl": "https://www.gravatar.com/image.jpg",
+                "_id": "5877fd5624fe8fd934d7c2f2",
+                "source": {
+                    "type": "api"
+                }
+            },
+            "action": {
+                "text": "Buy vinegar",
+                "amount": 1000,
+                "currency": "usd",
+                "state": "paid",
+                "_id": "5877fd5624fe8fd934d7c2f3",
+                "uri": "https://app.smooch.io/checkout/5877fd5624fe8fd934d7c2f3",
+                "type": "buy"
+            },
+            "charge": {
+                "id": "ch_19dPrCHQ7f2U7NYSZ45OspXT"
+            }
+        }
+    ],
+    "timestamp": 1484258666.455
+}
+```
+
+The payload for when a payment is received.
 
 ## Securing a webhook
 
