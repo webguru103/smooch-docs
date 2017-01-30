@@ -670,6 +670,20 @@ On MacOS or Linux you can run the following command in your terminal to base64 e
 
 `openssl base64 -in YOUR_CERTIFICATE.p12 | tr -d '\n'`
 
+If you are using Node.js, you can use the following code snippet to base64 encode your certificate.
+
+```js
+const fs = require('fs');
+
+fs.readFile('path/to/your/certificate.p12', function(err, data) {
+        if (err) {
+            //handle error
+        }
+
+        const base64Cert = data.toString('base64');
+        //base64Cert contains the contents of your certificate base64 encoded
+}
+```
 
 | **Arguments**                                             |                                                                                |
 |-----------------------------------------------------------|--------------------------------------------------------------------------------|
