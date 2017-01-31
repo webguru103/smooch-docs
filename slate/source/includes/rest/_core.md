@@ -46,7 +46,7 @@ Smooch APIs are subject to rate limiting.  If you exceed the limits, Smooch will
 
 ## Deprecations
 
-The "devices" array returned in the AppUser payload has been changed to "clients". In order to maintain compatibility, we will keep returning the "devices" array in v1, but in the next version it will be removed.
+The `devices` array returned in the AppUser payload has been changed to `clients`. In order to maintain compatibility, we will keep returning the `devices` array in v1, but in the next version it will be removed.
 
 # Authorization
 
@@ -422,6 +422,7 @@ A webhook will make a request to the target each time a trigger associated with 
 | **merge:appUser**         | when two or more users are merged into one                     |
 | **delivery:success**      | when a message is successfully delivered to a customer channel |
 | **delivery:failure**      | when a message fails to be delivered to a customer channel     |
+| **payment:success**       | when a payment is successfully received from a channel         |
 | <strong>*</strong>        | when any of the above triggers occurs                          |
 
 ## Webhooks payload
@@ -808,7 +809,7 @@ The payload for when two users are merged into one.
             "received": 1480001439.637,
             "name": "Danny",
             "role": "appMaker",
-            "type": "text",            
+            "type": "text",
             "authorId": "5X8AJwvpy0taCkPDniC5la",
             "avatarUrl": "https://www.gravatar.com/image.jpg",
             "_id": "5837079fd84370ef2c0dcabb",
@@ -866,6 +867,67 @@ The payload for when the delivery of a message was successful.
 ```
 
 The payload for when the delivery of a message fails.
+
+### Trigger - `payment:success`
+
+> Payload:
+
+```json
+{
+    "trigger": "payment:success",
+    "app": {
+        "_id": "571e3496cb98b3962ce740d7"
+    },
+    "appUser": {
+        "_id": "2b15a54fde9dc2f33f88bc25"
+    },
+    "payments": [
+        {
+            "source": {
+                "type": "messenger"
+            },
+            "message": {
+                "text": "Just put some vinegar on it",
+                "actions": [
+                    {
+                        "text": "Buy vinegar",
+                        "amount": 1000,
+                        "currency": "usd",
+                        "state": "paid",
+                        "_id": "5877fd5624fe8fd934d7c2f3",
+                        "uri": "https://app.smooch.io/checkout/5877fd5624fe8fd934d7c2f3",
+                        "type": "buy"
+                    }
+                ],
+                "type": "text",
+                "role": "appMaker",
+                "received": 1484258646.823,
+                "authorId": "5X8AJwvpy0taCkPDniC5la",
+                "avatarUrl": "https://www.gravatar.com/image.jpg",
+                "_id": "5877fd5624fe8fd934d7c2f2",
+                "source": {
+                    "type": "api"
+                }
+            },
+            "action": {
+                "text": "Buy vinegar",
+                "amount": 1000,
+                "currency": "usd",
+                "state": "paid",
+                "_id": "5877fd5624fe8fd934d7c2f3",
+                "uri": "https://app.smooch.io/checkout/5877fd5624fe8fd934d7c2f3",
+                "type": "buy"
+            },
+            "charge": {
+                "id": "ch_19dPrCHQ7f2U7NYSZ45OspXT"
+            }
+        }
+    ],
+    "timestamp": 1484258666.455
+}
+```
+
+The payload for when a payment is received.
 
 ## Securing a webhook
 
@@ -941,13 +1003,13 @@ smooch.appUsers.init({
 
 <api>`POST /v1/init`</api>
 
-This API is called by a mobile device or browser when the app is first loaded. It serves a number of purposes:
+This API is called by an iOS, Android, or browser client when the app is first loaded. It serves a number of purposes:
 
-1. Initializes a new `appUser` and `device` if they don't yet exist
-1. Updates an existing app user's profile and device information
+1. Initializes a new `appUser` and `client` if they don't yet exist
+1. Updates an existing app user's profile and client information
 1. Authenticates the `appUser` if `jwt` credentials are provided
 
-The API requires that a `device` be specified at the very minimum. A `userId` may also be specified to [link app user accounts across devices](/#users-on-multiple-devices).
+The API requires that a `device` parameter be specified at the very minimum. A `userId` may also be specified to [link app user accounts across multiple clients](/guide/multi-client-users).
 
 The API responds with an `appUser` object. The `appUser` includes an `_id` that can be used to make further API calls on behalf of that user. If the `userId` and/or `device.id` are seen for the first time a new `appUser` will be created. If not, the existing `appUser` be returned.
 
@@ -956,18 +1018,20 @@ An `app` object is also returned which includes metadata about the app, such as 
 | **Arguments**               |   |
 |-----------------------------|---|
 | **device**<br/><span class='req'>required</span> | A descriptor of the user's device. See below. |
-| **userId**<br/><span class='opt'>optional</span> | A unique identifier for the app user. Unlike the `smoochId` which is generated by Smooch, the `userId` is chosen by the API consumer. The `userId` can be used to link a user to the same conversation [across multiple devices](/#users-on-multiple-devices).|
+| **userId**<br/><span class='opt'>optional</span> | A unique identifier for the app user. Unlike the `smoochId` which is generated by Smooch, the `userId` is chosen by the API consumer. The `userId` can be used to link a user to the same conversation [across multiple clients](/guide/multi-client-users).|
 
 <aside class="warning">
 **Caution:** If you're specifying a `userId` then in order to keep conversations private we strongly suggest [authenticating your users](/#authenticating-users-optional). If a `userId` is used without a JWT credential, then anyone who can discover a user's `userId` could potentially eavesdrop on the conversation.
 </aside>
 
-## Device
+## Devices are a type of client
 
-If a `userId` is used when calling `/v1/init`, then devices and app users may have a many-to-many relationship. A single `userId` may use Smooch from multiple devices and multiple different `userId`s may log in to the same device.
+Smooch uses the term `client` to refer generally to means by which a user can send and receive messages. This includes 3rd party accounts such as a connected Facebook Messenger account, however the init API specifically deals with registration and identification of iOS, Android and Web devices, which become persisted as one or many clients connected to a single user.
+
+If a `userId` is used when calling `/v1/init`, then clients and app users may have a many-to-many relationship. A single `userId` may use Smooch from multiple clients and multiple different `userId`s may log in to the same device.
 
 <aside class="notice">
-*Note:* Only one `userId` can be active on a given device at a time. On a device that's shared between multiple `userId`s, only the most recent `userId` to have called `/v1/init` will receive push notifications from the integrated application on that device.
+*Note:* Only one `userId` can be active on a given client at a time. On a push notification capable client that's shared between multiple `userId`s, only the most recent `userId` to have called `/v1/init` will receive push notifications from the integrated application on that client.
 </aside>
 
 | **`device` arguments**      |   |
@@ -1001,7 +1065,7 @@ The `device` object may also accept a flat `info` JSON object. Device informatio
 The API will respond with the `_id` of the app user in question, which can then be used to make API calls to the conversation API. The response will also include any profile information that was previously set for the app user, including custom properties.
 
 <aside class="notice">
-In some scenarios, the `appUser._id` returned in an app boot call may change. This is possible for example when the `userId` is being used to log a user in on multiple devices, which may cause two distinct app users to merge together. The caller should always check if the returned `appUser._id` has changed, and re-fetch conversation history whenever appropriate.
+In some scenarios, the `appUser._id` returned in an app boot call may change. This is possible for example when the `userId` is being used to log a user in on multiple clients, which may cause two distinct app users to merge together. The caller should always check if the returned `appUser._id` has changed, and re-fetch conversation history whenever appropriate.
 </aside>
 
 # App User
@@ -1012,7 +1076,7 @@ The `/v1/appusers` path gives you APIs that can be used to update the user's pro
 
 ### userId
 
-App users may be created with an optional `userId` parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple devices. To understand how this works, see the section covering [users on multiple devices](/#users-on-multiple-devices).
+App users may be created with an optional `userId` parameter. This is a unique identifier that is chosen by the API consumer and it can be used to synchronize a single conversation across multiple clients. To understand how this works, see the section covering [users on multiple clients](/guide/multi-client-users).
 
 <aside class="notice">
 If a `userId` has been specified for a given app user, it can be used in place of the `appUser._id` in any `/v1/appusers/` API path.
@@ -1287,7 +1351,7 @@ smooch.appUsers.create('steveb@channel5.com', {
 
 | **Arguments**                 |                            |
 |-------------------------------|----------------------------|
-| **userId**<br/><span class='req'>required</span>     | A unique identifier for the app user. The `userId` can be used to link a user to the same conversation [across multiple devices](/#users-on-multiple-devices).|
+| **userId**<br/><span class='req'>required</span>     | A unique identifier for the app user. The `userId` can be used to link a user to the same conversation [across multiple clients](/guide/multi-client-users).|
 | **credentialRequired**<br/><span class='opt'>optional</span> | Default is `false`. Set to `true` to ensure that the created app user requires a `jwt` credential. See [authenticating your users](/#authenticating-users-optional) for more information.
 | **givenName**<br/><span class='opt'>optional</span>  | The user's given name (first name). |
 | **surname**<br/><span class='opt'>optional</span>    | The user's surname (last name). |
@@ -1295,12 +1359,12 @@ smooch.appUsers.create('steveb@channel5.com', {
 | **signedUpAt**<br/><span class='opt'>optional</span> | The date at which the user signed up. Must be ISO 8601 time format (`YYYY-MM-DDThh:mm:ss.sssZ`) |
 | **properties**<br/><span class='opt'>optional</span> | A flat JSON object containing custom defined user properties. |
 
-In the vast majority of cases app users will be created from the device or browser using the [init API](#init). In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A `userId` must be specified so that a future `init` call made from a device can use the same `userId` to link the device to the pre-created app user.
+In the vast majority of cases app users will be created from the device or browser registered using the [init API](#init). In some cases however it might be necessary to pre-create an app user object before that user runs your app for the first time. This API facilitates this scenario. A `userId` must be specified so that a future `init` call made from a device can use the same `userId` to link the device to the pre-created app user.
 
 Suppose for example you begin a conversation with an end user `bob@example.com` over email and you wish to transfer this conversation history over into Smooch once that user logs in to your app. To facilitate this, you can call `POST /v1/appusers` to pre-create a Smooch identity with `userId` `bob@example.com`, to which you can import that existing conversation history. After Bob signs in to your app and your app calls `init` with the same `userId`, they will see their conversation history.
 
 <aside class="notice">
-Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user device or from a browser. It requires a `jwt` credential with `app` level scope.
+Unlike the other App User APIs in this section, this endpoint is not intended to be called from an end user's device or from a browser. It requires a `jwt` credential with `app` level scope.
 </aside>
 
 ## Get App User Channel Entities

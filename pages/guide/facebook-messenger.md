@@ -21,7 +21,32 @@ Once your Facebook account is connected to Smooch, select the Facebook page you 
 
 Action buttons work as expected. A `link` action button will bring the user to the specified URL while a `postback` action button will trigger any [webhook](https://docs.smooch.io/rest/#webhooks) listening to the `postback` trigger.
 
-Because of new [Facebook terms of service](https://developers.facebook.com/policy/#messengerplatform), payment requests (action buttons of type `buy`) cannot currently be sent to Messenger.
+#### Payments
+
+![Facebook Messenger Payments](/images/messenger_payments.png)
+
+You can request a one time payment from your users on Facebook messenger by sending a Buy button, either via our
+[button syntax](https://docs.smooch.io/guide/sending-images-and-buttons-shorthand/) or the [Post Message API](https://docs.smooch.io/rest/#action-buttons). Payments support is native on Facebook Messenger and payments processing goes through their own payment gateway instead of our [Stripe integration](https://docs.smooch.io/guide/stripe-payments/) which is used for all other customer channels. You can learn more about Facebook Payments [here](https://developers.facebook.com/docs/messenger-platform/complete-guide/payments).
+
+##### Setup
+
+To send a payment request, you'll first need to be approved into Facebook Payments's beta program. Facebook is giving select US-based partners the opportunity to collect payments from customers over Messenger.
+
+If you wish to apply, please [contact us](https://smooch.formstack.com/forms/payments_beta?appId=55cb872e5a894f190062fddd) and we’ll reach out to Facebook to open up payments for your account.
+
+##### Send Buy Buttons
+
+You can send Buy buttons either via the `$[label](9.99)` syntax or by including Buy actions in your call to the [Post Message API](https://docs.smooch.io/rest/#action-buttons).
+
+Buy buttons can be combined with a text message, other actions, an image and/or in a [list](https://docs.smooch.io/rest/#list-message) or [carousel](https://docs.smooch.io/rest/#carousel-message) message type.
+
+Facebook limits messages to contain only one buy button per list item and they must be in the first position.
+
+##### Currency limitation
+
+If you are using our Stripe integration to power payments on other channels, enabling Facebook payment will force your default currency to USD since Facebook Payments only support USD at the moment.
+
+The default currency is automatically selected when using the [button syntax](https://docs.smooch.io/guide/sending-images-and-buttons-shorthand/). When using the [Post Message API](https://docs.smooch.io/rest/#action-buttons) you can specify the currency for each call. However if that message needs to be delivered to Messenger, it will be rejected.
 
 ### Persistent Menu
 
