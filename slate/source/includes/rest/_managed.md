@@ -666,31 +666,24 @@ curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
 To configure an Apple Push Notification integration, call the create integration endpoint with a **base64** encoded Apple Push Notification certificate
 from the [Apple Developer Portal](https://developer.apple.com/).
 
-On MacOS or Linux you can run the following command in your terminal to base64 encode your certificate.
-
-`openssl base64 -in YOUR_CERTIFICATE.p12 | tr -d '\n'`
-
-If you are using Node.js, you can use the following code snippet to base64 encode your certificate.
-
-```js
-const fs = require('fs');
-
-fs.readFile('path/to/your/certificate.p12', function(err, data) {
-        if (err) {
-            //handle error
-        }
-
-        const base64Cert = data.toString('base64');
-        //base64Cert contains the contents of your certificate base64 encoded
-}
-```
-
 | **Arguments**                                             |                                                                                |
 |-----------------------------------------------------------|--------------------------------------------------------------------------------|
 | **type**<br/><span class='req'>required</span>            | The integration type: _apn_.                                                   |
 | **certificate**<br/><span class='req'>required</span>     | The binary of your APN certificate base64 encoded.                             |
 | **password**<br/><span class='opt'>optional</span>        | The password for your APN certificate.                                         |
 | **autoUpdateBadge**<br/><span class='opt'>optional</span> | Use the unread count of the conversation as the application badge. _true/false_|
+
+To base64 encode your certificate you can use this command in the terminal:
+<api>`openssl base64 -in YOUR_CERTIFICATE.p12 | tr -d '\n'`</api>
+
+<div class="snippet">
+In Node.js:
+<pre>
+fs.readFile('path/to/your/certificate.p12', function(err, data) {
+    const base64Cert = data.toString('base64');
+})
+</pre>
+</div>
 
 ## Firebase Cloud Messaging
 
