@@ -617,3 +617,28 @@ span.opt {
     font-weight: lighter;
     margin-bottom: -1em;
 }
+
+.content .snippet {
+    padding: 0 42px;
+    margin-right: 50%;
+
+    pre {
+        display: block;
+        background: #eaeaea;
+        padding: 0.8em 20px;
+        text-shadow: none;
+        border: 1px solid #912d8d;
+        border-radius: 3px;
+        border: none;
+        float: none;
+        color: #464646;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: $phone-width) {
+    .content .snippet {
+        margin: 0;
+    }
+}

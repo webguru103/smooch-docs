@@ -6,6 +6,16 @@ layout: two-column
 
 # Changelog
 
+## January 27th, 2017
+
+- Added location request API. [Learn More](https://docs.smooch.io/rest/#location-request)
+- Added support for receiving user's location. [Learn more](https://docs.smooch.io/rest/#trigger---code-classprettyprintmessageappusercode-location)
+- Added Facebook Messenger Payments support. [Learn More](https://docs.smooch.io/guide/facebook-messenger/)
+- Added new `payment:success` webhook. [Lean more](https://docs.smooch.io/rest/#trigger---code-classprettyprintpaymentsuccesscode)
+- Added iOS and Android Push notification configuration API.
+  - [iOS](https://docs.smooch.io/rest/#apple-push-notification)
+  - [Android](https://docs.smooch.io/rest/#firebase-cloud-messaging)
+
 ## January 19th, 2017
 
 - Added quick replies support in Android SDK [4.2.0](https://github.com/smooch/smooch-android/releases/tag/4.2.0)
@@ -16,7 +26,7 @@ layout: two-column
 
 ## January 3rd, 2017
 
-- Added quick replies support in iOS SDK [5.4.0](https://github.com/smooch/smooch-ios/releases/tag/5.4.0) 
+- Added quick replies support in iOS SDK [5.4.0](https://github.com/smooch/smooch-ios/releases/tag/5.4.0)
 
 ## January 2nd, 2017
 
