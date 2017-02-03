@@ -38,7 +38,7 @@ We wrote our server in Node.js and used a service called [ngrok](https://ngrok.c
 
 ## Create a webhook
 
-Once your server is listening for requests, create a webhook from the [dashboard](https://app.smooch.io/integrations/webhook). In the webhook URL field, enter the full URL for your /messages endpoint (e.g. https://https://MY-NGROK-DOMAIN.ngrok.io/messages ). Pick "App User Messages" as the trigger.
+Once your server is listening for requests, create a webhook from the [dashboard](https://app.smooch.io/integrations/webhook). In the webhook URL field, enter the full URL for your /messages endpoint (e.g. https://MY-NGROK-DOMAIN.ngrok.io/messages). Pick "App User Messages" as the trigger.
 
 ![Create a webhook](/images/create_webhook.png)
 
