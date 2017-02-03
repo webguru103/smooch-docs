@@ -46,7 +46,7 @@ As soon as you "Confirm and Save", you'll be able to inspect the messages you're
 
 ## Authorization
 
-To send an answer back, we'll need to call the Smooch REST API. Smooch provides the smooch-core package for Node.js (available via npm).
+To send an answer back, we'll need to call the Smooch REST API. Smooch provides the [smooch-core package for Node.js](https://www.npmjs.com/package/smooch-core) (available via npm).
 
 The smooch-core package will handle creating an app scope JWT and authenticating calls to the REST API.
 
