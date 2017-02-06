@@ -48,6 +48,26 @@ If you are using our Stripe integration to power payments on other channels, ena
 
 The default currency is automatically selected when using the [button syntax](https://docs.smooch.io/guide/sending-images-and-buttons-shorthand/). When using the [Post Message API](https://docs.smooch.io/rest/#action-buttons) you can specify the currency for each call. However if that message needs to be delivered to Messenger, it will be rejected.
 
+### Carousel
+
+Messenger offers full support for carousels which allows you to send a set of horizontally scrollable items that combines text, image and action buttons. 
+
+![Carousel example](http://blog.smooch.io/content/images/2016/08/carousel_demo.gif)
+
+You can send carousels containing up to 10 items via the [Post Message API](https://docs.smooch.io/rest/#carousel-message). Note that reply and location buttons are not allowed in a carousel. 
+
+### List
+
+Messenger also has full support for list messages. List messages are a vertically scrollable set of items that may each contain text, an image, and an action button.
+
+![List example](https://docs.smooch.io/rest/images/list_messenger.png)
+
+You can send list messages containing up to 10 items via the [Post Message API](https://docs.smooch.io/rest/#list-message). Note that each items in a list can only contain 1 button ([Link](https://docs.smooch.io/rest/#link), [Buy](https://docs.smooch.io/rest/#buy), [Postback](https://docs.smooch.io/rest/#postback) & [Share](https://docs.smooch.io/rest/#share) are the only allowed action types). Each item also supports a default action. Using this, you can enable people to open a URL when the row of the list item is tapped.
+
+List messages can also append 1 action button at the bottom of the list. For example, you can use this extra action to let users see more items as shown above (More choices).
+
+
+
 ### Persistent Menu
 
 ![Facebook Messenger Persistent Menu](/images/messenger_menu.png)

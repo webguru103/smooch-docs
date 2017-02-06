@@ -355,7 +355,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             buy: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.FULL
             },
             postback: {
                 send: SUPPORT_LEVEL.FULL
