@@ -163,43 +163,6 @@ The truncated appUser is a partial selection of properties from the appUser mode
 | `lastSeen`                                     | String      | A datetime string with the format **yyyy-mm-ddThh:mm:ssZ** representing the last time the appUser sent a message, or launched a client like Web, Android, or iOS.  |
 | `platform`                                     | String      | Includes one of `"web"`, `"ios"`, `"android"`, `"messenger"`, `"viber"`, `"telegram"`, `"wechat"`, `"line"`, `"twilio"`, and `"frontendEmail"`, `"other"`, or any number of other platforms. |
 | `id`                                           | String      | A unique identifier for a device if on Web, iOS, or Android, or a client on other channels.                                                                                                                          |
-| `info` <span class="opt">optional</span>       | JSON Object | A nested flat JSON Object With information particular to the client platform. See the [client info schema](/guide/webhook-schema/#client-info-schema) below for details.                  |
+| `info` <span class="opt">optional</span>       | JSON Object | A flat Object with raw properties that vary for each client platform. All keys are optionals and not guaranteed to be available.                  |
 | `appVersion` <span class="opt">optional</span> | String      | For the SDK in a native app, signifies the version of the app.                                                                                  |
 | `linkedAt` <span class="opt">optional</span>   |             | If the channel was linked to a pre-existing appUser, a timestamp signifying when the linking occurred. Formatted as **yyyy-mm-ddThh:mm:ssZ**   |
-
-## client info schema
-
-Client info is highly variable, but when available can be found in the following fields.
-
-| Field                   | Type   | Description                                              |
-|-------------------------|--------|----------------------------------------------------------|
-| `sdkVersion` <span class="opt">optional</span>             | String | Available on `"web"`, `"ios"`, and `"android"` platforms |
-| `currentTitle` <span class="opt">optional</span>           | String | Available on `"web"` platform                            |
-| `currentUrl` <span class="opt">optional</span>             | String | Available on `"web"` platform                            |
-| `browserLanguage` <span class="opt">optional</span>        | String | Available on `"web"` platform                            |
-| `referrer` <span class="opt">optional</span>               | String | Available on `"web"` platform                            |
-| `userAgent` <span class="opt">optional</span>              | String | Available on `"web"` platform                            |
-| `URL` <span class="opt">optional</span>                    | String | Available on `"web"` platform                            |
-| `wifi` <span class="opt">optional</span>                   | String | Available on `"ios"`, and `"android"` platforms          |
-| `os` <span class="opt">optional</span>                     | String | Available on `"ios"`, and `"android"` platforms          |
-| `appName` <span class="opt">optional</span>                | String | Available on `"ios"`, and `"android"` platforms          |
-| `osVersion` <span class="opt">optional</span>              | String | Available on `"ios"`, and `"android"` platforms          |
-| `installer` <span class="opt">optional</span>              | String | Available on `"ios"`, and `"android"` platforms          |
-| `devicePlatform` <span class="opt">optional</span>         | String | Available on `"ios"`, and `"android"` platforms          |
-| `buildNumber` <span class="opt">optional</span>            | String | Available on `"ios"`, and `"android"` platforms          |
-| `carrier` <span class="opt">optional</span>                | String | Available on `"ios"`, and `"android"` platforms          |
-| `appId` <span class="opt">optional</span>                  | String | Available on `"ios"`, and `"android"` platforms          |
-| `radioAccessTechnology` <span class="opt">optional</span>  | String | Available on `"ios"`, and `"android"` platforms          |
-| `avatarUrl` <span class="opt">optional</span>              | String | Available on `"messenger"` platform                      |
-| `openid` <span class="opt">optional</span>                 | String | Available on `"wechat"` platform                         |
-| `sex` <span class="opt">optional</span>                    | String | Available on `"wechat"` platform                         |
-| `language` <span class="opt">optional</span>               | String | Available on `"wechat"` platform                         |
-| `city` <span class="opt">optional</span>                   | String | Available on `"wechat"` platform                         |
-| `province` <span class="opt">optional</span>               | String | Available on `"wechat"` platform                         |
-| `country` <span class="opt">optional</span>                | String | Available on `"wechat"` platform                         |
-| `headimgurl` <span class="opt">optional</span>             | String | Available on `"wechat"` platform                         |
-| `subscribe_time` <span class="opt">optional</span>         | Number | Available on `"wechat"` platform                         |
-| `phoneNumber` <span class="opt">optional</span>            | String | Available on `"twilio"` platform                         |
-| `country` <span class="opt">optional</span>                | String | Available on `"twilio"` platform                         |
-| `city` <span class="opt">optional</span>                   | String | Available on `"twilio"` platform                         |
-| `state` <span class="opt">optional</span>                  | String | Available on `"twilio"` platform                         |
