@@ -355,7 +355,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.FULL
             },
             buy: {
-                send: SUPPORT_LEVEL.NONE
+                send: SUPPORT_LEVEL.FULL
             },
             postback: {
                 send: SUPPORT_LEVEL.FULL
@@ -375,7 +375,7 @@ const channelData = {
             },
             readIndicator: {
                 send: SUPPORT_LEVEL.NONE,
-                receive: SUPPORT_LEVEL.NONE
+                receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL
         }
@@ -571,7 +571,7 @@ const channelData = {
             },
             readIndicator: {
                 send: SUPPORT_LEVEL.NA,
-                receive: SUPPORT_LEVEL.NONE
+                receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL
         }

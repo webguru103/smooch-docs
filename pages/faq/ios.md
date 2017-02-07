@@ -50,3 +50,7 @@ Read more about this in our [documentation](/guide/native-ios-sdk/#styling-the-c
 ## Is it possible to switch between app tokens during a session?
 
 Currently, we don’t provide support for switching between app tokens during the same application session. You can however switch users during the same session. (by calling smooch.login with a different userId)
+
+## Xcode build fails with `Library not loaded: @rpath/Frameworks/Smooch.framework`. How can I fix this ?
+
+In your project build settings, make sure `Runtime Search Paths (LD_RUNPATH_SEARCH_PATHS)` is set to `$(inherited), @executable_path/Frameworks`.

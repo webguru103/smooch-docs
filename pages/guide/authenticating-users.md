@@ -7,7 +7,7 @@ layout: two-column
 # Authenticating Users
 
 
-Provided you're [assigning `userId`s to your users](/guide/multi-device-users/), you can authenticate users to Smooch by issuing signed [JSON web token](http://jwt.io) (JWT) credentials. This option requires your app to be connected to your own secure web service. There are JWT libraries available supporting a wide variety of popular languages and platforms.
+Provided you're [assigning `userId`s to your users](/guide/multi-client-users/), you can authenticate users to Smooch by issuing signed [JSON web token](http://jwt.io) (JWT) credentials. This option requires your app to be connected to your own secure web service. There are JWT libraries available supporting a wide variety of popular languages and platforms.
 
 To issue JWTs:
 

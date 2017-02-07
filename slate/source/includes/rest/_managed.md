@@ -631,6 +631,103 @@ To configure an Email integration, simply call the Create Integration endpoint w
 | **type**<br/><span class='req'>required</span> | The integration type: _frontendEmail_. |
 | **fromAddress**<br/><span class='opt'>optional</span> | Email will display as coming from this address. |
 
+## Apple Push Notification
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
+     -X POST \
+     -d '{"type": "apn", "certificate": "HjkUD4rWvZj7wSDzA8Hu2hd7ICs274Z=="}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-account-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "integration": {
+    "type": "apn",
+    "_id": "58878a8842fadcdb7b70b74c",
+    "production": false,
+    "autoUpdateBadge": false
+  }
+}
+```
+
+To configure an Apple Push Notification integration, call the create integration endpoint with a **base64** encoded Apple Push Notification certificate
+from the [Apple Developer Portal](https://developer.apple.com/).
+
+| **Arguments**                                             |                                                                                |
+|-----------------------------------------------------------|--------------------------------------------------------------------------------|
+| **type**<br/><span class='req'>required</span>            | The integration type: _apn_.                                                   |
+| **certificate**<br/><span class='req'>required</span>     | The binary of your APN certificate base64 encoded.                             |
+| **password**<br/><span class='opt'>optional</span>        | The password for your APN certificate.                                         |
+| **autoUpdateBadge**<br/><span class='opt'>optional</span> | Use the unread count of the conversation as the application badge. _true/false_|
+
+To base64 encode your certificate you can use this command in the terminal:
+<api>`openssl base64 -in YOUR_CERTIFICATE.p12 | tr -d '\n'`</api>
+
+<div class="snippet">
+In Node.js:
+<pre>
+fs.readFile('path/to/your/certificate.p12', function(err, data) {
+    const base64Cert = data.toString('base64');
+})
+</pre>
+</div>
+
+## Firebase Cloud Messaging
+
+> Request:
+
+```shell
+curl https://api.smooch.io/v1/apps/55c8d9758590aa1900b9b9f6/integrations \
+     -X POST \
+     -d '{"type": "fcm", "serverKey": "AAAA_hSf4g2J2Q3zDh2DbvSh27dhKlm2", "senderId": "1429457686312"}' \
+     -H 'content-type: application/json' \
+     -H 'authorization: Bearer your-account-token'
+```
+
+```javascript
+// These endpoints are not currently wrapped in a JavaScript lib
+```
+
+> Response:
+
+```
+201 CREATED
+```
+```json
+{
+  "integration": {
+    "_id": "5876a3d4abf286d0c0af1467",
+    "type": "fcm",
+    "senderId": "1429457686312"
+  }
+}
+```
+
+To configure a Firebase Cloud Messaging integration, first visit the [Firebase Console](https://console.firebase.google.com/).
+Copy the `serverKey` and `senderId` from the `Cloud Messaging` tab in the settings of your project and call the create
+integrations endpoint with this data.
+
+If you would like to continue using your legacy GCM `serverKey` you can also obtain it from the [Google Developer Console](https://console.developers.google.com).
+
+| **Arguments**                                       |                                        |
+|-----------------------------------------------------|----------------------------------------|
+| **type**<br/><span class='req'>required</span>      | The integration type: _fcm_.           |
+| **serverKey**<br/><span class='req'>required</span> | Your server key from the fcm console.  |
+| **senderId**<br/><span class='req'>required</span>  | Your sender id from the fcm console.   |
+
 ## List Integrations
 
 > Request:

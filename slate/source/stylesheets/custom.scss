@@ -229,7 +229,7 @@ body {
   text-shadow: none;
   padding-top: 1em;
   padding-bottom: 1em;
-  background: none;  
+  background: none;
   clear: both;
 }
 
@@ -342,6 +342,14 @@ beta:after {
   font-size: 13px;
   line-height: 1.6;
   margin-bottom: 1.4em;
+}
+
+h3 > code {
+  font-size: 16px !important;
+}
+
+h2 > code {
+  font-size: 22px !important;
 }
 
 .content code {
@@ -608,4 +616,29 @@ span.opt {
     color: #a3a3a3;
     font-weight: lighter;
     margin-bottom: -1em;
+}
+
+.content .snippet {
+    padding: 0 42px;
+    margin-right: 50%;
+
+    pre {
+        display: block;
+        background: #eaeaea;
+        padding: 0.8em 20px;
+        text-shadow: none;
+        border: 1px solid #912d8d;
+        border-radius: 3px;
+        border: none;
+        float: none;
+        color: #464646;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: $phone-width) {
+    .content .snippet {
+        margin: 0;
+    }
 }

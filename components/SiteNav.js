@@ -25,9 +25,11 @@ export default class extends Component {
 
         const navItems = links.map(([label, href, isInternal, classNames=[]] , index) => {
             if (isInternal) {
-                const isActive = href === '/guide/' ?
-                    !hasActiveLink || currentPath === href :
-                    currentPath === href;
+                let isActive = currentPath === href;
+
+                if (!hasActiveLink) {
+                    isActive = currentPath.startsWith(href);
+                }
 
                 return <LinkContainer to={ href }
                                       active={ isActive }
