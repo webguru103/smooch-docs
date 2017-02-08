@@ -44,7 +44,6 @@ To issue JWTs:
 
 1. Specify the JWT when calling `login` on the client:
 
-
     Objective-C:
     ```objective_c
     [Smooch login:yourUserId jwt:yourJwt];

@@ -26,9 +26,9 @@ http://docs.smooch.io/api/ios/Classes/SKTSettings.html#//api/name/enableAppDeleg
 
 The iOS SDK provides [a method](http://docs.smooch.io/api/ios/Classes/Smooch.html#//api/name/newConversationViewController) to present Smooch in a custom ViewController.
 
-## How do I capture a tap on the send button of the iOS SDK?
+## How can I perform custom handling when a message action button is tapped?
 
-The delegate method `shouldHandleMessageAction` can be fired so that you can intercept this event. Read more about it in the [iOS SDK Reference](http://docs.smooch.io/api/ios/Protocols/SKTConversationDelegate.html#//api/name/conversation:shouldHandleMessageAction)
+The delegate method `conversation:shouldHandleMessageAction:` is called whenever a user taps an `SKTMessageAction`. You can perform custom handling in this method, and return `false` to cancel Smooch's default handling of the tap. Read more about it in the [iOS SDK Reference](https://docs.smooch.io/api/ios/Protocols/SKTConversationDelegate.html#//api/name/conversation:shouldHandleMessageAction:)
 
 ## How can I determine whether or not the conversation view controller is active or inactive?
 
