@@ -431,9 +431,9 @@ When a webhook trigger is triggered, a `POST` request will be made to the URL co
 
 The structure of the JSON payload differs based on the trigger of the webhook. On the right, you can see examples of the JSON payload for the different triggers.
 
-### Trigger - `message:appUser` (text)
+### message:* payload
 
-> Payload:
+> Example payload for a `message:appUser` [text message](#text-message)
 
 ```json
 {
@@ -470,11 +470,7 @@ The structure of the JSON payload differs based on the trigger of the webhook. O
 }
 ```
 
-The payload for a [text message](#text-message).
-
-### Trigger - `message:appUser` (image)
-
-> Payload:
+> Example payload for a `message:appUser` [image message](#image-message)
 
 ```json
 {
@@ -511,11 +507,7 @@ The payload for a [text message](#text-message).
 }
 ```
 
-The payload for an [image message](#image-message).
-
-### Trigger - `message:appMaker` (carousel)
-
-> Payload:
+> Example payload for a `message:appMaker` [carousel message](#carousel-message)
 
 ```json
 {
@@ -569,11 +561,7 @@ The payload for an [image message](#image-message).
 }
 ```
 
-The payload for a [carousel message](#carousel-message).
-
-### Trigger - `message:appMaker` (list)
-
-> Payload:
+> Example payload for a `message:appMaker` [list message](#list-message)
 
 ```json
 {
@@ -635,11 +623,7 @@ The payload for a [carousel message](#carousel-message).
 }
 ```
 
-The payload for a [list message](#list-message).
-
-### Trigger - `message:appUser` (location)
-
-> Payload:
+> Example `message:appUser` payload for when a user sends their location
 
 ```json
 {
@@ -682,11 +666,16 @@ The payload for a [list message](#list-message).
 }
 ```
 
-The payload for when a user sends their location.
+| Field      | Type        | Description                                                                                                               |
+|------------|-------------|---------------------------------------------------------------------------------------------------------------------------|
+| `trigger`  | String      | `"message"`, `"message:appUser"`, or `"message:appMaker"`                                                                 |
+| `app`      | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.       |
+| `messages` | Array       | An array of JSON objects representing the messages associated with the event. See the [message schema](#message-schema) below for details. |
+| `appUser`  | JSON Object | A nested JSON object representing the appUser associated with the event. See the [appUser schema](#appuser-schema) below for details.      |
 
-### Trigger - `postback`
+### postback payload
 
-> Payload:
+> Example `postback` payload for when a user taps a [postback button](#postback)
 
 ```json
 {
@@ -737,12 +726,16 @@ The payload for when a user sends their location.
 }
 ```
 
-The payload for when a user taps a [postback button](#postback).<br/>
-Postbacks originating from a [persistent menu](#persistent-menus) do not have messages associated with them, and so omit the `message` property.
+| Field       | Type        | Description                                                                                                                 |
+|-------------|-------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `trigger`   | String      | `"postback"`                                                                                                                |
+| `app`       | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.         |
+| `postbacks` | Array       | An array of JSON objects representing the postbacks associated with the event. See the [postback schema](#postback-schema) below for details. |
+| `appUser`   | JSON Object | A nested JSON object representing the appUser associated with the event. See the [appUser schema](#appuser-schema) below for details.        |
 
-### Trigger - `conversation:read`
+### conversation:read payload
 
-> Payload:
+> Example `conversation:read` payload for when a user reads a conversation
 
 ```json
 {
@@ -760,11 +753,17 @@ Postbacks originating from a [persistent menu](#persistent-menus) do not have me
 }
 ```
 
-The payload for when a user reads a conversation.
+| Field       | Type        | Description                                                                                                                                  |
+|-------------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------|
+| `trigger`   | String      | `"conversation:read"`                                                                                                                        |
+| `app`       | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.                          |
+| `source`    | JSON Object | A nested JSON object representing the source of the event. See the [source schema](#source-schema) below for details.                                        |
+| `appUser`   | JSON Object | A nested JSON object representing the **truncated appUser** associated with the event. See the [truncated appUser schema](#truncated-appuser-schema) below for details. |
+| `timestamp` | Number      | A unix timestamp given in seconds, describing when Smooch received the message.                                                              |
 
-### Trigger - `merge:appUser`
+### merge:appUser payload
 
-> Payload:
+> Example `merge:appUser` payload for when two users are merged into one
 
 ```json
 {
@@ -784,11 +783,16 @@ The payload for when a user reads a conversation.
 }
 ```
 
-The payload for when two users are merged into one.
+| Field       | Type        | Description                                                                                                                                                       |
+|-------------|-------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `trigger`   | String      | `"merge:appUser"`                                                                                                                                                 |
+| `app`       | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.                                               |
+| `surviving` | JSON Object | A nested JSON object with the **truncated appUser** that now represents the merged appUser objects. See the [truncated appUser schema](#truncated-appuser-schema) below for details.         |
+| `discarded` | Array       | An array of JSON objects with the **truncated appUsers** that were unified into `surviving` appUser object. See the [truncated appUser schema](#truncated-appuser-schema) below for details. |
 
-### Trigger - `delivery:success`
+### delivery:success payload
 
-> Payload:
+> Example `delivery:success` payload for when the delivery of a message was successful
 
 ```json
 {
@@ -822,11 +826,18 @@ The payload for when two users are merged into one.
 }
 ```
 
-The payload for when the delivery of a message was successful.
+| Field         | Type        | Description                                                                                                               |
+|---------------|-------------|---------------------------------------------------------------------------------------------------------------------------|
+| `trigger`     | String      | `"delivery:success"`                                                                                                      |
+| `app`         | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.       |
+| `messages`    | Array       | An array of JSON objects representing the messages associated with the event. See the [message schema](#message-schema) below for details. |
+| `appUser`     | JSON Object | A nested JSON object representing the **truncated appUser** associated with the event. See the [appUser schema](#truncated-appuser-schema) below for details.      |
+| `destination` | JSON Object | A nested JSON object representing the destination of the message. See the [source schema](#source-schema) below for details.              |
+| `timestamp`   | Number      | A unix timestamp given in seconds, describing when Smooch received the message.   |
 
-### Trigger - `delivery:failure`
+### delivery:failure payload
 
-> Payload:
+> Example `delivery:failure` payload for when the delivery of a message fails
 
 ```json
 {
@@ -866,11 +877,19 @@ The payload for when the delivery of a message was successful.
 }
 ```
 
-The payload for when the delivery of a message fails.
+| Field         | Type        | Description                                                                                                                 |
+|---------------|-------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `trigger`     | String      | `"delivery:failure"`                                                                                                        |
+| `app`         | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.         |
+| `messages`    | Array       | An array of JSON objects representing the messages associated with the event. See the [message schema](#message-schema) below for details.   |
+| `appUser`     | JSON Object | A nested JSON object representing the **truncated appUser** associated with the event. See the [appUser schema](#truncated-appuser-schema) below for details.        |
+| `destination` | JSON Object | A nested JSON object representing the destination of the message. See the [source schema](#source-schema) below for details.                |
+| `timestamp`   | Number      | A unix timestamp given in seconds, describing when Smooch received the message.                                             |
+| `error`       | JSON Object | A nested JSON object representing the error associated with the delivery failure. See the [error schema](#error-schema) below for details. |
 
-### Trigger - `payment:success`
+### payment:success payload
 
-> Payload:
+> Example `payment:success` payload for when a payment is received
 
 ```json
 {
@@ -927,7 +946,128 @@ The payload for when the delivery of a message fails.
 }
 ```
 
-The payload for when a payment is received.
+| Field       | Type        | Description                                                                                                               |
+|-------------|-------------|---------------------------------------------------------------------------------------------------------------------------|
+| `trigger`   | String      | `"payment:success"`                                                                                                       |
+| `app`       | JSON Object | A nested JSON object representing the Smooch app associated with the event. See the [truncated app schema](#truncated-app-schema) below for details.       |
+| `appUser`   | JSON Object | A nested JSON object representing the appUser associated with the event. See the [truncated appUser schema](#truncated-appuser-schema) below for details.      |
+| `payments`  | Array       | An array of JSON objects representing the payments associated with the event. See the [payment schema](#payment-schema) below for details. |
+| `timestamp` | Number      | A unix timestamp given in seconds, describing when Smooch received the message.                                           |
+
+### payment schema
+
+| Field     | Type        | Description                                                                                                                                                                                                   |
+|-----------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `source`  | JSON Object | A nested JSON object describing the source of the event. See the [source schema](#source-schema) below for details.                                                                                                           |
+| `message` | JSON Object | A nested JSON object representing the appMaker message associated with the postback action. See the [message schema](#message-schema) below for details (Not present in postback payloads triggered by persistent menu items). |
+| `action`  | JSON Object | A nested of JSON object representing the buy action associated with the event. See the [action schema](#action-schema) below for details.                                                                                     |
+| `charge`  | JSON Object | A nested of JSON object representing the Stripe charge associated with the event. See the [charge schema](#charge-schema) below for details.                                                                                  |
+
+### charge schema
+
+| Field | Type   | Description                                                                                                        |
+|-------|--------|--------------------------------------------------------------------------------------------------------------------|
+| `id`  | String | The stripe ID of the charge event. See the [Stripe docs](https://stripe.com/docs/api#charges) for more information |
+
+### postback schema
+
+| Field                                       | Type        | Description                                                                                                                                                                                          |
+|---------------------------------------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `message` <span class="opt">optional</span> | JSON Object | A nested JSON object representing the message associated with the postback action. See the [message schema](#message-schema) below for details (Not present in postback payloads triggered by persistent menu items). |
+| `action`                                    | JSON Object | A nested JSON object representing the postback action. See the [action schema](#action-schema) below for details.                                                                                                    |
+
+### truncated app schema
+
+| Field | Type   | Description                                                                                    |
+|-------|--------|------------------------------------------------------------------------------------------------|
+| `_id` | String | A canonical ID that can be used to reference the Smooch app that the event is associated with. |
+
+### message schema
+
+| Field                                         | Type        | Description                                                                                                             |
+|-----------------------------------------------|-------------|-------------------------------------------------------------------------------------------------------------------------|
+| `_id`                                         | String      | The unique ID for the message.                                                                |
+| `text`                                        | String      | The message text.                                                                                                       |
+| `role`                                        | String      | The role of the message sender. `"appUser"`, `"appMaker"`, or `"whisper"`.                                                      |
+| `authorId`                                    | String      | The appUser's _id if the message `role` is `"appUser"`, otherwise, a hash based on the appMaker's email address.        |
+| `name` <span class="opt">optional</span>      | String      | The appUser's friendly name, or an optionally provided appMaker name.                                                   |
+| `received`                                    | Number      | A unix timestamp given in seconds, describing when Smooch received the message.                                         |
+| `source`                                      | JSON Object | A nested JSON object describing the source of the message. See the [source schema](#source-schema) below for details.                   |
+| `avatarUrl` <span class="opt">optional</span> | String      | The URL for an image of the appMaker.                                                                                   |
+| `type`                                        | String      | `"text"`, `"image"`, `"carousel"`, or `"list"`.                                                                                                 |
+| `actions`                                     | Array       | An array of JSON objects representing the actions associated with the message. See the [action schema](#action-schema) below for details. |
+
+### error schema
+
+| Field             | Type        | Description                                   |
+|-------------------|-------------|-----------------------------------------------|
+| `code`            | String      | The error code associated with the error.     |
+| `underlyingError` <span class="opt">optional</span> | JSON Object | A JSON object with the error data returned by the channel a message was meant to be delivered too. |
+| `message` <span class="opt">optional</span> | String | The description associated with the error. |
+
+### source schema
+
+| Field                                  | Type   | Description                                                                                                                                                                                            |
+|----------------------------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `type`                                 | String | An identifier for the channel from which a message originated. May include one of `"web"`, `"ios"`, `"android"`, `"messenger"`, `"viber"`, `"telegram"`, `"wechat"`, `"line"`, `"twilio"`, `"frontendEmail"`, `"api"`, or any number of other channels. |
+| `id` <span class="opt">optional</span> | String | An identifier used by Smooch for internal purposes.                                                                                                                                                    |
+
+### action schema
+
+| Field      | Type   | Description                                                                                               |
+|------------|--------|-----------------------------------------------------------------------------------------------------------|
+| `_id`      | String | A canonical ID.                                                                                           |
+| `type`     | String | `"link"`, `"reply"`, `"postback"`, `"share"`, `"location"`, or `"buy"`.                                                        |
+| `uri` <span class="opt">optional</span> | String | The URI for a link type button, a checkout page for buy type buttons. May also be an empty string.                                 |
+| `text` <span class="opt">optional</span>  | String | The button text.                                                                                          |
+| `payload` <span class="opt">optional</span> | String | The payload of an action button like a reply or postback button.                                          |
+| `amount` <span class="opt">optional</span>  | Number | An integer representing an amount of money in hundredths of a dollar (or equivalent in other currencies). |
+| `currency` <span class="opt">optional</span> | String | An ISO 4217 standard currency code in lowercase.                                                          |
+| `state` <span class="opt">optional</span> | String | The value "offered", sent with a buy action type.                                                     |
+
+### truncated appUser schema
+The truncated appUser is a partial selection of properties from the appUser model. The truncated appUser is provided in the payloads of the following payload types:
+- [conversation:read](#conversationread-payload)
+- [merge:appUser](#mergeappuser-payload)
+- [delivery:success](#deliverysuccess-payload)
+- [delivery:failure](#deliveryfailure-payload)
+
+
+| Field | Type   | Description                                              |
+|-------|--------|----------------------------------------------------------|
+| `_id` | String | A canonical ID that can be used to retrieve the appUser. |
+| `userId` <span class="opt">optional</span>    | String      | An optional ID that if specified can also be used to retrieve the appUser.                                                |
+| `conversationStarted` <span class="opt">optional</span> | Boolean     | A boolean representing of whether a message has been sent or not.                                                         |
+
+
+### appUser schema
+
+| Field                                         | Type        | Description                                                                                                               |
+|-----------------------------------------------|-------------|---------------------------------------------------------------------------------------------------------------------------|
+| `_id`                                         | String      | A canonical ID that can be used to retrieve the appUser.                                                                  |
+| `userId` <span class="opt">optional</span>    | String      | An optional ID that if specified can also be used to retreive the appUser.                                                |
+| `properties`                                  | JSON Object | A flat JSON Object of optional properties set by the app maker.                                                           |
+| `signedUpAt`                                  | String      | A datetime string with the format **yyyy-mm-ddThh:mm:ssZ** representing the moment an appUser was created.                |
+| `clients`                                     | Array       | An array of JSON objects representing the clients associated with the appUser. See the [client schema](#client-schema) below for details. |
+| `pendingClients`                              | Array       | As clients, but containing linked clients which have not been confirmed yet (i.e. Twilio SMS)                             |
+| `devices`                                     | Array       | Identical to the clients array, but **deprecated**.                                                                |
+| `conversationStarted` | Boolean     | A boolean representing of whether a message has been sent or not.                                                         |
+| `credentialRequired`                          | Boolean     | A boolean representing whether the appUser is secured by a JSON Web Token or not.                                         |
+| `email` <span class="opt">optional</span>     | String      | An optional email address.                                                                                                |
+| `givenName` <span class="opt">optional</span> | String      | An optional given name.                                                                                                   |
+| `surname` <span class="opt">optional</span>   | String      | An optional surname.                                                                                                      |
+
+### client schema
+
+| Field                                          | Type        | Description                                                                                                                                    |
+|------------------------------------------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| `active`                                       | Boolean     | If active is `false` then the appUser is not logged in to the client and signifies that the appUser will not receive APN or FCM notifications. This pertains to the SDKs. |
+| `lastSeen`                                     | String      | A datetime string with the format **yyyy-mm-ddThh:mm:ssZ** representing the last time the appUser sent a message, or launched a client like Web, Android, or iOS.  |
+| `platform`                                     | String      | Includes one of `"web"`, `"ios"`, `"android"`, `"messenger"`, `"viber"`, `"telegram"`, `"wechat"`, `"line"`, `"twilio"`, and `"frontendEmail"`, `"other"`, or any number of other platforms. |
+| `id`                                           | String      | A unique identifier for a device if on Web, iOS, or Android, or a client on other channels.                                                                                                                          |
+| `info` <span class="opt">optional</span>       | JSON Object | A flat Object with raw properties that vary for each client platform. All keys are optionals and not guaranteed to be available.                  |
+| `appVersion` <span class="opt">optional</span> | String      | For the SDK in a native app, signifies the version of the app.                                                                                  |
+| `linkedAt` <span class="opt">optional</span>   |             | If the channel was linked to a pre-existing appUser, a timestamp signifying when the linking occurred. Formatted as **yyyy-mm-ddThh:mm:ssZ**   |
 
 ## Securing a webhook
 

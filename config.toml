@@ -110,7 +110,7 @@ pages = [
     "API Reference__https://docs.smooch.io/rest/",
     "/faq/",
     "/changelog/",
-    "/guide/webhook-spec/",
+    "Webhook Schema__https://docs.smooch.io/rest/#webhooks-payload",
     "/guide/security/",
     "/guide/sending-images-and-buttons-shorthand/"
 ]
