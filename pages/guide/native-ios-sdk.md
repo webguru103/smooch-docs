@@ -78,18 +78,33 @@ Swift:
 ```
 
 <aside class="notice">
-If you're writing an app using Swift, then you'll need to import this header into a "bridging header". More info on this is available from <a href="https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Apple</a>()
+If you're writing an app using Swift, then you'll need to import this header into a "bridging header". More info on this is available from <a href="https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Apple</a>
 </aside>
 
 ### Add Required Keys in your app's Info.plist
 
-The Smooch SDK allows users to send images to you. To support this feature, you must provide a description in your app's Info.plist to explain why access to the camera and photo library is required. These descriptions will be displayed as part of the alert when the system prompts the user to allow access. The keys are:
+The Smooch SDK may need to ask users permission to use certain features. Depending on the feature, you must provide a description in your app's `Info.plist` to explain why access is required. These descriptions will be displayed the moment we prompt the user for permission.
+
+#### Images
+
+The Smooch SDK allows users to send images to you. To support this feature, you need to provide a description for the following keys:
 
 * NSCameraUsageDescription: describes the reason your app access the camera (ex: `Camera permission is required to send images to ${PRODUCT_NAME}`). More information available [here](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW24)
 * NSPhotoLibraryUsageDescription: describes the reason your app accesses the photo library (ex: `Photo library permission is required to send images to ${PRODUCT_NAME}`). More information available [here](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17)
 
 <aside class="notice">
 Starting from iOS 10, these values are required. If they are not present in your app's Info.plist, the option to send an image will not be displayed.
+</aside>
+
+#### Location
+
+The Smooch SDK also allows users to send their current location. To support this feature, you must provide a description for any of the following keys depending on your app's use of location services. Smooch will ask the user for the location depending on the key you provide:
+
+* NSLocationWhenInUseUsageDescription: describes the reason for your app to access the user’s location information while your app is in use (ex: `Location services is required to send your current location to ${PRODUCT_NAME}`). This permission is recommended if your app does not use location services and Smooch will default to it if both keys are included. More information available [here](https://developer.apple.com/library/prerelease/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26)
+* NSLocationAlwaysUsageDescription: describes the reason for your app to access the user’s location information at all times (ex: `Location services is required to send your current location to ${PRODUCT_NAME}`). More information available [here](https://developer.apple.com/library/prerelease/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW18)
+
+<aside class="notice">
+If you don't provide one of these keys, any attempt from the user to send their current location will fail.
 </aside>
 
 ### Initialize Smooch in your app
@@ -338,6 +353,9 @@ The full set of keys is listed below. To enable string customization across lang
 /* Error displayed in message bubble if image failed to download */
 "Tap to reload image" = "...";
 
+/* Error displayed as message if location sending fails */
+"Could not send location" = "...";
+
 /* Error title when user selects "use latest photo", but no photos exist */
 "No Photos Found" = "...";
 
@@ -361,6 +379,12 @@ The full set of keys is listed below. To enable string customization across lang
 
 /* Generic error description when user attempts to upload an image and it fails for an unknown reason */
 "Please try again or select a new photo." = "...";
+
+/* Error title when user attempts to send the current location but location access is denied */
+"Can't Access Location" = "...";
+
+/* Error description when user attempts to send the current location but location access is denied */
+"Make sure to allow location access for this app in your privacy settings." = "...";
 
 /* UIAlertView button title to link to Settings app */
 "Settings" = "...";

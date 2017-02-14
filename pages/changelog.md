@@ -6,6 +6,10 @@ layout: two-column
 
 # Changelog
 
+## February 14th, 2017
+
+- Added location request support in iOS SDK [5.5.0](https://github.com/smooch/smooch-ios/releases/tag/5.5.0)
+
 ## January 27th, 2017
 
 - Added location request API. [Learn More](https://docs.smooch.io/rest/#location-request)
