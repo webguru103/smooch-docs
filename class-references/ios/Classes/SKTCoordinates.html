@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>SKTConversationActivity Class Reference</title>
+	<title>SKTCoordinates Class Reference</title>
 
 	<link rel="stylesheet" href="../css/style.css">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
@@ -43,8 +43,6 @@
 							<select id="jump-to">
 	<option value="top">Jump To&#133;</option>
 	
-	<option value="overview">Overview</option>
-	
 
 	
 	
@@ -56,17 +54,21 @@
 	
 	<optgroup label="Properties">
 		
-		<option value="//api/name/data">data</option>
+		<option value="//api/name/latitude">latitude</option>
 		
-		<option value="//api/name/role">role</option>
-		
-		<option value="//api/name/type">type</option>
+		<option value="//api/name/longitude">longitude</option>
 		
 	</optgroup>
 	
 
 	
 
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/initWithLatitude:longitude:">- initWithLatitude:longitude:</option>
+		
+	</optgroup>
 	
 	
 </select>
@@ -81,7 +83,7 @@
 		<div id="overview_contents" class="container">
 			<div id="content">
 				<main role="main">
-					<h1 class="title">SKTConversationActivity Class Reference</h1>
+					<h1 class="title">SKTCoordinates Class Reference</h1>
 
 					
 					<div class="section section-specification"><table cellspacing="0"><tbody>
@@ -90,20 +92,12 @@
 	<td>NSObject</td>
 </tr><tr>
 	<th>Declared in</th>
-	<td>SKTConversationActivity.h</td>
+	<td>SKTCoordinates.h</td>
 </tr>
 						</tbody></table></div>
 					
 
                     
-					
-					<div class="section section-overview">
-						<a title="Overview" name="overview"></a>
-						<h2 class="subtitle subtitle-overview">Overview</h2>
-						<p>This key is used in the SKTConversationActivity data object.</p>
-					</div>
-					
-					
 
 					
 					
@@ -116,8 +110,8 @@
 
 						<div class="task-list">
 							<div class="section-method">
-	<a name="//api/name/role" title="role"></a>
-	<h3 class="method-title"><code><a href="#//api/name/role">&nbsp;&nbsp;role</a></code>
+	<a name="//api/name/latitude" title="latitude"></a>
+	<h3 class="method-title"><code><a href="#//api/name/latitude">&nbsp;&nbsp;latitude</a></code>
 </h3>
 
 	<div class="method-info">
@@ -127,12 +121,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>the role of who is performing the typing activity</p>
+				<p>The latitude in degrees. May be nil</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) NSString *role</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nullable) NSNumber *latitude</code></div>
 
 		    
 			
@@ -141,6 +135,11 @@
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The latitude in degrees. May be nil</p>
+			</div>
 			
 
 			
@@ -150,15 +149,15 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTConversationActivity.h</code></p>
+				<p><code class="declared-in-ref">SKTCoordinates.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/type" title="type"></a>
-	<h3 class="method-title"><code><a href="#//api/name/type">&nbsp;&nbsp;type</a></code>
+	<a name="//api/name/longitude" title="longitude"></a>
+	<h3 class="method-title"><code><a href="#//api/name/longitude">&nbsp;&nbsp;longitude</a></code>
 </h3>
 
 	<div class="method-info">
@@ -168,12 +167,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>the type of activity that is being triggered. Could be either SKTConversationActivityTypeTypingStart or SKTConversationActivityTypeTypingStop</p>
+				<p>The longitude in degrees. May be nil</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly) NSString *type</code></div>
+			<div class="method-subsection method-declaration"><code>@property (nullable) NSNumber *longitude</code></div>
 
 		    
 			
@@ -182,6 +181,11 @@
 
 			
 
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The longitude in degrees. May be nil</p>
+			</div>
 			
 
 			
@@ -191,15 +195,15 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTConversationActivity.h</code></p>
+				<p><code class="declared-in-ref">SKTCoordinates.h</code></p>
 			</div>
 			
 			
 		</div>
 	</div>
 </div><div class="section-method">
-	<a name="//api/name/data" title="data"></a>
-	<h3 class="method-title"><code><a href="#//api/name/data">&nbsp;&nbsp;data</a></code>
+	<a name="//api/name/initWithLatitude:longitude:" title="initWithLatitude:longitude:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithLatitude:longitude:">&ndash;&nbsp;initWithLatitude:longitude:</a></code>
 </h3>
 
 	<div class="method-info">
@@ -209,12 +213,12 @@
 			
 			
 			<div class="method-subsection brief-description">
-				<p>additional data for this activity. Posible values are the appMaker&rsquo;s &lsquo;name&rsquo; and/or &lsquo;avatarUrl&rsquo;</p>
+				<p>Creates coordinates with the given latitude and longitude</p>
 			</div>
 			
 		    
 
-			<div class="method-subsection method-declaration"><code>@property (readonly, nullable) NSDictionary *data</code></div>
+			<div class="method-subsection method-declaration"><code>- (nonnull instancetype)initWithLatitude:(double)<em>latitude</em> longitude:(double)<em>longitude</em></code></div>
 
 		    
 			
@@ -232,7 +236,7 @@
 			
 			<div class="method-subsection declared-in-section">
 				<h4 class="method-subtitle">Declared In</h4>
-				<p><code class="declared-in-ref">SKTConversationActivity.h</code></p>
+				<p><code class="declared-in-ref">SKTCoordinates.h</code></p>
 			</div>
 			
 			
