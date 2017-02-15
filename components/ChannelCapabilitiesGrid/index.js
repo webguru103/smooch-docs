@@ -24,11 +24,11 @@ export default class ChannelCapabilitiesGrid extends Component {
                    <SectionHeader>
                        Content types
                    </SectionHeader>
-                   { this.generateRows(['text', 'image', 'gif', 'emoji']) }
+                   { this.generateRows(['text', 'image', 'location', 'gif', 'emoji']) }
                    <SectionHeader>
                        Action types
                    </SectionHeader>
-                   { this.generateRows(['link', 'buy', 'postback', 'replies']) }
+                   { this.generateRows(['link', 'buy', 'postback', 'replies','locationRequest']) }
                    <SectionHeader>
                        Structured messages
                    </SectionHeader>
