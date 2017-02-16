@@ -81,6 +81,15 @@ export const CAPABILITIES = {
         link: '/guide/web-messenger#alternate-channels',
         send: false,
         receive: false
+    },
+    location: {
+        name: 'Location',
+        send: true,
+        receive: true
+    },
+    locationRequest: {
+        name: 'Location Request',
+        send: true
     }
 };
 
@@ -132,7 +141,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.PARTIAL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.FULL
+            }
         }
     },
     android: {
@@ -181,7 +197,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.PARTIAL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.FULL
+            }
         }
     },
     web: {
@@ -230,7 +253,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
-            webMessengerLinking: SUPPORT_LEVEL.NA
+            webMessengerLinking: SUPPORT_LEVEL.NA,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.PARTIAL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.FULL
+            }
         }
     },
     twilio: {
@@ -279,7 +309,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NA
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.PARTIAL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.PARTIAL
+            }
         }
     },
     telegram: {
@@ -328,7 +365,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.FULL
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.FULL
+            }
         }
     },
     messenger: {
@@ -377,7 +421,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.FULL
+            }
         }
     },
     line: {
@@ -426,7 +477,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NA
             },
-            webMessengerLinking: SUPPORT_LEVEL.PARTIAL
+            webMessengerLinking: SUPPORT_LEVEL.PARTIAL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.PARTIAL
+            }
         }
     },
     email: {
@@ -475,7 +533,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NONE
             },
-            webMessengerLinking: SUPPORT_LEVEL.NONE
+            webMessengerLinking: SUPPORT_LEVEL.NONE,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.PARTIAL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.PARTIAL
+            }
         }
     },
     wechat: {
@@ -524,7 +589,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NA
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.PARTIAL
+            }
         }
     },
     viber: {
@@ -573,7 +645,14 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.FULL
             },
-            webMessengerLinking: SUPPORT_LEVEL.FULL
+            webMessengerLinking: SUPPORT_LEVEL.FULL,
+            location: {
+                send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            locationRequest: {
+                send: SUPPORT_LEVEL.PARTIAL
+            }
         }
     }
 };
