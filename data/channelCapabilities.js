@@ -82,12 +82,12 @@ export const CAPABILITIES = {
         send: false,
         receive: false
     },
-    location : {
+    location: {
         name: 'Location',
         send: true,
         receive: true
     },
-    locationRequest :{
+    locationRequest: {
         name: 'Location Request',
         send: true
     }
@@ -198,7 +198,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.PARTIAL
             },
@@ -254,7 +254,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.NA,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.PARTIAL
             },
@@ -310,7 +310,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.NA
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.PARTIAL
             },
@@ -366,7 +366,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
@@ -422,7 +422,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
@@ -478,7 +478,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.NA
             },
             webMessengerLinking: SUPPORT_LEVEL.PARTIAL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
@@ -534,7 +534,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.NONE
             },
             webMessengerLinking: SUPPORT_LEVEL.NONE,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.PARTIAL
             },
@@ -590,7 +590,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.NA
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
@@ -646,7 +646,7 @@ const channelData = {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
-            location:{
+            location: {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },

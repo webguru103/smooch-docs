@@ -28,7 +28,7 @@ export default class ChannelCapabilitiesGrid extends Component {
                    <SectionHeader>
                        Action types
                    </SectionHeader>
-                   { this.generateRows(['link', 'buy', 'postback', 'replies','locationRequest']) }
+                   { this.generateRows(['link', 'buy', 'postback', 'replies', 'locationRequest']) }
                    <SectionHeader>
                        Structured messages
                    </SectionHeader>
