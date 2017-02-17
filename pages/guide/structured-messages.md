@@ -165,14 +165,44 @@ Messages that are shared display the page name and profile pic, indicating the o
 
 ```javascript
 smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
-    text: 'Title',
+    text: 'Share It!',
     role: 'appMaker',
     type: 'carousel',
     items: [{
-      title: 'Title',
+      title: 'Share',
       actions: [{
         type: 'share'
       }]
+    }]
+}).then(() => {
+    // async code
+});
+```
+
+#### Location Request Buttons
+
+Location requests will help you provide personalized and accurate customer service to your users. Use it to build new use cases for travel, guest and hospitality, transportation, logistics, real estate, and more.
+
+![](/images/messenger_ios_location_request.png)
+
+Location requests are natively supported on Facebook Messenger, Telegram and built-in with the latest version of our iOS, Android & Web SDKs. For other channels such as LINE or SMS, Smooch sends the request in text format.
+
+![](/images/line_location_text.png)
+
+To request location from a user, you can use Smooch button syntax from any of your configured business systems:
+
+`%[Send location](location)`
+
+Or you can send location requests using the API:
+
+```javascript
+smooch.appUsers.sendMessage('c7f6e6d6c3a637261bd9656f', {
+    text: 'What\'s your location?',
+    role: 'appMaker',
+    type: 'text',
+    actions: [{
+        text: 'Send Location',
+        type: 'locationRequest'
     }]
 }).then(() => {
     // async code
