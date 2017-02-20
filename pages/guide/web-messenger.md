@@ -39,13 +39,13 @@ Once Smooch has been included on your web page, you're almost done. Simply initi
 
 ```html
 <script>
-	Smooch.init({appToken: 'your_app_token'});
+    Smooch.init({appToken: 'your_app_token'});
 </script>
 ```
 
 ### npm and browserify
 
-```
+```bash
 npm install smooch
 ```
 
@@ -56,6 +56,14 @@ var Smooch = require('smooch');
 
 Smooch.init({appToken: 'your_app_token'});
 ```
+
+<aside class="warning">
+If you are using NPM 3.0 or above, make sure to also install the required peer dependencies:
+
+```bash
+npm install babel-polyfill@">=6.9.0 <7.0" babel-runtime@">=6.9.0 <7.0" react@"15.x.x" react-dom@"15.x.x"
+```
+</aside>
 
 ### bower
 
@@ -231,11 +239,6 @@ For example, if a user visits your site and would like to close the tab, they ca
 
 To embed the widget in your existing markup, you need to pass `embedded: true` when calling `Smooch.init`. By doing so, you are disabling the auto-rendering mechanism and you will need to call `Smooch.render` manually. This method accepts a DOM element which will be used as the container where the widget will be rendered.
 
-<aside>
-The embedded widget will take full width and height of the container.  
-You must give it a height, otherwise, the widget will collapse.
-</aside>
-
 
 ```js
 Smooch.init({
@@ -246,6 +249,11 @@ Smooch.init({
 
 Smooch.render(document.getElementById('chat-container'));
 ```
+
+<aside class="notice">
+The embedded widget will take full width and height of the container.  
+You must give it a height, otherwise, the widget will collapse.
+</aside>
 
 ### Strings customization
 
@@ -301,7 +309,7 @@ For complete control over the styling of the widget, you can use CSS to override
 ```
 
 <aside class="warning">
-If you use CSS customizations, we strongly suggest you add Smooch to your site through <a href="#npm-and-browserify">npm</a> or through [bower](#bower). The version we have on <a href="#script-tag-method">CDN</a> has our latest updates. Any new changes we push may break your CSS customizations.
+If you use CSS customizations, we strongly suggest you add Smooch to your site through <a href="#npm-and-browserify">npm</a> or through <a href="#bower">bower</a>. The version we have on <a href="#script-tag-method">CDN</a> has our latest updates. Any new changes we push may break your CSS customizations.
 </aside>
 
 ### Sound notification
