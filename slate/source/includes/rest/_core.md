@@ -417,6 +417,7 @@ A webhook will make a request to the target each time a trigger associated with 
 | **message**<br/>*default* | all messages                                                   |
 | **message:appUser**       | only messages with role `appUser`                              |
 | **message:appMaker**      | only messages with role `appMaker` or `whisper`                |
+| **conversation:start**    | when a user opts in to start receiving messages                |
 | **conversation:read**     | when a user reads a conversation                               |
 | **postback**              | when a user clicks on a postback action                        |
 | **merge:appUser**         | when two or more users are merged into one                     |
@@ -740,6 +741,40 @@ The payload for when a user sends their location.
 The payload for when a user taps a [postback button](#postback).<br/>
 Postbacks originating from a [persistent menu](#persistent-menus) do not have messages associated with them, and so omit the `message` property.
 
+
+### Trigger - `conversation:start`
+
+> Payload:
+
+```json
+{
+    "trigger": "conversation:start",
+    "app": {
+        "_id": "57ec2881c47d2d24b0c16427"
+    },
+    "source": {
+        "type": "messenger"
+    },
+    "appUser": {
+        "_id": "c7f6e6d6c3a637261bd9656f",
+        "userId": "bob@example.com",
+        "properties": {},
+        "signedUpAt": "2015-10-06T03:38:02.346Z",
+        "clients": [
+          {
+            "active": true,
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "messenger"
+          }
+        ]
+    },
+    "timestamp": 1480349392.103
+}
+```
+
+The payload for when a user opts in to start receiving messages. `conversation:start` is only available on a sub set of channels. [Channel capabilities](https://docs.smooch.io/guide/channel-capabilities/) lists which channel currently supports it. Also, note that `conversation:start` won't be triggered when a user is linking a second channel via the Web Messenger.
+
 ### Trigger - `conversation:read`
 
 > Payload:
@@ -1031,7 +1066,7 @@ Smooch uses the term `client` to refer generally to means by which a user can se
 If a `userId` is used when calling `/v1/init`, then clients and app users may have a many-to-many relationship. A single `userId` may use Smooch from multiple clients and multiple different `userId`s may log in to the same device.
 
 <aside class="notice">
-*Note:* Only one `userId` can be active on a given client at a time. On a push notification capable client that's shared between multiple `userId`s, only the most recent `userId` to have called `/v1/init` will receive push notifications from the integrated application on that client.
+**Note:** Only one `userId` can be active on a given client at a time. On a push notification capable client that's shared between multiple `userId`s, only the most recent `userId` to have called `/v1/init` will receive push notifications from the integrated application on that client.
 </aside>
 
 | **`device` arguments**      |   |

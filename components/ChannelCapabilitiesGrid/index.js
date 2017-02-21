@@ -36,7 +36,7 @@ export default class ChannelCapabilitiesGrid extends Component {
                    <SectionHeader>
                        Indicators
                    </SectionHeader>
-                   { this.generateRows(['typingIndicator', 'readIndicator']) }
+                   { this.generateRows(['typingIndicator', 'readIndicator', 'conversationStart']) }
                    <SectionHeader>
                        Account linking
                    </SectionHeader>

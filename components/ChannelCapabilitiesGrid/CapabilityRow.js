@@ -69,6 +69,11 @@ export default class CapabilityRow extends Component {
                              isContent>
                            { getSupportIndicator(support.send) }
                        </Cell>;
+            } else if (capabilityDetails.receive) {
+                cell = <Cell key={ i }
+                             isContent>
+                           { getSupportIndicator(support.receive) }
+                       </Cell>;
             } else {
                 cell = <Cell key={ i }
                              isContent>
