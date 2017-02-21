@@ -76,6 +76,11 @@ export const CAPABILITIES = {
         send: true,
         receive: true
     },
+    conversationStart: {
+        name: 'Conversation Start',
+        send: false,
+        receive: true
+    },
     webMessengerLinking: {
         name: 'via Web Messenger',
         link: '/guide/web-messenger#alternate-channels',
@@ -141,6 +146,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
+            conversationStart: {},
             webMessengerLinking: SUPPORT_LEVEL.FULL,
             location: {
                 send: SUPPORT_LEVEL.NONE,
@@ -197,6 +203,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
+            conversationStart: {},
             webMessengerLinking: SUPPORT_LEVEL.FULL,
             location: {
                 send: SUPPORT_LEVEL.NONE,
@@ -253,6 +260,7 @@ const channelData = {
                 send: SUPPORT_LEVEL.NONE,
                 receive: SUPPORT_LEVEL.FULL
             },
+            conversationStart: {},
             webMessengerLinking: SUPPORT_LEVEL.NA,
             location: {
                 send: SUPPORT_LEVEL.NONE,
@@ -307,6 +315,9 @@ const channelData = {
             },
             readIndicator: {
                 send: SUPPORT_LEVEL.NA,
+                receive: SUPPORT_LEVEL.NA
+            },
+            conversationStart: {
                 receive: SUPPORT_LEVEL.NA
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
@@ -365,6 +376,9 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.FULL
             },
+            conversationStart: {
+                receive: SUPPORT_LEVEL.FULL
+            },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
             location: {
                 send: SUPPORT_LEVEL.NONE,
@@ -419,6 +433,9 @@ const channelData = {
             },
             readIndicator: {
                 send: SUPPORT_LEVEL.NONE,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            conversationStart: {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
@@ -477,6 +494,9 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NA
             },
+            conversationStart: {
+                receive: SUPPORT_LEVEL.FULL
+            },
             webMessengerLinking: SUPPORT_LEVEL.PARTIAL,
             location: {
                 send: SUPPORT_LEVEL.NONE,
@@ -532,6 +552,9 @@ const channelData = {
             readIndicator: {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NONE
+            },
+            conversationStart: {
+                receive: SUPPORT_LEVEL.NA
             },
             webMessengerLinking: SUPPORT_LEVEL.NONE,
             location: {
@@ -589,6 +612,9 @@ const channelData = {
                 send: SUPPORT_LEVEL.NA,
                 receive: SUPPORT_LEVEL.NA
             },
+            conversationStart: {
+                receive: SUPPORT_LEVEL.FULL
+            },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
             location: {
                 send: SUPPORT_LEVEL.NONE,
@@ -643,6 +669,9 @@ const channelData = {
             },
             readIndicator: {
                 send: SUPPORT_LEVEL.NA,
+                receive: SUPPORT_LEVEL.FULL
+            },
+            conversationStart: {
                 receive: SUPPORT_LEVEL.FULL
             },
             webMessengerLinking: SUPPORT_LEVEL.FULL,
