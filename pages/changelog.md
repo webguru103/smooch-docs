@@ -6,6 +6,11 @@ layout: two-column
 
 # Changelog
 
+## February 20th, 2017
+
+- Added new [`conversation:start` event](https://docs.smooch.io/rest/#webhook-triggers) in the webhooks for when a user opts in to start a conversation.
+- Improved Facebook Messenger linking support in Web Messenger [3.13.0](https://github.com/smooch/smooch-js/releases/tag/3.13.0)
+
 ## February 14th, 2017
 
 - Added location request support in iOS SDK [5.5.0](https://github.com/smooch/smooch-ios/releases/tag/5.5.0)
