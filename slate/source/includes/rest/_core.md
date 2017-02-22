@@ -1543,6 +1543,69 @@ smooch.appUsers.unlinkChannel('steveb@channel5.com', 'twilio')
 
 Removes the specified channel from the appUser's clients.
 
+## Delete Profile
+
+> Request by smoochId:
+
+```shell
+curl https://api.smooch.io/v1/appusers/c7f6e6d6c3a637261bd9656f/profile \
+     -X DELETE \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.appUsers.deleteProfile('c7f6e6d6c3a637261bd9656f').then((response) => {
+    // async code
+});
+```
+
+> Request by userId:
+
+```shell
+curl https://api.smooch.io/v1/appusers/steveb@channel5.com/profile \
+     -X DELETE \
+     -H 'authorization: Bearer your-jwt'
+```
+```js
+smooch.appUsers.deleteProfile('steveb@channel5.com').then((response) => {
+    // async code
+});
+```
+
+> Response:
+
+```
+200 OK
+```
+```json
+{
+    "appUser": {
+        "_id": "deb920657bbc3adc3fec7963",
+        "userId": "steveb@channel5.com",
+        "signedUpAt": "2015-10-08T23:52:11.677Z",
+        "properties": {},
+        "conversationStarted": true,
+        "clients": [
+          {
+            "active": true,
+            "appVersion": "1.0",
+            "id": "5A7F8343-DF41-46A8-96EC-8583FCB422FB",
+            "lastSeen": "2016-03-09T19:09:01.431Z",
+            "platform": "ios",
+            "pushNotificationToken": "<...>"
+          }
+        ]
+    }
+}
+```
+
+<api>`DELETE /v1/appusers/{smoochId|userId}/profile`</api>
+
+Delete a user's profile. Use this API to clear all personally identifiable information for a given user.
+
+<aside class="notice">
+This endpoint requires a `jwt` credential with `app` level scope.
+</aside>
+
 # Conversations
 
 When the first message is sent to an app user or received from an app user, a conversation is automatically created for them. The conversation and messages for a given app user can be retrieved and created by way of the `/v1/appusers/` API.
