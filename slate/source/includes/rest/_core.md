@@ -1183,7 +1183,7 @@ smooch.appUsers.get('steveb@channel5.com').then((response) => {
 
 Retrieve a specific app user. Like all other `/v1/appusers/` paths, an app user can be identified using either the `smoochId` or the `userId`.
 
-## Update
+## Update App User
 
 > Request:
 
@@ -1543,7 +1543,7 @@ smooch.appUsers.unlinkChannel('steveb@channel5.com', 'twilio')
 
 Removes the specified channel from the appUser's clients.
 
-## Delete Profile
+## Delete User Profile
 
 > Request by smoochId:
 
@@ -1600,7 +1600,17 @@ smooch.appUsers.deleteProfile('steveb@channel5.com').then((response) => {
 
 <api>`DELETE /v1/appusers/{smoochId|userId}/profile`</api>
 
-Delete a user's profile. Use this API to clear all personally identifiable information for a given user.
+Delete a user's profile. This API will clear the following information from a user:
+
+- Given name
+- Surname
+- Email
+- Custom properties
+- Client
+
+  - Display name
+  - Avatar URL
+  - Custom info
 
 <aside class="notice">
 This endpoint requires a `jwt` credential with `app` level scope.
