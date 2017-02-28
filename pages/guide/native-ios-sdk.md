@@ -74,12 +74,8 @@ Objective-C:
 
 Swift:
 ```swift
-#import <Smooch/Smooch.h>
+import Smooch
 ```
-
-<aside class="notice">
-If you're writing an app using Swift, then you'll need to import this header into a "bridging header". More info on this is available from <a href="https://developer.apple.com/library/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Apple</a>
-</aside>
 
 ### Add Required Keys in your app's Info.plist
 
